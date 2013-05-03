@@ -47,6 +47,21 @@
 
     <properties>
         <openmrsCoreVersion>1.9.3</openmrsCoreVersion>
+        <metadatasharingModuleVersion>1.1.8</metadatasharingModuleVersion>
+        <emrapiModuleVersion>1.0-SNAPSHOT</emrapiModuleVersion>
+        <addresshierarchyModuleVersion>2.2.9</addresshierarchyModuleVersion>
+        <radiologyappModuleVersion>1.0-SNAPSHOT</radiologyappModuleVersion>
+        <providermanagementModuleVersion>1.1.3</providermanagementModuleVersion>
+
+        <emrVersion>2.0-SNAPSHOT</emrVersion>
+        <htmlformentryVersion>2.0.8</htmlformentryVersion>
+        <reportingVersion>0.7.6-SNAPSHOT</reportingVersion>
+        <calculationVersion>1.0</calculationVersion>
+        <serializationxstreamVersion>0.2.7</serializationxstreamVersion>
+        <uiframeworkVersion>2.5.2-SNAPSHOT</uiframeworkVersion>
+        <paperrecordVersion>1.0-SNAPSHOT</paperrecordVersion>
+        <idgenVersion>2.6-SNAPSHOT</idgenVersion>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -78,6 +93,95 @@
         </dependency>
 
         <!-- End OpenMRS core -->
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>metadatasharing-api</artifactId>
+            <version>${metadatasharingModuleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>emrapi-api</artifactId>
+            <version>${emrapiModuleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>addresshierarchy-api</artifactId>
+            <version>${addresshierarchyModuleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- only for testing -->
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>radiologyapp-api</artifactId>
+            <version>${radiologyappModuleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>providermanagement-api</artifactId>
+            <version>${providermanagementModuleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>emr-api</artifactId>
+            <version>${emrVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>htmlformentry-api</artifactId>
+            <version>${htmlformentryVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>reporting-api</artifactId>
+            <version>${reportingVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.web</groupId>
+            <artifactId>openmrs-web</artifactId>
+            <version>${openmrsCoreVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>calculation-api</artifactId>
+            <version>${calculationVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>serialization.xstream-api</artifactId>
+            <version>${serializationxstreamVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>uiframework-api</artifactId>
+            <version>${uiframeworkVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>paperrecord-api</artifactId>
+            <version>${paperrecordVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>idgen-api</artifactId>
+            <version>${idgenVersion}</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 
