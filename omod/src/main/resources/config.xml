@@ -15,6 +15,15 @@
     <require_version>${openmrsCoreVersion}</require_version>
     <!-- / Module Properties -->
 
+    <require_modules>
+        <require_module version="${addresshierarchyModuleVersion}">
+            org.openmrs.module.addresshierarchy
+        </require_module>
+        <require_module version="${emrapiModuleVersion}">
+            org.openmrs.module.emrapi
+        </require_module>
+    </require_modules>
+
     <!-- Module Activator -->
     <activator>${project.parent.groupId}.${project.parent.artifactId}.MirebalaisMetadataActivator</activator>
 
