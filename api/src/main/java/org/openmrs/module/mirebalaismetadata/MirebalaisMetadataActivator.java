@@ -26,11 +26,13 @@ import org.openmrs.module.addresshierarchy.AddressField;
 import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
 import org.openmrs.module.addresshierarchy.util.AddressHierarchyImportUtil;
+import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.MetadataSharing;
 import org.openmrs.module.metadatasharing.resolver.Resolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByNameResolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
+import org.openmrs.module.radiologyapp.RadiologyConstants;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -83,6 +85,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
     public void started() {
         try {
             installMetadataPackages();
+            verifyRadiologyConceptsPresent();
             setupAddressHierarchy();
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("mirebalaismetadata");
@@ -178,7 +181,25 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             installedAddressHierarchyVersionObject.setPropertyValue(ADDRESS_HIERARCHY_VERSION.toString());
             Context.getAdministrationService().saveGlobalProperty(installedAddressHierarchyVersionObject);
         }
-
-
     }
+
+    private void verifyRadiologyConceptsPresent() {
+        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_PROCEDURE, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_TYPE, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_BODY, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_ACCESSION_NUMBER, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_IMAGES_AVAILABLE, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_CORRECTION, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_FINAL, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_PRELIM, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_STUDY_SET, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_SET, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+    }
+
+    private void verifyConceptPresent(String conceptCode, String conceptSource) {
+        if (Context.getConceptService().getConceptByMapping(conceptCode, conceptSource) == null) {
+            throw new RuntimeException("No concept tagged with code " + conceptCode + " from source " + conceptSource);
+        }
+    }
+
 }
