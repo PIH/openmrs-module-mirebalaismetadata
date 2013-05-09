@@ -52,6 +52,7 @@
         <addresshierarchyModuleVersion>2.2.9</addresshierarchyModuleVersion>
         <radiologyappModuleVersion>1.0-SNAPSHOT</radiologyappModuleVersion>
         <providermanagementModuleVersion>1.1.3</providermanagementModuleVersion>
+        <patientregistrationVersion>2.2-SNAPSHOT</patientregistrationVersion>
 
         <emrVersion>2.0-SNAPSHOT</emrVersion>
         <htmlformentryVersion>2.0.8</htmlformentryVersion>
@@ -112,6 +113,13 @@
             <groupId>org.openmrs.module</groupId>
             <artifactId>addresshierarchy-api</artifactId>
             <version>${addresshierarchyModuleVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>patientregistration-api</artifactId>
+            <version>${patientregistrationVersion}</version>
             <scope>provided</scope>
         </dependency>
 

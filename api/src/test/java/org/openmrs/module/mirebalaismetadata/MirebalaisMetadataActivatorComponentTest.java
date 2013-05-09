@@ -16,6 +16,7 @@ import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
+import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.providermanagement.api.ProviderManagementService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.openmrs.test.SkipBaseSetup;
@@ -23,6 +24,7 @@ import org.openmrs.validator.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -50,8 +52,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
     public void beforeEachTest() throws Exception {
         initializeInMemoryDatabase();
         executeDataSet("requiredDataTestDataset.xml");
-//        executeDataSet("globalPropertiesTestDataset.xml");
-//        executeDataSet("mirebalaisProviderIdentifierGeneratorComponentTestDataset.xml");
+        executeDataSet("globalPropertiesTestDataset.xml");
         authenticate();
         activator = new MirebalaisMetadataActivator(mirebalaisMetadataProperties);
         activator.willRefreshContext();
@@ -62,9 +63,31 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 
     @Test
     public void testThatActivatorDoesAllSetup() throws Exception {
+        verifyPatientRegistrationConfigured();
         verifyMetadataPackagesConfigured();
         verifyAddressHierarchyLevelsCreated();
         verifyAddressHierarchyLoaded();
+    }
+
+    private void verifyPatientRegistrationConfigured() {
+        List<Method> failingMethods = new ArrayList<Method>();
+        for (Method method : PatientRegistrationGlobalProperties.class.getMethods()) {
+            if (method.getName().startsWith("GLOBAL_PROPERTY") && method.getParameterTypes().length == 0) {
+                try {
+                    method.invoke(null);
+                } catch (Exception ex) {
+                    failingMethods.add(method);
+                }
+            }
+        }
+
+        if (failingMethods.size() > 0) {
+            String errorMessage = "Some Patient Registration global properties are not configured correctly. See these methods in the PatientRegistrationGlobalProperties class";
+            for (Method method : failingMethods) {
+                errorMessage += "\n" + method.getName();
+            }
+            Assert.fail(errorMessage);
+        }
     }
 
     private void verifyMetadataPackagesConfigured() throws Exception {
