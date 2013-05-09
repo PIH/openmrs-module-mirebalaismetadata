@@ -54,7 +54,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
     private MirebalaisMetadataProperties mirebalaisMetadataProperties;
 
     public MirebalaisMetadataActivator() {
-        mirebalaisMetadataProperties = Context.getRegisteredComponents(MirebalaisMetadataProperties.class).get(0);
     }
 
     /**
@@ -70,6 +69,10 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
      * @see ModuleActivator#contextRefreshed()
      */
     public void contextRefreshed() {
+        if (mirebalaisMetadataProperties == null) {
+            mirebalaisMetadataProperties = Context.getRegisteredComponents(MirebalaisMetadataProperties.class).get(0);
+        }
+
         // Since we do all MDS import programmatically, in mirror or parent-child mode, we don't want items being matched
         // except for in specific ways.
         // see https://tickets.openmrs.org/browse/META-323
@@ -85,6 +88,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
      * @see ModuleActivator#started()
      */
     public void started() {
+        if (mirebalaisMetadataProperties == null) {
+            mirebalaisMetadataProperties = Context.getRegisteredComponents(MirebalaisMetadataProperties.class).get(0);
+        }
         try {
             installMetadataPackages();
             verifyRadiologyConceptsPresent();
