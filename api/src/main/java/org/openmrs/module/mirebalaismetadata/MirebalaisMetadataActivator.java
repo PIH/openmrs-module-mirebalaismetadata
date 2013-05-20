@@ -17,7 +17,10 @@ package org.openmrs.module.mirebalaismetadata;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.GlobalProperty;
+import org.openmrs.Location;
+import org.openmrs.LocationTag;
 import org.openmrs.api.AdministrationService;
+import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.Module;
@@ -28,6 +31,7 @@ import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
 import org.openmrs.module.addresshierarchy.util.AddressHierarchyImportUtil;
 import org.openmrs.module.emrapi.EmrApiConstants;
+import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.MetadataSharing;
 import org.openmrs.module.metadatasharing.resolver.Resolver;
@@ -38,7 +42,11 @@ import org.openmrs.module.radiologyapp.RadiologyConstants;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -93,6 +101,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
         try {
             installMetadataPackages();
+            setLocationTags(Context.getLocationService(), getEmrApiProperties());
             verifyRadiologyConceptsPresent();
             setupPatientRegistrationGlobalProperties();
             setupAddressHierarchy();
@@ -102,6 +111,63 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             throw new RuntimeException("Failed to start the mirebalaismetadata module", e);
         }
         log.info("Mirebalais Metadata module started");
+    }
+
+    private EmrApiProperties getEmrApiProperties() {
+        return Context.getRegisteredComponents(EmrApiProperties.class).iterator().next();
+    }
+
+    private void setLocationTags(LocationService locationService, EmrApiProperties emrApiProperties) {
+        List<Location> allLocations = locationService.getAllLocations();
+        Set<String> allLocationUuids = new HashSet<String>();
+        for (Location location : allLocations) {
+            allLocationUuids.add(location.getUuid());
+        }
+
+        // allow logging in to all locations MINUS exceptions
+        List<String> loginLocationUuids = new ArrayList<String>(allLocationUuids);
+        loginLocationUuids.removeAll(Arrays.asList(
+                MirebalaisMetadataProperties.UNKNOWN_LOCATION_UUID,
+                MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID,
+                MirebalaisMetadataProperties.LACOLLINE_LOCATION_UUID,
+                MirebalaisMetadataProperties.PEDIATRICS_A_LOCATION_UUID,
+                MirebalaisMetadataProperties.PEDIATRICS_B_LOCATION_UUID,
+                MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
+                MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
+                MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
+                MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID));
+
+        // allow admission at specified locations
+        List<String> admitLocationUuids = Arrays.asList(
+                MirebalaisMetadataProperties.SURGICAL_WARD_LOCATION_UUID,
+                MirebalaisMetadataProperties.PRE_OP_PACU_LOCATION_UUID,
+                MirebalaisMetadataProperties.POST_OP_GYN_LOCATION_UUID,
+                MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID,
+                MirebalaisMetadataProperties.LABOR_AND_DELIVERY_LOCATION_UUID,
+                MirebalaisMetadataProperties.POSTPARTUM_WARD_LOCATION_UUID,
+                MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID,
+                MirebalaisMetadataProperties.ICU_LOCATION_UUID,
+                MirebalaisMetadataProperties.NICU_LOCATION_UUID,
+                MirebalaisMetadataProperties.ISOLATION_LOCATION_UUID);
+
+        setLocationTagFor(locationService, emrApiProperties.getSupportsLoginLocationTag(), allLocations, loginLocationUuids);
+        setLocationTagFor(locationService, emrApiProperties.getSupportsAdmissionLocationTag(), allLocations, admitLocationUuids);
+    }
+
+    private void setLocationTagFor(LocationService service, LocationTag tag, List<Location> allLocations, Collection<String> uuidsThatGetTag) {
+        for (Location candidate : allLocations) {
+            boolean expected = uuidsThatGetTag.contains(candidate.getUuid());
+            boolean actual = candidate.hasTag(tag.getName());
+            if (actual && !expected) {
+                candidate.removeTag(tag);
+                service.saveLocation(candidate);
+            } else if (!actual && expected) {
+                candidate.addTag(tag);
+                service.saveLocation(candidate);
+            }
+        }
     }
 
     private void installMetadataPackages() throws Exception {
