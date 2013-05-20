@@ -5,12 +5,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.Concept;
+import org.openmrs.Location;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.addresshierarchy.AddressField;
 import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
+import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.metadata.MetadataPackageConfig;
 import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
@@ -67,6 +69,25 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         verifyMetadataPackagesConfigured();
         verifyAddressHierarchyLevelsCreated();
         verifyAddressHierarchyLoaded();
+        verifyLocationTags();
+    }
+
+    private void verifyLocationTags() {
+        // test a couple of sentinel locations
+        // mirebalais hospital should support neither login nor admission
+        Location location = Context.getLocationService().getLocationByUuid(MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID);
+        assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_LOGIN), is(false));
+        assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_ADMISSION), is(false));
+
+        // outpatient clinic should support login, but not admission
+        location = Context.getLocationService().getLocationByUuid(MirebalaisMetadataProperties.OUTPATIENT_CLINIC_LOCATION_UUID);
+        assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_LOGIN), is(true));
+        assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_ADMISSION), is(false));
+
+        // pediatrics should support both login and admission
+        location = Context.getLocationService().getLocationByUuid(MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID);
+        assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_LOGIN), is(true));
+        assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_ADMISSION), is(true));
     }
 
     private void verifyPatientRegistrationConfigured() {
