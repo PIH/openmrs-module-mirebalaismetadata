@@ -55,7 +55,7 @@
         <patientregistrationVersion>2.2-SNAPSHOT</patientregistrationVersion>
 
         <emrVersion>2.0-SNAPSHOT</emrVersion>
-        <htmlformentryVersion>2.0.8</htmlformentryVersion>
+        <htmlformentryVersion>2.1.1</htmlformentryVersion>
         <reportingVersion>0.7.6-SNAPSHOT</reportingVersion>
         <calculationVersion>1.0</calculationVersion>
         <serializationxstreamVersion>0.2.7</serializationxstreamVersion>
