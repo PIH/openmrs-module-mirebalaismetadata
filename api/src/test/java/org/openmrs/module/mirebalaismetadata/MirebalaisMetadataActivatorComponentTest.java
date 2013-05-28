@@ -1,11 +1,5 @@
 package org.openmrs.module.mirebalaismetadata;
 
-import java.io.InputStream;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -30,6 +24,12 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.openmrs.test.SkipBaseSetup;
 import org.openmrs.validator.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.InputStream;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -84,7 +84,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         location = Context.getLocationService().getLocationByUuid(MirebalaisMetadataProperties.OUTPATIENT_CLINIC_LOCATION_UUID);
         assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_LOGIN), is(true));
         assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_ADMISSION), is(false));
-        assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_TRANSFER), is(false));
+        assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_TRANSFER), is(true));
 
         // pediatrics should support login, admission and transfer
         location = Context.getLocationService().getLocationByUuid(MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID);
