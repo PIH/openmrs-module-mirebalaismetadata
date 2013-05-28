@@ -48,6 +48,34 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.COMMUNITY_HEALTH_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.DENTAL_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.EMERGENCY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.GP_INSTALLED_ADDRESS_HIERARCHY_VERSION;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ICU_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ISOLATION_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LABOR_AND_DELIVERY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LACOLLINE_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.NICU_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_A_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_B_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POSTPARTUM_WARD_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POST_OP_GYN_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PRE_OP_PACU_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.SURGICAL_WARD_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.UNKNOWN_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_CLINIC_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_LOCATION_UUID;
+
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
  */
@@ -127,33 +155,53 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         // allow logging in to all locations MINUS exceptions
         List<String> loginLocationUuids = new ArrayList<String>(allLocationUuids);
         loginLocationUuids.removeAll(Arrays.asList(
-                MirebalaisMetadataProperties.UNKNOWN_LOCATION_UUID,
-                MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID,
-                MirebalaisMetadataProperties.LACOLLINE_LOCATION_UUID,
-                MirebalaisMetadataProperties.PEDIATRICS_A_LOCATION_UUID,
-                MirebalaisMetadataProperties.PEDIATRICS_B_LOCATION_UUID,
-                MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
-                MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-                MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
-                MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID));
+                UNKNOWN_LOCATION_UUID,
+                MIREBALAIS_HOSPITAL_LOCATION_UUID,
+                LACOLLINE_LOCATION_UUID,
+                PEDIATRICS_A_LOCATION_UUID,
+                PEDIATRICS_B_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID));
+        setLocationTagFor(locationService, emrApiProperties.getSupportsLoginLocationTag(), allLocations, loginLocationUuids);
 
         // allow admission at specified locations
         List<String> admitLocationUuids = Arrays.asList(
-                MirebalaisMetadataProperties.SURGICAL_WARD_LOCATION_UUID,
-                MirebalaisMetadataProperties.PRE_OP_PACU_LOCATION_UUID,
-                MirebalaisMetadataProperties.POST_OP_GYN_LOCATION_UUID,
-                MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID,
-                MirebalaisMetadataProperties.LABOR_AND_DELIVERY_LOCATION_UUID,
-                MirebalaisMetadataProperties.POSTPARTUM_WARD_LOCATION_UUID,
-                MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID,
-                MirebalaisMetadataProperties.ICU_LOCATION_UUID,
-                MirebalaisMetadataProperties.NICU_LOCATION_UUID,
-                MirebalaisMetadataProperties.ISOLATION_LOCATION_UUID);
-
-        setLocationTagFor(locationService, emrApiProperties.getSupportsLoginLocationTag(), allLocations, loginLocationUuids);
+                SURGICAL_WARD_LOCATION_UUID,
+                PRE_OP_PACU_LOCATION_UUID,
+                POST_OP_GYN_LOCATION_UUID,
+                ANTEPARTUM_WARD_LOCATION_UUID,
+                LABOR_AND_DELIVERY_LOCATION_UUID,
+                POSTPARTUM_WARD_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                PEDIATRICS_LOCATION_UUID,
+                ICU_LOCATION_UUID,
+                NICU_LOCATION_UUID,
+                ISOLATION_LOCATION_UUID);
         setLocationTagFor(locationService, emrApiProperties.getSupportsAdmissionLocationTag(), allLocations, admitLocationUuids);
+
+        // allow transfer at specified locations
+        List<String> transferLocationUuids = Arrays.asList(
+                SURGICAL_WARD_LOCATION_UUID,
+                PRE_OP_PACU_LOCATION_UUID,
+                POST_OP_GYN_LOCATION_UUID,
+                ANTEPARTUM_WARD_LOCATION_UUID,
+                LABOR_AND_DELIVERY_LOCATION_UUID,
+                POSTPARTUM_WARD_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                PEDIATRICS_LOCATION_UUID,
+                ICU_LOCATION_UUID,
+                NICU_LOCATION_UUID,
+                ISOLATION_LOCATION_UUID,
+                EMERGENCY_LOCATION_UUID,
+                COMMUNITY_HEALTH_LOCATION_UUID,
+                OUTPATIENT_CLINIC_LOCATION_UUID,
+                WOMENS_CLINIC_LOCATION_UUID,
+                DENTAL_LOCATION_UUID);
+        setLocationTagFor(locationService, emrApiProperties.getSupportsTransferLocationTag(), allLocations, transferLocationUuids);
     }
 
     private void setLocationTagFor(LocationService service, LocationTag tag, List<Location> allLocations, Collection<String> uuidsThatGetTag) {
@@ -248,10 +296,10 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
             // update the installed version
             GlobalProperty installedAddressHierarchyVersionObject = Context.getAdministrationService()
-                    .getGlobalPropertyObject(MirebalaisMetadataProperties.GP_INSTALLED_ADDRESS_HIERARCHY_VERSION);
+                    .getGlobalPropertyObject(GP_INSTALLED_ADDRESS_HIERARCHY_VERSION);
             if (installedAddressHierarchyVersionObject == null) {
                 installedAddressHierarchyVersionObject = new GlobalProperty();
-                installedAddressHierarchyVersionObject.setProperty(MirebalaisMetadataProperties.GP_INSTALLED_ADDRESS_HIERARCHY_VERSION);
+                installedAddressHierarchyVersionObject.setProperty(GP_INSTALLED_ADDRESS_HIERARCHY_VERSION);
             }
             installedAddressHierarchyVersionObject.setPropertyValue(ADDRESS_HIERARCHY_VERSION.toString());
             Context.getAdministrationService().saveGlobalProperty(installedAddressHierarchyVersionObject);
