@@ -75,6 +75,9 @@ Example: lacollineProvider|mirebalaisProvider" uuid="17bc3a5e-377a-45f5-875f-cc8
     <global_property property="patientregistration.numeroDossier" property_value="Nimewo Dosye"
                      description="Additional identifier type used for entering dossier numbers"
                      uuid="59a5a0a8-03f3-4712-89ab-a8b73e47e738"/>
+    <global_property property="patientregistration.externalNumeroDossier" property_value="External Numero Dossier"
+                     description="Additional identifier type used for displaying external dossier numbers"
+                     uuid="7e08cdcd-f2f0-4c9d-b2e3-eedcb64ca675"/>
     <global_property property="patientregistration.idCardLabelText" property_value="Zanmi Lasante Patient ID Card"
                      description="Label text to print on the id card" uuid="48221959-dc82-43fe-a61f-43eae75a16be"/>
     <global_property property="patientregistration.icd10ConceptSource" property_value="ICD-10"

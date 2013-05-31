@@ -358,7 +358,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PRIMARY_CARE_RECEPTION_ENCOUNTER_TYPE, "Check-in");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PATIENT_REGISTRATION_ENCOUNTER_TYPE,
                 "Patient Registration");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.NUMERO_DOSSIER, "Nimewo Dosye");
+        setExistingGlobalProperty(PatientRegistrationGlobalProperties.NUMERO_DOSSIER, "e66645eb-03a8-4991-b4ce-e87318e37566");
+        setExistingGlobalProperty(PatientRegistrationGlobalProperties.EXTERNAL_NUMERO_DOSSIER, "9dbea4d4-35a9-4793-959e-952f2a9f5347");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.ID_CARD_PERSON_ATTRIBUTE_TYPE, "Telephone Number");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PATIENT_VIEWING_ATTRIBUTE_TYPES, "Telephone Number");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.ID_CARD_LABEL_TEXT, "Zanmi Lasante Patient ID Card");
