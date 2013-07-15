@@ -169,17 +169,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         // allow admission at specified locations
         List<String> admitLocationUuids = Arrays.asList(
                 SURGICAL_WARD_LOCATION_UUID,
-                PRE_OP_PACU_LOCATION_UUID,
-                POST_OP_GYN_LOCATION_UUID,
                 ANTEPARTUM_WARD_LOCATION_UUID,
                 LABOR_AND_DELIVERY_LOCATION_UUID,
-                POSTPARTUM_WARD_LOCATION_UUID,
-                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                PEDIATRICS_LOCATION_UUID,
-                ICU_LOCATION_UUID,
-                NICU_LOCATION_UUID,
-                ISOLATION_LOCATION_UUID);
+                POSTPARTUM_WARD_LOCATION_UUID);
         setLocationTagFor(locationService, emrApiProperties.getSupportsAdmissionLocationTag(), allLocations, admitLocationUuids);
 
         // allow transfer at specified locations
