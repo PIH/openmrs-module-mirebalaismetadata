@@ -86,8 +86,8 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_ADMISSION), is(false));
         assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_TRANSFER), is(true));
 
-        // pediatrics should support login, admission and transfer
-        location = Context.getLocationService().getLocationByUuid(MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID);
+        // pre-natal should support login, admission and transfer
+        location = Context.getLocationService().getLocationByUuid(MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID);
         assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_LOGIN), is(true));
         assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_ADMISSION), is(true));
         assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_TRANSFER), is(true));
