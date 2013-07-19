@@ -53,28 +53,21 @@ import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.DENTAL_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.EMERGENCY_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.GP_INSTALLED_ADDRESS_HIERARCHY_VERSION;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ICU_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ISOLATION_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LABOR_AND_DELIVERY_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LACOLLINE_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.NICU_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_A_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_B_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POSTPARTUM_WARD_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POST_OP_GYN_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PRE_OP_PACU_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.SURGICAL_WARD_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.UNKNOWN_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_CLINIC_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_TRIAGE_LOCATION_UUID;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -177,21 +170,14 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         // allow transfer at specified locations
         List<String> transferLocationUuids = Arrays.asList(
                 SURGICAL_WARD_LOCATION_UUID,
-                PRE_OP_PACU_LOCATION_UUID,
-                POST_OP_GYN_LOCATION_UUID,
                 ANTEPARTUM_WARD_LOCATION_UUID,
                 LABOR_AND_DELIVERY_LOCATION_UUID,
                 POSTPARTUM_WARD_LOCATION_UUID,
-                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                PEDIATRICS_LOCATION_UUID,
-                ICU_LOCATION_UUID,
-                NICU_LOCATION_UUID,
-                ISOLATION_LOCATION_UUID,
                 EMERGENCY_LOCATION_UUID,
                 COMMUNITY_HEALTH_LOCATION_UUID,
                 OUTPATIENT_CLINIC_LOCATION_UUID,
                 WOMENS_CLINIC_LOCATION_UUID,
+                WOMENS_TRIAGE_LOCATION_UUID,
                 DENTAL_LOCATION_UUID);
         setLocationTagFor(locationService, emrApiProperties.getSupportsTransferLocationTag(), allLocations, transferLocationUuids);
     }
