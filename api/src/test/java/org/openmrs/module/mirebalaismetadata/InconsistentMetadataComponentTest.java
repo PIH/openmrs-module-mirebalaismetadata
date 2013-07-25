@@ -23,7 +23,7 @@ import org.openmrs.test.BaseModuleContextSensitiveTest;
  * is bad.
  * This test looks through all MDS packages, and throws an error in this situation.
  */
-public class InconsistantMetadataTest extends BaseModuleContextSensitiveTest {
+public class InconsistentMetadataComponentTest extends BaseModuleContextSensitiveTest {
 
     @Test
     public void testThatThereAreNoMdsPackagesWithInconsistentVersionsOfTheSameItem() throws Exception {
