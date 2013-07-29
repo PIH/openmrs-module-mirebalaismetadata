@@ -54,6 +54,8 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
     public static final String ICU_LOCATION_UUID = "b6fcd85f-5995-43c9-875f-3bb2299087ff";
     public static final String NICU_LOCATION_UUID = "62a9500e-a1a5-4235-844f-3a8cc0765d53";
     public static final String ISOLATION_LOCATION_UUID = "29437276-aeae-4ea8-8219-720886cdc87f";
+    public static final String CHEMOTHERAPY_LOCATION_UUID = "dc8413be-1075-48b5-9857-9bd4954686ed";
+
 
 
     public int getInstalledAddressHierarchyVersion() {
