@@ -48,26 +48,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.COMMUNITY_HEALTH_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.DENTAL_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.EMERGENCY_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.GP_INSTALLED_ADDRESS_HIERARCHY_VERSION;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LABOR_AND_DELIVERY_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LACOLLINE_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_A_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_B_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POSTPARTUM_WARD_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.SURGICAL_WARD_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.UNKNOWN_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_CLINIC_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_TRIAGE_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.*;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -156,7 +137,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
                 MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID));
+                WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
+                ED_BOARDING,
+                ED_OBSERVATION));
         setLocationTagFor(locationService, emrApiProperties.getSupportsLoginLocationTag(), allLocations, loginLocationUuids);
 
         // allow admission at specified locations
@@ -164,7 +147,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 SURGICAL_WARD_LOCATION_UUID,
                 ANTEPARTUM_WARD_LOCATION_UUID,
                 LABOR_AND_DELIVERY_LOCATION_UUID,
-                POSTPARTUM_WARD_LOCATION_UUID);
+                POSTPARTUM_WARD_LOCATION_UUID,
+                ED_BOARDING,
+                ED_OBSERVATION);
         setLocationTagFor(locationService, emrApiProperties.getSupportsAdmissionLocationTag(), allLocations, admitLocationUuids);
 
         // allow transfer at specified locations
