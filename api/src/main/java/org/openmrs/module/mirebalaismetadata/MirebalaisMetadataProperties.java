@@ -51,7 +51,6 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
     public static final String PEDIATRICS_A_LOCATION_UUID = "e4ae2d28-d57c-42ba-b7aa-f6fcac421b2c";
     public static final String PEDIATRICS_B_LOCATION_UUID = "e752ec51-5633-489f-aef1-01f285c03f38";
     public static final String ED_BOARDING = "8355ad15-c3c9-4471-a1e7-dc18b7983087";
-    public static final String ED_OBSERVATION = "459c97ba-8d90-485d-8993-9540c55166f6";
 
     public static final String ICU_LOCATION_UUID = "b6fcd85f-5995-43c9-875f-3bb2299087ff";
     public static final String NICU_LOCATION_UUID = "62a9500e-a1a5-4235-844f-3a8cc0765d53";

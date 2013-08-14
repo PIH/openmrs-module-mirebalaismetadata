@@ -137,9 +137,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
                 MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-                ED_BOARDING,
-                ED_OBSERVATION
+                WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID//,
+                //ED_BOARDING
                 ));
         setLocationTagFor(locationService, emrApiProperties.getSupportsLoginLocationTag(), allLocations, loginLocationUuids);
 
@@ -150,7 +149,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 LABOR_AND_DELIVERY_LOCATION_UUID,
                 POSTPARTUM_WARD_LOCATION_UUID//,
                 //ED_BOARDING,
-                //ED_OBSERVATION
                 );
         setLocationTagFor(locationService, emrApiProperties.getSupportsAdmissionLocationTag(), allLocations, admitLocationUuids);
 
