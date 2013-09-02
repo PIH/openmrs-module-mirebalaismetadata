@@ -1,5 +1,6 @@
 package org.openmrs.module.mirebalaismetadata;
 
+import org.openmrs.EncounterRole;
 import org.openmrs.module.emrapi.utils.ModuleProperties;
 import org.springframework.stereotype.Component;
 
@@ -57,6 +58,7 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
     public static final String ISOLATION_LOCATION_UUID = "29437276-aeae-4ea8-8219-720886cdc87f";
     public static final String CHEMOTHERAPY_LOCATION_UUID = "dc8413be-1075-48b5-9857-9bd4954686ed";
 
+    public static final String DISPENSER_ENCOUNTER_ROLE = "bad21515-fd04-4ff6-bfcd-78456d12f168";
 
 
     public int getInstalledAddressHierarchyVersion() {
@@ -66,6 +68,10 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
         } catch (Exception ex) {
             return 0;
         }
+    }
+
+    public EncounterRole getDispenserEncounterRole() {
+        return encounterService.getEncounterRoleByUuid(DISPENSER_ENCOUNTER_ROLE);
     }
 
 }
