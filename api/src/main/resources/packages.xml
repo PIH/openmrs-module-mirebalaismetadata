@@ -21,7 +21,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Metadata</filenameBase>
             <groupUuid>fa25ad0c-66cc-4715-8464-58570f7b5132</groupUuid>
-            <version>47</version>
+            <version>48</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
