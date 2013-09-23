@@ -56,10 +56,10 @@
 
         <emrVersion>2.0-SNAPSHOT</emrVersion>
         <htmlformentryVersion>2.1.4</htmlformentryVersion>
-        <reportingVersion>0.7.6-SNAPSHOT</reportingVersion>
+        <reportingVersion>0.7.6</reportingVersion>
         <calculationVersion>1.0</calculationVersion>
         <serializationxstreamVersion>0.2.7</serializationxstreamVersion>
-        <uiframeworkVersion>2.5.2-SNAPSHOT</uiframeworkVersion>
+        <uiframeworkVersion>2.5.2</uiframeworkVersion>
         <paperrecordVersion>1.0-SNAPSHOT</paperrecordVersion>
         <idgenVersion>2.6-SNAPSHOT</idgenVersion>
 
