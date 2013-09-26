@@ -21,7 +21,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Metadata</filenameBase>
             <groupUuid>fa25ad0c-66cc-4715-8464-58570f7b5132</groupUuid>
-            <version>50</version>
+            <version>51</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -35,28 +35,28 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Dispensing_Concepts</filenameBase>
             <groupUuid>c14e1736-c133-42b7-b421-cfe8cdefcbcb</groupUuid>
-            <version>5</version>
+            <version>6</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Medication</filenameBase>
             <groupUuid>b6bb1a46-652a-4d03-89c3-0d302620275a</groupUuid>
-            <version>3</version>
+            <version>5</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Disposition_Concepts</filenameBase>
             <groupUuid>89e68a39-d199-4679-bbf9-f60f0c9ee381</groupUuid>
-            <version>9</version>
+            <version>10</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Surgery</filenameBase>
             <groupUuid>a253327a-e222-4569-92af-847278bf0169</groupUuid>
-            <version>28</version>
+            <version>29</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -70,7 +70,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Radiology_Orderables</filenameBase>
             <groupUuid>c827fa67-24ca-40a0-95e4-4c07fecf0576</groupUuid>
-            <version>1</version>
+            <version>2</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
