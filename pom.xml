@@ -48,7 +48,7 @@
     <properties>
         <openmrsCoreVersion>1.9.3</openmrsCoreVersion>
         <metadatasharingModuleVersion>1.1.8</metadatasharingModuleVersion>
-        <emrapiModuleVersion>1.0-SNAPSHOT</emrapiModuleVersion>
+        <emrapiModuleVersion>1.1-SNAPSHOT</emrapiModuleVersion>
         <addresshierarchyModuleVersion>2.2.9</addresshierarchyModuleVersion>
         <radiologyappModuleVersion>1.0-SNAPSHOT</radiologyappModuleVersion>
         <providermanagementModuleVersion>1.1.3</providermanagementModuleVersion>
