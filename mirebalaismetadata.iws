@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="aa9d2d72-cce7-4bc2-b413-e2455925efb2" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mirebalaismetadata.ipr" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mirebalaismetadata.iws" />
+    </list>
+    <ignored path="mirebalaismetadata.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <file path="$PROJECT_DIR$/api/src/test/java/org/openmrs/module/mirebalaismetadata/MirebalaisMetadataActivatorComponentTest.java" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551037" ignored="false" />
+    <file path="$PROJECT_DIR$/api/src/test/resources/requiredDataTestDataset.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551037" ignored="false" />
+    <file path="/Dummy.txt" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1381348670096" ignored="false" />
+    <file path="$PROJECT_DIR$/api/src/test/resources/globalPropertiesTestDataset.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551037" ignored="false" />
+    <file path="$PROJECT_DIR$/api/src/test/resources/TestingApplicationContext.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551037" ignored="false" />
+    <file path="$PROJECT_DIR$/api/src/test/resources/test-hibernate.cfg.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551037" ignored="false" />
+    <file path="$PROJECT_DIR$/omod/src/main/resources/webModuleApplicationContext.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551038" ignored="false" />
+    <file path="$PROJECT_DIR$/omod/src/main/resources/config.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551038" ignored="false" />
+    <file path="/packages.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1378852631840" ignored="false" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="DebuggerManager">
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_rules />
+    <ui_properties />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="mirebalaismetadata" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="packages.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="22" selection-start="1799" selection-end="1799" vertical-scroll-proportion="0.56559765">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myStructureFilterPaths" />
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/api/src/main/resources/packages.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="92" />
+    <option name="y" value="57" />
+    <option name="width" value="856" />
+    <option name="height" value="717" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openmrs-module-mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openmrs-module-mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openmrs-module-mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openmrs-module-mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openmrs-module-mirebalaismetadata" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="55" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="57" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="55" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mirebalais-puppet" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="59" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="594" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="594" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="59" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="57" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api/src/main/resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <list size="0" />
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa9d2d72-cce7-4bc2-b413-e2455925efb2" name="Default" comment="" />
+      <created>1368216531302</created>
+      <updated>1368216531302</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Updated to new clinical concepts package with trauma concepts.">
+      <created>1368216600421</created>
+      <updated>1368216600421</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added family planning to the HUM non-diagnosis set.">
+      <created>1368458709322</created>
+      <updated>1368458709322</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Improved concepts in HUM disposition and added trauma question.">
+      <created>1368489219895</created>
+      <updated>1368489219895</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Improved concepts in HUM disposition and added trauma question.  Removed &quot;none&quot; from type of trauma.  Added admission to disposition location.">
+      <created>1368551925894</created>
+      <updated>1368551925894</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added unknown concept with emr module mapping.">
+      <created>1368572661139</created>
+      <updated>1368572661139</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Removed clinical malaria AND provided some Haitian/French translations for the surgery form (blood).">
+      <created>1368981938085</created>
+      <updated>1368981938085</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added precision for fluids.">
+      <created>1369149960597</created>
+      <updated>1369149960597</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added next appointment concept">
+      <created>1369156083970</created>
+      <updated>1369156083970</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added some additional concept translations">
+      <created>1369238431381</created>
+      <updated>1369238431381</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added concept translations for dispositions">
+      <created>1369338291823</created>
+      <updated>1369338291823</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Improved French translations for dispositions.  Thanks Louise.  And added 2 women's health diagnoses.">
+      <created>1369344943947</created>
+      <updated>1369344943947</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added location tags .">
+      <created>1369763594571</created>
+      <updated>1369763594571</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Updated packages with family planning and pregnancy and new name for an identify type.">
+      <created>1369948670095</created>
+      <updated>1369948670095</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added new diagnoses to cover the changes to the MSPP report.">
+      <created>1370365562999</created>
+      <updated>1370365562999</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added new diagnoses (watery diarrhea) for the MSPP report.  Added Type of HUM outpatient visit.">
+      <created>1370454868930</created>
+      <updated>1370454868930</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Moved surgery diagnoses and procedures to the clinical concepts package.">
+      <created>1370632783076</created>
+      <updated>1370632783076</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added the missing LOINC code to Abdomen AP (supine and lateraldecubitus) (X-ray)">
+      <created>1370967353663</created>
+      <updated>1370967353663</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Added Triage Red and Green.">
+      <created>1371587895747</created>
+      <updated>1371587895747</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added 2 new diagnoses for Women's Health:  Bacterial vaginosisVaginal and Vaginal candidiasis (298)">
+      <created>1371832324566</created>
+      <updated>1371832324566</updated>
+    </task>
+    <task id="LOCAL-00020" summary="#660 Add diagnoses for OB/gyn surgical service;  #663 Added Temporomandibular joint, bilateral X-Ray">
+      <created>1372109962286</created>
+      <updated>1372109962286</updated>
+    </task>
+    <task id="LOCAL-00021" summary="#710 Additional women's health and oncology synonyms.  Added 7 synonyms.">
+      <created>1372781835041</created>
+      <updated>1372781835041</updated>
+    </task>
+    <task id="LOCAL-00022" summary="#647 Change &quot;Scheduled visit&quot; option to &quot;Schedule a Visit&quot; question; #671 Add surgery procedures for ob/gyn">
+      <created>1372887409449</created>
+      <updated>1372887409449</updated>
+    </task>
+    <task id="LOCAL-00023" summary="#733 Add Skull xray 2 view;  #734 Add synonym of DVT;  #735 Added vaccination">
+      <created>1373577341731</created>
+      <updated>1373577341732</updated>
+    </task>
+    <task id="LOCAL-00024" summary="#713 Add oncology treatments;  #721 Add dental diagnoses;  #735 Added absent as synonym">
+      <created>1373898793459</created>
+      <updated>1373898793459</updated>
+    </task>
+    <task id="LOCAL-00025" summary="#721 Completed the dental hygiene visits.">
+      <created>1373916810839</created>
+      <updated>1373916810839</updated>
+    </task>
+    <task id="LOCAL-00026" summary="#721 Added the Dental caries class diagnoses">
+      <created>1373927069553</created>
+      <updated>1373927069553</updated>
+    </task>
+    <task id="LOCAL-00027" summary="#721 Added some synonyms to dental diagnoses based on Cordt's testing.  #? Found that absent concept was in 2 mds packages and not appearing updated on new database.  It was including a concept that was in an htmlform commented out area.">
+      <created>1374267651672</created>
+      <updated>1374267651672</updated>
+    </task>
+    <task id="LOCAL-00028" summary="#721 Retrying since the synonyms to dental diagnoses based on Cordt's testing didn't appear.">
+      <created>1374505743696</created>
+      <updated>1374505743696</updated>
+    </task>
+    <task id="LOCAL-00029" summary="#721 The uuid for 'retension dentaire' concept was mysteriously wrong.  Checked the uuid on concepts and trying again.">
+      <created>1374528096397</created>
+      <updated>1374528096397</updated>
+    </task>
+    <task id="LOCAL-00030" summary="#775 Orthopedic surgery procedures (96);  #784 Internal medicine diagnoses (22); #801 Oncology diagnoses (leukemia (CML) and GIST)">
+      <created>1375485445253</created>
+      <updated>1375485445253</updated>
+    </task>
+    <task id="LOCAL-00031" summary="PACS-29 - Added Pelvis without contrast (CT)">
+      <created>1375997491212</created>
+      <updated>1375997491212</updated>
+    </task>
+    <task id="LOCAL-00032" summary="#775 - Added 5 additional ortho procedures.  Not sure why they were missing.">
+      <created>1376066824621</created>
+      <updated>1376066824622</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Added some drugs and concepts for drugs via mds (HUM_medication)">
+      <created>1378853109374</created>
+      <updated>1378853109376</updated>
+    </task>
+    <task id="LOCAL-00034" summary="#883 - Added underlying concepts for dispensing (HUM medications)">
+      <created>1378939479137</created>
+      <updated>1378939479137</updated>
+    </task>
+    <task id="LOCAL-00035" summary="#883 - Since there were medications (antibiotics) used in surgery, needed to recreate a new mds package for surgery.  Moved surgery procedures from clinical to surgery package.  #806 - Added 4 new diagnosis concepts that were non-coded.">
+      <created>1378995271046</created>
+      <updated>1378995271046</updated>
+    </task>
+    <task id="LOCAL-00036" summary="#883 - Added 19 more medications.  Still need 3 additions based on Andy's questions and Laura McMeel's reply.">
+      <created>1379453999087</created>
+      <updated>1379453999087</updated>
+    </task>
+    <task id="LOCAL-00037" summary="#883 - Avoid conflict between aspirin in surgery and medications mds package.">
+      <created>1379525564090</created>
+      <updated>1379525564090</updated>
+    </task>
+    <task id="LOCAL-00038" summary="#829 - Changed time units for dispensing mds package.">
+      <created>1379959984777</created>
+      <updated>1379959984777</updated>
+    </task>
+    <task id="LOCAL-00039" summary="#829 - Improved French and Kreyol translations for time units for dispensing mds package.">
+      <created>1380207789957</created>
+      <updated>1380207789957</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Rebuilt HUM clinical concepts mds package based on modified mappings to org.openmrs.module.emrapi">
+      <created>1380228094266</created>
+      <updated>1380228094266</updated>
+    </task>
+    <task id="LOCAL-00041" summary="#883 - Added 3 remaining medication concepts.">
+      <created>1381179636970</created>
+      <updated>1381179636970</updated>
+    </task>
+    <task id="LOCAL-00042" summary="#883 - Added 3 remaining medication concepts.">
+      <created>1381347053949</created>
+      <updated>1381347053949</updated>
+    </task>
+    <task id="LOCAL-00043" summary="#910 - Added another concept -- discharge location">
+      <created>1381348673071</created>
+      <updated>1381348673071</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="92" y="57" width="856" height="717" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14059754" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32864675" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5358911" sideWeight="0.6713533" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="true" />
+    <option name="myTodoPanelSettings">
+      <value>
+        <are-packages-shown value="false" />
+        <are-modules-shown value="false" />
+        <flatten-packages value="false" />
+        <is-autoscroll-to-source value="false" />
+      </value>
+    </option>
+    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
+    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
+    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
+    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
+    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
+    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
+    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
+    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
+    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
+    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
+    <option name="LAST_COMMIT_MESSAGE" value="#910 - Added another concept -- discharge location" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
+    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
+    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
+    <option name="ACTIVE_VCS_NAME" />
+    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
+    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
+    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
+    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <MESSAGE value="Added Triage Red and Green." />
+    <MESSAGE value="Added 2 new diagnoses for Women's Health:  Bacterial vaginosisVaginal and Vaginal candidiasis (298)" />
+    <MESSAGE value="#660 Add diagnoses for OB/gyn surgical service;  #663 Added Temporomandibular joint, bilateral X-Ray" />
+    <MESSAGE value="#710 Additional women's health and oncology synonyms.  Added 7 synonyms." />
+    <MESSAGE value="#647 Change &quot;Scheduled visit&quot; option to &quot;Schedule a Visit&quot; question; #671 Add surgery procedures for ob/gyn" />
+    <MESSAGE value="#733 Add Skull xray 2 view;  #734 Add synonym of DVT;  #735 Added vaccination" />
+    <MESSAGE value="#713 Add oncology treatments;  #721 Add dental diagnoses;  #735 Added absent as synonym" />
+    <MESSAGE value="#721 Completed the dental hygiene visits." />
+    <MESSAGE value="#721 Added the Dental caries class diagnoses" />
+    <MESSAGE value="#721 Added some synonyms to dental diagnoses based on Cordt's testing.  #? Found that absent concept was in 2 mds packages and not appearing updated on new database.  It was including a concept that was in an htmlform commented out area." />
+    <MESSAGE value="#721 Retrying since the synonyms to dental diagnoses based on Cordt's testing didn't appear." />
+    <MESSAGE value="#721 The uuid for 'retension dentaire' concept was mysteriously wrong.  Checked the uuid on concepts and trying again." />
+    <MESSAGE value="#775 Orthopedic surgery procedures (96);  #784 Internal medicine diagnoses (22); #801 Oncology diagnoses (leukemia (CML) and GIST)" />
+    <MESSAGE value="PACS-29 - Added Pelvis without contrast (CT)" />
+    <MESSAGE value="#775 - Added 5 additional ortho procedures.  Not sure why they were missing." />
+    <MESSAGE value="Added some drugs and concepts for drugs via mds (HUM_medication)" />
+    <MESSAGE value="#883 - Added underlying concepts for dispensing (HUM medications)" />
+    <MESSAGE value="#883 - Since there were medications (antibiotics) used in surgery, needed to recreate a new mds package for surgery.  Moved surgery procedures from clinical to surgery package.  #806 - Added 4 new diagnosis concepts that were non-coded." />
+    <MESSAGE value="#883 - Added 19 more medications.  Still need 3 additions based on Andy's questions and Laura McMeel's reply." />
+    <MESSAGE value="#883 - Avoid conflict between aspirin in surgery and medications mds package." />
+    <MESSAGE value="#829 - Changed time units for dispensing mds package." />
+    <MESSAGE value="#829 - Improved French and Kreyol translations for time units for dispensing mds package." />
+    <MESSAGE value="Rebuilt HUM clinical concepts mds package based on modified mappings to org.openmrs.module.emrapi" />
+    <MESSAGE value="#883 - Added 3 remaining medication concepts." />
+    <MESSAGE value="#910 - Added another concept -- discharge location" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="22" selection-start="1799" selection-end="1799" vertical-scroll-proportion="0.56559765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/src/main/resources/org/openmrs/module/mirebalaismetadata/addresshierarchy/haiti_address_hierarchy_entries_5.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="46" selection-start="39" selection-end="46" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+  </component>
+</project>
+
