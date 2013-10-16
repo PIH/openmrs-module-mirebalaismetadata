@@ -14,12 +14,12 @@ import java.io.InputStreamReader;
 /**
  *
  */
-@Ignore("ignore this until the drug list is clean and ready to go")
 @SkipBaseSetup
+@Ignore
 public class DrugImporterComponentTest extends BaseModuleContextSensitiveTest {
 
     @Autowired
-    DrugImporter drugImporter;
+   // DrugImporter drugImporter;
 
     @Before
     public void beforeEachTest() throws Exception {
@@ -39,9 +39,9 @@ public class DrugImporterComponentTest extends BaseModuleContextSensitiveTest {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("drug-list.csv");
         InputStreamReader reader = new InputStreamReader(inputStream);
 
-        ImportNotes notes = drugImporter.verifySpreadsheet(reader);
+       // ImportNotes notes = drugImporter.verifySpreadsheet(reader);
 
-        System.out.println(notes);
+       // System.out.println(notes);
     }
 
 }

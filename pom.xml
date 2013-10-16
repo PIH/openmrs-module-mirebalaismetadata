@@ -63,8 +63,6 @@
         <paperrecordVersion>1.0-SNAPSHOT</paperrecordVersion>
         <idgenVersion>2.6-SNAPSHOT</idgenVersion>
 
-        <superCsvVersion>2.1.0</superCsvVersion>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -123,12 +121,6 @@
             <artifactId>patientregistration-api</artifactId>
             <version>${patientregistrationVersion}</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>net.sf.supercsv</groupId>
-            <artifactId>super-csv</artifactId>
-            <version>${superCsvVersion}</version>
         </dependency>
 
         <!-- only for testing -->
