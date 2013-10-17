@@ -62,6 +62,7 @@
         <uiframeworkVersion>2.5.2</uiframeworkVersion>
         <paperrecordVersion>1.0-SNAPSHOT</paperrecordVersion>
         <idgenVersion>2.6-SNAPSHOT</idgenVersion>
+        <dispensingVersion>1.0-SNAPSHOT</dispensingVersion>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -188,6 +189,12 @@
             <groupId>org.openmrs.module</groupId>
             <artifactId>idgen-api</artifactId>
             <version>${idgenVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>dispensing-api</artifactId>
+            <version>${dispensingVersion}</version>
             <scope>provided</scope>
         </dependency>
 

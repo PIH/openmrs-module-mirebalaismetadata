@@ -38,5 +38,14 @@
     </messages>
     <!-- /Internationalization -->
 
+    <!-- Global Properties -->
+    <globalProperty>
+        <property>mirebalaismetadata.installedDrugListVersion</property>
+        <defaultValue>0</defaultValue>
+        <description>
+            Used to track what version of the master drug list is installed on the system
+        </description>
+    </globalProperty>
+
 </module>
 

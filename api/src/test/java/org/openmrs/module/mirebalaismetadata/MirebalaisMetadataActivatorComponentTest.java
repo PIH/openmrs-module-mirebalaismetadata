@@ -34,6 +34,7 @@ import java.util.Locale;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -45,7 +46,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
     private MirebalaisMetadataActivator activator;
 
     @Autowired
-    private AdministrationService adminService;
+    private ConceptService conceptService;
 
     @Autowired
     MirebalaisMetadataProperties mirebalaisMetadataProperties;
@@ -70,6 +71,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         verifyAddressHierarchyLevelsCreated();
         verifyAddressHierarchyLoaded();
         verifyLocationTags();
+        verifyDrugListLoaded();
     }
 
     private void verifyLocationTags() {
@@ -198,4 +200,16 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         assertEquals("Haiti", ahService.getAddressHierarchyEntriesAtTopLevel().get(0).getName());
         assertEquals(5, mirebalaisMetadataProperties.getInstalledAddressHierarchyVersion());
     }
+
+    private void verifyDrugListLoaded() throws Exception {
+
+        assertEquals((int) MirebalaisMetadataActivator.DRUG_LIST_VERSION, mirebalaisMetadataProperties.getInstalledDrugListVersion());
+
+        // just test that a few drugs are present
+        //assertNotNull(conceptService.getDrug("Benzylbenzoate, 25% application, 1000 mL bottle"));
+        //assertNotNull(conceptService.getDrug("Ranitidine hydrochloride 75 mg/5 mL oral suspension, 300 mL bottle"));
+        //assertNotNull(conceptService.getDrug("Ipratropium bromide, 250 microgram/mL solution for nebuisation, 2mL ampoule"));
+    }
 }
+
+

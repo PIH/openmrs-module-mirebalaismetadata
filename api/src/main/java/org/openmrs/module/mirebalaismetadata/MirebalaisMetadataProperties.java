@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 public class MirebalaisMetadataProperties extends ModuleProperties {
 
     public static final String GP_INSTALLED_ADDRESS_HIERARCHY_VERSION = "mirebalais.installedAddressHierarchyVersion";
+    public static final String GP_INSTALLED_DRUG_LIST_VERSION = "mirebalaismetadata.installedDrugListVersion";
 
     // locations
 
@@ -61,13 +62,12 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
     public static final String DISPENSER_ENCOUNTER_ROLE = "bad21515-fd04-4ff6-bfcd-78456d12f168";
 
 
+    public int getInstalledDrugListVersion() {
+        return getIntegerByGlobalProperty(GP_INSTALLED_DRUG_LIST_VERSION);
+    }
+
     public int getInstalledAddressHierarchyVersion() {
-        String globalProperty = getGlobalProperty(GP_INSTALLED_ADDRESS_HIERARCHY_VERSION, false);
-        try {
-            return Integer.valueOf(globalProperty);
-        } catch (Exception ex) {
-            return 0;
-        }
+        return getIntegerByGlobalProperty(GP_INSTALLED_ADDRESS_HIERARCHY_VERSION);
     }
 
     public EncounterRole getDispenserEncounterRole() {
