@@ -1111,26 +1111,37 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/calculation-api/1.0/calculation-api-1.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.openmrs.module:emr-api:2.0-SNAPSHOT">
+    <library name="Maven: org.openmrs.module:dispensing-api:1.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emr-api/2.0-SNAPSHOT/emr-api-2.0-20131007.194354-638.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/dispensing-api/1.0-SNAPSHOT/dispensing-api-1.0-20131021.195530-131.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emr-api/2.0-SNAPSHOT/emr-api-2.0-20131007.194354-638-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/dispensing-api/1.0-SNAPSHOT/dispensing-api-1.0-20131021.195530-131-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emr-api/2.0-SNAPSHOT/emr-api-2.0-20131007.194354-638-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/dispensing-api/1.0-SNAPSHOT/dispensing-api-1.0-20131021.195530-131-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.openmrs.module:emr-api:2.0-SNAPSHOT">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emr-api/2.0-SNAPSHOT/emr-api-2.0-20131021.173650-651.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emr-api/2.0-SNAPSHOT/emr-api-2.0-20131021.173650-651-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emr-api/2.0-SNAPSHOT/emr-api-2.0-20131021.173650-651-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.openmrs.module:emrapi-api:1.1-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emrapi-api/1.1-SNAPSHOT/emrapi-api-1.1-20131007.194722-44.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emrapi-api/1.1-SNAPSHOT/emrapi-api-1.1-20131021.173322-74.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emrapi-api/1.1-SNAPSHOT/emrapi-api-1.1-20131007.194722-44-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emrapi-api/1.1-SNAPSHOT/emrapi-api-1.1-20131021.173322-74-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emrapi-api/1.1-SNAPSHOT/emrapi-api-1.1-20131007.194722-44-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/emrapi-api/1.1-SNAPSHOT/emrapi-api-1.1-20131021.173322-74-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.openmrs.module:htmlformentry-api:2.1.4">
@@ -1212,13 +1223,13 @@
     </library>
     <library name="Maven: org.openmrs.module:patientregistration-api:2.2-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/patientregistration-api/2.2-SNAPSHOT/patientregistration-api-2.2-20131007.194511-719.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/patientregistration-api/2.2-SNAPSHOT/patientregistration-api-2.2-20131021.174203-732.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/patientregistration-api/2.2-SNAPSHOT/patientregistration-api-2.2-20131007.194511-719-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/patientregistration-api/2.2-SNAPSHOT/patientregistration-api-2.2-20131021.174203-732-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/patientregistration-api/2.2-SNAPSHOT/patientregistration-api-2.2-20131007.194511-719-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/patientregistration-api/2.2-SNAPSHOT/patientregistration-api-2.2-20131021.174203-732-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.openmrs.module:providermanagement-api:1.1.3">
@@ -1234,13 +1245,13 @@
     </library>
     <library name="Maven: org.openmrs.module:radiologyapp-api:1.0-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/radiologyapp-api/1.0-SNAPSHOT/radiologyapp-api-1.0-20131007.194556-564.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/radiologyapp-api/1.0-SNAPSHOT/radiologyapp-api-1.0-20131021.174030-578.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/radiologyapp-api/1.0-SNAPSHOT/radiologyapp-api-1.0-20131007.194556-564-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/radiologyapp-api/1.0-SNAPSHOT/radiologyapp-api-1.0-20131021.174030-578-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/radiologyapp-api/1.0-SNAPSHOT/radiologyapp-api-1.0-20131007.194556-564-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/openmrs/module/radiologyapp-api/1.0-SNAPSHOT/radiologyapp-api-1.0-20131021.174030-578-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.openmrs.module:reporting-api:0.7.6">
