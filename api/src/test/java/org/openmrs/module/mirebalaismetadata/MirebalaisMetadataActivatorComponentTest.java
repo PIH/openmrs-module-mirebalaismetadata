@@ -206,9 +206,9 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         assertEquals((int) MirebalaisMetadataActivator.DRUG_LIST_VERSION, mirebalaisMetadataProperties.getInstalledDrugListVersion());
 
         // just test that a few drugs are present
-        //assertNotNull(conceptService.getDrug("Benzylbenzoate, 25% application, 1000 mL bottle"));
-        //assertNotNull(conceptService.getDrug("Ranitidine hydrochloride 75 mg/5 mL oral suspension, 300 mL bottle"));
-        //assertNotNull(conceptService.getDrug("Ipratropium bromide, 250 microgram/mL solution for nebuisation, 2mL ampoule"));
+        assertNotNull(conceptService.getDrug("Benzylbenzoate, 25% application, 1000 mL bottle"));
+        assertNotNull(conceptService.getDrug("Ranitidine hydrochloride 75 mg/5 mL oral suspension, 300 mL bottle"));
+        assertNotNull(conceptService.getDrug("Ipratropium bromide, 250 microgram/mL solution for nebuisation, 2mL ampoule"));
     }
 }
 

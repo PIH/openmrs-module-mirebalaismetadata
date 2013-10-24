@@ -16,10 +16,12 @@ package org.openmrs.module.mirebalaismetadata;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Drug;
 import org.openmrs.GlobalProperty;
 import org.openmrs.Location;
 import org.openmrs.LocationTag;
 import org.openmrs.api.AdministrationService;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
@@ -90,11 +92,13 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private static final Integer ADDRESS_HIERARCHY_VERSION = 5;
 
-    protected static final Integer DRUG_LIST_VERSION = 0;
+    protected static final Integer DRUG_LIST_VERSION = 1;
 
     private MirebalaisMetadataProperties mirebalaisMetadataProperties;
 
     private DrugImporter drugImporter;
+
+    private ConceptService conceptService;
 
     public MirebalaisMetadataActivator() {
     }
@@ -136,6 +140,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
         if (drugImporter == null) {
             drugImporter = Context.getRegisteredComponents(DrugImporter.class).get(0);
+        }
+        if (conceptService == null) {
+            conceptService = Context.getConceptService();
         }
         try {
             installMetadataPackages();
@@ -236,6 +243,12 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         int installedDrugListVersion = mirebalaisMetadataProperties.getInstalledDrugListVersion();
 
         if (installedDrugListVersion < DRUG_LIST_VERSION) {
+
+            // special-case to retire any demo drugs before installing the first package
+            if (installedDrugListVersion == 0) {
+                retireExistingDemoDrugs();
+            }
+
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream("HUM_Drug_List-"
                     + DRUG_LIST_VERSION + ".csv");
             InputStreamReader reader = new InputStreamReader(inputStream);
@@ -258,6 +271,14 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 Context.getAdministrationService().saveGlobalProperty(installedDrugListVersionObject);
             }
         }
+    }
+
+    private void retireExistingDemoDrugs() {
+
+        for (Drug drug : conceptService.getAllDrugs(true)) {
+            conceptService.retireDrug(drug, "sample drug");
+        }
+
     }
 
     private void setupAddressHierarchy() {
