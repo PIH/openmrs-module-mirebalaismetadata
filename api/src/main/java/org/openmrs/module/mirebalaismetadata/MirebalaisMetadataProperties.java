@@ -58,6 +58,9 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
     public static final String NICU_LOCATION_UUID = "62a9500e-a1a5-4235-844f-3a8cc0765d53";
     public static final String ISOLATION_LOCATION_UUID = "29437276-aeae-4ea8-8219-720886cdc87f";
     public static final String CHEMOTHERAPY_LOCATION_UUID = "dc8413be-1075-48b5-9857-9bd4954686ed";
+    public static final String OUTPATIENT_CLINIC_PHARMACY_UUID = "79892ece-79f1-4674-abb5-a52c1898c762";
+    public static final String WOMENS_AND_CHILDRENS_PHARMACY_UUID = "de8892ff-e755-4ef0-ae0a-c27d2c1e6a74";
+
 
     public static final String DISPENSER_ENCOUNTER_ROLE = "bad21515-fd04-4ff6-bfcd-78456d12f168";
 

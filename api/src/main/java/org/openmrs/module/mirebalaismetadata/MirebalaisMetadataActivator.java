@@ -69,12 +69,14 @@ import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.NICU_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_PHARMACY_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_A_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_B_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POSTPARTUM_WARD_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.SURGICAL_WARD_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.UNKNOWN_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_AND_CHILDRENS_PHARMACY_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_CLINIC_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
@@ -182,7 +184,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-                ED_BOARDING
+                ED_BOARDING,
+                OUTPATIENT_CLINIC_PHARMACY_UUID,    // we are temporarily disabling these as login locations until the pharmacy is ready to go
+                WOMENS_AND_CHILDRENS_PHARMACY_UUID
                 ));
         setLocationTagFor(locationService, emrApiProperties.getSupportsLoginLocationTag(), allLocations, loginLocationUuids);
 
