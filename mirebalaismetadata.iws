@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa9d2d72-cce7-4bc2-b413-e2455925efb2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mirebalaismetadata.iws" afterPath="$PROJECT_DIR$/mirebalaismetadata.iws" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mirebalaismetadata.ipr" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mirebalaismetadata.iws" afterPath="" />
     </list>
     <ignored path="mirebalaismetadata.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="$PROJECT_DIR$/api/src/test/java/org/openmrs/module/mirebalaismetadata/MirebalaisMetadataActivatorComponentTest.java" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551037" ignored="false" />
     <file path="$PROJECT_DIR$/api/src/test/resources/requiredDataTestDataset.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551037" ignored="false" />
-    <file path="/Dummy.txt" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1382527740679" ignored="false" />
+    <file path="/Dummy.txt" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1383058572267" ignored="false" />
     <file path="$PROJECT_DIR$/api/src/test/resources/globalPropertiesTestDataset.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551037" ignored="false" />
     <file path="$PROJECT_DIR$/api/src/test/resources/TestingApplicationContext.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551037" ignored="false" />
     <file path="$PROJECT_DIR$/api/src/test/resources/test-hibernate.cfg.xml" changelist="aa9d2d72-cce7-4bc2-b413-e2455925efb2" time="1368216551037" ignored="false" />
@@ -78,7 +79,7 @@
       <file leaf-file-name="packages.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="23" selection-start="2832" selection-end="2832" vertical-scroll-proportion="0.0">
+            <state line="58" column="23" selection-start="2832" selection-end="2832" vertical-scroll-proportion="0.29135337">
               <folding />
             </state>
           </provider>
@@ -139,8 +140,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -257,11 +258,11 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../mirebalais-puppet" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="59" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="594" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="594" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="594" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="59" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="57" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
@@ -286,6 +287,19 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -314,19 +328,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -594,7 +595,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5358911" sideWeight="0.6713533" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5358911" sideWeight="0.6713533" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -794,7 +795,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/src/main/resources/packages.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="23" selection-start="2832" selection-end="2832" vertical-scroll-proportion="0.0">
+        <state line="58" column="23" selection-start="2832" selection-end="2832" vertical-scroll-proportion="0.29135337">
           <folding />
         </state>
       </provider>
