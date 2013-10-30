@@ -55,6 +55,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.CHEMOTHERAPY_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.COMMUNITY_HEALTH_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.DENTAL_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ED_BOARDING;
@@ -68,15 +69,14 @@ import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.NICU_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OPERATING_ROOMS_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_PHARMACY_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_A_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_B_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POSTPARTUM_WARD_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.SURGICAL_WARD_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.UNKNOWN_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_AND_CHILDRENS_PHARMACY_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_CLINIC_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
@@ -184,9 +184,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-                ED_BOARDING,
-                OUTPATIENT_CLINIC_PHARMACY_UUID,    // we are temporarily disabling these as login locations until the pharmacy is ready to go
-                WOMENS_AND_CHILDRENS_PHARMACY_UUID
+                ED_BOARDING
                 ));
         setLocationTagFor(locationService, emrApiProperties.getSupportsLoginLocationTag(), allLocations, loginLocationUuids);
 
@@ -221,6 +219,46 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 MENS_INTERNAL_MEDICINE_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_LOCATION_UUID);
         setLocationTagFor(locationService, emrApiProperties.getSupportsTransferLocationTag(), allLocations, transferLocationUuids);
+
+        // allow consult notes to be written at the following locations
+        List<String>  consultNoteLocationUuids = Arrays.asList(
+                ANTEPARTUM_WARD_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
+                OUTPATIENT_CLINIC_LOCATION_UUID,
+                SURGICAL_WARD_LOCATION_UUID,
+                POSTPARTUM_WARD_LOCATION_UUID,
+                COMMUNITY_HEALTH_LOCATION_UUID,
+                LABOR_AND_DELIVERY_LOCATION_UUID,
+                NICU_LOCATION_UUID,
+                PEDIATRICS_LOCATION_UUID,
+                PEDIATRICS_A_LOCATION_UUID,
+                PEDIATRICS_B_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
+                WOMENS_CLINIC_LOCATION_UUID,
+                WOMENS_TRIAGE_LOCATION_UUID,
+                CHEMOTHERAPY_LOCATION_UUID,
+                DENTAL_LOCATION_UUID
+        );
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsConsultNoteTag(), allLocations, consultNoteLocationUuids);
+
+        // allow ed notes to be written at the following locations
+        List<String>  edNoteLocationUuids = Arrays.asList(
+                EMERGENCY_LOCATION_UUID
+        );
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsEDNoteTag(), allLocations, edNoteLocationUuids);
+
+        // allow surgery notes to be written at the following locations
+        List<String>  surgeryNoteLocationUuids = Arrays.asList(
+                SURGICAL_WARD_LOCATION_UUID,
+                OPERATING_ROOMS_LOCATION_UUID,
+                POSTPARTUM_WARD_LOCATION_UUID
+        );
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsSurgeryNoteTag(), allLocations, surgeryNoteLocationUuids);
+
     }
 
     private void setLocationTagFor(LocationService service, LocationTag tag, List<Location> allLocations, Collection<String> uuidsThatGetTag) {
