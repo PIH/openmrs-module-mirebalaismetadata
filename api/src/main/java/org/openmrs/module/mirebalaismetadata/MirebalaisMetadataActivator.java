@@ -454,7 +454,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PAYMENT_AMOUNT_CONCEPT,
                 "PIH: Payment amount|en:Payment amount|ht:Kantite lajan");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.VISIT_REASON_CONCEPT,
-                "PIH: Reason for HUM visit|en:Visit reason|ht:Rezon pou vizit");
+                "PIH: Type of HUM visit|en:Visit reason|ht:Tip de Vizit");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PRIMARY_CARE_RECEPTION_ENCOUNTER_TYPE, "Check-in");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PATIENT_REGISTRATION_ENCOUNTER_TYPE,
                 "Patient Registration");
