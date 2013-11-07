@@ -61,7 +61,7 @@
         <serializationxstreamVersion>0.2.7</serializationxstreamVersion>
         <uiframeworkVersion>2.5.2</uiframeworkVersion>
         <paperrecordVersion>1.0-SNAPSHOT</paperrecordVersion>
-        <idgenVersion>2.6-SNAPSHOT</idgenVersion>
+        <idgenVersion>2.6</idgenVersion>
         <dispensingVersion>1.0-SNAPSHOT</dispensingVersion>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
