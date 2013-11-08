@@ -1,6 +1,7 @@
 package org.openmrs.module.mirebalaismetadata;
 
 import org.openmrs.EncounterRole;
+import org.openmrs.LocationTag;
 import org.openmrs.module.emrapi.utils.ModuleProperties;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 public class MirebalaisMetadataProperties extends ModuleProperties {
 
     public static final String GP_INSTALLED_ADDRESS_HIERARCHY_VERSION = "mirebalais.installedAddressHierarchyVersion";
+    public static final String GP_INSTALLED_DRUG_LIST_VERSION = "mirebalaismetadata.installedDrugListVersion";
 
     // locations
 
@@ -57,21 +59,37 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
     public static final String NICU_LOCATION_UUID = "62a9500e-a1a5-4235-844f-3a8cc0765d53";
     public static final String ISOLATION_LOCATION_UUID = "29437276-aeae-4ea8-8219-720886cdc87f";
     public static final String CHEMOTHERAPY_LOCATION_UUID = "dc8413be-1075-48b5-9857-9bd4954686ed";
+    public static final String OUTPATIENT_CLINIC_PHARMACY_UUID = "79892ece-79f1-4674-abb5-a52c1898c762";
+    public static final String WOMENS_AND_CHILDRENS_PHARMACY_UUID = "de8892ff-e755-4ef0-ae0a-c27d2c1e6a74";
 
     public static final String DISPENSER_ENCOUNTER_ROLE = "bad21515-fd04-4ff6-bfcd-78456d12f168";
 
+    // location tags
+    public static final String LOCATION_TAG_SUPPORTS_CONSULT_NOTE = "Consult Note Location";
+    public static final String LOCATION_TAG_SUPPORTS_ED_NOTE = "ED Note Location";
+    public static final String LOCATION_TAG_SUPPORTS_SURGERY_NOTE = "Surgery Note Location";
+
+    public int getInstalledDrugListVersion() {
+        return getIntegerByGlobalProperty(GP_INSTALLED_DRUG_LIST_VERSION);
+    }
 
     public int getInstalledAddressHierarchyVersion() {
-        String globalProperty = getGlobalProperty(GP_INSTALLED_ADDRESS_HIERARCHY_VERSION, false);
-        try {
-            return Integer.valueOf(globalProperty);
-        } catch (Exception ex) {
-            return 0;
-        }
+        return getIntegerByGlobalProperty(GP_INSTALLED_ADDRESS_HIERARCHY_VERSION);
     }
 
     public EncounterRole getDispenserEncounterRole() {
         return encounterService.getEncounterRoleByUuid(DISPENSER_ENCOUNTER_ROLE);
     }
 
+    public LocationTag getSupportsConsultNoteTag() {
+        return locationService.getLocationTagByName(LOCATION_TAG_SUPPORTS_CONSULT_NOTE);
+    }
+
+    public LocationTag getSupportsEDNoteTag() {
+        return locationService.getLocationTagByName(LOCATION_TAG_SUPPORTS_ED_NOTE);
+    }
+
+    public LocationTag getSupportsSurgeryNoteTag() {
+        return locationService.getLocationTagByName(LOCATION_TAG_SUPPORTS_SURGERY_NOTE);
+    }
 }

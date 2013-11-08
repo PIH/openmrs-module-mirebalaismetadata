@@ -16,10 +16,12 @@ package org.openmrs.module.mirebalaismetadata;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Drug;
 import org.openmrs.GlobalProperty;
 import org.openmrs.Location;
 import org.openmrs.LocationTag;
 import org.openmrs.api.AdministrationService;
+import org.openmrs.api.ConceptService;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
@@ -30,6 +32,8 @@ import org.openmrs.module.addresshierarchy.AddressField;
 import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
 import org.openmrs.module.addresshierarchy.util.AddressHierarchyImportUtil;
+import org.openmrs.module.dispensing.importer.DrugImporter;
+import org.openmrs.module.dispensing.importer.ImportNotes;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
@@ -40,7 +44,9 @@ import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.radiologyapp.RadiologyConstants;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -48,7 +54,34 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.*;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.CHEMOTHERAPY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.COMMUNITY_HEALTH_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.DENTAL_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ED_BOARDING;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.EMERGENCY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.GP_INSTALLED_ADDRESS_HIERARCHY_VERSION;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LABOR_AND_DELIVERY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LACOLLINE_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.NICU_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OPERATING_ROOMS_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_A_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_B_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POSTPARTUM_WARD_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.SURGICAL_WARD_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.UNKNOWN_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_CLINIC_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_TRIAGE_LOCATION_UUID;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -59,9 +92,15 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private final String ADDRESS_HIERARCHY_CSV_FILE = "org/openmrs/module/mirebalaismetadata/addresshierarchy/haiti_address_hierarchy_entries";
 
-    private final Integer ADDRESS_HIERARCHY_VERSION = 5;
+    private static final Integer ADDRESS_HIERARCHY_VERSION = 5;
+
+    protected static final Integer DRUG_LIST_VERSION = 1;
 
     private MirebalaisMetadataProperties mirebalaisMetadataProperties;
+
+    private DrugImporter drugImporter;
+
+    private ConceptService conceptService;
 
     public MirebalaisMetadataActivator() {
     }
@@ -101,8 +140,15 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         if (mirebalaisMetadataProperties == null) {
             mirebalaisMetadataProperties = Context.getRegisteredComponents(MirebalaisMetadataProperties.class).get(0);
         }
+        if (drugImporter == null) {
+            drugImporter = Context.getRegisteredComponents(DrugImporter.class).get(0);
+        }
+        if (conceptService == null) {
+            conceptService = Context.getConceptService();
+        }
         try {
             installMetadataPackages();
+            installDrugList();
             setLocationTags(Context.getLocationService(), getEmrApiProperties());
             verifyRadiologyConceptsPresent();
             setupPatientRegistrationGlobalProperties();
@@ -173,6 +219,46 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 MENS_INTERNAL_MEDICINE_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_LOCATION_UUID);
         setLocationTagFor(locationService, emrApiProperties.getSupportsTransferLocationTag(), allLocations, transferLocationUuids);
+
+        // allow consult notes to be written at the following locations
+        List<String>  consultNoteLocationUuids = Arrays.asList(
+                ANTEPARTUM_WARD_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
+                OUTPATIENT_CLINIC_LOCATION_UUID,
+                SURGICAL_WARD_LOCATION_UUID,
+                POSTPARTUM_WARD_LOCATION_UUID,
+                COMMUNITY_HEALTH_LOCATION_UUID,
+                LABOR_AND_DELIVERY_LOCATION_UUID,
+                NICU_LOCATION_UUID,
+                PEDIATRICS_LOCATION_UUID,
+                PEDIATRICS_A_LOCATION_UUID,
+                PEDIATRICS_B_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
+                WOMENS_CLINIC_LOCATION_UUID,
+                WOMENS_TRIAGE_LOCATION_UUID,
+                CHEMOTHERAPY_LOCATION_UUID,
+                DENTAL_LOCATION_UUID
+        );
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsConsultNoteTag(), allLocations, consultNoteLocationUuids);
+
+        // allow ed notes to be written at the following locations
+        List<String>  edNoteLocationUuids = Arrays.asList(
+                EMERGENCY_LOCATION_UUID
+        );
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsEDNoteTag(), allLocations, edNoteLocationUuids);
+
+        // allow surgery notes to be written at the following locations
+        List<String>  surgeryNoteLocationUuids = Arrays.asList(
+                SURGICAL_WARD_LOCATION_UUID,
+                OPERATING_ROOMS_LOCATION_UUID,
+                POSTPARTUM_WARD_LOCATION_UUID
+        );
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsSurgeryNoteTag(), allLocations, surgeryNoteLocationUuids);
+
     }
 
     private void setLocationTagFor(LocationService service, LocationTag tag, List<Location> allLocations, Collection<String> uuidsThatGetTag) {
@@ -192,6 +278,49 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
     private void installMetadataPackages() throws Exception {
         MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
         Context.flushSession();
+    }
+
+    private void installDrugList() throws IOException {
+
+        int installedDrugListVersion = mirebalaisMetadataProperties.getInstalledDrugListVersion();
+
+        if (installedDrugListVersion < DRUG_LIST_VERSION) {
+
+            // special-case to retire any demo drugs before installing the first package
+            if (installedDrugListVersion == 0) {
+                retireExistingDemoDrugs();
+            }
+
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("HUM_Drug_List-"
+                    + DRUG_LIST_VERSION + ".csv");
+            InputStreamReader reader = new InputStreamReader(inputStream);
+            ImportNotes notes = drugImporter.importSpreadsheet(reader);
+
+            if (notes.hasErrors()) {
+                System.out.println(notes);
+                throw new RuntimeException("Unable to install drug list");
+            }
+            else {
+
+                // update the installed version
+                GlobalProperty installedDrugListVersionObject = Context.getAdministrationService()
+                        .getGlobalPropertyObject(GP_INSTALLED_DRUG_LIST_VERSION);
+                if (installedDrugListVersionObject == null) {
+                    installedDrugListVersionObject = new GlobalProperty();
+                    installedDrugListVersionObject.setProperty(GP_INSTALLED_DRUG_LIST_VERSION);
+                }
+                installedDrugListVersionObject.setPropertyValue(DRUG_LIST_VERSION.toString());
+                Context.getAdministrationService().saveGlobalProperty(installedDrugListVersionObject);
+            }
+        }
+    }
+
+    private void retireExistingDemoDrugs() {
+
+        for (Drug drug : conceptService.getAllDrugs(true)) {
+            conceptService.retireDrug(drug, "sample drug");
+        }
+
     }
 
     private void setupAddressHierarchy() {
@@ -325,7 +454,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PAYMENT_AMOUNT_CONCEPT,
                 "PIH: Payment amount|en:Payment amount|ht:Kantite lajan");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.VISIT_REASON_CONCEPT,
-                "PIH: Reason for HUM visit|en:Visit reason|ht:Rezon pou vizit");
+                "PIH: Type of HUM visit|en:Visit reason|ht:Tip de Vizit");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PRIMARY_CARE_RECEPTION_ENCOUNTER_TYPE, "Check-in");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PATIENT_REGISTRATION_ENCOUNTER_TYPE,
                 "Patient Registration");

@@ -25,6 +25,9 @@
         <require_module version="${radiologyappModuleVersion}">
             org.openmrs.module.radiologyapp
         </require_module>
+        <require_module version="${dispensingVersion}">
+            org.openmrs.module.dispensing
+        </require_module>
     </require_modules>
 
     <!-- Module Activator -->
@@ -37,6 +40,15 @@
         <file>messages.properties</file>
     </messages>
     <!-- /Internationalization -->
+
+    <!-- Global Properties -->
+    <globalProperty>
+        <property>mirebalaismetadata.installedDrugListVersion</property>
+        <defaultValue>0</defaultValue>
+        <description>
+            Used to track what version of the master drug list is installed on the system
+        </description>
+    </globalProperty>
 
 </module>
 
