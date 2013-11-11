@@ -68,6 +68,7 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
     public static final String LOCATION_TAG_SUPPORTS_CONSULT_NOTE = "Consult Note Location";
     public static final String LOCATION_TAG_SUPPORTS_ED_NOTE = "ED Note Location";
     public static final String LOCATION_TAG_SUPPORTS_SURGERY_NOTE = "Surgery Note Location";
+    public static final String LOCATION_TAG_SUPPORTS_DISPENSING_MEDICATION = "Dispensing Location";
 
     public int getInstalledDrugListVersion() {
         return getIntegerByGlobalProperty(GP_INSTALLED_DRUG_LIST_VERSION);
@@ -91,5 +92,9 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
 
     public LocationTag getSupportsSurgeryNoteTag() {
         return locationService.getLocationTagByName(LOCATION_TAG_SUPPORTS_SURGERY_NOTE);
+    }
+
+    public LocationTag getSupportsDispensingMedicationTag() {
+        return locationService.getLocationTagByName(LOCATION_TAG_SUPPORTS_DISPENSING_MEDICATION);
     }
 }
