@@ -65,16 +65,29 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
     }
 
     @Test
-    public void testThatActivatorDoesAllSetup() throws Exception {
-        verifyPatientRegistrationConfigured();
-        verifyMetadataPackagesConfigured();
-        verifyAddressHierarchyLevelsCreated();
-        verifyAddressHierarchyLoaded();
-        verifyLocationTags();
-        verifyDrugListLoaded();
+    public void testPatientRegistrationConfigured(){
+        List<Method> failingMethods = new ArrayList<Method>();
+        for (Method method : PatientRegistrationGlobalProperties.class.getMethods()) {
+            if (method.getName().startsWith("GLOBAL_PROPERTY") && method.getParameterTypes().length == 0) {
+                try {
+                    method.invoke(null);
+                } catch (Exception ex) {
+                    failingMethods.add(method);
+                }
+            }
+        }
+
+        if (failingMethods.size() > 0) {
+            String errorMessage = "Some Patient Registration global properties are not configured correctly. See these methods in the PatientRegistrationGlobalProperties class";
+            for (Method method : failingMethods) {
+                errorMessage += "\n" + method.getName();
+            }
+            Assert.fail(errorMessage);
+        }
     }
 
-    private void verifyLocationTags() {
+    @Test
+    public void testLocationTagsConfigured() {
         // test a couple of sentinel locations
         // mirebalais hospital should support neither login nor admission nor transfer
         Location location = Context.getLocationService().getLocationByUuid(MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID);
@@ -99,28 +112,8 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_DISPENSING), is(true));
     }
 
-    private void verifyPatientRegistrationConfigured() {
-        List<Method> failingMethods = new ArrayList<Method>();
-        for (Method method : PatientRegistrationGlobalProperties.class.getMethods()) {
-            if (method.getName().startsWith("GLOBAL_PROPERTY") && method.getParameterTypes().length == 0) {
-                try {
-                    method.invoke(null);
-                } catch (Exception ex) {
-                    failingMethods.add(method);
-                }
-            }
-        }
-
-        if (failingMethods.size() > 0) {
-            String errorMessage = "Some Patient Registration global properties are not configured correctly. See these methods in the PatientRegistrationGlobalProperties class";
-            for (Method method : failingMethods) {
-                errorMessage += "\n" + method.getName();
-            }
-            Assert.fail(errorMessage);
-        }
-    }
-
-    private void verifyMetadataPackagesConfigured() throws Exception {
+    @Test
+    public void testMetadataPackagesConfigured() throws Exception {
         MetadataPackagesConfig config;
         {
             InputStream inputStream = activator.getClass().getClassLoader().getResourceAsStream(MetadataUtil.PACKAGES_FILENAME);
@@ -177,7 +170,8 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         }
     }
 
-    private void verifyAddressHierarchyLevelsCreated() throws Exception {
+    @Test
+    public void testAddressHierarchyLevelsCreated() throws Exception {
         AddressHierarchyService ahService = Context.getService(AddressHierarchyService.class);
 
         // assert that we now have six address hierarchy levels
@@ -194,7 +188,8 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 
     }
 
-    private void verifyAddressHierarchyLoaded() throws Exception {
+    @Test
+    public void testAddressHierarchyLoaded() throws Exception {
         AddressHierarchyService ahService = Context.getService(AddressHierarchyService.class);
 
         // we should now have 26000+ address hierarchy entries
@@ -205,7 +200,8 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         assertEquals(5, mirebalaisMetadataProperties.getInstalledAddressHierarchyVersion());
     }
 
-    private void verifyDrugListLoaded() throws Exception {
+    @Test
+    public void testDrugListLoaded() throws Exception {
 
         assertEquals((int) MirebalaisMetadataActivator.DRUG_LIST_VERSION, mirebalaisMetadataProperties.getInstalledDrugListVersion());
 
