@@ -243,14 +243,22 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
              ISOLATION_LOCATION_UUID,
              LABOR_AND_DELIVERY_LOCATION_UUID,
              MENS_INTERNAL_MEDICINE_LOCATION_UUID,
+             MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
+             MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
              NICU_LOCATION_UUID,
+             OPERATING_ROOMS_LOCATION_UUID,
              OUTPATIENT_CLINIC_LOCATION_UUID,
              PEDIATRICS_A_LOCATION_UUID,
              PEDIATRICS_B_LOCATION_UUID,
+             POST_OP_GYN_LOCATION_UUID,
              POSTPARTUM_WARD_LOCATION_UUID,
+             PRE_OP_PACU_LOCATION_UUID,
              SURGICAL_WARD_LOCATION_UUID,
+             WOMENS_AND_CHILDRENS_PHARMACY_UUID,
              WOMENS_CLINIC_LOCATION_UUID,
-             WOMENS_INTERNAL_MEDICINE_LOCATION_UUID
+             WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
+             WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
+             WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID
         );
         setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsDispensingMedicationTag(), allLocations, dispensingMedicationLocationUuids);
 
