@@ -171,7 +171,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 NICU_LOCATION_UUID,
                 MENS_INTERNAL_MEDICINE_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                ED_BOARDING
+                ED_BOARDING,
+                ISOLATION_LOCATION_UUID
                 );
         setLocationTagFor(locationService, emrApiProperties.getSupportsAdmissionLocationTag(), allLocations, admitLocationUuids);
 
@@ -190,7 +191,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 NICU_LOCATION_UUID,
                 DENTAL_LOCATION_UUID,
                 MENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID);
+                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                ISOLATION_LOCATION_UUID);
+
         setLocationTagFor(locationService, emrApiProperties.getSupportsTransferLocationTag(), allLocations, transferLocationUuids);
 
         // allow consult notes to be written at the following locations
@@ -214,7 +217,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 WOMENS_CLINIC_LOCATION_UUID,
                 WOMENS_TRIAGE_LOCATION_UUID,
                 CHEMOTHERAPY_LOCATION_UUID,
-                DENTAL_LOCATION_UUID
+                DENTAL_LOCATION_UUID,
+                ISOLATION_LOCATION_UUID
         );
         setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsConsultNoteTag(), allLocations, consultNoteLocationUuids);
 
