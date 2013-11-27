@@ -7,7 +7,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Hospital_Locations</filenameBase>
             <groupUuid>32d52080-13fa-413e-a23e-6ff9a23c7a69</groupUuid>
-            <version>26</version>
+            <version>27</version>
             <importMode>PARENT_AND_CHILD</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
