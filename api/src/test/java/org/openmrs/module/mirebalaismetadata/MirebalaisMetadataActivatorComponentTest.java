@@ -158,7 +158,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 
         // Verify a few pieces of sentinel data that should have been in the packages
         ConceptService conceptService = Context.getConceptService();
-        Assert.assertNotNull(Context.getLocationService().getLocation("Mirebalais Hospital"));
+        Assert.assertNotNull(Context.getLocationService().getLocationByUuid("a084f714-a536-473b-94e6-ec317b152b43")); // Mirebalais Hospital
         Assert.assertNotNull(Context.getOrderService().getOrderTypeByUuid("5a3a8d2e-97c3-4797-a6a8-5417e6e699ec"));
         Assert.assertNotNull((conceptService.getConceptByMapping("TEMPERATURE (C)", "PIH")));
         Assert.assertNotNull(Context.getService((ProviderManagementService.class)).getProviderRoleByUuid("61eed524-4547-4228-a3ac-631fe1628a5e"));
