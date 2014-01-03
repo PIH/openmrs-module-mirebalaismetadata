@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.Concept;
 import org.openmrs.Location;
-import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.addresshierarchy.AddressField;
@@ -22,20 +21,20 @@ import org.openmrs.module.patientregistration.PatientRegistrationGlobalPropertie
 import org.openmrs.module.providermanagement.api.ProviderManagementService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.openmrs.test.SkipBaseSetup;
+import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.validator.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -72,6 +71,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         verifyAddressHierarchyLoaded();
         verifyLocationTags();
         verifyDrugListLoaded();
+        verifyConceptNamesInAllLanguages();
     }
 
     private void verifyLocationTags() {
@@ -214,6 +214,22 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         assertNotNull(conceptService.getDrug("Ranitidine hydrochloride 75 mg/5 mL oral suspension, 300 mL bottle"));
         assertNotNull(conceptService.getDrug("Ipratropium bromide, 250 microgram/mL solution for nebuisation, 2mL ampoule"));
     }
+
+    private void verifyConceptNamesInAllLanguages() {
+        // every concept should have a preferred name in English, French, and Creole.
+        List<Locale> locales = Arrays.asList(Locale.ENGLISH, Locale.FRENCH, new Locale("ht"));
+        List<String> missing = new ArrayList<String>();
+        for (Concept concept : conceptService.getAllConcepts()) {
+            for (Locale locale : locales) {
+                if (concept.getPreferredName(locale) == null) {
+                    missing.add(locale + " for " + concept.getName().getName());
+                }
+            }
+        }
+        String errorMessage = "Missing preferred concept names: " + OpenmrsUtil.join(missing, ", ");
+        assertEquals(errorMessage, 0, missing);
+    }
+
 }
 
 
