@@ -43,6 +43,10 @@ import org.openmrs.module.metadatasharing.resolver.impl.ObjectByNameResolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.radiologyapp.RadiologyConstants;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -120,11 +124,22 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             conceptService = Context.getConceptService();
         }
         try {
+            PlatformTransactionManager platformTransactionManager = Context.getRegisteredComponents(PlatformTransactionManager.class).get(0);
+            TransactionTemplate transactionTemplate = new TransactionTemplate(platformTransactionManager);
+
             installMetadataPackages();
             installDrugList();
             setLocationTags(Context.getLocationService(), getEmrApiProperties());
             verifyRadiologyConceptsPresent();
-            setupPatientRegistrationGlobalProperties();
+
+            // setting multiple GPs is much faster in a single transaction
+            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+                @Override
+                protected void doInTransactionWithoutResult(TransactionStatus status) {
+                    setupPatientRegistrationGlobalProperties();
+                }
+            });
+
             setupAddressHierarchy();
         } catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("mirebalaismetadata");
