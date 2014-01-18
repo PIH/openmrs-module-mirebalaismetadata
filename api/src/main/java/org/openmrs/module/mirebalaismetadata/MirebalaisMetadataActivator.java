@@ -235,7 +235,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 CHEMOTHERAPY_LOCATION_UUID,
                 DENTAL_LOCATION_UUID,
                 ISOLATION_LOCATION_UUID,
-                REHABILITATION_LOCATION_UUID
+                REHABILITATION_LOCATION_UUID,
+                EMERGENCY_LOCATION_UUID
         );
         setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsConsultNoteTag(), allLocations, consultNoteLocationUuids);
 
