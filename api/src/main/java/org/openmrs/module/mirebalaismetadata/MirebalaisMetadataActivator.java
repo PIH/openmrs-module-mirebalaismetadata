@@ -236,7 +236,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 DENTAL_LOCATION_UUID,
                 ISOLATION_LOCATION_UUID,
                 REHABILITATION_LOCATION_UUID,
-                EMERGENCY_LOCATION_UUID
+                EMERGENCY_LOCATION_UUID,
+                FAMILY_PLANNING_LOCAITON_UUID
         );
         setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsConsultNoteTag(), allLocations, consultNoteLocationUuids);
 
@@ -281,7 +282,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
              WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
              WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
              WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-             REHABILITATION_LOCATION_UUID
+             REHABILITATION_LOCATION_UUID,
+             FAMILY_PLANNING_LOCAITON_UUID
         );
         setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsDispensingMedicationTag(), allLocations, dispensingMedicationLocationUuids);
 
