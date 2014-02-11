@@ -14,7 +14,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Roles_and_Privileges</filenameBase>
             <groupUuid>f12f5fb8-80a8-40d0-a20e-24af2642ce4c</groupUuid>
-            <version>68</version>
+            <version>69</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
