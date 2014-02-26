@@ -14,6 +14,16 @@
 package org.openmrs.module.mirebalaismetadata;
 
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Drug;
@@ -48,17 +58,45 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.*;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.CHEMOTHERAPY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.COMMUNITY_HEALTH_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.DENTAL_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ED_BOARDING;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.EMERGENCY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.FAMILY_PLANNING_LOCAITON_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.GP_INSTALLED_ADDRESS_HIERARCHY_VERSION;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ICU_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ISOLATION_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LABOR_AND_DELIVERY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LACOLLINE_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MAIN_LABORATORY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.NICU_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OPERATING_ROOMS_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_PHARMACY_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_A_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_B_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POSTPARTUM_WARD_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POST_OP_GYN_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PRE_OP_PACU_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.RADIOLOGY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.REHABILITATION_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.SURGICAL_WARD_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.UNKNOWN_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_AND_CHILDRENS_PHARMACY_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_CLINIC_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_OUTPATIENT_LABORATORY_LOCATION_UUID;
+import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_TRIAGE_LOCATION_UUID;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -287,6 +325,21 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         );
         setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsDispensingMedicationTag(), allLocations, dispensingMedicationLocationUuids);
 
+        // allow appointments to be made at the following locations
+        List<String> appointmentLocationsUuids = Arrays.asList(
+                CHEMOTHERAPY_LOCATION_UUID,
+                OUTPATIENT_CLINIC_LOCATION_UUID,
+                WOMENS_CLINIC_LOCATION_UUID,
+                MAIN_LABORATORY_LOCATION_UUID,
+                WOMENS_OUTPATIENT_LABORATORY_LOCATION_UUID,
+                COMMUNITY_HEALTH_LOCATION_UUID,
+                DENTAL_LOCATION_UUID,
+                FAMILY_PLANNING_LOCAITON_UUID,
+                WOMENS_AND_CHILDRENS_PHARMACY_UUID,
+                RADIOLOGY_LOCATION_UUID,
+                OUTPATIENT_CLINIC_PHARMACY_UUID
+        );
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsAppointmentsTag(), allLocations, appointmentLocationsUuids);
     }
 
     private void setLocationTagFor(LocationService service, LocationTag tag, List<Location> allLocations, Collection<String> uuidsThatGetTag) {
