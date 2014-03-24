@@ -46,14 +46,14 @@
     </modules>
 
     <properties>
-        <openmrsCoreVersion>1.9.3</openmrsCoreVersion>
+        <openmrsCoreVersion>1.9.4</openmrsCoreVersion>
         <metadatasharingModuleVersion>1.1.8</metadatasharingModuleVersion>
-        <emrapiModuleVersion>1.1-SNAPSHOT</emrapiModuleVersion>
+        <emrapiModuleVersion>1.2-SNAPSHOT</emrapiModuleVersion>
         <addresshierarchyModuleVersion>2.2.9</addresshierarchyModuleVersion>
         <radiologyappModuleVersion>1.0-SNAPSHOT</radiologyappModuleVersion>
         <providermanagementModuleVersion>1.1.3</providermanagementModuleVersion>
         <patientregistrationVersion>2.2-SNAPSHOT</patientregistrationVersion>
-
+        <appframeworkVersion>2.1-SNAPSHOT</appframeworkVersion>
         <emrVersion>2.0-SNAPSHOT</emrVersion>
         <htmlformentryVersion>2.1.4</htmlformentryVersion>
         <reportingVersion>0.7.6</reportingVersion>
@@ -63,7 +63,6 @@
         <paperrecordVersion>1.0-SNAPSHOT</paperrecordVersion>
         <idgenVersion>2.6</idgenVersion>
         <dispensingVersion>1.0-SNAPSHOT</dispensingVersion>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -197,7 +196,12 @@
             <version>${dispensingVersion}</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>appframework-api</artifactId>
+            <version>${appframeworkVersion}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
