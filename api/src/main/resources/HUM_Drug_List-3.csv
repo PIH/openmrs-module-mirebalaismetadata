@@ -267,8 +267,8 @@ d9333e11-4b28-41fe-93c5-44e624ef1b2c,ED93,"Tetracycline hydrochloride 1% eye oin
 c18e751c-1ec5-420b-8ba7-68a22c5d1acc,HR17,"Trihexyphenidyl, 5 mg, tablet",PIH:915
 72a1bbde-5946-40d5-8750-918a47be523f,HN54,"Tropicamide, 0.5 % eye-drops, 5 mL bottle",CIEL:85597
 0445f6c4-7ac2-489c-806d-0c97b127c68f,SH32,"Vasopressin 20 internatinal units/mL, 1 mL ampoule",CIEL:86127
-6dfc00d4-66b8-45c8-8a45-7bd61d08c928,RQ91,"Vecuronium bromide 4 mg + 1 mL solvent",CIEL:86145
-ae7b2889-8094-49a8-82b5-3b70d351b81d,VN08,"Vitamin A 200,000 UI /Vitamin E 40 international units",PIH:4063
+6dfc00d4-66b8-45c8-8a45-7bd61d08c928,RQ91,Vecuronium bromide 4 mg + 1 mL solvent,CIEL:86145
+ae7b2889-8094-49a8-82b5-3b70d351b81d,VN08,"Vitamin A 200,000 UI /Vitamin E 40 international units, ",PIH:4063
 424d2f86-835f-473a-9d2e-b74b16734db7,AK74,"Vitamin B coumpund, tablet",PIH:329
 44ad6301-71e6-453d-80c1-fe0d409dc63c,DB46,"Vitamin B-1, 100 mg, tablet",CIEL:84995
 35816ccb-904b-4ca0-8160-d7de356d5f1e,RU13,"Vitamin B-1, 50 mg/mL, 2 mL ampoule",CIEL:84995
@@ -285,14 +285,25 @@ f1bb371a-c172-4bd1-b734-a36c801697df,NZ26,"Levonorgestrel/Ethinylestradiol, 150/
 3ca1fb3f-02e6-465d-86d9-b016ee30207b,MD92,"Levonorgestrel, 750 microgram, tablet",PIH:1718
 f55edf29-b1ac-4c43-8fb4-57a9c4415c0c,UG68,"Streptomycin sulphate, 1 gram, powder for injection",CIEL:84361
 e47fa273-0c52-4f0f-b57b-34001a3e9677,KR DOUBLE ZERO,"Isoniazid, 100mg, tablet",PIH:656
-849218ee-901c-46b3-80f9-7c808132893b,MA31+EK97,"Isoniazid, 300mg, tablet",PIH:656
-638d29ff-96fa-4f6e-8d23-0c92f43d5d1a,FN77,"Ethambutol, 100mg, tablet",PIH:745
+849218ee-901c-46b3-80f9-7c808132893b,MA31 & EK97,"Isoniazid, 300mg, tablet",PIH:656
+638d29ff-96fa-4f6e-8d23-0c92f43d5d1a,FN77," Ethambutol, 100mg, tablet",PIH:745
 bd159878-7a33-405b-ad0b-6d6ddbf99ddd,AM30,"Ethambutol, 400mg, tablet",PIH:745
 85a6e834-0d60-48d1-8847-c42d2e16e57e,CP64,"Rifampicin/Isoniazid, 150mg/75mg, tablet",PIH:1194
-6dcb48b9-968a-413d-a15a-ebb4fc3a71da,GA97,"Rifampicin/Isoniazid, 60mg/30mg, tablet",PIH:1194
+6dcb48b9-968a-413d-a15a-ebb4fc3a71da,GA97," Rifampicin/Isoniazid, 60mg/30mg, tablet",PIH:1194
 2ffe3312-87d5-4170-8194-62834b03b55b,EZ47,"Rifampicin/Isoniazid/Ethambutol, 150mg, 75mg, 275mg, tablet",PIH:1614
 79bc3e4f-55dd-46b5-87d9-7f5f6693adf2,MG65,"Rifampicin/Isoniazid/Pyrazinamide/Ethambutol, 150mg/75mg/400mg/275mg, tablet",PIH:1131
 204c8773-dec7-4d4b-8b67-c56daa497c61,CP05,"Rifampin/Isoniazid/Pyrazinamide, 60mg/30mg/150mg, tablet",PIH:768
 3217694e-7c0f-4ec9-8e2d-8b6fcbcbe256,NR96,"Baclofen, 10mg tablet",CIEL:71815
 8319e5d6-777e-4d0e-9aad-099e684dcc8e,VM27,"Tranexamic acid, 100mg/mL, 5mL, ampoule",CIEL:85286
-17f95f85-e79c-47b7-b7e8-4c26d77b8dc4,,"Pyrazinamide, 400mg, tablet",PIH:5829
+17f95f85-e79c-47b7-b7e8-4c26d77b8dc4,Not yet created,"Pyrazinamide, 400mg, tablet",PIH:5829
+f75e1e90-b1be-11e3-a5e2-0800200c9a66,Not yet created,"Tamoxifen, 10mg, tablet",PIH:7664
+f75e1e91-b1be-11e3-a5e2-0800200c9a66,NH99,"Prenatal vitamin, Soft gel",PIH:9532
+f75e1e92-b1be-11e3-a5e2-0800200c9a66,VR66,"Salbutamol 500 micrograms/mL, 1 mL, ampoule",PIH:798
+f75e1e93-b1be-11e3-a5e2-0800200c9a66,HT91,"Nifedipine, 10mg, tablet",PIH:250
+f75e1e94-b1be-11e3-a5e2-0800200c9a66,HG91,Levonorgestrel 20 micrograms/24 hours intrauterine delivery system,PIH:1718
+f75e1e95-b1be-11e3-a5e2-0800200c9a66,KH61,"Copper, Intrauterine Contraceptive Device",PIH:5275
+f75e1e96-b1be-11e3-a5e2-0800200c9a66,AX69,"Pravastatin, 20mg, tablet",CIEL:82411
+399834b0-b44b-11e3-a5e2-0800200c9a66,ND90,"Imatinib, 400mg, film coated tablet",PIH:7659
+399834b1-b44b-11e3-a5e2-0800200c9a66,EG30," Dexamethasone, 4mg, tablet",PIH:6850
+399834b2-b44b-11e3-a5e2-0800200c9a66,RT40,"Dexamethasone, 8mg, tablet",PIH:6850
+399834b3-b44b-11e3-a5e2-0800200c9a66,CD33," Metoclopramide hydrochloride, 10mg, tablet",CIEL:79757
