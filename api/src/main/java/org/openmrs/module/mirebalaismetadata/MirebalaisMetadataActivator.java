@@ -109,7 +109,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private static final Integer ADDRESS_HIERARCHY_VERSION = 5;
 
-    protected static final Integer DRUG_LIST_VERSION = 3;
+    protected static final Integer DRUG_LIST_VERSION = 4;
 
     private MirebalaisMetadataProperties mirebalaisMetadataProperties;
 
