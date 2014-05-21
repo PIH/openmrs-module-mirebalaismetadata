@@ -14,16 +14,6 @@
 package org.openmrs.module.mirebalaismetadata;
 
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Drug;
@@ -57,6 +47,16 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.CHEMOTHERAPY_LOCATION_UUID;
@@ -214,7 +214,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 ));
         setLocationTagFor(locationService, emrApiProperties.getSupportsLoginLocationTag(), allLocations, loginLocationUuids);
 
-        // allow admission at specified locations
+        // allow admission to specified locations
         List<String> admitLocationUuids = Arrays.asList(
                 SURGICAL_WARD_LOCATION_UUID,
                 ANTEPARTUM_WARD_LOCATION_UUID,
@@ -249,6 +249,35 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 REHABILITATION_LOCATION_UUID);
 
         setLocationTagFor(locationService, emrApiProperties.getSupportsTransferLocationTag(), allLocations, transferLocationUuids);
+
+
+        // allow inpatient transfers to specified locations
+        List<String> inpatientTransferLocationUuids = Arrays.asList(
+                SURGICAL_WARD_LOCATION_UUID,
+                ANTEPARTUM_WARD_LOCATION_UUID,
+                LABOR_AND_DELIVERY_LOCATION_UUID,
+                POSTPARTUM_WARD_LOCATION_UUID,
+                PEDIATRICS_LOCATION_UUID,
+                NICU_LOCATION_UUID,
+                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
+                ISOLATION_LOCATION_UUID,
+                REHABILITATION_LOCATION_UUID
+        );
+
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsInpatientTransfersTag(), allLocations, inpatientTransferLocationUuids);
+
+        // allow outpatient transfers to specified locations
+        List<String> outpatientTransferLocationUuids = Arrays.asList(
+                DENTAL_LOCATION_UUID,
+                OUTPATIENT_CLINIC_LOCATION_UUID,
+                EMERGENCY_LOCATION_UUID,
+                WOMENS_CLINIC_LOCATION_UUID,
+                WOMENS_TRIAGE_LOCATION_UUID,
+                COMMUNITY_HEALTH_LOCATION_UUID
+        );
+
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsOutpatientTransfersTag(), allLocations, outpatientTransferLocationUuids);
 
         // allow consult notes to be written at the following locations
         List<String>  consultNoteLocationUuids = Arrays.asList(
