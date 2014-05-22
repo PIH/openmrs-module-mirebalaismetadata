@@ -33,7 +33,6 @@
     {
         "uuid": "discharge",
         "type": "DISCHARGE",
-        "careSettingTypes": ["INPATIENT"],
         "name": "disposition.emrapi.discharge",
         "conceptCode": "PIH:DISCHARGED",
         "actions": [
