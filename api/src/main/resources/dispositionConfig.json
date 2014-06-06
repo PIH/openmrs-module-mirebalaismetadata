@@ -76,6 +76,48 @@
         ]
     },
     {
+        "uuid": "inpatientTransferWithinHospital",
+        "type": "TRANSFER",
+        "careSettingTypes": ["INPATIENT"],
+        "name": "disposition.emrapi.transferInHospital",
+        "conceptCode": "PIH:Transfer within hospital",
+        "actions": [
+            "transferToSpecificLocationDispositionAction"
+        ],
+        "additionalObs": [
+            {
+                "label": "disposition.emrapi.transferInHospital.transferToLocation",
+                "conceptCode": "org.openmrs.module.emrapi: Internal Transfer Location",
+                "params": {
+                    "id": "inpatientTransferInternalLocation",
+                    "style": "location",
+                    "answerLocationTags": "Inpatient Transfer Location"
+                }
+            }
+        ]
+    },
+    {
+        "uuid": "outpatientTransferWithinHospital",
+        "type": "TRANSFER",
+        "careSettingTypes": ["OUTPATIENT"],
+        "name": "disposition.emrapi.outpatientTransferInHospital",
+        "conceptCode": "PIH:Transfer within hospital",
+        "actions": [
+            "transferToSpecificLocationDispositionAction"
+        ],
+        "additionalObs": [
+            {
+                "label": "disposition.emrapi.transferInHospital.transferToLocation",
+                "conceptCode": "org.openmrs.module.emrapi: Internal Transfer Location",
+                "params": {
+                    "id": "outpatientTransferInternalLocation",
+                    "style": "location",
+                    "answerLocationTags": "Outpatient Transfer Location"
+                }
+            }
+        ]
+    },
+    {
         "uuid": "transferWithinHospital",
         "type": "TRANSFER",
         "name": "disposition.emrapi.transferInHospital",
