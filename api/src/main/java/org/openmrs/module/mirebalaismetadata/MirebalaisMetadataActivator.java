@@ -251,33 +251,41 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         setLocationTagFor(locationService, emrApiProperties.getSupportsTransferLocationTag(), allLocations, transferLocationUuids);
 
 
-        // allow inpatient transfers to specified locations
-        List<String> inpatientTransferLocationUuids = Arrays.asList(
-                SURGICAL_WARD_LOCATION_UUID,
-                ANTEPARTUM_WARD_LOCATION_UUID,
-                LABOR_AND_DELIVERY_LOCATION_UUID,
-                POSTPARTUM_WARD_LOCATION_UUID,
-                PEDIATRICS_LOCATION_UUID,
-                NICU_LOCATION_UUID,
-                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                ISOLATION_LOCATION_UUID,
-                REHABILITATION_LOCATION_UUID
-        );
+        // TODO remove this entirely if we permanently decide not to use the inpatient and outpatient location tags
 
-        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsInpatientTransfersTag(), allLocations, inpatientTransferLocationUuids);
+//        // allow inpatient transfers to specified locations
+//        List<String> inpatientTransferLocationUuids = Arrays.asList(
+//                SURGICAL_WARD_LOCATION_UUID,
+//                ANTEPARTUM_WARD_LOCATION_UUID,
+//                LABOR_AND_DELIVERY_LOCATION_UUID,
+//                POSTPARTUM_WARD_LOCATION_UUID,
+//                PEDIATRICS_LOCATION_UUID,
+//                NICU_LOCATION_UUID,
+//                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
+//                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
+//                ISOLATION_LOCATION_UUID,
+//                REHABILITATION_LOCATION_UUID
+//        );
+//
+//        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsInpatientTransfersTag(), allLocations, inpatientTransferLocationUuids);
 
-        // allow outpatient transfers to specified locations
-        List<String> outpatientTransferLocationUuids = Arrays.asList(
-                DENTAL_LOCATION_UUID,
-                OUTPATIENT_CLINIC_LOCATION_UUID,
-                EMERGENCY_LOCATION_UUID,
-                WOMENS_CLINIC_LOCATION_UUID,
-                WOMENS_TRIAGE_LOCATION_UUID,
-                COMMUNITY_HEALTH_LOCATION_UUID
-        );
+        // remove inpatient tags
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsInpatientTransfersTag(), allLocations, new ArrayList<String>());
 
-        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsOutpatientTransfersTag(), allLocations, outpatientTransferLocationUuids);
+//        // allow outpatient transfers to specified locations
+//        List<String> outpatientTransferLocationUuids = Arrays.asList(
+//                DENTAL_LOCATION_UUID,
+//                OUTPATIENT_CLINIC_LOCATION_UUID,
+//                EMERGENCY_LOCATION_UUID,
+//                WOMENS_CLINIC_LOCATION_UUID,
+//                WOMENS_TRIAGE_LOCATION_UUID,
+//                COMMUNITY_HEALTH_LOCATION_UUID
+//        );
+//
+//        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsOutpatientTransfersTag(), allLocations, outpatientTransferLocationUuids);
+
+        // remove outpatient tags
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsOutpatientTransfersTag(), allLocations, new ArrayList<String>());
 
         // allow consult notes to be written at the following locations
         List<String>  consultNoteLocationUuids = Arrays.asList(
