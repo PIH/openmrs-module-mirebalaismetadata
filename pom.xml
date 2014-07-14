@@ -48,7 +48,7 @@
     <properties>
         <openmrsCoreVersion>1.9.4</openmrsCoreVersion>
         <metadatasharingModuleVersion>1.1.8</metadatasharingModuleVersion>
-        <emrapiModuleVersion>1.2</emrapiModuleVersion>
+        <emrapiModuleVersion>1.3-SNAPSHOT</emrapiModuleVersion>
         <addresshierarchyModuleVersion>2.2.9</addresshierarchyModuleVersion>
         <radiologyappModuleVersion>1.0-SNAPSHOT</radiologyappModuleVersion>
         <providermanagementModuleVersion>1.1.3</providermanagementModuleVersion>
@@ -60,7 +60,6 @@
         <calculationVersion>1.0</calculationVersion>
         <serializationxstreamVersion>0.2.7</serializationxstreamVersion>
         <uiframeworkVersion>2.5.2</uiframeworkVersion>
-        <paperrecordVersion>1.0-SNAPSHOT</paperrecordVersion>
         <idgenVersion>2.6</idgenVersion>
         <dispensingVersion>1.0-SNAPSHOT</dispensingVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -104,7 +103,7 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
-            <artifactId>emrapi-api</artifactId>
+            <artifactId>emrapi-api-1.9</artifactId>
             <version>${emrapiModuleVersion}</version>
             <scope>provided</scope>
         </dependency>
@@ -176,12 +175,6 @@
             <groupId>org.openmrs.module</groupId>
             <artifactId>uiframework-api</artifactId>
             <version>${uiframeworkVersion}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>paperrecord-api</artifactId>
-            <version>${paperrecordVersion}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
