@@ -48,13 +48,13 @@
     <properties>
         <openmrsCoreVersion>1.9.4</openmrsCoreVersion>
         <metadatasharingModuleVersion>1.1.8</metadatasharingModuleVersion>
-        <emrapiModuleVersion>1.3-SNAPSHOT</emrapiModuleVersion>
+        <emrapiModuleVersion>1.3</emrapiModuleVersion>
         <addresshierarchyModuleVersion>2.2.9</addresshierarchyModuleVersion>
         <radiologyappModuleVersion>1.0-SNAPSHOT</radiologyappModuleVersion>
         <providermanagementModuleVersion>1.1.3</providermanagementModuleVersion>
         <patientregistrationVersion>2.2-SNAPSHOT</patientregistrationVersion>
-        <appframeworkVersion>2.1-SNAPSHOT</appframeworkVersion>
-        <emrVersion>2.0-SNAPSHOT</emrVersion>
+        <appframeworkVersion>2.1</appframeworkVersion>
+        <emrVersion>2.0</emrVersion>
         <htmlformentryVersion>2.1.4</htmlformentryVersion>
         <reportingVersion>0.9.1-SNAPSHOT</reportingVersion>
         <calculationVersion>1.0</calculationVersion>
