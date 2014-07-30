@@ -2,6 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.openmrs.module</groupId>
+        <artifactId>mirebalais</artifactId>
+        <version>1.2-SNAPSHOT</version>
+    </parent>
+
     <groupId>org.openmrs.module</groupId>
     <artifactId>mirebalaismetadata</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -44,26 +50,6 @@
         <module>api</module>
         <module>omod</module>
     </modules>
-
-    <properties>
-        <openMRSVersion>1.11.0-SNAPSHOT</openMRSVersion>
-        <metadatasharingVersion>1.2-SNAPSHOT</metadatasharingVersion>
-        <emrapiVersion>1.4-SNAPSHOT</emrapiVersion>
-        <addresshierarchyVersion>2.4-SNAPSHOT</addresshierarchyVersion>
-        <radiologyappVersion>1.0-SNAPSHOT</radiologyappVersion>
-        <providermanagementVersion>2.2-SNAPSHOT</providermanagementVersion>
-        <patientregistrationVersion>2.2-SNAPSHOT</patientregistrationVersion>
-        <appframeworkVersion>2.2-SNAPSHOT</appframeworkVersion>
-        <emrVersion>2.0-SNAPSHOT</emrVersion>
-        <htmlformentryVersion>2.4-SNAPSHOT</htmlformentryVersion>
-        <reportingVersion>0.9.2-SNAPSHOT</reportingVersion>
-        <calculationVersion>1.1</calculationVersion>
-        <serializationxstreamVersion>0.2.7</serializationxstreamVersion>
-        <uiframeworkVersion>3.3-SNAPSHOT</uiframeworkVersion>
-        <idgenVersion>2.7</idgenVersion>
-        <dispensingVersion>1.0-SNAPSHOT</dispensingVersion>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <!-- Begin OpenMRS core -->
@@ -232,77 +218,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <generateBackupPoms>false</generateBackupPoms>
-                    <allowSnapshots>true</allowSnapshots>
-                    <properties>
-                        <property>
-                            <name>openMRSVersion</name>
-                            <version>[1.9.0,1.10.0-!)</version>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>openmrswebVersion</name>
-                            <version>[1.9.0,1.10.0-!)</version>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>htmlwidgetsVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>metadatasharingVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>metadatamappingVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>calculationVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>serializationxstreamVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>idgenVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>namephoneticsVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>addresshierarchyVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>providerManagementVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>eventVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>logicVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>webservicesRestVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                    </properties>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
     <repositories>
