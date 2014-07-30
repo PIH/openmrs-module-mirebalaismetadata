@@ -16,13 +16,13 @@
     <!-- / Module Properties -->
 
     <require_modules>
-        <require_module version>
+        <require_module version="${addresshierarchyVersion}">
             org.openmrs.module.addresshierarchy
         </require_module>
-        <require_module version>
+        <require_module version="${emrapiVersion}">
             org.openmrs.module.emrapi
         </require_module>
-        <require_module version>
+        <require_module version="${radiologyappVersion}">
             org.openmrs.module.radiologyapp
         </require_module>
         <require_module version="${dispensingVersion}">
