@@ -562,7 +562,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.NEONATAL_DISEASES_CONCEPT,
                 "PIH: Haiti neonatal diseases");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PRIMARY_CARE_VISIT_ENCOUNTER_TYPE,
-                "Primary Care Visit");
+                "Consultation soins de base");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.CODED_DIAGNOSIS_CONCEPT,
                 "PIH: HUM Outpatient diagnosis");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.AGE_RESTRICTED_CONCEPT,
@@ -573,9 +573,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 "PIH: Payment amount|en:Payment amount|ht:Kantite lajan");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.VISIT_REASON_CONCEPT,
                 "PIH: Type of HUM visit|en:Visit reason|ht:Tip de Vizit");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.PRIMARY_CARE_RECEPTION_ENCOUNTER_TYPE, "Check-in");
+        setExistingGlobalProperty(PatientRegistrationGlobalProperties.PRIMARY_CARE_RECEPTION_ENCOUNTER_TYPE, "Inscription");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.PATIENT_REGISTRATION_ENCOUNTER_TYPE,
-                "Patient Registration");
+                "Enregistrement de patient");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.NUMERO_DOSSIER, "e66645eb-03a8-4991-b4ce-e87318e37566");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.EXTERNAL_NUMERO_DOSSIER, "9dbea4d4-35a9-4793-959e-952f2a9f5347");
         setExistingGlobalProperty(PatientRegistrationGlobalProperties.ID_CARD_PERSON_ATTRIBUTE_TYPE, "Telephone Number");
