@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.Concept;
+import org.openmrs.EncounterType;
 import org.openmrs.Location;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
@@ -21,6 +22,7 @@ import org.openmrs.module.patientregistration.PatientRegistrationGlobalPropertie
 import org.openmrs.module.providermanagement.api.ProviderManagementService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.openmrs.test.SkipBaseSetup;
+import org.openmrs.ui.framework.Formatter;
 import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.validator.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.argThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -52,11 +61,28 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 
     @Before
     public void beforeEachTest() throws Exception {
+
+        // mock the formatter so that proper Frenc names are returned
+        Formatter mockFormatter = mock(Formatter.class);
+
+        EncounterType mockPatientRegistrationEncounter = new EncounterType();
+        mockPatientRegistrationEncounter.setUuid("873f968a-73a8-4f9c-ac78-9f4778b751b6");
+        EncounterType mockCheckInEncounter = new EncounterType();
+        mockCheckInEncounter.setUuid("55a0d3ea-a4d7-4e88-8f01-5aceb2d3c61b");
+        EncounterType mockPrimaryCareVisit = new EncounterType();
+        mockPrimaryCareVisit.setUuid("1373cf95-06e8-468b-a3da-360ac1cf026d");
+
+        when(mockFormatter.format(mockPatientRegistrationEncounter, Locale.FRENCH)).thenReturn("Enregistrement de patient");
+        when(mockFormatter.format(mockCheckInEncounter, Locale.FRENCH)).thenReturn("Inscription");
+        when(mockFormatter.format(mockPrimaryCareVisit, Locale.FRENCH)).thenReturn("Consultation soins de base");
+        when(mockFormatter.format(argThat(allOf(not(mockCheckInEncounter), not(mockPrimaryCareVisit), not(mockPatientRegistrationEncounter))), argThat(is(Locale.FRENCH)))).thenReturn("test");
+
         initializeInMemoryDatabase();
         executeDataSet("requiredDataTestDataset.xml");
         executeDataSet("globalPropertiesTestDataset.xml");
         authenticate();
         activator = new MirebalaisMetadataActivator(mirebalaisMetadataProperties);
+        activator.setFormatter(mockFormatter);
         activator.willRefreshContext();
         activator.contextRefreshed();
         activator.willStart();
@@ -65,7 +91,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 
     @Test
     public void testThatActivatorDoesAllSetup() throws Exception {
-        //verifyPatientRegistrationConfigured();
+        verifyPatientRegistrationConfigured();
         verifyMetadataPackagesConfigured();
         verifyAddressHierarchyLevelsCreated();
         verifyAddressHierarchyLoaded();

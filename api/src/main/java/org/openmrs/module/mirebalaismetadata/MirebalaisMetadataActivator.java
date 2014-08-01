@@ -17,11 +17,13 @@ package org.openmrs.module.mirebalaismetadata;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Drug;
+import org.openmrs.EncounterType;
 import org.openmrs.GlobalProperty;
 import org.openmrs.Location;
 import org.openmrs.LocationTag;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
+import org.openmrs.api.EncounterService;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
@@ -43,6 +45,9 @@ import org.openmrs.module.metadatasharing.resolver.impl.ObjectByNameResolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.radiologyapp.RadiologyConstants;
+import org.openmrs.ui.framework.Formatter;
+import org.openmrs.ui.framework.FormatterImpl;
+import org.springframework.context.MessageSource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
@@ -56,6 +61,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID;
@@ -117,6 +123,12 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private ConceptService conceptService;
 
+    private MessageSource messageSource;
+
+    private AdministrationService administrationService;
+
+    private Formatter formatter;
+
     public MirebalaisMetadataActivator() {
     }
 
@@ -152,6 +164,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
      * @see ModuleActivator#started()
      */
     public void started() {
+
         if (mirebalaisMetadataProperties == null) {
             mirebalaisMetadataProperties = Context.getRegisteredComponents(MirebalaisMetadataProperties.class).get(0);
         }
@@ -161,6 +174,16 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         if (conceptService == null) {
             conceptService = Context.getConceptService();
         }
+        if (messageSource == null) {
+            messageSource = Context.getMessageSourceService().getActiveMessageSource();
+        }
+        if (administrationService == null) {
+            administrationService = Context.getAdministrationService();
+        }
+        if (formatter == null) {
+            formatter = new FormatterImpl(messageSource, administrationService);
+        }
+
         try {
             PlatformTransactionManager platformTransactionManager = Context.getRegisteredComponents(PlatformTransactionManager.class).get(0);
             TransactionTemplate transactionTemplate = new TransactionTemplate(platformTransactionManager);
@@ -169,6 +192,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             installDrugList();
             setLocationTags(Context.getLocationService(), getEmrApiProperties());
             verifyRadiologyConceptsPresent();
+            translateEncounterTypeNamesToFrench(formatter);
 
             // setting multiple GPs is much faster in a single transaction
             transactionTemplate.execute(new TransactionCallbackWithoutResult() {
@@ -605,5 +629,16 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         administrationService.saveGlobalProperty(gp);
     }
 
+    private void translateEncounterTypeNamesToFrench(Formatter formatter) {
+        EncounterService encounterService = Context.getEncounterService();
+        for (EncounterType encounterType : encounterService.getAllEncounterTypes(true)) {
+            encounterType.setName(formatter.format(encounterType, Locale.FRENCH));
+            encounterService.saveEncounterType(encounterType);
+        }
+    }
 
+    // for mocking
+    public void setFormatter(Formatter formatter) {
+        this.formatter = formatter;
+    }
 }
