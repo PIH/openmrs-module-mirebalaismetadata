@@ -1,6 +1,7 @@
 package org.openmrs.module.mirebalaismetadata;
 
 import org.openmrs.EncounterRole;
+import org.openmrs.EncounterType;
 import org.openmrs.LocationTag;
 import org.openmrs.module.emrapi.utils.ModuleProperties;
 import org.springframework.stereotype.Component;
@@ -76,6 +77,9 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
     public static final String LOCATION_TAG_SUPPORTS_INPATIENT_TRANSFERS = "Inpatient Transfer Location";
     public static final String LOCATION_TAG_SUPPORTS_OUTPATIENT_TRANSFERS = "Outpatient Transfer Location";
 
+    // encounter types
+    public static final String DEATH_CERTIFICATE_ENCOUNTER_TYPE_UUID = "1545d7ff-60f1-485e-9c95-5740b8e6634b";
+
     public int getInstalledDrugListVersion() {
         return getIntegerByGlobalProperty(GP_INSTALLED_DRUG_LIST_VERSION);
     }
@@ -115,4 +119,9 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
     public LocationTag getSupportsOutpatientTransfersTag() {
         return locationService.getLocationTagByName(LOCATION_TAG_SUPPORTS_OUTPATIENT_TRANSFERS);
     }
+
+    public EncounterType getDeathCertificateEncounterType() {
+        return getEncounterTypeByUuid(DEATH_CERTIFICATE_ENCOUNTER_TYPE_UUID, true);
+    }
+
 }
