@@ -249,7 +249,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 MENS_INTERNAL_MEDICINE_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
                 ED_BOARDING,
-                ISOLATION_LOCATION_UUID
+                ISOLATION_LOCATION_UUID,
+                REHABILITATION_LOCATION_UUID
                 );
         setLocationTagFor(locationService, emrApiProperties.getSupportsAdmissionLocationTag(), allLocations, admitLocationUuids);
 
