@@ -6,9 +6,6 @@
         "name": "disposition.emrapi.admitToHospital",
         "conceptCode": "PIH:ADMIT TO HOSPITAL",
         "keepsVisitOpen": "true",
-        "actions": [
-            "admitToSpecificLocationDispositionAction"
-        ],
         "additionalObs": [
             {
                 "label": "disposition.emrapi.admitToHospital.admissionLocation",
