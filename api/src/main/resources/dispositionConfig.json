@@ -18,15 +18,6 @@
                     "style": "location",
                     "answerLocationTags": "Admission Location"
                 }
-            },
-            {
-                "label": "disposition.mirebalais.admitToHospital.boardingFor",
-                "conceptCode": "PIH: Boarding For",
-                "params": {
-                    "id": "boardingFor",
-                    "style": "location",
-                    "answerLocationTags": "Admission Location"
-                }
             }
         ]
     },
