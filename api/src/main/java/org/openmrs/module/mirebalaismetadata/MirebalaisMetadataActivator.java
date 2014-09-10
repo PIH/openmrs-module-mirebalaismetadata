@@ -250,7 +250,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
                 ED_BOARDING,
                 ISOLATION_LOCATION_UUID,
-                REHABILITATION_LOCATION_UUID
+                REHABILITATION_LOCATION_UUID,
+                POST_OP_GYN_LOCATION_UUID
                 );
         setLocationTagFor(locationService, emrApiProperties.getSupportsAdmissionLocationTag(), allLocations, admitLocationUuids);
 
@@ -271,7 +272,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 MENS_INTERNAL_MEDICINE_LOCATION_UUID,
                 WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
                 ISOLATION_LOCATION_UUID,
-                REHABILITATION_LOCATION_UUID);
+                REHABILITATION_LOCATION_UUID,
+                POST_OP_GYN_LOCATION_UUID
+        );
 
         setLocationTagFor(locationService, emrApiProperties.getSupportsTransferLocationTag(), allLocations, transferLocationUuids);
 
@@ -337,7 +340,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 ISOLATION_LOCATION_UUID,
                 REHABILITATION_LOCATION_UUID,
                 EMERGENCY_LOCATION_UUID,
-                FAMILY_PLANNING_LOCAITON_UUID
+                FAMILY_PLANNING_LOCAITON_UUID,
+                POST_OP_GYN_LOCATION_UUID
         );
         setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsConsultNoteTag(), allLocations, consultNoteLocationUuids);
 
@@ -351,7 +355,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         List<String>  surgeryNoteLocationUuids = Arrays.asList(
                 SURGICAL_WARD_LOCATION_UUID,
                 OPERATING_ROOMS_LOCATION_UUID,
-                POSTPARTUM_WARD_LOCATION_UUID
+                POSTPARTUM_WARD_LOCATION_UUID,
+                POST_OP_GYN_LOCATION_UUID
         );
         setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsSurgeryNoteTag(), allLocations, surgeryNoteLocationUuids);
 
