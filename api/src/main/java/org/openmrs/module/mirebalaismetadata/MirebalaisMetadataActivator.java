@@ -326,6 +326,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 OUTPATIENT_CLINIC_PHARMACY_UUID,
                 WOMENS_AND_CHILDRENS_PHARMACY_UUID
         );
+        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsDispensingMedicationTag(), allLocations, dispensingMedicationLocationUuids);
 
      /*   // allow dispensing medication to be written at the following locations
         List<String> dispensingMedicationLocationUuids = Arrays.asList(
