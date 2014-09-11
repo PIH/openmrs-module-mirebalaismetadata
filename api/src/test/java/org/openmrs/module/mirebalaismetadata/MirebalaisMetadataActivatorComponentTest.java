@@ -129,8 +129,8 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         assertThat(location.hasTag(MirebalaisMetadataProperties.LOCATION_TAG_SUPPORTS_INPATIENT_TRANSFERS), is(false));
         assertThat(location.hasTag(MirebalaisMetadataProperties.LOCATION_TAG_SUPPORTS_OUTPATIENT_TRANSFERS), is(false));
 
-        // comunity health should support dispensing medication encounter
-        location = Context.getLocationService().getLocationByUuid(MirebalaisMetadataProperties.COMMUNITY_HEALTH_LOCATION_UUID);
+        // outpatient pharmacy should support dispensing medication encounter
+        location = Context.getLocationService().getLocationByUuid(MirebalaisMetadataProperties.OUTPATIENT_CLINIC_PHARMACY_UUID);
         assertThat(location.hasTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_DISPENSING), is(true));
     }
 
