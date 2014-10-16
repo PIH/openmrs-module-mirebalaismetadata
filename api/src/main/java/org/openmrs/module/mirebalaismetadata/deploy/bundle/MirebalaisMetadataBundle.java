@@ -22,7 +22,6 @@ import org.openmrs.api.AdministrationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
@@ -35,7 +34,6 @@ import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.packageF
 /**
  * Radiology metadata bundle
  */
-@Component
 public abstract class MirebalaisMetadataBundle extends AbstractMetadataBundle {
 
 	public static final String SYSTEM_PROPERTY_SKIP_METADATA_SHARING_PACKAGE_REFRESH = "skipMetadataSharingPackageRefresh";

@@ -31,6 +31,9 @@
         <require_module version="${metadatadeployVersion}">
             org.openmrs.module.metadatadeploy
         </require_module>
+        <require_module version="${patientregistrationVersion}">
+            org.openmrs.module.patientregistration
+        </require_module>
     </require_modules>
 
     <!-- Module Activator -->
