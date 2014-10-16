@@ -28,6 +28,9 @@
         <require_module version="${dispensingVersion}">
             org.openmrs.module.dispensing
         </require_module>
+        <require_module version="${metadatadeployVersion}">
+            org.openmrs.module.metadatadeploy
+        </require_module>
     </require_modules>
 
     <!-- Module Activator -->

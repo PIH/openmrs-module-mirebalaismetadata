@@ -14,16 +14,15 @@
 package org.openmrs.module.mirebalaismetadata;
 
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Drug;
-import org.openmrs.EncounterType;
 import org.openmrs.GlobalProperty;
 import org.openmrs.Location;
 import org.openmrs.LocationTag;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
-import org.openmrs.api.EncounterService;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
@@ -36,22 +35,13 @@ import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
 import org.openmrs.module.addresshierarchy.util.AddressHierarchyImportUtil;
 import org.openmrs.module.dispensing.importer.DrugImporter;
 import org.openmrs.module.dispensing.importer.ImportNotes;
-import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.MetadataSharing;
 import org.openmrs.module.metadatasharing.resolver.Resolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByNameResolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
-import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
-import org.openmrs.module.radiologyapp.RadiologyConstants;
-import org.openmrs.ui.framework.Formatter;
-import org.openmrs.ui.framework.FormatterImpl;
 import org.springframework.context.MessageSource;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -61,7 +51,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID;
@@ -125,8 +114,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private AdministrationService administrationService;
 
-    private Formatter formatter;
-
     public MirebalaisMetadataActivator() {
     }
 
@@ -178,30 +165,15 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         if (administrationService == null) {
             administrationService = Context.getAdministrationService();
         }
-        if (formatter == null) {
-            formatter = new FormatterImpl(messageSource, administrationService);
-        }
 
         try {
-            PlatformTransactionManager platformTransactionManager = Context.getRegisteredComponents(PlatformTransactionManager.class).get(0);
-            TransactionTemplate transactionTemplate = new TransactionTemplate(platformTransactionManager);
-
+			installBundles();
             installMetadataPackages();
             installDrugList();
             setLocationTags(Context.getLocationService(), getEmrApiProperties());
-            verifyRadiologyConceptsPresent();
-            translateEncounterTypeNamesToFrench(formatter);
-
-            // setting multiple GPs is much faster in a single transaction
-            transactionTemplate.execute(new TransactionCallbackWithoutResult() {
-                @Override
-                protected void doInTransactionWithoutResult(TransactionStatus status) {
-                    setupPatientRegistrationGlobalProperties();
-                }
-            });
-
             setupAddressHierarchy();
-        } catch (Exception e) {
+        }
+		catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("mirebalaismetadata");
             ModuleFactory.stopModule(mod);
             throw new RuntimeException("Failed to start the mirebalaismetadata module", e);
@@ -391,6 +363,11 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
     }
 
+	private void installBundles() throws Exception {
+		MetadataManager manager = Context.getRegisteredComponents(MetadataManager.class).get(0);
+		manager.refresh();
+	}
+
     private void installMetadataPackages() throws Exception {
         MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
         Context.flushSession();
@@ -398,7 +375,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private void installDrugList() throws IOException {
 
-        int installedDrugListVersion = mirebalaisMetadataProperties.getInstalledDrugListVersion();
+        int installedDrugListVersion = getIntegerByGlobalProperty(MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION, -1);
 
         if (installedDrugListVersion < DRUG_LIST_VERSION) {
 
@@ -499,7 +476,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
 
         // load in the csv file if necessary
-        int installedAddressHierarchyVersion = mirebalaisMetadataProperties.getInstalledAddressHierarchyVersion();
+        int installedAddressHierarchyVersion = getIntegerByGlobalProperty(MirebalaisMetadataProperties.GP_INSTALLED_ADDRESS_HIERARCHY_VERSION, -1);
 
         if (installedAddressHierarchyVersion < ADDRESS_HIERARCHY_VERSION) {
             // delete any existing entries
@@ -522,97 +499,18 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
     }
 
-    private void verifyRadiologyConceptsPresent() {
-        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_PROCEDURE, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_TYPE, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_BODY, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_ACCESSION_NUMBER, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_IMAGES_AVAILABLE, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_CORRECTION, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_FINAL, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_PRELIM, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_STUDY_SET, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-        verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_SET, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-    }
-
-    private void verifyConceptPresent(String conceptCode, String conceptSource) {
-        if (Context.getConceptService().getConceptByMapping(conceptCode, conceptSource) == null) {
-            throw new RuntimeException("No concept tagged with code " + conceptCode + " from source " + conceptSource);
-        }
-    }
-
-    private void setupPatientRegistrationGlobalProperties() {
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.SUPPORTED_TASKS,
-                "patientRegistration|primaryCareReception|edCheckIn|patientLookup");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.SEARCH_CLASS,
-                "org.openmrs.module.patientregistration.search.DefaultPatientRegistrationSearch");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.LABEL_PRINT_COUNT, "1");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.PROVIDER_ROLES, "LacollineProvider");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.PROVIDER_IDENTIFIER_PERSON_ATTRIBUTE_TYPE,
-                "Provider Identifier");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.PRIMARY_IDENTIFIER_TYPE, "ZL EMR ID");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.URGENT_DIAGNOSIS_CONCEPT,
-                "PIH: Haiti nationally urgent diseases");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.NOTIFY_DIAGNOSIS_CONCEPT,
-                "PIH: Haiti nationally notifiable diseases");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.NON_CODED_DIAGNOSIS_CONCEPT,
-                "PIH: ZL Primary care diagnosis non-coded");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.NEONATAL_DISEASES_CONCEPT,
-                "PIH: Haiti neonatal diseases");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.PRIMARY_CARE_VISIT_ENCOUNTER_TYPE,
-                "Consultation soins de base");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.CODED_DIAGNOSIS_CONCEPT,
-                "PIH: HUM Outpatient diagnosis");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.AGE_RESTRICTED_CONCEPT,
-                "PIH: Haiti age restricted diseases");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.RECEIPT_NUMBER_CONCEPT,
-                "PIH: Receipt number|en:Receipt Number|ht:Nimewo Resi a");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.PAYMENT_AMOUNT_CONCEPT,
-                "PIH: Payment amount|en:Payment amount|ht:Kantite lajan");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.VISIT_REASON_CONCEPT,
-                "PIH: Type of HUM visit|en:Visit reason|ht:Tip de Vizit");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.PRIMARY_CARE_RECEPTION_ENCOUNTER_TYPE, "Inscription");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.PATIENT_REGISTRATION_ENCOUNTER_TYPE,
-                "Enregistrement de patient");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.NUMERO_DOSSIER, "e66645eb-03a8-4991-b4ce-e87318e37566");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.EXTERNAL_NUMERO_DOSSIER, "9dbea4d4-35a9-4793-959e-952f2a9f5347");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.ID_CARD_PERSON_ATTRIBUTE_TYPE, "Telephone Number");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.PATIENT_VIEWING_ATTRIBUTE_TYPES, "Telephone Number");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.ID_CARD_LABEL_TEXT, "Zanmi Lasante Patient ID Card");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.ICD10_CONCEPT_SOURCE, "ICD-10");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.BIRTH_YEAR_INTERVAL, "1");
-        setExistingGlobalProperty(PatientRegistrationGlobalProperties.MEDICAL_RECORD_LOCATION_TAG,
-                "71c99f93-bc0c-4a44-b573-a7ac096ff636");
-
-    }
-
-    /**
-     * Sets global property value or throws an exception if that global property does not already exist
-     * (Set as protected so we can override it for testing purposes)
-     *
-     * @param propertyName
-     * @param propertyValue
-     */
-    protected void setExistingGlobalProperty(String propertyName, String propertyValue) {
-        AdministrationService administrationService = Context.getAdministrationService();
-        GlobalProperty gp = administrationService.getGlobalPropertyObject(propertyName);
-        if (gp == null) {
-            throw new RuntimeException("global property " + propertyName + " does not exist");
-        }
-        gp.setPropertyValue(propertyValue);
-        administrationService.saveGlobalProperty(gp);
-    }
-
-    private void translateEncounterTypeNamesToFrench(Formatter formatter) {
-        EncounterService encounterService = Context.getEncounterService();
-        for (EncounterType encounterType : encounterService.getAllEncounterTypes(true)) {
-            encounterType.setName(formatter.format(encounterType, Locale.FRENCH));
-            encounterService.saveEncounterType(encounterType);
-        }
-    }
-
-    // for mocking
-    public void setFormatter(Formatter formatter) {
-        this.formatter = formatter;
-    }
+	protected Integer getIntegerByGlobalProperty(String globalPropertyName, Integer defaultValue) {
+		String value = administrationService.getGlobalProperty(globalPropertyName);
+		if (StringUtils.isNotEmpty(value)) {
+			try {
+				return Integer.valueOf(value);
+			}
+			catch (Exception e) {
+				throw new IllegalStateException("Global property " + globalPropertyName + " value of " + value + " is not parsable as an Integer");
+			}
+		}
+		else {
+			return defaultValue;
+		}
+	}
 }

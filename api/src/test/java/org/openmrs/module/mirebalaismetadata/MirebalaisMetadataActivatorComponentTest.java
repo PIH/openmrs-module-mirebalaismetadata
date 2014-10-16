@@ -1,14 +1,18 @@
 package org.openmrs.module.mirebalaismetadata;
 
 import org.apache.commons.io.IOUtils;
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.Concept;
 import org.openmrs.EncounterType;
 import org.openmrs.Location;
+import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
+import org.openmrs.layout.web.address.AddressSupport;
+import org.openmrs.layout.web.address.AddressTemplate;
 import org.openmrs.module.addresshierarchy.AddressField;
 import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
@@ -18,36 +22,33 @@ import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
+import org.openmrs.module.pacsintegration.PacsIntegrationConstants;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.providermanagement.api.ProviderManagementService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.openmrs.test.SkipBaseSetup;
-import org.openmrs.ui.framework.Formatter;
+import org.openmrs.ui.framework.UiFrameworkConstants;
+import org.openmrs.util.OpenmrsConstants;
 import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.validator.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.not;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.argThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
-/**
- *
- */
 @SkipBaseSetup          // note that we skip the base setup because we don't want to include the standard test data
 public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextSensitiveTest {
 
@@ -56,33 +57,28 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
     @Autowired
     private ConceptService conceptService;
 
+	@Autowired
+	private AdministrationService adminService;
+
     @Autowired
     MirebalaisMetadataProperties mirebalaisMetadataProperties;
 
     @Before
     public void beforeEachTest() throws Exception {
 
-        // mock the formatter so that proper Frenc names are returned
-        Formatter mockFormatter = mock(Formatter.class);
-
         EncounterType mockPatientRegistrationEncounter = new EncounterType();
-        mockPatientRegistrationEncounter.setUuid("873f968a-73a8-4f9c-ac78-9f4778b751b6");
-        EncounterType mockCheckInEncounter = new EncounterType();
-        mockCheckInEncounter.setUuid("55a0d3ea-a4d7-4e88-8f01-5aceb2d3c61b");
-        EncounterType mockPrimaryCareVisit = new EncounterType();
-        mockPrimaryCareVisit.setUuid("1373cf95-06e8-468b-a3da-360ac1cf026d");
+        mockPatientRegistrationEncounter.setUuid(CoreMetadata.EncounterTypes.PATIENT_REGISTRATION);
 
-        when(mockFormatter.format(mockPatientRegistrationEncounter, Locale.FRENCH)).thenReturn("Enregistrement de patient");
-        when(mockFormatter.format(mockCheckInEncounter, Locale.FRENCH)).thenReturn("Inscription");
-        when(mockFormatter.format(mockPrimaryCareVisit, Locale.FRENCH)).thenReturn("Consultation soins de base");
-        when(mockFormatter.format(argThat(allOf(not(mockCheckInEncounter), not(mockPrimaryCareVisit), not(mockPatientRegistrationEncounter))), argThat(is(Locale.FRENCH)))).thenReturn("test");
+        EncounterType mockCheckInEncounter = new EncounterType();
+        mockCheckInEncounter.setUuid(CoreMetadata.EncounterTypes.CHECK_IN);
+
+        EncounterType mockPrimaryCareVisit = new EncounterType();
+        mockPrimaryCareVisit.setUuid(CoreMetadata.EncounterTypes.PRIMARY_CARE_VISIT);
 
         initializeInMemoryDatabase();
         executeDataSet("requiredDataTestDataset.xml");
-        executeDataSet("globalPropertiesTestDataset.xml");
         authenticate();
         activator = new MirebalaisMetadataActivator(mirebalaisMetadataProperties);
-        activator.setFormatter(mockFormatter);
         activator.willRefreshContext();
         activator.contextRefreshed();
         activator.willStart();
@@ -91,6 +87,10 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 
     @Test
     public void testThatActivatorDoesAllSetup() throws Exception {
+		verifyAddressTemplateConfigured();
+		verifyGlobalPropertiesConfigured();
+		verifyDatetimeFormatting();
+		verifyPacsIntegrationGlobalPropertiesConfigured();
         verifyPatientRegistrationConfigured();
         verifyMetadataPackagesConfigured();
         verifyAddressHierarchyLevelsCreated();
@@ -99,6 +99,50 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         verifyDrugListLoaded();
         //verifyConceptNamesInAllLanguages(); ignore this test until we have fixed the data
     }
+
+	private void verifyAddressTemplateConfigured() throws Exception {
+		AddressTemplate at = AddressSupport.getInstance().getDefaultLayoutTemplate();
+		assertEquals("mirebalais.address.country", at.getNameMappings().get("country"));
+		assertEquals("mirebalais.address.stateProvince", at.getNameMappings().get("stateProvince"));
+		assertEquals("mirebalais.address.cityVillage", at.getNameMappings().get("cityVillage"));
+		assertEquals("mirebalais.address.neighborhoodCell", at.getNameMappings().get("address3"));
+		assertEquals("mirebalais.address.address1", at.getNameMappings().get("address1"));
+		assertEquals("mirebalais.address.address2", at.getNameMappings().get("address2"));
+		assertEquals("40", at.getSizeMappings().get("country"));
+		assertEquals("40", at.getSizeMappings().get("stateProvince"));
+		assertEquals("40", at.getSizeMappings().get("cityVillage"));
+		assertEquals("60", at.getSizeMappings().get("address3"));
+		assertEquals("60", at.getSizeMappings().get("address1"));
+		assertEquals("60", at.getSizeMappings().get("address2"));
+		assertEquals("Haiti", at.getElementDefaults().get("country"));
+		assertEquals("address2", at.getLineByLineFormat().get(0));
+		assertEquals("address1", at.getLineByLineFormat().get(1));
+		assertEquals("address3, cityVillage", at.getLineByLineFormat().get(2));
+		assertEquals("stateProvince, country", at.getLineByLineFormat().get(3));
+	}
+
+	private void verifyGlobalPropertiesConfigured() throws Exception {
+		assertEquals("fr", adminService.getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_LOCALE));
+		assertEquals("false", adminService.getGlobalProperty(OpenmrsConstants.GP_PASSWORD_REQUIRES_UPPER_AND_LOWER_CASE));
+		assertEquals("false", adminService.getGlobalProperty(OpenmrsConstants.GP_PASSWORD_REQUIRES_NON_DIGIT));
+		assertEquals("false", adminService.getGlobalProperty(OpenmrsConstants.GP_PASSWORD_REQUIRES_DIGIT));
+		assertEquals("8", adminService.getGlobalProperty(OpenmrsConstants.GP_PASSWORD_MINIMUM_LENGTH));
+	}
+
+	private void verifyDatetimeFormatting() {
+		DateFormat datetimeFormat = new SimpleDateFormat(adminService.getGlobalProperty(UiFrameworkConstants.GP_FORMATTER_DATETIME_FORMAT));
+		DateFormat dateFormat = new SimpleDateFormat(adminService.getGlobalProperty(UiFrameworkConstants.GP_FORMATTER_DATE_FORMAT));
+		Date sampleDate = new DateTime(2012, 2, 22, 14, 23, 22).toDate();
+		assertEquals("22 Feb 2012 02:23 PM", datetimeFormat.format(sampleDate));
+		assertEquals("22 Feb 2012", dateFormat.format(sampleDate));
+	}
+
+	private void verifyPacsIntegrationGlobalPropertiesConfigured() throws Exception {
+		assertEquals(CoreMetadata.PatientIdentifierTypes.ZL_EMR_ID, adminService.getGlobalProperty(PacsIntegrationConstants.GP_PATIENT_IDENTIFIER_TYPE_UUID));
+		assertEquals("en", adminService.getGlobalProperty(PacsIntegrationConstants.GP_DEFAULT_LOCALE));
+		assertEquals("Mirebalais", adminService.getGlobalProperty(PacsIntegrationConstants.GP_SENDING_FACILITY));
+		assertEquals(CoreMetadata.ConceptSources.LOINC, adminService.getGlobalProperty(PacsIntegrationConstants.GP_PROCEDURE_CODE_CONCEPT_SOURCE_UUID));
+	}
 
     private void verifyLocationTags() {
         // test a couple of sentinel locations
@@ -174,6 +218,8 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         for (MetadataPackageConfig metadataPackage : config.getPackages()) {
             groupUuids.add(metadataPackage.getGroupUuid());
         }
+		groupUuids.add(RadiologyMetadata.Packages.RADIOLOGY_ORDERABLES);
+		groupUuids.add(CoreMetadata.Packages.HUM_METADATA);
 
         for (ImportedPackage importedPackage : metadataSharingService.getAllImportedPackages()) {
             if (!groupUuids.contains(importedPackage.getGroupUuid())) {
@@ -192,9 +238,8 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
         }
 
         // Verify a few pieces of sentinel data that should have been in the packages
-        ConceptService conceptService = Context.getConceptService();
         Assert.assertNotNull(Context.getLocationService().getLocationByUuid("a084f714-a536-473b-94e6-ec317b152b43")); // Mirebalais Hospital
-        Assert.assertNotNull(Context.getOrderService().getOrderTypeByUuid("5a3a8d2e-97c3-4797-a6a8-5417e6e699ec"));
+        Assert.assertNotNull(Context.getOrderService().getOrderTypeByUuid(RadiologyMetadata.OrderTypes.RADIOLOGY_TEST));
         Assert.assertNotNull((conceptService.getConceptByMapping("TEMPERATURE (C)", "PIH")));
         Assert.assertNotNull(Context.getService((ProviderManagementService.class)).getProviderRoleByUuid("61eed524-4547-4228-a3ac-631fe1628a5e"));
 
