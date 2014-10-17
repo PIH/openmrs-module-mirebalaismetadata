@@ -38,7 +38,6 @@ import java.util.Map;
 
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterRole;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.packageFile;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.patientIdentifierType;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.personAttributeType;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitType;
@@ -156,7 +155,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 				null, null, null, PatientIdentifierType.LocationBehavior.NOT_USED, false, PatientIdentifierTypes.EXTERNAL_DOSSIER_NUMBER));
 
 		install(patientIdentifierType("Nimewo Dosye", "Patient&apos;s Dossier number",
-				"A\\d{6}", "A000001", null, PatientIdentifierType.LocationBehavior.NOT_USED, false, PatientIdentifierTypes.DOSSIER_NUMBER));
+				"A\\d{6}", "A000001", null, PatientIdentifierType.LocationBehavior.REQUIRED, false, PatientIdentifierTypes.DOSSIER_NUMBER));
 
 		install(patientIdentifierType(ZL_EMR_ID_NAME, "A unique identifier issued to all patients by the ZL EMR.  Blocks of this identifier are issued to each site to prevent duplication, so the identifier is unique across all sites.  The identifier uses six digits and is alphanumeric base 30, omitting the letters B, I, O, Q, S and Z as these can be confused with 8, 1, 0, 0, 5 and 2",
 				null, null, LuhnMod30IdentifierValidator.class, PatientIdentifierType.LocationBehavior.NOT_USED, false, PatientIdentifierTypes.ZL_EMR_ID));
