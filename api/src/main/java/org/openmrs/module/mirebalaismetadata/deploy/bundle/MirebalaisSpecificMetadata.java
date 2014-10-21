@@ -391,7 +391,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
         install(locationAttribute(MirebalaisHospitalLocations.EMERGENCY_DEPARTMENT_RECEPTION,
                 CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
                 "M034",
-                "709ee7f1 - 5d3d-493d-a931-6fca9a49b7ff"));
+                "709ee7f1-5d3d-493d-a931-6fca9a49b7ff"));
 
         install(locationAttribute(MirebalaisHospitalLocations.WOMENS_TRIAGE,
                 CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
@@ -405,7 +405,8 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(locationAttribute(MirebalaisHospitalLocations.OUTPATIENT_CLINIC_PHARMACY,
                 CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
-                "M031","96af5ad1-c2c5-4cf4-9333-26f0c1f2e75b"));
+                "M031",
+                "96af5ad1-c2c5-4cf4-9333-26f0c1f2e75b"));
 
         install(locationAttribute(MirebalaisHospitalLocations.WOMENS_OUTPATIENT_LABORATORY,
                 CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
