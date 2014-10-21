@@ -12,11 +12,12 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
-package org.openmrs.module.mirebalaismetadata;
+package org.openmrs.module.mirebalaismetadata.deploy.bundle;
 
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.openmrs.module.metadatadeploy.bundle.Requires;
+import org.openmrs.module.mirebalaismetadata.deploy.bundle.CoreMetadata;
 import org.openmrs.module.mirebalaismetadata.deploy.bundle.MirebalaisMetadataBundle;
 import org.openmrs.module.pacsintegration.PacsIntegrationConstants;
 import org.openmrs.module.radiologyapp.RadiologyConstants;
@@ -27,7 +28,6 @@ import java.util.Map;
 
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterRole;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.packageFile;
 
 /**
  * Radiology metadata bundle

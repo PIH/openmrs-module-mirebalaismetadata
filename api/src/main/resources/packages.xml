@@ -5,13 +5,6 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
     <packages>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-            <filenameBase>HUM_Hospital_Locations</filenameBase>
-            <groupUuid>32d52080-13fa-413e-a23e-6ff9a23c7a69</groupUuid>
-            <version>40</version>
-            <importMode>PARENT_AND_CHILD</importMode>
-        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-
-        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Roles_and_Privileges</filenameBase>
             <groupUuid>f12f5fb8-80a8-40d0-a20e-24af2642ce4c</groupUuid>
             <version>84</version>

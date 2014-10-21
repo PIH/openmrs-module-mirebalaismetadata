@@ -12,22 +12,23 @@
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
 
-package org.openmrs.module.mirebalaismetadata;
+package org.openmrs.module.mirebalaismetadata.deploy.bundle;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.LocationTag;
 import org.openmrs.PatientIdentifierType;
-import org.openmrs.module.coreapps.CoreAppsConstants;
+import org.openmrs.customdatatype.datatype.FreeTextDatatype;
 import org.openmrs.module.emr.EmrConstants;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.htmlformentry.HtmlFormEntryConstants;
 import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
-import org.openmrs.module.mirebalaismetadata.deploy.bundle.MirebalaisMetadataBundle;
 import org.openmrs.module.namephonetics.NamePhoneticsConstants;
 import org.openmrs.module.paperrecord.PaperRecordConstants;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.patientregistration.search.DefaultPatientRegistrationSearch;
+import org.openmrs.module.printer.PrinterDatatype;
 import org.openmrs.module.reporting.ReportingConstants;
 import org.openmrs.ui.framework.UiFrameworkConstants;
 import org.openmrs.util.OpenmrsConstants;
@@ -38,6 +39,9 @@ import java.util.Map;
 
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterRole;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.location;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.locationAttributeType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.locationTag;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.patientIdentifierType;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.personAttributeType;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitType;
@@ -51,16 +55,33 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 	protected Log log = LogFactory.getLog(getClass());
 
 	public static final class Locations {
-		public static final String UNKNOWN = "8d6c993e-c2cc-11de-8d13-0010c6dffd0f"; // TODO: Add the installation of this to the bundle?
-		public static final String MIREBALAIS_HOSPITAL = "a084f714-a536-473b-94e6-ec317b152b43"; // TODO: Add this?
+		public static final String UNKNOWN = "8d6c993e-c2cc-11de-8d13-0010c6dffd0f";
 	}
 
 	public static final class LocationTags {
-		public static final String MEDICAL_RECORD_LOCATION = "71c99f93-bc0c-4a44-b573-a7ac096ff636"; // TODO: Add the installation of this to the bundle?
+		public static final String MEDICAL_RECORD_LOCATION = "71c99f93-bc0c-4a44-b573-a7ac096ff636";
+        public static final String LOGIN_LOCATION = "b8bbf83e-645f-451f-8efe-a0db56f09676";
+        public static final String VISIT_LOCATION = "0967d73d-f3c9-492b-abed-356478610a94";
+        public static final String ADMISSION_LOCATION = "f5b9737b-14d5-402b-8475-dd558808e172";
+        public static final String TRANSFER_LOCAITON = "9783aba6-df7b-4969-be6e-1e03e7a08965";
+        public static final String CONSULT_NOTE_LOCATION = "dea8febf-0bbe-4111-8152-a9cf7df622b6";
+        public static final String SURGERY_NOTE_LOCATION = "8ce9abcb-b0d9-4897-bc65-d8d2d3362b67";
+        public static final String ED_NOTE_LOCATION = "fe742fba-840a-4155-bfc4-a5b35ac1bb03";
+        public static final String DISPENSING_LOCATION = "c42b7bc3-b34d-4b8f-9796-09208f9dfd72";
+        public static final String APPOINTMENT_LOCATION = "2b5c7110-d571-4f5f-b84e-500070b40ef8";
 	}
 
+    public static final class RetiredLocationTags {
+        public static final String OUTPATIENT_TRANSFER_LOCATION = "84864264-5fda-4626-b22f-4b690b7279f3";
+        public static final String INPATIENT_TRANSFER_LOCATION =" 160a6e45-9274-4dd8-abf7-e46af8cbb41a";
+    }
+
 	public static final class LocationAttributeTypes {
-		public static final String LOCATION_CODE = "64f01c78-191d-4947-a201-7e0a7f0caf21"; // TODO: Add the installation of this to the bundle
+		public static final String LOCATION_CODE = "64f01c78-191d-4947-a201-7e0a7f0caf21";
+        public static final String DEFAULT_WRISTBAND_PRINTER = "7f73ad30-0b89-11e4-9191-0800200c9a66";
+        public static final String DEFAULT_LABEL_PRINTER = "bd6c1c10-38d3-11e2-81c1-0800200c9a66";
+        public static final String DEFAULT_ID_CARD_PRINTER ="b48ef9a0-38d3-11e2-81c1-0800200c9a66";
+        public static final String NAME_TO_PRINT_ON_ID_CARD = "a5fb5770-409a-11e2-a25f-0800200c9a66";
 	}
 
 	public static final class PatientIdentifierTypes {
@@ -194,7 +215,41 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		install(encounterRole("Administrative Clerk", "This role is used for creating a Check-in encounter", EncounterRoles.ADMINISTRATIVE_CLERK));
 		install(encounterRole("Ordering Provider", "For encounters associated with orders, used to store the provider responsible for placing the order", EncounterRoles.ORDERING_PROVIDER));
 
-		log.info("Installing core Concepts");
+        log.info("Installing Locations");
+
+        install(location("Unknown Location", "Unknown Location", Locations.UNKNOWN));
+
+        log.info("Installing location tags");
+
+        install(locationTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_LOGIN,"When a user logs in and chooses a session location, they may only choose one with this tag",LocationTags.LOGIN_LOCATION));
+        install(locationTag(PaperRecordConstants.LOCATION_TAG_MEDICAL_RECORD_LOCATION,"Notes that this location is a valid identifier location for an identifier that references a paper medical record", LocationTags.MEDICAL_RECORD_LOCATION));
+        install(locationTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_VISITS,"Visits are only allowed to happen at locations tagged with this location tag or at locations that descend from a location tagged with this tag.", LocationTags.VISIT_LOCATION));
+        install(locationTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_ADMISSION,"Patients may only be admitted to inpatient care in a location with this tag", LocationTags.ADMISSION_LOCATION));
+        install(locationTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_TRANSFER,"Patients may only be transfer to inpatient care in a location with this tag", LocationTags.TRANSFER_LOCAITON));
+        install(locationTag("Consult Note Location","A location where a consult note can be written", LocationTags.CONSULT_NOTE_LOCATION));
+        install(locationTag("Surgery Note Location","A location where a surgery note can be written", LocationTags.SURGERY_NOTE_LOCATION));
+        install(locationTag("ED Note Location","A location where an ED note can be written", LocationTags.ED_NOTE_LOCATION));
+        install(locationTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_DISPENSING,"A location where a pharmacist or pharmacist aide can dispensed medication.", LocationTags.DISPENSING_LOCATION));
+        install(locationTag("Appointment Location","Signifies a Location where appointments can be scheduled", LocationTags.APPOINTMENT_LOCATION));
+
+        log.info("Retired old location tags");
+        uninstall(possible(LocationTag.class,RetiredLocationTags.OUTPATIENT_TRANSFER_LOCATION),  "never used");
+        uninstall(possible(LocationTag.class,RetiredLocationTags.INPATIENT_TRANSFER_LOCATION),  "never used");
+
+        log.info("Install location attributes");
+
+        install(locationAttributeType("Location Code","Unique identifier assigned to the location.  (Currently used as a key when exchanging information with McKesson PACS via the PACS Integration module.)",
+                FreeTextDatatype.class, null, 0, 1, LocationAttributeTypes.LOCATION_CODE));
+        install(locationAttributeType("Default Label Printer", "The default label printer for this location",
+                PrinterDatatype.class, "LABEL", 0, 1, LocationAttributeTypes.DEFAULT_LABEL_PRINTER));
+        install(locationAttributeType("Default ID card Printer", "The default id card printer for this location",
+                PrinterDatatype.class, "ID_CARD", 0, 1, LocationAttributeTypes.DEFAULT_ID_CARD_PRINTER));
+        install(locationAttributeType("Default Wristband Printer", "The default wristband printer for this location",
+                PrinterDatatype.class, "WRISTBAND", 0, 1, LocationAttributeTypes.DEFAULT_WRISTBAND_PRINTER));
+        install(locationAttributeType("Name to print on ID card", "The name to use when printing a location on an id card",
+                FreeTextDatatype.class, null, 0, 1, LocationAttributeTypes.NAME_TO_PRINT_ON_ID_CARD));
+
+        log.info("Installing core Concepts");
 
 		installMetadataSharingPackage("HUM_Metadata-57.zip", Packages.HUM_METADATA);
 
@@ -261,9 +316,6 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		properties.put(NamePhoneticsConstants.MIDDLE_NAME_GLOBAL_PROPERTY, DOUBLE_METAPHONE_ALTERNATE_NAME);
 		properties.put(NamePhoneticsConstants.FAMILY_NAME_GLOBAL_PROPERTY, DOUBLE_METAPHONE_ALTERNATE_NAME);
 		properties.put(NamePhoneticsConstants.FAMILY_NAME2_GLOBAL_PROPERTY, DOUBLE_METAPHONE_ALTERNATE_NAME);
-
-		// Core Apps
-		properties.put(CoreAppsConstants.GP_DEFAULT_PATIENT_IDENTIFIER_LOCATION, Locations.MIREBALAIS_HOSPITAL);
 
 		// Patient Registration
 		properties.put(PatientRegistrationGlobalProperties.SUPPORTED_TASKS, "patientRegistration|primaryCareReception|edCheckIn|patientLookup");

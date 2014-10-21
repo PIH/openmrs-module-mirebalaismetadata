@@ -19,11 +19,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Drug;
 import org.openmrs.GlobalProperty;
-import org.openmrs.Location;
-import org.openmrs.LocationTag;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
-import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.Module;
@@ -47,49 +44,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ANTEPARTUM_WARD_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.CHEMOTHERAPY_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.COMMUNITY_HEALTH_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.DENTAL_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ED_BOARDING;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.EMERGENCY_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.FAMILY_PLANNING_LOCAITON_UUID;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.GP_INSTALLED_ADDRESS_HIERARCHY_VERSION;
 import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.ISOLATION_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LABOR_AND_DELIVERY_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.LACOLLINE_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MAIN_LABORATORY_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MENS_INTERNAL_MEDICINE_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.MIREBALAIS_HOSPITAL_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.NICU_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OPERATING_ROOMS_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.OUTPATIENT_CLINIC_PHARMACY_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_A_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_B_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.PEDIATRICS_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POSTPARTUM_WARD_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.POST_OP_GYN_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.RADIOLOGY_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.REHABILITATION_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.SURGICAL_WARD_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.UNKNOWN_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_AND_CHILDRENS_PHARMACY_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_CLINIC_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_INTERNAL_MEDICINE_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_OUTPATIENT_LABORATORY_LOCATION_UUID;
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.WOMENS_TRIAGE_LOCATION_UUID;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -170,7 +128,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 			installBundles();
             installMetadataPackages();
             installDrugList();
-            setLocationTags(Context.getLocationService(), getEmrApiProperties());
             setupAddressHierarchy();
         }
 		catch (Exception e) {
@@ -183,184 +140,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private EmrApiProperties getEmrApiProperties() {
         return Context.getRegisteredComponents(EmrApiProperties.class).iterator().next();
-    }
-
-    private void setLocationTags(LocationService locationService, EmrApiProperties emrApiProperties) {
-        List<Location> allLocations = locationService.getAllLocations();
-        Set<String> allLocationUuids = new HashSet<String>();
-        for (Location location : allLocations) {
-            allLocationUuids.add(location.getUuid());
-        }
-
-        // allow logging in to all locations MINUS exceptions
-        List<String> loginLocationUuids = new ArrayList<String>(allLocationUuids);
-        loginLocationUuids.removeAll(Arrays.asList(
-                UNKNOWN_LOCATION_UUID,
-                MIREBALAIS_HOSPITAL_LOCATION_UUID,
-                LACOLLINE_LOCATION_UUID,
-                PEDIATRICS_A_LOCATION_UUID,
-                PEDIATRICS_B_LOCATION_UUID,
-                MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
-                MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-                ED_BOARDING
-                ));
-        setLocationTagFor(locationService, emrApiProperties.getSupportsLoginLocationTag(), allLocations, loginLocationUuids);
-
-        // allow admission to specified locations
-        List<String> admitLocationUuids = Arrays.asList(
-                SURGICAL_WARD_LOCATION_UUID,
-                ANTEPARTUM_WARD_LOCATION_UUID,
-                LABOR_AND_DELIVERY_LOCATION_UUID,
-                POSTPARTUM_WARD_LOCATION_UUID,
-                PEDIATRICS_LOCATION_UUID,
-                NICU_LOCATION_UUID,
-                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                ED_BOARDING,
-                ISOLATION_LOCATION_UUID,
-                REHABILITATION_LOCATION_UUID,
-                POST_OP_GYN_LOCATION_UUID
-                );
-        setLocationTagFor(locationService, emrApiProperties.getSupportsAdmissionLocationTag(), allLocations, admitLocationUuids);
-
-        // allow transfer at specified locations
-        List<String> transferLocationUuids = Arrays.asList(
-                SURGICAL_WARD_LOCATION_UUID,
-                ANTEPARTUM_WARD_LOCATION_UUID,
-                LABOR_AND_DELIVERY_LOCATION_UUID,
-                POSTPARTUM_WARD_LOCATION_UUID,
-                EMERGENCY_LOCATION_UUID,
-                COMMUNITY_HEALTH_LOCATION_UUID,
-                OUTPATIENT_CLINIC_LOCATION_UUID,
-                WOMENS_CLINIC_LOCATION_UUID,
-                WOMENS_TRIAGE_LOCATION_UUID,
-                PEDIATRICS_LOCATION_UUID,
-                NICU_LOCATION_UUID,
-                DENTAL_LOCATION_UUID,
-                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                ISOLATION_LOCATION_UUID,
-                REHABILITATION_LOCATION_UUID,
-                POST_OP_GYN_LOCATION_UUID
-        );
-
-        setLocationTagFor(locationService, emrApiProperties.getSupportsTransferLocationTag(), allLocations, transferLocationUuids);
-
-        // allow consult notes to be written at the following locations
-        List<String>  consultNoteLocationUuids = Arrays.asList(
-                ANTEPARTUM_WARD_LOCATION_UUID,
-                MENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
-                MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-                OUTPATIENT_CLINIC_LOCATION_UUID,
-                SURGICAL_WARD_LOCATION_UUID,
-                POSTPARTUM_WARD_LOCATION_UUID,
-                COMMUNITY_HEALTH_LOCATION_UUID,
-                LABOR_AND_DELIVERY_LOCATION_UUID,
-                NICU_LOCATION_UUID,
-                PEDIATRICS_LOCATION_UUID,
-                PEDIATRICS_A_LOCATION_UUID,
-                PEDIATRICS_B_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
-                WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-                WOMENS_CLINIC_LOCATION_UUID,
-                WOMENS_TRIAGE_LOCATION_UUID,
-                CHEMOTHERAPY_LOCATION_UUID,
-                DENTAL_LOCATION_UUID,
-                ISOLATION_LOCATION_UUID,
-                REHABILITATION_LOCATION_UUID,
-                EMERGENCY_LOCATION_UUID,
-                FAMILY_PLANNING_LOCAITON_UUID,
-                POST_OP_GYN_LOCATION_UUID
-        );
-        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsConsultNoteTag(), allLocations, consultNoteLocationUuids);
-
-        // allow ed notes to be written at the following locations
-        List<String>  edNoteLocationUuids = Arrays.asList(
-                EMERGENCY_LOCATION_UUID
-        );
-        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsEDNoteTag(), allLocations, edNoteLocationUuids);
-
-        // allow surgery notes to be written at the following locations
-        List<String>  surgeryNoteLocationUuids = Arrays.asList(
-                SURGICAL_WARD_LOCATION_UUID,
-                OPERATING_ROOMS_LOCATION_UUID,
-                POSTPARTUM_WARD_LOCATION_UUID,
-                POST_OP_GYN_LOCATION_UUID
-        );
-        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsSurgeryNoteTag(), allLocations, surgeryNoteLocationUuids);
-
-        // allow medication to be dispensed at the following locations
-        List<String> dispensingMedicationLocationUuids = Arrays.asList(
-                OUTPATIENT_CLINIC_PHARMACY_UUID,
-                WOMENS_AND_CHILDRENS_PHARMACY_UUID
-        );
-        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsDispensingMedicationTag(), allLocations, dispensingMedicationLocationUuids);
-
-     /*   // allow dispensing medication to be written at the following locations
-        List<String> dispensingMedicationLocationUuids = Arrays.asList(
-             ANTEPARTUM_WARD_LOCATION_UUID,
-             CHEMOTHERAPY_LOCATION_UUID,
-             COMMUNITY_HEALTH_LOCATION_UUID,
-             DENTAL_LOCATION_UUID,
-             EMERGENCY_LOCATION_UUID,
-             ICU_LOCATION_UUID,
-             ISOLATION_LOCATION_UUID,
-             LABOR_AND_DELIVERY_LOCATION_UUID,
-             MENS_INTERNAL_MEDICINE_LOCATION_UUID,
-             MENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
-             MENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-             NICU_LOCATION_UUID,
-             OPERATING_ROOMS_LOCATION_UUID,
-             OUTPATIENT_CLINIC_LOCATION_UUID,
-             PEDIATRICS_A_LOCATION_UUID,
-             PEDIATRICS_B_LOCATION_UUID,
-             POST_OP_GYN_LOCATION_UUID,
-             POSTPARTUM_WARD_LOCATION_UUID,
-             PRE_OP_PACU_LOCATION_UUID,
-             SURGICAL_WARD_LOCATION_UUID,
-             WOMENS_AND_CHILDRENS_PHARMACY_UUID,
-             WOMENS_CLINIC_LOCATION_UUID,
-             WOMENS_INTERNAL_MEDICINE_LOCATION_UUID,
-             WOMENS_INTERNAL_MEDICINE_A_LOCATION_UUID,
-             WOMENS_INTERNAL_MEDICINE_B_LOCATION_UUID,
-             REHABILITATION_LOCATION_UUID,
-             FAMILY_PLANNING_LOCAITON_UUID
-        );
-        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsDispensingMedicationTag(), allLocations, dispensingMedicationLocationUuids);
-*/
-        // allow appointments to be made at the following locations
-        List<String> appointmentLocationsUuids = Arrays.asList(
-                CHEMOTHERAPY_LOCATION_UUID,
-                OUTPATIENT_CLINIC_LOCATION_UUID,
-                WOMENS_CLINIC_LOCATION_UUID,
-                MAIN_LABORATORY_LOCATION_UUID,
-                WOMENS_OUTPATIENT_LABORATORY_LOCATION_UUID,
-                COMMUNITY_HEALTH_LOCATION_UUID,
-                DENTAL_LOCATION_UUID,
-                FAMILY_PLANNING_LOCAITON_UUID,
-                WOMENS_AND_CHILDRENS_PHARMACY_UUID,
-                RADIOLOGY_LOCATION_UUID,
-                OUTPATIENT_CLINIC_PHARMACY_UUID
-        );
-        setLocationTagFor(locationService, mirebalaisMetadataProperties.getSupportsAppointmentsTag(), allLocations, appointmentLocationsUuids);
-    }
-
-    private void setLocationTagFor(LocationService service, LocationTag tag, List<Location> allLocations, Collection<String> uuidsThatGetTag) {
-        for (Location candidate : allLocations) {
-            boolean expected = uuidsThatGetTag.contains(candidate.getUuid());
-            boolean actual = candidate.hasTag(tag.getName());
-            if (actual && !expected) {
-                candidate.removeTag(tag);
-                service.saveLocation(candidate);
-            } else if (!actual && expected) {
-                candidate.addTag(tag);
-                service.saveLocation(candidate);
-            }
-        }
     }
 
 	private void installBundles() throws Exception {
