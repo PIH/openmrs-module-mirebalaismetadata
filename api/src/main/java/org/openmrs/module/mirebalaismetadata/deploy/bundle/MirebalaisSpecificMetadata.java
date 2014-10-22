@@ -2,7 +2,9 @@ package org.openmrs.module.mirebalaismetadata.deploy.bundle;
 
 import org.openmrs.Location;
 import org.openmrs.LocationAttribute;
+import org.openmrs.module.appframework.feature.FeatureToggleProperties;
 import org.openmrs.module.coreapps.CoreAppsConstants;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -15,12 +17,13 @@ import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.location
 @Component
 public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
-    public static final class LocationAttributeTypes {
-        public static final String LOCATION_CODE = "64f01c78-191d-4947-a201-7e0a7f0caf21";
-    }
+    @Autowired
+    private FeatureToggleProperties featureToggles;
 
     public static final class MirebalaisHospitalLocations {
         public static final String MIREBALAIS_HOSPITAL = "a084f714-a536-473b-94e6-ec317b152b43";
+
+        public static final String MIREBALAIS_HOSPITAL_MAIN_CAMPUS = "24bd1390-5959-11e4-8ed6-0800200c9a66";
 
         public static final String LACOLLINE = "23e7bb0d-51f9-4d5f-b34b-2fbbfeea1960";
 
@@ -68,6 +71,11 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
         public static final String FAMILY_PLANNING_LOCAITON = "09af1ef5-d664-4c1f-a9e3-9c8d69bd77c4";
         public static final String BLOOD_BANK = "4ed8c0d3-8aed-4f80-96e8-55648abf51af";
 
+        public static final String CDI = "083e75b0-5959-11e4-8ed6-0800200c9a66";
+        public static final String CDI_RESEPSYON = "11857d80-5959-11e4-8ed6-0800200c9a66";
+        public static final String CDI_ACHIV = "11857d81-5959-11e4-8ed6-0800200c9a66";
+        public static final String CDI_KLINIK_EKSTEN = "11857d82-5959-11e4-8ed6-0800200c9a66";
+
     }
 
     public static final class RetiredMirebalaisLocations {
@@ -83,39 +91,55 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
         // Locations
         log.info("Installing Mirebalais Locations");
 
-        install(location("Hôpital Universitaire de Mirebalais","Mirebalais (MoH code 62101)",
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
-                null,
-                Arrays.asList(CoreMetadata.LocationTags.MEDICAL_RECORD_LOCATION,
-                        CoreMetadata.LocationTags.VISIT_LOCATION)));
+        if (featureToggles.isFeatureEnabled("cdi")) {
+
+            install(location("Hôpital Universitaire de Mirebalais", "Mirebalais (MoH code 62101)",
+                    MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                    null,
+                    Arrays.asList(CoreMetadata.LocationTags.VISIT_LOCATION)));
+
+            install(location("Mirebalais Hospital Main Campus", "Mirebalais Hospital Main Campus",
+                    MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS,
+                    MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                    Arrays.asList(CoreMetadata.LocationTags.MEDICAL_RECORD_LOCATION)));
+
+        }
+        else {
+
+            install(location("Hôpital Universitaire de Mirebalais", "Mirebalais (MoH code 62101)",
+                    MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                    null,
+                    Arrays.asList(CoreMetadata.LocationTags.MEDICAL_RECORD_LOCATION,
+                            CoreMetadata.LocationTags.VISIT_LOCATION)));
+        }
 
         install(location("Lacolline","Lacolline", MirebalaisHospitalLocations.LACOLLINE));
 
         install(location("Achiv Santral","Central Archives room at Mirebalais Hospital",
                 MirebalaisHospitalLocations.CENTRAL_ARCHIVES,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Bank Pou San","Blood Bank at Mirebalais Hospital",
                 MirebalaisHospitalLocations.BLOOD_BANK,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Biwo Resepsyon","Clinic Registration at Mirebalais Hospital",
                 MirebalaisHospitalLocations.CLINIC_REGISTRATION,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Chimyoterapi","Chemotherapy at Mirebalais Hospital",
                 MirebalaisHospitalLocations.CHEMOTHERAPY,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Dantis","Dental clinic at Mirebalais Hospital (Dental Clinic).",
                 MirebalaisHospitalLocations.DENTAL,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -123,7 +147,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Ijans","Emergency room at Mirebalais Hospital (Ijans)",
                 MirebalaisHospitalLocations.EMERGENCY,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.ED_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -131,19 +155,19 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Ijans Resepsyon","Emergency registration and check-in",
                 MirebalaisHospitalLocations.EMERGENCY_DEPARTMENT_RECEPTION,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Ijans | Sante Fanm","Women’s Triage at Mirebalais Hospital",
                 MirebalaisHospitalLocations.WOMENS_TRIAGE,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
                         CoreMetadata.LocationTags.TRANSFER_LOCAITON)));
 
         install(location("Klinik Ekstèn","The outpatient clinic at Mirebalais Hospital (Klinik Extern).",
                 MirebalaisHospitalLocations.OUTPATIENT_CLINIC,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -158,32 +182,32 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Laboratwa Ekstèn pou Fanm","Women’s Outpatient Laboratory at Mirebalais Hospital",
                 MirebalaisHospitalLocations.WOMENS_OUTPATIENT_LABORATORY,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Laboratwa Prensipal","Main laboratory at Mirebalais Hospital",
                 MirebalaisHospitalLocations.MAIN_LABORATORY,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Planin Familyal","Family Planning Clinic",
                 MirebalaisHospitalLocations.FAMILY_PLANNING_LOCAITON,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Radyografi","Radiology at Mirebalais Hospital",
                 MirebalaisHospitalLocations.RADIOLOGY,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Sal Aprè Akouchman","Postpartum ward at Mirebalais Hospital (After giving birth)",
                 MirebalaisHospitalLocations.POSTPARTUM_WARD,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -192,7 +216,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Sal Avan Akouchman","Antepartum ward at Mirebalais Hospital (Before giving birth)",
                 MirebalaisHospitalLocations.ANTEPARTUM_WARD,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -200,7 +224,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Sal Aprè Operayson", "Surgical Ward at Mirebalais Hospital (Surgery)",
                 MirebalaisHospitalLocations.SURGICAL_WARD,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -209,7 +233,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Sal Aprè Operayson | Sante Fanm", "Post-op GYN at Mirebalais Hospital (Recovery after surgery related to gynecology)",
                 MirebalaisHospitalLocations.POST_OP_GYN,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -218,12 +242,12 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Sal Avan Operasyon | PACU", "Pre-op/PACU at Mirebalais Hospital (Before surgery, and Post-Anesthesia Care Unit)",
                 MirebalaisHospitalLocations.PRE_OP_PACU,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Sal Fanm","Women’s Internal Medicine at Mirebalais Hospital (Inpatient ward for women)",
                 MirebalaisHospitalLocations.WOMENS_INTERNAL_MEDICINE,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -241,7 +265,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Sal Gason","Men’s Internal Medicine at Mirebalais Hospital (Inpatient ward for men)",
                 MirebalaisHospitalLocations.MENS_INTERNAL_MEDICINE,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -259,7 +283,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Sal Izolman","Isolation at Mirebalais Hospital",
                 MirebalaisHospitalLocations.ISOLATION,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -267,13 +291,13 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Sal Operasyon","Operating Rooms at Mirebalais Hospital (all six operating rooms)",
                 MirebalaisHospitalLocations.OPERATING_ROOMS,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION,
                         CoreMetadata.LocationTags.SURGERY_NOTE_LOCATION)));
 
         install(location("Sal Reyabilitasyon","Rehabilitation Ward",
                 MirebalaisHospitalLocations.REHABILITATION,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -281,7 +305,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Sal Timoun","Pediatrics at Mirebalais Hospital (Inpatient ward for children)",
                 MirebalaisHospitalLocations.PEDIATRICS,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -299,7 +323,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Sante Fanm","Women's Outpatient clinic at Mirebalais Hospital (Sante Fanm).",
                 MirebalaisHospitalLocations.WOMENS_CLINIC,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -315,7 +339,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Sante Kominotè","Community Health clinic at Mirebalais Hospital (Community Health clinic).",
                 MirebalaisHospitalLocations.COMMUNITY_HEALTH,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -323,12 +347,12 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Swen Entansif","ICU at Mirebalais Hospital (Intensive Care Unit)",
                 MirebalaisHospitalLocations.ICU,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
         install(location("Swen Entansif Neonatal","NICU at Mirebalais Hospital (Neonatal Intensive Care Unit)",
                 MirebalaisHospitalLocations.NICU,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
@@ -336,11 +360,38 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(location("Travay e Akouchman","Labor and Delivery at Mirebalais Hospital (Births)",
                 MirebalaisHospitalLocations.LABOR_AND_DELIVERY,
-                MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
                 Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
                         CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
                         CoreMetadata.LocationTags.LOGIN_LOCATION,
                         CoreMetadata.LocationTags.TRANSFER_LOCAITON)));
+
+        if (featureToggles.isFeatureEnabled("cdi")) {
+
+            // TODO correct these names and location tags
+            install(location("CDI", "CDI",
+                    MirebalaisHospitalLocations.CDI,
+                    MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                    Arrays.asList(CoreMetadata.LocationTags.MEDICAL_RECORD_LOCATION)));
+
+            install(location("CDI Resepsyon", "CDI Resepsyon",
+                    MirebalaisHospitalLocations.CDI_RESEPSYON,
+                    MirebalaisHospitalLocations.CDI,
+                    Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
+
+            install(location("CDI Achive", "CDI Achiv",
+                    MirebalaisHospitalLocations.CDI_ACHIV,
+                    MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                    Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
+
+            install(location("CDI", "CDI Klinik Ekstèn",
+                    MirebalaisHospitalLocations.CDI_KLINIK_EKSTEN,
+                    MirebalaisHospitalLocations.CDI,
+                    Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
+                            CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
+                            CoreMetadata.LocationTags.LOGIN_LOCATION,
+                            CoreMetadata.LocationTags.TRANSFER_LOCAITON)));
+        }
 
         log.info("Retiring old Mirebalais Locations");
 
