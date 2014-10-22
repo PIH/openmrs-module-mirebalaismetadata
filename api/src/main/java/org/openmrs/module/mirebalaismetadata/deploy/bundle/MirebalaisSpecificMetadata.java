@@ -525,7 +525,7 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
         install(locationAttribute(MirebalaisHospitalLocations.NICU,
                 CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
-                "M014", "f8eba8dc-8939-4c5e-a39b-110d833 b86e6"));
+                "M014", "f8eba8dc-8939-4c5e-a39b-110d833b86e6"));
 
         install(locationAttribute(MirebalaisHospitalLocations.LABOR_AND_DELIVERY,
                 CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
