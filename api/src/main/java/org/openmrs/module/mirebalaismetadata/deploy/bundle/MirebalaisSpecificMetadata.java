@@ -521,15 +521,17 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
         install(locationAttribute(MirebalaisHospitalLocations.ICU,
                 CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
                 "M018",
-                "8b13c4c2-8c44-4faa-b385-2734594 a8d44"));
+                "8b13c4c2-8c44-4faa-b385-2734594a8d44"));
 
         install(locationAttribute(MirebalaisHospitalLocations.NICU,
                 CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
-                "M014", "f8eba8dc-8939-4c5e-a39b-110d833b86e6"));
+                "M014",
+                "f8eba8dc-8939-4c5e-a39b-110d833b86e6"));
 
         install(locationAttribute(MirebalaisHospitalLocations.LABOR_AND_DELIVERY,
                 CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
-                "M023", "54750c8b-d979-4d3b-bd1d-57830009e064"));
+                "M023",
+                "54750c8b-d979-4d3b-bd1d-57830009e064"));
 
         log.info("Voiding old location attributes");
 
