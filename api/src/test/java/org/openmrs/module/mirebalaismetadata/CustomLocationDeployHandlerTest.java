@@ -15,13 +15,13 @@ import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.location
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.locationAttribute;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.locationAttributeType;
 
+@Ignore
 public class CustomLocationDeployHandlerTest extends BaseModuleContextSensitiveTest {
 
     @Autowired
     private MetadataDeployService deployService;
 
     @Test
-    @Ignore
     public void integration_redeployShouldNotOverrideExistingAttributes() {
 
         // Set up the existing objects that we will need
