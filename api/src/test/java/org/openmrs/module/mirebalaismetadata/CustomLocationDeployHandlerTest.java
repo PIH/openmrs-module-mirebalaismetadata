@@ -1,7 +1,6 @@
 package org.openmrs.module.mirebalaismetadata;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.Location;
 import org.openmrs.api.context.Context;
@@ -15,7 +14,7 @@ import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.location
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.locationAttribute;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.locationAttributeType;
 
-@Ignore
+
 public class CustomLocationDeployHandlerTest extends BaseModuleContextSensitiveTest {
 
     @Autowired

@@ -14,6 +14,7 @@
 
 package org.openmrs.module.mirebalaismetadata;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.Concept;
 import org.openmrs.OpenmrsMetadata;
@@ -38,6 +39,7 @@ public class FindMetadataInPackage extends BaseModuleContextSensitiveTest {
     public boolean printAll = true;
 
     @Test
+    @Ignore
     public void findMetadata() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         MetadataPackagesConfig allConfigs = MetadataUtil.getMetadataPackagesForModule(classLoader);
