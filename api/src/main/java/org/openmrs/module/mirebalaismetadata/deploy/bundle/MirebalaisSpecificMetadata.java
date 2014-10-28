@@ -381,10 +381,10 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
 
             install(location("CDI Achive", "CDI Achiv",
                     MirebalaisHospitalLocations.CDI_ACHIV,
-                    MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
+                    MirebalaisHospitalLocations.CDI,
                     Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
 
-            install(location("CDI", "CDI Klinik Ekstèn",
+            install(location("CDI Klinik Ekstèn", "CDI Klinik Ekstèn",
                     MirebalaisHospitalLocations.CDI_KLINIK_EKSTEN,
                     MirebalaisHospitalLocations.CDI,
                     Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
