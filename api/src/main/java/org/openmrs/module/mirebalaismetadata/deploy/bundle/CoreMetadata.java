@@ -16,6 +16,7 @@ package org.openmrs.module.mirebalaismetadata.deploy.bundle;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.EncounterType;
 import org.openmrs.LocationTag;
 import org.openmrs.PatientIdentifierType;
 import org.openmrs.customdatatype.datatype.FreeTextDatatype;
@@ -104,8 +105,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 	public static final class EncounterTypes {
 		public static final String PATIENT_REGISTRATION = "873f968a-73a8-4f9c-ac78-9f4778b751b6";
 		public static final String CHECK_IN = "55a0d3ea-a4d7-4e88-8f01-5aceb2d3c61b";
-		public static final String PAYMENT = "f1c286d0-b83f-4cd4-8348-7ea3c28ead13";
-		public static final String VITALS = "4fb47712-34a6-40d2-8ed3-e153abbd25b7";
+        public static final String VITALS = "4fb47712-34a6-40d2-8ed3-e153abbd25b7";
 		public static final String PRIMARY_CARE_VISIT = "1373cf95-06e8-468b-a3da-360ac1cf026d";
 		public static final String CONSULTATION = "92fd09b4-5335-4f7e-9f63-b2a663fd09a6";
 		public static final String MEDICATION_DISPENSED = "8ff50dea-18a1-4609-b4c9-3f8f2d611b84";
@@ -116,6 +116,10 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		public static final String EXIT_FROM_INPATIENT = "b6631959-2105-49dd-b154-e1249e0fbcd7";
 
 	}
+
+    public static final class RetiredEncounterTypes {
+        public static final String PAYMENT = "f1c286d0-b83f-4cd4-8348-7ea3c28ead13";
+    }
 
 	public static final class EncounterRoles {
 		public static final String DISPENSER = "bad21515-fd04-4ff6-bfcd-78456d12f168";
@@ -197,7 +201,6 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		install(encounterType(REGISTRATION_ENCOUNTER_NAME, "Patient registration -- normally a new patient", EncounterTypes.PATIENT_REGISTRATION));
 		install(encounterType(CHECK_IN_ENCOUNTER_NAME, "Check-in encounter, formerly known as Primary care reception", EncounterTypes.CHECK_IN));
 		install(encounterType(PRIMARY_CARE_VISIT_ENCOUNTER_NAME, "Primary care visit (In Kreyol, it&apos;s &apos;vizit swen primè&apos;)", EncounterTypes.PRIMARY_CARE_VISIT));
-		install(encounterType("Rencontre de paiement", "Encounter used to capture patient payments", EncounterTypes.PAYMENT));
 		install(encounterType("Signes vitaux", "Encounter where vital signs were captured, and triage may have been done, possibly for triage purposes, but a complete exam was not done.", EncounterTypes.VITALS));
 		install(encounterType("Consultation", "Encounter where a full or abbreviated examination is done, leading to a presumptive or confirmed diagnosis", EncounterTypes.CONSULTATION));
 		install(encounterType("Médicaments administrés", "When someone gets medicine from the pharmacy", EncounterTypes.MEDICATION_DISPENSED));
@@ -207,7 +210,9 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		install(encounterType("Annuler l'admission", "An encounter that notes that a request to admit a patient (via giving them a dispositon of &quot;admit&quot; on another form) is being overridden", EncounterTypes.CANCEL_ADMISSION));
 		install(encounterType("Sortie de soins hospitaliers", "Indicates that a patient&apos;s inpatient care at the hospital is ending, and they are expected to leave soon", EncounterTypes.EXIT_FROM_INPATIENT));
 
-		log.info("Installing core Encounter Roles");
+        uninstall(possible(EncounterType.class, RetiredEncounterTypes.PAYMENT), "never used");
+
+        log.info("Installing core Encounter Roles");
 
 		install(encounterRole("Dispenser", "Provider that dispenses medications or other products", EncounterRoles.DISPENSER));
 		install(encounterRole("Nurse", "A person educated and trained to care for the sick or disabled.", EncounterRoles.NURSE));
