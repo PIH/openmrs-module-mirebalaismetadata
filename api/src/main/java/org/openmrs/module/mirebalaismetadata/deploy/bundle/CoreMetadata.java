@@ -113,7 +113,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		public static final String TRANSFER = "436cfe33-6b81-40ef-a455-f134a9f7e580";
 		public static final String ADMISSION = "260566e1-c909-4d61-a96f-c1019291a09d";
 		public static final String CANCEL_ADMISSION = "edbb857b-e736-4296-9438-462b31f97ef9";
-		public static final String EXIT_FROM_INPATIENT = "b6631959-2105-49dd-b154-e1249e0fbcd7";
+		public static final String EXIT_FROM_CARE = "b6631959-2105-49dd-b154-e1249e0fbcd7";
 
 	}
 
@@ -205,7 +205,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		install(encounterType("Transfert", "Indicates that a patient is being transferred into a different department within the hospital. (Transfers out of the hospital should not use this encounter type.)", EncounterTypes.TRANSFER));
 		install(encounterType("Admission aux soins hospitaliers", "Indicates that the patient has been admitted for inpatient care, and is not expected to leave the hospital unless discharged.", EncounterTypes.ADMISSION));
 		install(encounterType("Annuler l'admission", "An encounter that notes that a request to admit a patient (via giving them a dispositon of &quot;admit&quot; on another form) is being overridden", EncounterTypes.CANCEL_ADMISSION));
-		install(encounterType("Sortie de soins hospitaliers", "Indicates that a patient&apos;s inpatient care at the hospital is ending, and they are expected to leave soon", EncounterTypes.EXIT_FROM_INPATIENT));
+		install(encounterType("Sortie de soins hospitaliers", "Indicates that a patient&apos;s inpatient care at the hospital is ending, and they are expected to leave soon", EncounterTypes.EXIT_FROM_CARE));
 
 		log.info("Installing core Encounter Roles");
 
@@ -289,7 +289,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		properties.put(EmrApiConstants.GP_VISIT_NOTE_ENCOUNTER_TYPE, EncounterTypes.CONSULTATION);
 		properties.put(EmrApiConstants.GP_CHECK_IN_ENCOUNTER_TYPE, EncounterTypes.CHECK_IN);
 		properties.put(EmrApiConstants.GP_ADMISSION_ENCOUNTER_TYPE, EncounterTypes.ADMISSION);
-		properties.put(EmrApiConstants.GP_EXIT_FROM_INPATIENT_ENCOUNTER_TYPE, EncounterTypes.EXIT_FROM_INPATIENT);
+		properties.put(EmrApiConstants.GP_EXIT_FROM_INPATIENT_ENCOUNTER_TYPE, EncounterTypes.EXIT_FROM_CARE);
 		properties.put(EmrApiConstants.GP_TRANSFER_WITHIN_HOSPITAL_ENCOUNTER_TYPE, EncounterTypes.TRANSFER);
 		properties.put(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.DOSSIER_NUMBER + "," + PatientIdentifierTypes.HIVEMR_V1);
 		properties.put(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, ZL_EMR_ID_NAME);
