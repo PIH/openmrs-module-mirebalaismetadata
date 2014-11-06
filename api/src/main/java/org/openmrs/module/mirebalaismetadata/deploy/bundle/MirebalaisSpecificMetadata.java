@@ -118,7 +118,8 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
         install(location("Achiv Santral","Central Archives room at Mirebalais Hospital",
                 MirebalaisHospitalLocations.CENTRAL_ARCHIVES,
                 featureToggles.isFeatureEnabled("cdi") ? MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisHospitalLocations.MIREBALAIS_HOSPITAL,
-                Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
+                Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION,
+                        CoreMetadata.LocationTags.ARCHIVES_LOCATION)));
 
         install(location("Bank Pou San","Blood Bank at Mirebalais Hospital",
                 MirebalaisHospitalLocations.BLOOD_BANK,
@@ -382,7 +383,8 @@ public class MirebalaisSpecificMetadata extends MirebalaisMetadataBundle {
             install(location("CDI Achive", "CDI Achiv",
                     MirebalaisHospitalLocations.CDI_ACHIV,
                     MirebalaisHospitalLocations.CDI,
-                    Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION)));
+                    Arrays.asList(CoreMetadata.LocationTags.LOGIN_LOCATION,
+                            CoreMetadata.LocationTags.ARCHIVES_LOCATION)));
 
             install(location("CDI Klinik Ekstèn", "CDI Klinik Ekstèn",
                     MirebalaisHospitalLocations.CDI_KLINIK_EKSTEN,

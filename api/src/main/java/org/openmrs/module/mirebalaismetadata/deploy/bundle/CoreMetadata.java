@@ -60,6 +60,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 
 	public static final class LocationTags {
 		public static final String MEDICAL_RECORD_LOCATION = "71c99f93-bc0c-4a44-b573-a7ac096ff636";
+        public static final String ARCHIVES_LOCATION = "fa2c2030-65fb-11e4-9803-0800200c9a66";
         public static final String LOGIN_LOCATION = "b8bbf83e-645f-451f-8efe-a0db56f09676";
         public static final String VISIT_LOCATION = "0967d73d-f3c9-492b-abed-356478610a94";
         public static final String ADMISSION_LOCATION = "f5b9737b-14d5-402b-8475-dd558808e172";
@@ -223,6 +224,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 
         install(locationTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_LOGIN,"When a user logs in and chooses a session location, they may only choose one with this tag",LocationTags.LOGIN_LOCATION));
         install(locationTag(PaperRecordConstants.LOCATION_TAG_MEDICAL_RECORD_LOCATION,"Notes that this location is a valid identifier location for an identifier that references a paper medical record", LocationTags.MEDICAL_RECORD_LOCATION));
+        install(locationTag(PaperRecordConstants.LOCATION_TAG_ARCHIVES_LOCATION, "A location that serves as an archives for storing medical records", LocationTags.ARCHIVES_LOCATION));
         install(locationTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_VISITS,"Visits are only allowed to happen at locations tagged with this location tag or at locations that descend from a location tagged with this tag.", LocationTags.VISIT_LOCATION));
         install(locationTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_ADMISSION,"Patients may only be admitted to inpatient care in a location with this tag", LocationTags.ADMISSION_LOCATION));
         install(locationTag(EmrApiConstants.LOCATION_TAG_SUPPORTS_TRANSFER,"Patients may only be transfer to inpatient care in a location with this tag", LocationTags.TRANSFER_LOCAITON));
