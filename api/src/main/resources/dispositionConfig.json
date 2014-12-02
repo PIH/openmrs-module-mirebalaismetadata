@@ -5,6 +5,7 @@
         "careSettingTypes": ["OUTPATIENT"],
         "name": "disposition.emrapi.admitToHospital",
         "conceptCode": "PIH:ADMIT TO HOSPITAL",
+        "keepsVisitOpen": "true",
         "actions": [],
         "additionalObs": [
             {
