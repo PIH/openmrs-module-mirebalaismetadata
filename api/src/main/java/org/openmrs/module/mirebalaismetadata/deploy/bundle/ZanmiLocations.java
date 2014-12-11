@@ -186,7 +186,7 @@ public class ZanmiLocations extends MirebalaisMetadataBundle {
         install(location("Planin Familyal","Family Planning Clinic",
                 MirebalaisLocations.FAMILY_PLANNING,
                 featureToggles.isFeatureEnabled("cdi") ? MirebalaisLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisLocations.MIREBALAIS_HOSPITAL,
-               null)));
+               null));
 
         install(location("Radyografi","Radiology at Mirebalais Hospital",
                 MirebalaisLocations.RADIOLOGY,
