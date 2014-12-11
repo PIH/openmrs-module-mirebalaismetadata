@@ -186,9 +186,7 @@ public class ZanmiLocations extends MirebalaisMetadataBundle {
         install(location("Planin Familyal","Family Planning Clinic",
                 MirebalaisLocations.FAMILY_PLANNING,
                 featureToggles.isFeatureEnabled("cdi") ? MirebalaisLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisLocations.MIREBALAIS_HOSPITAL,
-                Arrays.asList(CoreMetadata.LocationTags.APPOINTMENT_LOCATION,
-                        CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
-                        CoreMetadata.LocationTags.LOGIN_LOCATION)));
+               null)));
 
         install(location("Radyografi","Radiology at Mirebalais Hospital",
                 MirebalaisLocations.RADIOLOGY,
@@ -283,10 +281,7 @@ public class ZanmiLocations extends MirebalaisMetadataBundle {
         install(location("Sante Fanm","Women's Outpatient clinic at Mirebalais Hospital (Sante Fanm).",
                 MirebalaisLocations.WOMENS_CLINIC,
                 featureToggles.isFeatureEnabled("cdi") ? MirebalaisLocations.MIREBALAIS_HOSPITAL_MAIN_CAMPUS: MirebalaisLocations.MIREBALAIS_HOSPITAL,
-                Arrays.asList(CoreMetadata.LocationTags.ADMISSION_LOCATION,
-                        CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION,
-                        CoreMetadata.LocationTags.LOGIN_LOCATION,
-                        CoreMetadata.LocationTags.TRANSFER_LOCAITON)));
+                null));
 
         // out of order because child of above location ^^
         install(location("Famasi Famn ak Ti moun","Women and Children's Pharmacy at Mirebalais Hospital.",
