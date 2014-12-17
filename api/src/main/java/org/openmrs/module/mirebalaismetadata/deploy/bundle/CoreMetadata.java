@@ -19,6 +19,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openmrs.LocationTag;
 import org.openmrs.PatientIdentifierType;
 import org.openmrs.customdatatype.datatype.FreeTextDatatype;
+import org.openmrs.module.coreapps.CoreAppsConstants;
 import org.openmrs.module.emr.EmrConstants;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.htmlformentry.HtmlFormEntryConstants;
@@ -352,7 +353,10 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		// Paper Record
 		properties.put(PaperRecordConstants.GP_PAPER_RECORD_IDENTIFIER_TYPE, PatientIdentifierTypes.DOSSIER_NUMBER);
 		properties.put(PaperRecordConstants.GP_EXTERNAL_DOSSIER_IDENTIFIER_TYPE, PatientIdentifierTypes.EXTERNAL_DOSSIER_NUMBER);
-		
+
+        // Core Apps
+        properties.put(CoreAppsConstants.GP_SEARCH_DELAY_SHORT, "500");
+
 		setGlobalProperties(properties);
 	}
 }
