@@ -356,7 +356,6 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 
         // Core Apps
         properties.put(CoreAppsConstants.GP_SEARCH_DELAY_SHORT, "500");
-		properties.put(CoreAppsConstants.GP_VITALS_ENCOUNTER_TYPE_UUID, EncounterTypes.VITALS);
 
 		setGlobalProperties(properties);
 	}
