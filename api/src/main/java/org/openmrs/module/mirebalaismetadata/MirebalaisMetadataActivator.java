@@ -211,34 +211,41 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         if (numberOfLevels == 0) {
             AddressHierarchyLevel country = new AddressHierarchyLevel();
             country.setAddressField(AddressField.COUNTRY);
+            country.setRequired(true);
             ahService.saveAddressHierarchyLevel(country);
 
             AddressHierarchyLevel stateProvince = new AddressHierarchyLevel();
             stateProvince.setAddressField(AddressField.STATE_PROVINCE);
             stateProvince.setParent(country);
+            stateProvince.setRequired(true);
             ahService.saveAddressHierarchyLevel(stateProvince);
 
             AddressHierarchyLevel cityVillage = new AddressHierarchyLevel();
             cityVillage.setAddressField(AddressField.CITY_VILLAGE);
             cityVillage.setParent(stateProvince);
+            cityVillage.setRequired(true);
             ahService.saveAddressHierarchyLevel(cityVillage);
 
             AddressHierarchyLevel address3 = new AddressHierarchyLevel();
             address3.setAddressField(AddressField.ADDRESS_3);
             address3.setParent(cityVillage);
+            address3.setRequired(true);
             ahService.saveAddressHierarchyLevel(address3);
 
             AddressHierarchyLevel address1 = new AddressHierarchyLevel();
             address1.setAddressField(AddressField.ADDRESS_1);
             address1.setParent(address3);
+            address1.setRequired(true);
             ahService.saveAddressHierarchyLevel(address1);
 
             AddressHierarchyLevel address2 = new AddressHierarchyLevel();
             address2.setAddressField(AddressField.ADDRESS_2);
             address2.setParent(address1);
+            address2.setRequired(false);
             ahService.saveAddressHierarchyLevel(address2);
         }
         // at least verify that the right levels exist
+        // also set required status of each field (as we'll start using it now)
         // TODO: perhaps do more validation here?
         else {
             AddressField[] fields = {AddressField.COUNTRY, AddressField.STATE_PROVINCE, AddressField.CITY_VILLAGE,
@@ -250,6 +257,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     throw new RuntimeException("Address field " + i + " improperly configured: is "
                             + level.getAddressField() + " but should be " + fields[i]);
                 }
+                level.setRequired(!level.getAddressField().equals(AddressField.ADDRESS_2));
+                ahService.saveAddressHierarchyLevel(level);
                 i++;
             }
         }
