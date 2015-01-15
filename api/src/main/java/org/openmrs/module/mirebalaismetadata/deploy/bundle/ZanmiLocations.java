@@ -74,9 +74,13 @@ public class ZanmiLocations extends MirebalaisMetadataBundle {
         public static final String BLOOD_BANK = "4ed8c0d3-8aed-4f80-96e8-55648abf51af";
 
         public static final String CDI = "083e75b0-5959-11e4-8ed6-0800200c9a66";
-        public static final String CDI_RESEPSYON = "11857d80-5959-11e4-8ed6-0800200c9a66";
-        public static final String CDI_ACHIV = "11857d81-5959-11e4-8ed6-0800200c9a66";
-        public static final String CDI_KLINIK_EKSTEN = "11857d82-5959-11e4-8ed6-0800200c9a66";
+        public static final String CDI_KLINIK_EKSTEN_JENERAL = "11857d82-5959-11e4-8ed6-0800200c9a66";
+        public static final String CDI_KLINIK_EKSTEN_JENERAL_BIWO_RANDEVOU = "11857d80-5959-11e4-8ed6-0800200c9a66";
+        public static final String CDI_KLINIK_EKSTEN_JENERAL_ACHIV_SANTRAL = "11857d81-5959-11e4-8ed6-0800200c9a66";
+        public static final String CDI_KLINIK_EKSTEN_JENERAL_LABORATWA = "730ad64b-a2cd-40f7-91ac-ecc8fabf9f3e";
+        public static final String CDI_KLINIK_EKSTEN_JENERAL_RADYOGRAFI = "3f0e7635-1fa3-4058-9eb7-162c0043e94f";
+        public static final String CDI_KLINIK_EKSTEN_JENERAL_SAL_PWOSEDI = "58f3e355-ff28-4151-bbf6-5be3cb06fba8";
+        public static final String CDI_KLINIK_EKSTEN_JENERAL_FAMASI = "9e212720-eeab-43ef-a6c0-95c3881052bc";
 
     }
 
@@ -311,27 +315,45 @@ public class ZanmiLocations extends MirebalaisMetadataBundle {
 
         if (featureToggles.isFeatureEnabled("cdi")) {
 
-            // TODO correct these names and location tags
             install(location("CDI", "CDI",
                     MirebalaisLocations.CDI,
                     MirebalaisLocations.MIREBALAIS_HOSPITAL,
                     Arrays.asList(CoreMetadata.LocationTags.MEDICAL_RECORD_LOCATION)));
 
-            install(location("CDI Resepsyon", "CDI Resepsyon",
-                    MirebalaisLocations.CDI_RESEPSYON,
+            install(location("CDI Klinik Ekstèn Jeneral Biwo Randevou", "CDI Klinik Ekstèn Jeneral Biwo Randevou",
+                    MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_BIWO_RANDEVOU,
                     MirebalaisLocations.CDI,
                     null));
 
-            install(location("CDI Achive", "CDI Achiv",
-                    MirebalaisLocations.CDI_ACHIV,
+            install(location("CDI Klinik Ekstèn Jeneral Achiv Santral", "CDI Klinik Ekstèn Jeneral Achiv Santral",
+                    MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_ACHIV_SANTRAL,
                     MirebalaisLocations.CDI,
                     Arrays.asList(CoreMetadata.LocationTags.ARCHIVES_LOCATION)));
 
-            install(location("CDI Klinik Ekstèn", "CDI Klinik Ekstèn",
-                    MirebalaisLocations.CDI_KLINIK_EKSTEN,
+            install(location("CDI Klinik Ekstèn Jeneral", "CDI Klinik Ekstèn Jeneral",
+                    MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL,
                     MirebalaisLocations.CDI,
                     null));
 
+            install(location("CDI Klinik Ekstèn Jeneral Laboratwa", "CDI Klinik Ekstèn Jeneral Laboratwa",
+                    MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_LABORATWA,
+                    MirebalaisLocations.CDI,
+                    null));
+
+            install(location("CDI Klinik Ekstèn Jeneral Radyografi", "CDI Klinik Ekstèn Jeneral Radyografi",
+                    MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_RADYOGRAFI,
+                    MirebalaisLocations.CDI,
+                    null));
+
+            install(location("CDI Klinik Ekstèn Jeneral Sal Pwosedi", "CDI Klinik Ekstèn Jeneral Sal Pwosedi",
+                    MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_SAL_PWOSEDI,
+                    MirebalaisLocations.CDI,
+                    null));
+
+            install(location("CDI Klinik Ekstèn Jeneral Famasi", "CDI Klinik Ekstèn Jeneral Famasi",
+                    MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_FAMASI,
+                    MirebalaisLocations.CDI,
+                    null));
         }
 
         log.info("Retiring old Mirebalais Locations");
@@ -525,7 +547,46 @@ public class ZanmiLocations extends MirebalaisMetadataBundle {
                 "M023",
                 "54750c8b-d979-4d3b-bd1d-57830009e064"));
 
+        if (featureToggles.isFeatureEnabled("cdi")) {
+
+            install(locationAttribute(MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL,
+                    CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
+                    "M040",
+                    "d24c621b-fa4f-4d99-a15c-933186d9e8cd"));
+
+            install(locationAttribute(MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_ACHIV_SANTRAL,
+                    CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
+                    "M041",
+                    "201db253-b474-4bce-b4f2-5b11acfe86fe"));
+
+            install(locationAttribute(MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_BIWO_RANDEVOU,
+                    CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
+                    "M042",
+                    "d4228398-70d0-4262-896f-ef42ba86fb00"));
+
+            install(locationAttribute(MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_FAMASI,
+                    CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
+                    "M043",
+                    "a9698409-c969-4ccc-bd50-a5cf5e694b5f"));
+
+            install(locationAttribute(MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_LABORATWA,
+                    CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
+                    "M044",
+                    "2dcc40bc-4700-4925-882c-710d74019f84"));
+
+            install(locationAttribute(MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_RADYOGRAFI,
+                    CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
+                    "M045",
+                    "6446948f-4f1e-42f0-ba06-51b7e029eec3"));
+
+            install(locationAttribute(MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL_SAL_PWOSEDI,
+                    CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
+                    "M046",
+                    "376cb73f-f8a5-4e5d-a62a-a19f7a8979c6"));
+        }
+
         log.info("Voiding old location attributes");
+
 
         uninstall(possible(LocationAttribute.class, "f170427f-8cc7-421e-bd52-350c3580ea90"), "belongs to retired location");
 

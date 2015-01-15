@@ -178,7 +178,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 				null, null, null, PatientIdentifierType.LocationBehavior.NOT_USED, false, PatientIdentifierTypes.EXTERNAL_DOSSIER_NUMBER));
 
 		install(patientIdentifierType("Nimewo Dosye", "Patient&apos;s Dossier number",
-				"A\\d{6}", "A000001", null, PatientIdentifierType.LocationBehavior.REQUIRED, false, PatientIdentifierTypes.DOSSIER_NUMBER));
+				"\\w{1,3}\\d{6}", "A000001", null, PatientIdentifierType.LocationBehavior.REQUIRED, false, PatientIdentifierTypes.DOSSIER_NUMBER));
 
 		install(patientIdentifierType(ZL_EMR_ID_NAME, "A unique identifier issued to all patients by the ZL EMR.  Blocks of this identifier are issued to each site to prevent duplication, so the identifier is unique across all sites.  The identifier uses six digits and is alphanumeric base 30, omitting the letters B, I, O, Q, S and Z as these can be confused with 8, 1, 0, 0, 5 and 2",
 				null, null, LuhnMod30IdentifierValidator.class, PatientIdentifierType.LocationBehavior.NOT_USED, false, PatientIdentifierTypes.ZL_EMR_ID));
