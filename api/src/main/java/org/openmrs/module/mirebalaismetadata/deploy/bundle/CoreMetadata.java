@@ -30,6 +30,7 @@ import org.openmrs.module.paperrecord.PaperRecordConstants;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.patientregistration.search.DefaultPatientRegistrationSearch;
 import org.openmrs.module.printer.PrinterDatatype;
+import org.openmrs.module.registrationcore.RegistrationCoreConstants;
 import org.openmrs.module.reporting.ReportingConstants;
 import org.openmrs.ui.framework.UiFrameworkConstants;
 import org.openmrs.util.OpenmrsConstants;
@@ -358,6 +359,11 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
         // Core Apps
         properties.put(CoreAppsConstants.GP_SEARCH_DELAY_SHORT, "500");
 
-		setGlobalProperties(properties);
+        // Registration Core
+        properties.put(RegistrationCoreConstants.GP_PATIENT_NAME_SEARCH, "registrationcore.NamePhoneticsPatientNameSearch");
+        properties.put(RegistrationCoreConstants.GP_FAST_SIMILAR_PATIENT_SEARCH_ALGORITHM, "registrationcore.NamePhoneticsPatientSearchAlgorithm");
+        properties.put(RegistrationCoreConstants.GP_PRECISE_SIMILAR_PATIENT_SEARCH_ALGORITHM, "registrationcore.BasicExactPatientSearchAlgorithm");
+
+        setGlobalProperties(properties);
 	}
 }
