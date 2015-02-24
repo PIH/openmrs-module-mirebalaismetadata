@@ -545,6 +545,16 @@ public class ZanmiLocations extends MirebalaisMetadataBundle {
 
         if (featureToggles.isFeatureEnabled("cdi")) {
 
+            install(locationAttribute(MirebalaisLocations.MIREBALAIS_HOSPITAL,
+                    CoreMetadata.LocationAttributeTypes.NAME_TO_PRINT_ON_ID_CARD,
+                    "Mirebalais",
+                    "c98ecc70-bc72-11e4-bb52-0800200c9a66"));
+
+            install(locationAttribute(MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL,
+                    CoreMetadata.LocationAttributeTypes.NAME_TO_PRINT_ON_ID_CARD,
+                    "Mirebalais",
+                    "d3972870-bc72-11e4-bb52-0800200c9a66"));
+
             install(locationAttribute(MirebalaisLocations.CDI_KLINIK_EKSTEN_JENERAL,
                     CoreMetadata.LocationAttributeTypes.LOCATION_CODE,
                     "M040",
