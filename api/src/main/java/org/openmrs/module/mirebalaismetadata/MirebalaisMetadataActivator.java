@@ -17,6 +17,7 @@ package org.openmrs.module.mirebalaismetadata;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Concept;
 import org.openmrs.Drug;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.AdministrationService;
@@ -125,6 +126,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
 
         try {
+            retireOldConcepts();
 			installBundles();
             installMetadataPackages();
             installDrugList();
@@ -140,6 +142,15 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private EmrApiProperties getEmrApiProperties() {
         return Context.getRegisteredComponents(EmrApiProperties.class).iterator().next();
+    }
+
+    private void retireOldConcepts() {
+        // we need to retire this old concept if it exists because another concept we will install later has the same French name
+        // #UHM-1789 - Removed concept "cerebellar infarction”from HUM ED set, and added “cerebral infarction"
+        Concept concept = conceptService.getConceptByUuid("145906AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        if (concept != null) {
+            conceptService.retireConcept(concept, "replaced with by 155479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        }
     }
 
 	private void installBundles() throws Exception {
