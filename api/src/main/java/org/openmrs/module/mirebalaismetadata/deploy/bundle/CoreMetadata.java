@@ -326,7 +326,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		properties.put(PatientRegistrationGlobalProperties.SUPPORTED_TASKS, "patientRegistration|primaryCareReception|edCheckIn|patientLookup");
 		properties.put(PatientRegistrationGlobalProperties.SEARCH_CLASS, DefaultPatientRegistrationSearch.class.getName());
 		properties.put(PatientRegistrationGlobalProperties.LABEL_PRINT_COUNT, "1");
-		properties.put(PatientRegistrationGlobalProperties.PROVIDER_ROLES, "LacollineProvider");  // TODO: Look into why this is set this way
+		properties.put(PatientRegistrationGlobalProperties.PROVIDER_ROLES, "");  // note that this global property is only used for the primary care visit component of the Patient Registration module, which we aren't using in Mirebalais
 		properties.put(PatientRegistrationGlobalProperties.ID_CARD_LABEL_TEXT, "Zanmi Lasante Patient ID Card");
 		properties.put(PatientRegistrationGlobalProperties.BIRTH_YEAR_INTERVAL, "1");
 		properties.put(PatientRegistrationGlobalProperties.MEDICAL_RECORD_LOCATION_TAG, LocationTags.MEDICAL_RECORD_LOCATION);
