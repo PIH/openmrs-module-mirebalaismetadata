@@ -97,6 +97,8 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 
 	public static final class Concepts { // TODO: Confirm all below are in Hum_Metadata package
 		public static final String UNKNOWN = "3cd6fac4-26fe-102b-80cb-0017a47871b2";
+		public static final String YES = "3cd6f600-26fe-102b-80cb-0017a47871b2";
+		public static final String NO = "3cd6f86c-26fe-102b-80cb-0017a47871b2";
 		public static final String DIAGNOSIS_SET_OF_SETS = "8fcd0b0c-f977-4a66-a1b5-ad7ce68e6770";
 		public static final String PAYMENT_AMOUNT = "5d1bc5de-6a35-4195-8631-7322941fe528";
 		public static final String PAYMENT_REASON = "36ba7721-fae0-4da4-aef2-7e476cc04bdf";
@@ -106,7 +108,25 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 
 	public static final class ConceptSources {  // TODO: Confirm all are in bundle and are interpreted correctly
 		public static final String LOINC = "2889f378-f287-40a5-ac9c-ce77ee963ed7";
+        public static final String CIEL = "21ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD";
+		public static final String PIH = "fb9aaaf1-65e2-4c18-b53c-16b575f2f385";
 	}
+
+    public static final class ConceptDatatypes {
+        public static final String N_A = "8d4a4c94-c2cc-11de-8d13-0010c6dffd0f";
+        public static final String CODED = "8d4a48b6-c2cc-11de-8d13-0010c6dffd0f";
+        public static final String TEXT = "8d4a4ab4-c2cc-11de-8d13-0010c6dffd0f";
+    }
+
+    public static final class ConceptClasses {
+        public static final String MISC = "8d492774-c2cc-11de-8d13-0010c6dffd0f";
+        public static final String DIAGNOSIS = "8d4918b0-c2cc-11de-8d13-0010c6dffd0f";
+        public static final String QUESTION = "8d491e50-c2cc-11de-8d13-0010c6dffd0f";
+    }
+
+    public static final class ConceptMapTypes {
+        public static final String SAME_AS = "35543629-7d8c-11e1-909d-c80aa9edcf4e";
+    }
 
 	public static final class Forms {
 		public static final String ADMISSION = "43acf930-eb1b-11e2-91e2-0800200c9a66";  // TODO: Install in bundle
