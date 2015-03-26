@@ -38,8 +38,13 @@ public class ConsultNoteConceptsTest extends BaseModuleContextSensitiveTest {
     @Test
     public void testInstall() throws Exception {
         deployService.installBundles(Arrays.<MetadataBundle>asList(coreMetadata, consultNoteConcepts));
+
         Concept construct = MetadataUtils.existing(Concept.class, ConsultNoteConcepts.Concepts.PAST_MEDICAL_HISTORY_CONSTRUCT);
         assertThat(construct.getUuid(), is(ConsultNoteConcepts.Concepts.PAST_MEDICAL_HISTORY_CONSTRUCT));
         assertThat(construct.getConceptSets().size(), is(3));
+
+        construct = MetadataUtils.existing(Concept.class, ConsultNoteConcepts.Concepts.FAMILY_HISTORY_CONSTRUCT);
+        assertThat(construct.getUuid(), is(ConsultNoteConcepts.Concepts.FAMILY_HISTORY_CONSTRUCT));
+        assertThat(construct.getConceptSets().size(), is(4));
     }
 }

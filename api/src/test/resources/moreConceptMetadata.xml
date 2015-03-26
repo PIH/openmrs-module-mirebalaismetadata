@@ -4,6 +4,7 @@
     <concept_class concept_class_id="4" name="Diagnosis" description="Conclusion drawn through findings" creator="1" date_created="2004-02-02 00:00:00.0" retired="false" uuid="8d4918b0-c2cc-11de-8d13-0010c6dffd0f"/>
     <concept_class concept_class_id="7" name="Question" description="Question (eg, patient history, SF36 items)" creator="1" date_created="2004-03-02 00:00:00.0" retired="false" uuid="8d491e50-c2cc-11de-8d13-0010c6dffd0f"/>
     <concept_reference_source concept_source_id="12" name="CIEL" description="Columbia International eHealth Laboratory concept ID" hl7_code="" creator="1" date_created="2009-06-03 13:41:25.0" retired="false" uuid="21ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"/>
+    <concept_reference_source concept_source_id="2" name="SNOMED CT" description="'Systematized Nomenclature of Medicine--Clinical Terms' is a comprehensive clinical terminology" hl7_code="SCT" creator="1" date_created="2005-02-24 00:00:00.0" uuid="1ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" retired="false"/>
 
     <concept concept_id="7" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2008-08-15 13:52:53.0" version="" uuid="3cd6f600-26fe-102b-80cb-0017a47871b2"/>
     <concept concept_id="8" retired="false" datatype_id="4" class_id="11" is_set="false" creator="1" date_created="2008-08-15 13:53:31.0" version="" uuid="3cd6f86c-26fe-102b-80cb-0017a47871b2"/>
