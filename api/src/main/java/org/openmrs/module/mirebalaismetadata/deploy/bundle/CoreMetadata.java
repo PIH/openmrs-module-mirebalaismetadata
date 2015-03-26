@@ -110,6 +110,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		public static final String LOINC = "2889f378-f287-40a5-ac9c-ce77ee963ed7";
         public static final String CIEL = "21ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD";
 		public static final String PIH = "fb9aaaf1-65e2-4c18-b53c-16b575f2f385";
+		public static final String SNOMED_CT = "1ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD";
 	}
 
     public static final class ConceptDatatypes {
@@ -122,6 +123,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
         public static final String MISC = "8d492774-c2cc-11de-8d13-0010c6dffd0f";
         public static final String DIAGNOSIS = "8d4918b0-c2cc-11de-8d13-0010c6dffd0f";
         public static final String QUESTION = "8d491e50-c2cc-11de-8d13-0010c6dffd0f";
+        public static final String CONV_SET = "8d492594-c2cc-11de-8d13-0010c6dffd0f";
     }
 
     public static final class ConceptMapTypes {

@@ -25,6 +25,12 @@ public class ConsultNoteConcepts extends AbstractMetadataBundle {
         public static final String PAST_MEDICAL_HISTORY_PRESENCE = "1729AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
         public static final String PAST_MEDICAL_HISTORY_COMMENT = "160221AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
+        public static final String FAMILY_HISTORY_CONSTRUCT = "160593AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        public static final String FAMILY_HISTORY_DIAGNOSIS = "160592AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        public static final String FAMILY_HISTORY_RELATIONSHIP = "1560AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        public static final String FAMILY_HISTORY_PRESENCE = "1729AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"; // same as PMH_PRESENCE
+        public static final String FAMILY_HISTORY_COMMENT = "160618AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+
         // installed by this class
         public static final String PRESENTING_HISTORY = "3cd65c90-26fe-102b-80cb-0017a47871b2"; // PIH:PRESENTING HISTORY
         public static final String CARDIOPATHY = "6c07611c-a10e-4de7-be64-28cdf76144e9"; // PIH:CARDIOPATHY
@@ -43,9 +49,11 @@ public class ConsultNoteConcepts extends AbstractMetadataBundle {
         ConceptClass misc = MetadataUtils.existing(ConceptClass.class, CoreMetadata.ConceptClasses.MISC);
         ConceptClass diagnosis = MetadataUtils.existing(ConceptClass.class, CoreMetadata.ConceptClasses.DIAGNOSIS);
         ConceptClass question = MetadataUtils.existing(ConceptClass.class, CoreMetadata.ConceptClasses.QUESTION);
+        ConceptClass convSet = MetadataUtils.existing(ConceptClass.class, CoreMetadata.ConceptClasses.CONV_SET);
         ConceptMapType sameAs = MetadataUtils.existing(ConceptMapType.class, CoreMetadata.ConceptMapTypes.SAME_AS);
         ConceptSource ciel = MetadataUtils.existing(ConceptSource.class, CoreMetadata.ConceptSources.CIEL);
         ConceptSource pih = MetadataUtils.existing(ConceptSource.class, CoreMetadata.ConceptSources.PIH);
+        ConceptSource snomedCt = MetadataUtils.existing(ConceptSource.class, CoreMetadata.ConceptSources.SNOMED_CT);
 
         // TODO ensure that these concepts are not loaded
         // PREVIOUS DIAGNOSIS CONSTRUCT: 3cd675b8-26fe-102b-80cb-0017a47871b2
@@ -98,6 +106,68 @@ public class ConsultNoteConcepts extends AbstractMetadataBundle {
                     .ensureTerm(ciel, "1633")
                     .build())
                 .build());
+
+
+        Concept famHxDiagnosis = install(new ConceptBuilder(Concepts.FAMILY_HISTORY_DIAGNOSIS)
+                .datatype(coded)
+                .conceptClass(misc) // CIEL says Diagnosis, but this is wrong
+                .name("109016BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "Family history diagnosis", Locale.ENGLISH, ConceptNameType.FULLY_SPECIFIED)
+                .mapping(new ConceptMapBuilder("217715ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+                        .type(sameAs)
+                        .ensureTerm(ciel, "160592")
+                        .build())
+                .mapping(new ConceptMapBuilder("217715ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+                        .type(sameAs)
+                        .ensureTerm(snomedCt, "416471007")
+                        .build())
+                .build());
+
+        Concept famHxRelationship = install(new ConceptBuilder(Concepts.FAMILY_HISTORY_RELATIONSHIP)
+                .datatype(coded)
+                .conceptClass(misc)
+                .name("1825BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "Family member", Locale.ENGLISH, ConceptNameType.FULLY_SPECIFIED)
+                .answers() // TODO
+                .mapping(new ConceptMapBuilder("171802ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+                        .type(sameAs)
+                        .ensureTerm(ciel, "1560")
+                        .build())
+                .mapping(new ConceptMapBuilder("132750ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+                        .type(sameAs)
+                        .ensureTerm(snomedCt, "303071001")
+                        .build())
+                .build());
+
+        Concept famHxComment = install(new ConceptBuilder(Concepts.FAMILY_HISTORY_COMMENT)
+                .datatype(text)
+                .conceptClass(question)
+                .name("109055BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "Family history comment", Locale.ENGLISH, ConceptNameType.FULLY_SPECIFIED)
+                .mapping(new ConceptMapBuilder("217741ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+                        .type(sameAs)
+                        .ensureTerm(ciel, "160618")
+                        .build())
+                .build()
+        );
+
+        Concept famHxConstruct = install(new ConceptBuilder(Concepts.FAMILY_HISTORY_CONSTRUCT)
+                .datatype(notApplicable)
+                .conceptClass(convSet) // CIEL says Finding but this is wrong
+                .name("109017BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "Patient's family history list", Locale.ENGLISH, ConceptNameType.FULLY_SPECIFIED)
+                .name("109019BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "Family history list", Locale.ENGLISH, null)
+                .setMembers(
+                        famHxDiagnosis,
+                        famHxRelationship,
+                        isSymptomPresent,
+                        famHxComment)
+                .mapping(new ConceptMapBuilder("217716ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+                        .type(sameAs)
+                        .ensureTerm(ciel, "160593")
+                        .build())
+                .mapping(new ConceptMapBuilder("144705ABBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+                        .type(sameAs)
+                        .ensureTerm(snomedCt, "57177007")
+                        .build())
+                .build());
+
 
         install(new ConceptBuilder(Concepts.PRESENTING_HISTORY)
                 .datatype(text)
