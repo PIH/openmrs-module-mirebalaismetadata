@@ -1,10 +1,7 @@
 package org.openmrs.module.mirebalaismetadata;
 
-import org.openmrs.EncounterRole;
 import org.openmrs.EncounterType;
-import org.openmrs.LocationTag;
 import org.openmrs.module.emrapi.utils.ModuleProperties;
-import org.openmrs.module.mirebalaismetadata.deploy.bundle.CoreMetadata;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,30 +22,6 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
 
     public int getInstalledAddressHierarchyVersion() {
         return getIntegerByGlobalProperty(GP_INSTALLED_ADDRESS_HIERARCHY_VERSION);
-    }
-
-    public EncounterRole getDispenserEncounterRole() {
-        return encounterService.getEncounterRoleByUuid(CoreMetadata.EncounterRoles.DISPENSER);
-    }
-
-    public LocationTag getSupportsConsultNoteTag() {
-        return locationService.getLocationTagByName(CoreMetadata.LocationTags.CONSULT_NOTE_LOCATION);
-    }
-
-    public LocationTag getSupportsEDNoteTag() {
-        return locationService.getLocationTagByName(CoreMetadata.LocationTags.ED_NOTE_LOCATION);
-    }
-
-    public LocationTag getSupportsSurgeryNoteTag() {
-        return locationService.getLocationTagByName(CoreMetadata.LocationTags.SURGERY_NOTE_LOCATION);
-    }
-
-    public LocationTag getSupportsDispensingMedicationTag() {
-        return locationService.getLocationTagByName(CoreMetadata.LocationTags.DISPENSING_LOCATION);
-    }
-
-    public LocationTag getSupportsAppointmentsTag() {
-        return locationService.getLocationTagByName(CoreMetadata.LocationTags.APPOINTMENT_LOCATION);
     }
 
     public EncounterType getDeathCertificateEncounterType() {
