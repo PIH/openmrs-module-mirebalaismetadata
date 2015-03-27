@@ -103,6 +103,8 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		public static final String PROVIDER_IDENTIFIER = "6de6c415-97a2-4cca-817a-9501cd9ef382";
 		public static final String TELEPHONE_NUMBER = "14d4f066-15f5-102d-96e4-000c29c2a5d7";
 		public static final String UNKNOWN_PATIENT = "8b56eac7-5c76-4b9c-8c6f-1deab8d3fc47";
+        public static final String BIRTHPLACE = "8d8718c2-c2cc-11de-8d13-0010c6dffd0f";
+        public static final String MOTHERS_FIRST_NAME = "01621fd0-c687-11e4-8830-0800200c9a66";
 	}
 
     public static final class RetiredPersonAttributeTypes {
@@ -163,6 +165,8 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 	private static final String ZL_EMR_ID_NAME = "ZL EMR ID";
 	private static final String PROVIDER_IDENTIFIER_NAME = "Provider Identifier";
 	private static final String TELEPHONE_NUMBER_NAME = "Telephone Number";
+    private static final String BIRTHPLACE = "Place of birth";
+    private static final String MOTHERS_FIRST_NAME = "Mother's First Name";
 	private static final String REGISTRATION_ENCOUNTER_NAME = "Enregistrement de patient";
 	private static final String CHECK_IN_ENCOUNTER_NAME = "Inscription";
 	private static final String PRIMARY_CARE_VISIT_ENCOUNTER_NAME = "Consultation soins de base";
@@ -202,6 +206,8 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 
         log.info("Uninstalling unused Person Attribute Types");
         uninstall(possible(PersonAttributeType.class,RetiredPersonAttributeTypes.MOTHERS_FIRST_NAME),  "never used");
+        install(personAttributeType(MOTHERS_FIRST_NAME, "First name of the patient's mother, used for identification", String.class, null, false, 14, PersonAttributeTypes.MOTHERS_FIRST_NAME));
+        install(personAttributeType(BIRTHPLACE, "Location of persons birth, used for identification", String.class, null, false, 15, PersonAttributeTypes.BIRTHPLACE));
 
 		log.info("Installing core Encounter Types");
 
