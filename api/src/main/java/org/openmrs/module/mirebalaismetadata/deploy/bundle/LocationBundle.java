@@ -70,7 +70,7 @@ public class LocationBundle extends MirebalaisMetadataBundle {
 
         LocationDescriptor parentLocation = Locations.MIREBALAIS_CDI_PARENT;
         if (featureToggles.isFeatureEnabled("cdi")) {
-            parentLocation = Locations.MIREBALAIS_HOSPITAL;
+            parentLocation = Locations.MIREBALAIS_HOSPITAL_POST_CDI;
             installLocation(Locations.MIREBALAIS_CDI_PARENT, null);
             installLocation(Locations.MIREBALAIS_HOSPITAL_POST_CDI, Locations.MIREBALAIS_CDI_PARENT);
         }
@@ -100,7 +100,7 @@ public class LocationBundle extends MirebalaisMetadataBundle {
         installLocation(Locations.NICU, parentLocation);
         installLocation(Locations.OPERATING_ROOMS, parentLocation);
         installLocation(Locations.OUTPATIENT_CLINIC, parentLocation);
-        installLocation(Locations.OUTPATIENT_CLINIC_PHARMACY, parentLocation);
+        installLocation(Locations.OUTPATIENT_CLINIC_PHARMACY, Locations.OUTPATIENT_CLINIC);
         installLocation(Locations.PEDIATRICS, parentLocation);
         installLocation(Locations.PEDIATRICS_A, Locations.PEDIATRICS);
         installLocation(Locations.PEDIATRICS_B, Locations.PEDIATRICS);

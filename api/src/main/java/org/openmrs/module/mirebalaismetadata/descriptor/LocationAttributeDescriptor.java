@@ -15,7 +15,7 @@
 package org.openmrs.module.mirebalaismetadata.descriptor;
 
 /**
- * Encapsulates the information needed to create a new Location
+ * Encapsulates the information needed to create a new LocationAttribute
  */
 public abstract class LocationAttributeDescriptor implements Descriptor {
     public abstract LocationDescriptor location();

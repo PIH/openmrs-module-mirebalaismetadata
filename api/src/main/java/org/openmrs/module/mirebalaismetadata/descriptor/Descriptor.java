@@ -15,7 +15,7 @@
 package org.openmrs.module.mirebalaismetadata.descriptor;
 
 /**
- * A basic interface that allows for identification of a type by uuid
+ * Encapsulates the minimum information needed for all Descriptors
  */
 public interface Descriptor {
 

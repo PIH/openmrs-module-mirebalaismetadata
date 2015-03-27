@@ -15,7 +15,7 @@
 package org.openmrs.module.mirebalaismetadata.descriptor;
 
 /**
- * Defines a generic metadata class that can be used to represent a piece of metadata
+ * Encapsulates the minimum information needed to create OpenmrsMetadata
  */
 public abstract class MetadataDescriptor implements Descriptor {
 
