@@ -14,7 +14,6 @@
 
 package org.openmrs.module.mirebalaismetadata;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.Concept;
 import org.openmrs.OpenmrsMetadata;
@@ -34,17 +33,24 @@ import java.util.List;
 
 public class FindMetadataInPackage extends BaseModuleContextSensitiveTest {
 
-    public List<String> uuidsToFind = Arrays.asList("ac6585f1-10e0-4a4e-84e3-fb8b098f0cbe");
+    public List<String> uuidsToFind = Arrays.asList("3cd6f600-26fe-102b-80cb-0017a47871b2");
 
     public boolean printAll = true;
+//    public boolean printAll = false;
+
+//    public String onlyPackage = null;
+    public String onlyPackage = "HUM_Death";
 
     @Test
-    @Ignore
+//    @Ignore
     public void findMetadata() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         MetadataPackagesConfig allConfigs = MetadataUtil.getMetadataPackagesForModule(classLoader);
         for (MetadataPackageConfig config : allConfigs.getPackages()) {
             String filenameBase = config.getFilenameBase();
+            if (onlyPackage != null && !filenameBase.startsWith(onlyPackage)) {
+                continue;
+            }
             String filename = filenameBase + "-" + config.getVersion().toString() + ".zip";
             if (printAll) {
                 System.out.println("Inspecting " + filename);

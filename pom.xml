@@ -50,6 +50,7 @@
         <openMRSwebVersion>1.9.9-SNAPSHOT</openMRSwebVersion>
         <mirebalaismetadataVersion>1.0-SNAPSHOT</mirebalaismetadataVersion>
         <mirebalaisreportsVersion>1.1-SNAPSHOT</mirebalaisreportsVersion>
+        <pihcoreVersion>1.0-SNAPSHOT</pihcoreVersion>
         <emrapiVersion>1.6-SNAPSHOT</emrapiVersion>
         <paperrecordVersion>1.0-SNAPSHOT</paperrecordVersion>
         <emrVersion>2.0-SNAPSHOT</emrVersion>
@@ -133,6 +134,13 @@
             <groupId>org.openmrs.module</groupId>
             <artifactId>metadatadeploy-api</artifactId>
             <version>${metadatadeployVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>pihcore-api</artifactId>
+            <version>${pihcoreVersion}</version>
             <scope>provided</scope>
         </dependency>
 

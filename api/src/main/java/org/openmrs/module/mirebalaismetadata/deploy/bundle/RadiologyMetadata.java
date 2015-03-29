@@ -19,6 +19,7 @@ import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.openmrs.module.metadatadeploy.bundle.Requires;
 import org.openmrs.module.mirebalaismetadata.constants.LocationAttributeTypes;
 import org.openmrs.module.pacsintegration.PacsIntegrationConstants;
+import org.openmrs.module.pihcore.deploy.bundle.CoreConceptMetadataBundle;
 import org.openmrs.module.radiologyapp.RadiologyConstants;
 import org.springframework.stereotype.Component;
 
@@ -109,7 +110,7 @@ public class RadiologyMetadata extends MirebalaisMetadataBundle {
 		properties.put(PacsIntegrationConstants.GP_PATIENT_IDENTIFIER_TYPE_UUID, CoreMetadata.PatientIdentifierTypes.ZL_EMR_ID);
 		properties.put(PacsIntegrationConstants.GP_DEFAULT_LOCALE, "en");
 		properties.put(PacsIntegrationConstants.GP_SENDING_FACILITY, "Mirebalais");
-		properties.put(PacsIntegrationConstants.GP_PROCEDURE_CODE_CONCEPT_SOURCE_UUID, CoreMetadata.ConceptSources.LOINC);
+		properties.put(PacsIntegrationConstants.GP_PROCEDURE_CODE_CONCEPT_SOURCE_UUID, CoreConceptMetadataBundle.ConceptSources.LOINC);
 		properties.put(PacsIntegrationConstants.GP_LOCATION_CODE_ATTRIBUTE_TYPE_UUID, LocationAttributeTypes.LOCATION_CODE.uuid());
 		properties.put(PacsIntegrationConstants.GP_HL7_LISTENER_PORT, "6663");
 		
