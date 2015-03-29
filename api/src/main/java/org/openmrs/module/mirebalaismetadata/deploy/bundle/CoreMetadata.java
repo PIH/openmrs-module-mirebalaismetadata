@@ -29,6 +29,7 @@ import org.openmrs.module.namephonetics.NamePhoneticsConstants;
 import org.openmrs.module.paperrecord.PaperRecordConstants;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.patientregistration.search.DefaultPatientRegistrationSearch;
+import org.openmrs.module.pihcore.deploy.bundle.CommonConcepts;
 import org.openmrs.module.printer.PrinterDatatype;
 import org.openmrs.module.registrationcore.RegistrationCoreConstants;
 import org.openmrs.module.reporting.ReportingConstants;
@@ -130,9 +131,9 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 	}
 
 	public static final class Concepts { // TODO: Confirm all below are in Hum_Metadata package
-		public static final String UNKNOWN = "3cd6fac4-26fe-102b-80cb-0017a47871b2";
-		public static final String YES = "3cd6f600-26fe-102b-80cb-0017a47871b2";
-		public static final String NO = "3cd6f86c-26fe-102b-80cb-0017a47871b2";
+		public static final String UNKNOWN = CommonConcepts.Concepts.UNKNOWN;
+		public static final String YES = CommonConcepts.Concepts.YES;
+		public static final String NO = CommonConcepts.Concepts.NO;
 		public static final String DIAGNOSIS_SET_OF_SETS = "8fcd0b0c-f977-4a66-a1b5-ad7ce68e6770";
 		public static final String PAYMENT_AMOUNT = "5d1bc5de-6a35-4195-8631-7322941fe528";
 		public static final String PAYMENT_REASON = "36ba7721-fae0-4da4-aef2-7e476cc04bdf";
@@ -140,28 +141,28 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		public static final String PAYMENT_CONSTRUCT = "7a6330f1-9503-465c-8d63-82e1ad914b47";
 	}
 
-	public static final class ConceptSources {  // TODO: Confirm all are in bundle and are interpreted correctly
-		public static final String LOINC = "2889f378-f287-40a5-ac9c-ce77ee963ed7";
-        public static final String CIEL = "21ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD";
-		public static final String PIH = "fb9aaaf1-65e2-4c18-b53c-16b575f2f385";
-		public static final String SNOMED_CT = "1ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD";
+	public static final class ConceptSources {  // TODO: See where these are used and get rid of them
+//		public static final String LOINC = CoreConceptMetadataBundle.ConceptSources.LOINC;
+//        public static final String CIEL = CoreConceptMetadataBundle.ConceptSources.CIEL;
+//		public static final String PIH = CoreConceptMetadataBundle.ConceptSources.PIH;
+//		public static final String SNOMED_CT = CoreConceptMetadataBundle.ConceptSources.SNOMED_CT;
 	}
 
-    public static final class ConceptDatatypes {
-        public static final String N_A = "8d4a4c94-c2cc-11de-8d13-0010c6dffd0f";
-        public static final String CODED = "8d4a48b6-c2cc-11de-8d13-0010c6dffd0f";
-        public static final String TEXT = "8d4a4ab4-c2cc-11de-8d13-0010c6dffd0f";
+    public static final class ConceptDatatypes { // TODO get rid of these
+//        public static final String N_A = CoreConceptMetadataBundle.ConceptDatatypes.N_A;
+//        public static final String CODED = CoreConceptMetadataBundle.ConceptDatatypes.CODED;
+//        public static final String TEXT = CoreConceptMetadataBundle.ConceptDatatypes.TEXT;
     }
 
-    public static final class ConceptClasses {
-        public static final String MISC = "8d492774-c2cc-11de-8d13-0010c6dffd0f";
-        public static final String DIAGNOSIS = "8d4918b0-c2cc-11de-8d13-0010c6dffd0f";
-        public static final String QUESTION = "8d491e50-c2cc-11de-8d13-0010c6dffd0f";
-        public static final String CONV_SET = "8d492594-c2cc-11de-8d13-0010c6dffd0f";
+    public static final class ConceptClasses { // TODO get rid of these
+//        public static final String MISC = CoreConceptMetadataBundle.ConceptClasses.MISC;
+//        public static final String DIAGNOSIS = CoreConceptMetadataBundle.ConceptClasses.DIAGNOSIS;
+//        public static final String QUESTION = CoreConceptMetadataBundle.ConceptClasses.QUESTION;
+//        public static final String CONV_SET = CoreConceptMetadataBundle.ConceptClasses.CONV_SET;
     }
 
-    public static final class ConceptMapTypes {
-        public static final String SAME_AS = "35543629-7d8c-11e1-909d-c80aa9edcf4e";
+    public static final class ConceptMapTypes { // TODO get rid of these
+//        public static final String SAME_AS = CoreConceptMetadataBundle.ConceptMapTypes.SAME_AS;
     }
 
 	public static final class Forms {

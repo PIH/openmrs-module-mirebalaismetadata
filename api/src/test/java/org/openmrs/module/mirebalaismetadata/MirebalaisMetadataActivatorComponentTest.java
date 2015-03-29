@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.Concept;
 import org.openmrs.EncounterType;
-import org.openmrs.Location;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
@@ -16,17 +15,16 @@ import org.openmrs.layout.web.address.AddressTemplate;
 import org.openmrs.module.addresshierarchy.AddressField;
 import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
-import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.emrapi.metadata.MetadataPackageConfig;
 import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
 import org.openmrs.module.mirebalaismetadata.deploy.bundle.CoreMetadata;
-import org.openmrs.module.mirebalaismetadata.deploy.bundle.ZanmiLocations;
 import org.openmrs.module.mirebalaismetadata.deploy.bundle.RadiologyMetadata;
 import org.openmrs.module.pacsintegration.PacsIntegrationConstants;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
+import org.openmrs.module.pihcore.deploy.bundle.CoreConceptMetadataBundle;
 import org.openmrs.module.providermanagement.api.ProviderManagementService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.openmrs.test.SkipBaseSetup;
@@ -143,7 +141,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 		assertEquals(CoreMetadata.PatientIdentifierTypes.ZL_EMR_ID, adminService.getGlobalProperty(PacsIntegrationConstants.GP_PATIENT_IDENTIFIER_TYPE_UUID));
 		assertEquals("en", adminService.getGlobalProperty(PacsIntegrationConstants.GP_DEFAULT_LOCALE));
 		assertEquals("Mirebalais", adminService.getGlobalProperty(PacsIntegrationConstants.GP_SENDING_FACILITY));
-		assertEquals(CoreMetadata.ConceptSources.LOINC, adminService.getGlobalProperty(PacsIntegrationConstants.GP_PROCEDURE_CODE_CONCEPT_SOURCE_UUID));
+		assertEquals(CoreConceptMetadataBundle.ConceptSources.LOINC, adminService.getGlobalProperty(PacsIntegrationConstants.GP_PROCEDURE_CODE_CONCEPT_SOURCE_UUID));
 	}
 
     private void verifyPatientRegistrationConfigured() {

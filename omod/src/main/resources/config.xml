@@ -19,6 +19,9 @@
         <require_module version="${addresshierarchyVersion}">
             org.openmrs.module.addresshierarchy
         </require_module>
+        <require_module version="${pihcoreVersion}">
+            org.openmrs.module.pihcore
+        </require_module>
         <require_module version="${emrapiVersion}">
             org.openmrs.module.emrapi
         </require_module>
