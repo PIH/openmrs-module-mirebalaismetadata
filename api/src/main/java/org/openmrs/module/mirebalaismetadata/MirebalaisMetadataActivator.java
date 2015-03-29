@@ -36,6 +36,7 @@ import org.openmrs.module.dispensing.importer.ImportNotes;
 import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.MetadataSharing;
+import org.openmrs.module.metadatasharing.resolver.ConceptReferenceTerm19Resolver;
 import org.openmrs.module.metadatasharing.resolver.Resolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByNameResolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
@@ -94,11 +95,17 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
 
         // Since we do all MDS import programmatically, in mirror or parent-child mode, we don't want items being matched
-        // except for in specific ways.
-        // see https://tickets.openmrs.org/browse/META-323
+        // except for in specific ways. (Specifically we don't want to use ConceptByMappingResolver, but in general we
+        // want to avoid unexpected behavior.)
+        // See https://tickets.openmrs.org/browse/META-323
+        ObjectByUuidResolver byUuidResolver = new ObjectByUuidResolver();
+        ObjectByNameResolver byNameResolver = new ObjectByNameResolver();
+        ConceptReferenceTerm19Resolver referenceTermResolver = new ConceptReferenceTerm19Resolver(byNameResolver, byUuidResolver);
+
         List<Resolver<?>> supportedResolvers = new ArrayList<Resolver<?>>();
-        supportedResolvers.add(new ObjectByUuidResolver());
-        supportedResolvers.add(new ObjectByNameResolver());
+        supportedResolvers.add(byUuidResolver);
+        supportedResolvers.add(byNameResolver);
+        supportedResolvers.add(referenceTermResolver);
         MetadataSharing.getInstance().getResolverEngine().setResolvers(supportedResolvers);
 
         log.info("Mirebalais Metadata module refreshed");
