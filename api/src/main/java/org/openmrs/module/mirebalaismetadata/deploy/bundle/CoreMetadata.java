@@ -17,7 +17,7 @@ package org.openmrs.module.mirebalaismetadata.deploy.bundle;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.PatientIdentifierType;
-import org.openmrs.customdatatype.datatype.FreeTextDatatype;
+import org.openmrs.PersonAttributeType;
 import org.openmrs.module.coreapps.CoreAppsConstants;
 import org.openmrs.module.emr.EmrConstants;
 import org.openmrs.module.emrapi.EmrApiConstants;
