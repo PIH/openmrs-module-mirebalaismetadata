@@ -104,7 +104,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		public static final String TELEPHONE_NUMBER = "14d4f066-15f5-102d-96e4-000c29c2a5d7";
 		public static final String UNKNOWN_PATIENT = "8b56eac7-5c76-4b9c-8c6f-1deab8d3fc47";
         public static final String BIRTHPLACE = "8d8718c2-c2cc-11de-8d13-0010c6dffd0f";
-        public static final String MOTHERS_FIRST_NAME = "01621fd0-c687-11e4-8830-0800200c9a66";
+        public static final String MOTHERS_NAME = " 8d871d18-c2cc-11de-8d13-0010c6dffd0f";
 	}
 
     public static final class RetiredPersonAttributeTypes {
@@ -203,11 +203,11 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		install(personAttributeType(PROVIDER_IDENTIFIER_NAME, "", String.class, null, true, 12, PersonAttributeTypes.PROVIDER_IDENTIFIER));
 		install(personAttributeType(TELEPHONE_NUMBER_NAME, "The telephone number for the person", String.class, null, false, 7, PersonAttributeTypes.TELEPHONE_NUMBER));
 		install(personAttributeType("Unknown patient", "Used to flag patients that cannot be identified during the check-in process", String.class, null, false, 13, PersonAttributeTypes.UNKNOWN_PATIENT));
+        install(personAttributeType(MOTHERS_FIRST_NAME, "First name of the patient's mother, used for identification", String.class, null, false, 14, PersonAttributeTypes.MOTHERS_NAME));
+        install(personAttributeType(BIRTHPLACE, "Location of persons birth, used for identification", String.class, null, false, 15, PersonAttributeTypes.BIRTHPLACE));
 
         log.info("Uninstalling unused Person Attribute Types");
-        uninstall(possible(PersonAttributeType.class,RetiredPersonAttributeTypes.MOTHERS_FIRST_NAME),  "never used");
-        install(personAttributeType(MOTHERS_FIRST_NAME, "First name of the patient's mother, used for identification", String.class, null, false, 14, PersonAttributeTypes.MOTHERS_FIRST_NAME));
-        install(personAttributeType(BIRTHPLACE, "Location of persons birth, used for identification", String.class, null, false, 15, PersonAttributeTypes.BIRTHPLACE));
+        uninstall(possible(PersonAttributeType.class,RetiredPersonAttributeTypes.MOTHERS_FIRST_NAME),  "never used, use " + PersonAttributeTypes.MOTHERS_NAME + " instead");
 
 		log.info("Installing core Encounter Types");
 
