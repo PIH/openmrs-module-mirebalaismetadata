@@ -156,10 +156,4 @@ public class LocationBundle extends MirebalaisMetadataBundle {
             }
         }
     }
-
-
-    Caused by: java.lang.IllegalStateException: Location Attribute with uuid c98ecc70-bc72-11e4-bb52-0800200c9a66 is configured with a different location than it the Location it is associated with
-
-
-
 }
