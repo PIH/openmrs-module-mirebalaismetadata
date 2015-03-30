@@ -4,7 +4,6 @@ import org.openmrs.Location;
 import org.openmrs.LocationAttribute;
 import org.openmrs.LocationAttributeType;
 import org.openmrs.LocationTag;
-import org.openmrs.module.appframework.feature.FeatureToggleProperties;
 import org.openmrs.module.metadatadeploy.bundle.CoreConstructors;
 import org.openmrs.module.mirebalaismetadata.constants.LocationAttributeTypes;
 import org.openmrs.module.mirebalaismetadata.constants.LocationTags;
@@ -13,7 +12,6 @@ import org.openmrs.module.mirebalaismetadata.descriptor.LocationAttributeDescrip
 import org.openmrs.module.mirebalaismetadata.descriptor.LocationAttributeTypeDescriptor;
 import org.openmrs.module.mirebalaismetadata.descriptor.LocationDescriptor;
 import org.openmrs.module.mirebalaismetadata.descriptor.LocationTagDescriptor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -24,9 +22,6 @@ import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.location
 
 @Component
 public class LocationBundle extends MirebalaisMetadataBundle {
-
-    @Autowired
-    private FeatureToggleProperties featureToggles;
 
     @Override
     public void install() throws Exception {
@@ -64,69 +59,57 @@ public class LocationBundle extends MirebalaisMetadataBundle {
         installLocation(Locations.LACOLLINE, null);
 
         // Top level Locations at Mirebalais
-        // Pre-CDI, Mirebalais Hospital is the visit location and medical record location for all patients
-        // Post-CDI, we convert this to be the Mirebalais / CDI parent location, which is used as the visit location so that patients can only have one active visit between the two
-        // and we ceate a new location to represent Mirebalais Hospital, which is used as the medical record location containing archives for patients at Mirebalais Hospital specifically
-
-        LocationDescriptor parentLocation = Locations.MIREBALAIS_CDI_PARENT;
-        if (featureToggles.isFeatureEnabled("cdi")) {
-            parentLocation = Locations.MIREBALAIS_HOSPITAL_POST_CDI;
-            installLocation(Locations.MIREBALAIS_CDI_PARENT, null);
-            installLocation(Locations.MIREBALAIS_HOSPITAL_POST_CDI, Locations.MIREBALAIS_CDI_PARENT);
-        }
-        else {
-            installLocation(Locations.MIREBALAIS_HOSPITAL, null);
-        }
+        installLocation(Locations.MIREBALAIS_CDI_PARENT, null);
+        installLocation(Locations.MIREBALAIS_HOSPITAL, Locations.MIREBALAIS_CDI_PARENT);
 
         // Locations within Mirebalais Hospital
-
-        installLocation(Locations.ANTEPARTUM_WARD, parentLocation);
-        installLocation(Locations.BLOOD_BANK, parentLocation);
-        installLocation(Locations.CENTRAL_ARCHIVES, parentLocation);
-        installLocation(Locations.CHEMOTHERAPY, parentLocation);
-        installLocation(Locations.CLINIC_REGISTRATION, parentLocation);
-        installLocation(Locations.COMMUNITY_HEALTH, parentLocation);
-        installLocation(Locations.DENTAL, parentLocation);
-        installLocation(Locations.EMERGENCY, parentLocation);
-        installLocation(Locations.EMERGENCY_DEPARTMENT_RECEPTION, parentLocation);
-        installLocation(Locations.FAMILY_PLANNING, parentLocation);
-        installLocation(Locations.ICU, parentLocation);
-        installLocation(Locations.ISOLATION, parentLocation);
-        installLocation(Locations.LABOR_AND_DELIVERY, parentLocation);
-        installLocation(Locations.MAIN_LABORATORY, parentLocation);
-        installLocation(Locations.MENS_INTERNAL_MEDICINE, parentLocation);
+        installLocation(Locations.ANTEPARTUM_WARD, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.BLOOD_BANK, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.CENTRAL_ARCHIVES, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.CHEMOTHERAPY, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.CLINIC_REGISTRATION, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.COMMUNITY_HEALTH, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.DENTAL, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.EMERGENCY, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.EMERGENCY_DEPARTMENT_RECEPTION, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.FAMILY_PLANNING, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.ICU, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.ISOLATION, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.LABOR_AND_DELIVERY, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.MAIN_LABORATORY, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.MENS_INTERNAL_MEDICINE, Locations.MIREBALAIS_HOSPITAL);
         installLocation(Locations.MENS_INTERNAL_MEDICINE_A, Locations.MENS_INTERNAL_MEDICINE);
         installLocation(Locations.MENS_INTERNAL_MEDICINE_B, Locations.MENS_INTERNAL_MEDICINE);
-        installLocation(Locations.NICU, parentLocation);
-        installLocation(Locations.OPERATING_ROOMS, parentLocation);
-        installLocation(Locations.OUTPATIENT_CLINIC, parentLocation);
+        installLocation(Locations.NICU, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.OPERATING_ROOMS, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.OUTPATIENT_CLINIC, Locations.MIREBALAIS_HOSPITAL);
         installLocation(Locations.OUTPATIENT_CLINIC_PHARMACY, Locations.OUTPATIENT_CLINIC);
-        installLocation(Locations.PEDIATRICS, parentLocation);
+        installLocation(Locations.PEDIATRICS, Locations.MIREBALAIS_HOSPITAL);
         installLocation(Locations.PEDIATRICS_A, Locations.PEDIATRICS);
         installLocation(Locations.PEDIATRICS_B, Locations.PEDIATRICS);
-        installLocation(Locations.PRE_OP_PACU, parentLocation);
-        installLocation(Locations.POST_OP_GYN, parentLocation);
-        installLocation(Locations.POSTPARTUM_WARD, parentLocation);
-        installLocation(Locations.RADIOLOGY, parentLocation);
-        installLocation(Locations.REHABILITATION, parentLocation);
-        installLocation(Locations.SURGICAL_WARD, parentLocation);
-        installLocation(Locations.WOMENS_CLINIC, parentLocation);
+        installLocation(Locations.PRE_OP_PACU, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.POST_OP_GYN, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.POSTPARTUM_WARD, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.RADIOLOGY, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.REHABILITATION, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.SURGICAL_WARD, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.WOMENS_CLINIC, Locations.MIREBALAIS_HOSPITAL);
         installLocation(Locations.WOMENS_AND_CHILDRENS_PHARMACY, Locations.WOMENS_CLINIC); // out of order because of above location
-        installLocation(Locations.WOMENS_INTERNAL_MEDICINE, parentLocation);
+        installLocation(Locations.WOMENS_INTERNAL_MEDICINE, Locations.MIREBALAIS_HOSPITAL);
         installLocation(Locations.WOMENS_INTERNAL_MEDICINE_A, Locations.WOMENS_INTERNAL_MEDICINE);
         installLocation(Locations.WOMENS_INTERNAL_MEDICINE_B, Locations.WOMENS_INTERNAL_MEDICINE);
-        installLocation(Locations.WOMENS_OUTPATIENT_LABORATORY, parentLocation);
-        installLocation(Locations.WOMENS_TRIAGE, parentLocation);
+        installLocation(Locations.WOMENS_OUTPATIENT_LABORATORY, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.WOMENS_TRIAGE, Locations.MIREBALAIS_HOSPITAL);
 
-        if (featureToggles.isFeatureEnabled("cdi")) {
-            installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL, Locations.MIREBALAIS_CDI_PARENT);
-            installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_ACHIV_SANTRAL, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-            installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_BIWO_RANDEVOU, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-            installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_FAMASI, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-            installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_LABORATWA, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-            installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_RADYOGRAFI, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-            installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_SAL_PWOSEDI, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-        }
+        // Locations at CDI
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL, Locations.MIREBALAIS_CDI_PARENT);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_ACHIV_SANTRAL, Locations.CDI_KLINIK_EKSTEN_JENERAL);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_BIWO_RANDEVOU, Locations.CDI_KLINIK_EKSTEN_JENERAL);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_FAMASI, Locations.CDI_KLINIK_EKSTEN_JENERAL);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_LABORATWA, Locations.CDI_KLINIK_EKSTEN_JENERAL);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_RADYOGRAFI, Locations.CDI_KLINIK_EKSTEN_JENERAL);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_SAL_PWOSEDI, Locations.CDI_KLINIK_EKSTEN_JENERAL);
+
 
         log.info("Retiring old Mirebalais Locations");
 
@@ -173,6 +156,10 @@ public class LocationBundle extends MirebalaisMetadataBundle {
             }
         }
     }
+
+
+    Caused by: java.lang.IllegalStateException: Location Attribute with uuid c98ecc70-bc72-11e4-bb52-0800200c9a66 is configured with a different location than it the Location it is associated with
+
 
 
 }

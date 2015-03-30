@@ -40,19 +40,6 @@ public class Locations {
 		public List<LocationTagDescriptor> tags() { return Arrays.asList(LocationTags.MEDICAL_RECORD_LOCATION, LocationTags.ARCHIVES_LOCATION, LocationTags.VISIT_LOCATION); }
 	};
 
-	//***** PRE-CDI *****
-
-	public static LocationDescriptor MIREBALAIS_HOSPITAL = new LocationDescriptor() {
-		public String uuid() { return "a084f714-a536-473b-94e6-ec317b152b43"; }
-		public String name() { return "Hôpital Universitaire de Mirebalais"; }
-		public String description() { return "Mirebalais (MoH code 62101)"; }
-		public List<LocationTagDescriptor> tags() { return Arrays.asList(LocationTags.VISIT_LOCATION, LocationTags.MEDICAL_RECORD_LOCATION); }
-	};
-
-	//***** PRE-CDI END *****
-
-	//***** POST-CDI *****
-
 	public static LocationDescriptor MIREBALAIS_CDI_PARENT = new LocationDescriptor() {
 		public String uuid() { return "a084f714-a536-473b-94e6-ec317b152b43"; }
 		public String name() { return "Mirebalais"; }
@@ -61,18 +48,13 @@ public class Locations {
 		public List<LocationTagDescriptor> tags() { return Collections.singletonList(LocationTags.VISIT_LOCATION); }
 	};
 
-	// TODO: RENAME THIS TO MIREBALAIS_HOSPITAL AND DELETE THE PRE-CDI SECTION ONCE CDI IS ENABLED
-	public static LocationDescriptor MIREBALAIS_HOSPITAL_POST_CDI = new LocationDescriptor() {
+	public static LocationDescriptor MIREBALAIS_HOSPITAL = new LocationDescriptor() {
 		public String uuid() { return "24bd1390-5959-11e4-8ed6-0800200c9a66"; }
 		public String name() { return "Hôpital Universitaire de Mirebalais"; }
 		public String description() { return "Mirebalais (MoH code 62101)"; }
 		public List<LocationAttributeDescriptor> attributes() { return Collections.singletonList(LocationAttributes.MIREBALAIS_HOSPITAL_NAME_TO_PRINT_ON_ID_CARD); }
 		public List<LocationTagDescriptor> tags() { return Collections.singletonList(LocationTags.MEDICAL_RECORD_LOCATION); }
 	};
-
-	//***** POST-CDI END *****
-
-	// end
 
 	//***** MIREBALAIS LOCATIONS *****
 
