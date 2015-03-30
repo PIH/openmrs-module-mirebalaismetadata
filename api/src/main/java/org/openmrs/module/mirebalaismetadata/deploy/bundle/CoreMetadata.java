@@ -17,7 +17,6 @@ package org.openmrs.module.mirebalaismetadata.deploy.bundle;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.PatientIdentifierType;
-import org.openmrs.PersonAttributeType;
 import org.openmrs.module.coreapps.CoreAppsConstants;
 import org.openmrs.module.emr.EmrConstants;
 import org.openmrs.module.emrapi.EmrApiConstants;
@@ -71,10 +70,6 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
         public static final String BIRTHPLACE = "8d8718c2-c2cc-11de-8d13-0010c6dffd0f";
         public static final String MOTHERS_NAME = " 8d871d18-c2cc-11de-8d13-0010c6dffd0f";
 	}
-
-    public static final class RetiredPersonAttributeTypes {
-        public static final String MOTHERS_FIRST_NAME = "01621fd0-c687-11e4-8830-0800200c9a66";  // use attribute provided by core instead
-    }
 
 	public static final class EncounterTypes {
 		public static final String PATIENT_REGISTRATION = "873f968a-73a8-4f9c-ac78-9f4778b751b6";
@@ -170,9 +165,6 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		install(personAttributeType("Unknown patient", "Used to flag patients that cannot be identified during the check-in process", String.class, null, false, 13, PersonAttributeTypes.UNKNOWN_PATIENT));
         install(personAttributeType(MOTHERS_FIRST_NAME, "First name of the patient's mother, used for identification", String.class, null, false, 14, PersonAttributeTypes.MOTHERS_NAME));
         install(personAttributeType(BIRTHPLACE, "Location of persons birth, used for identification", String.class, null, false, 15, PersonAttributeTypes.BIRTHPLACE));
-
-        log.info("Uninstalling unused Person Attribute Types");
-        uninstall(possible(PersonAttributeType.class,RetiredPersonAttributeTypes.MOTHERS_FIRST_NAME),  "never used, use " + PersonAttributeTypes.MOTHERS_NAME + " instead");
 
 		log.info("Installing core Encounter Types");
 
