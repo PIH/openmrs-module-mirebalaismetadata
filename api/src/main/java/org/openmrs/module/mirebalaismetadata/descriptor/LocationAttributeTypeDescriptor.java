@@ -19,16 +19,28 @@ package org.openmrs.module.mirebalaismetadata.descriptor;
  */
 public abstract class LocationAttributeTypeDescriptor extends MetadataDescriptor {
 
+	/**
+	 * @return the data type of this location attribute type
+	 */
 	public abstract Class<?> datatype();
 
+	/**
+	 * @return the configuration of this location attribute type.  defaults to null
+	 */
 	public String datatypeConfig() {
 		return null;
 	}
 
+	/**
+	 * @return the minOccors for this location attribute type.  defaults to 0
+	 */
 	public int minOccurs() {
 		return 0;
 	}
 
+	/**
+	 * @return the maxOccurs for this location attribute type.  defaults to 1
+	 */
 	public int maxOccurs() {
 		return 1;
 	}

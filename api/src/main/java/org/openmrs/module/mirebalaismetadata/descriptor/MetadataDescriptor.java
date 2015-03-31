@@ -19,10 +19,19 @@ package org.openmrs.module.mirebalaismetadata.descriptor;
  */
 public abstract class MetadataDescriptor implements Descriptor {
 
+	/**
+	 * @return the name of the metadata
+	 */
 	public abstract String name();
 
+	/**
+	 * @return the description of the metadata
+	 */
 	public abstract String description();
 
+	/**
+	 * @return whether or not this metadata is retired
+	 */
 	public boolean retired() {
 		return false;
 	}

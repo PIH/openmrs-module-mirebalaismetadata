@@ -22,14 +22,23 @@ import java.util.List;
  */
 public abstract class LocationDescriptor extends MetadataDescriptor {
 
-    // TODO: Add parent in here directly once the CDI rollout is complete.
-    // Not really possible before since we are changing the parent locations around
-    // and these classes do not have access to feature toggles (do they?)
+    /**
+     * @return the descriptors for the parent location for this location . defaults to null
+     */
+    public LocationDescriptor parent() {
+        return null;
+    }
 
+    /**
+     * @return the descriptors for each attribute associated with this location. Defaults to an empty list
+     */
     public List<LocationAttributeDescriptor> attributes() {
         return new ArrayList<LocationAttributeDescriptor>();
     }
 
+    /**
+     * @return the descriptors for each tag associated with this location. Defaults to an empty list
+     */
     public List<LocationTagDescriptor> tags() {
         return new ArrayList<LocationTagDescriptor>();
     }

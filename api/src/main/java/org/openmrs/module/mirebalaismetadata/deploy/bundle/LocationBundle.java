@@ -55,60 +55,60 @@ public class LocationBundle extends MirebalaisMetadataBundle {
 
         log.info("Installing Locations");
 
-        installLocation(Locations.UNKNOWN, null);
-        installLocation(Locations.LACOLLINE, null);
+        installLocation(Locations.UNKNOWN);
+        installLocation(Locations.LACOLLINE);
 
         // Top level Locations at Mirebalais
-        installLocation(Locations.MIREBALAIS_CDI_PARENT, null);
-        installLocation(Locations.MIREBALAIS_HOSPITAL, Locations.MIREBALAIS_CDI_PARENT);
+        installLocation(Locations.MIREBALAIS_CDI_PARENT);
+        installLocation(Locations.MIREBALAIS_HOSPITAL);
 
         // Locations within Mirebalais Hospital
-        installLocation(Locations.ANTEPARTUM_WARD, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.BLOOD_BANK, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.CENTRAL_ARCHIVES, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.CHEMOTHERAPY, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.CLINIC_REGISTRATION, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.COMMUNITY_HEALTH, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.DENTAL, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.EMERGENCY, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.EMERGENCY_DEPARTMENT_RECEPTION, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.FAMILY_PLANNING, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.ICU, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.ISOLATION, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.LABOR_AND_DELIVERY, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.MAIN_LABORATORY, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.MENS_INTERNAL_MEDICINE, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.MENS_INTERNAL_MEDICINE_A, Locations.MENS_INTERNAL_MEDICINE);
-        installLocation(Locations.MENS_INTERNAL_MEDICINE_B, Locations.MENS_INTERNAL_MEDICINE);
-        installLocation(Locations.NICU, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.OPERATING_ROOMS, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.OUTPATIENT_CLINIC, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.OUTPATIENT_CLINIC_PHARMACY, Locations.OUTPATIENT_CLINIC);
-        installLocation(Locations.PEDIATRICS, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.PEDIATRICS_A, Locations.PEDIATRICS);
-        installLocation(Locations.PEDIATRICS_B, Locations.PEDIATRICS);
-        installLocation(Locations.PRE_OP_PACU, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.POST_OP_GYN, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.POSTPARTUM_WARD, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.RADIOLOGY, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.REHABILITATION, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.SURGICAL_WARD, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.WOMENS_CLINIC, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.WOMENS_AND_CHILDRENS_PHARMACY, Locations.WOMENS_CLINIC); // out of order because of above location
-        installLocation(Locations.WOMENS_INTERNAL_MEDICINE, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.WOMENS_INTERNAL_MEDICINE_A, Locations.WOMENS_INTERNAL_MEDICINE);
-        installLocation(Locations.WOMENS_INTERNAL_MEDICINE_B, Locations.WOMENS_INTERNAL_MEDICINE);
-        installLocation(Locations.WOMENS_OUTPATIENT_LABORATORY, Locations.MIREBALAIS_HOSPITAL);
-        installLocation(Locations.WOMENS_TRIAGE, Locations.MIREBALAIS_HOSPITAL);
+        installLocation(Locations.ANTEPARTUM_WARD);
+        installLocation(Locations.BLOOD_BANK);
+        installLocation(Locations.CENTRAL_ARCHIVES);
+        installLocation(Locations.CHEMOTHERAPY);
+        installLocation(Locations.CLINIC_REGISTRATION);
+        installLocation(Locations.COMMUNITY_HEALTH);
+        installLocation(Locations.DENTAL);
+        installLocation(Locations.EMERGENCY);
+        installLocation(Locations.EMERGENCY_DEPARTMENT_RECEPTION);
+        installLocation(Locations.FAMILY_PLANNING);
+        installLocation(Locations.ICU);
+        installLocation(Locations.ISOLATION);
+        installLocation(Locations.LABOR_AND_DELIVERY);
+        installLocation(Locations.MAIN_LABORATORY);
+        installLocation(Locations.MENS_INTERNAL_MEDICINE);
+        installLocation(Locations.MENS_INTERNAL_MEDICINE_A);
+        installLocation(Locations.MENS_INTERNAL_MEDICINE_B);
+        installLocation(Locations.NICU);
+        installLocation(Locations.OPERATING_ROOMS);
+        installLocation(Locations.OUTPATIENT_CLINIC);
+        installLocation(Locations.OUTPATIENT_CLINIC_PHARMACY);
+        installLocation(Locations.PEDIATRICS);
+        installLocation(Locations.PEDIATRICS_A);
+        installLocation(Locations.PEDIATRICS_B);
+        installLocation(Locations.PRE_OP_PACU);
+        installLocation(Locations.POST_OP_GYN);
+        installLocation(Locations.POSTPARTUM_WARD);
+        installLocation(Locations.RADIOLOGY);
+        installLocation(Locations.REHABILITATION);
+        installLocation(Locations.SURGICAL_WARD);
+        installLocation(Locations.WOMENS_CLINIC);
+        installLocation(Locations.WOMENS_AND_CHILDRENS_PHARMACY); // out of order because of above location
+        installLocation(Locations.WOMENS_INTERNAL_MEDICINE);
+        installLocation(Locations.WOMENS_INTERNAL_MEDICINE_A);
+        installLocation(Locations.WOMENS_INTERNAL_MEDICINE_B);
+        installLocation(Locations.WOMENS_OUTPATIENT_LABORATORY);
+        installLocation(Locations.WOMENS_TRIAGE);
 
         // Locations at CDI
-        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL, Locations.MIREBALAIS_CDI_PARENT);
-        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_ACHIV_SANTRAL, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_BIWO_RANDEVOU, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_FAMASI, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_LABORATWA, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_RADYOGRAFI, Locations.CDI_KLINIK_EKSTEN_JENERAL);
-        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_SAL_PWOSEDI, Locations.CDI_KLINIK_EKSTEN_JENERAL);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_ACHIV_SANTRAL);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_BIWO_RANDEVOU);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_FAMASI);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_LABORATWA);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_RADYOGRAFI);
+        installLocation(Locations.CDI_KLINIK_EKSTEN_JENERAL_SAL_PWOSEDI);
 
 
         log.info("Retiring old Mirebalais Locations");
@@ -134,10 +134,10 @@ public class LocationBundle extends MirebalaisMetadataBundle {
         install(type);
     }
 
-    protected void installLocation(LocationDescriptor location, LocationDescriptor parent) {
+    protected void installLocation(LocationDescriptor location) {
 
         // First install the location and it's tags
-        String parentUuid = parent == null ? null : parent.uuid();
+        String parentUuid = location.parent() == null ? null : location.parent().uuid();
         List<String> tagUuids = new ArrayList<String>();
         if (location.tags() != null) {
             for (LocationTagDescriptor tagDescriptor : location.tags()) {

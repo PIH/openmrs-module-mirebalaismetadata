@@ -15,10 +15,14 @@
 package org.openmrs.module.mirebalaismetadata.descriptor;
 
 /**
- * Encapsulates the minimum information needed for all Descriptors
+ * The common interface for all metadata descriptor classes,
+ * which provide a mechanism for defining metadata in code
  */
 public interface Descriptor {
 
+	/**
+	 * @return the uuid that uniquely identifies the metadata that this describes
+	 */
 	String uuid();
 
 }
