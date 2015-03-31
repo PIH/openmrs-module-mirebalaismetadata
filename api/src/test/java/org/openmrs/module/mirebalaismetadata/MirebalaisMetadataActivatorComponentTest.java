@@ -117,8 +117,9 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 		assertEquals("Haiti", at.getElementDefaults().get("country"));
 		assertEquals("address2", at.getLineByLineFormat().get(0));
 		assertEquals("address1", at.getLineByLineFormat().get(1));
-		assertEquals("address3, cityVillage", at.getLineByLineFormat().get(2));
-		assertEquals("stateProvince, country", at.getLineByLineFormat().get(3));
+		assertEquals("address3", at.getLineByLineFormat().get(2));
+        assertEquals("cityVillage", at.getLineByLineFormat().get(3));
+		assertEquals("stateProvince, country", at.getLineByLineFormat().get(4));
 	}
 
 	private void verifyGlobalPropertiesConfigured() throws Exception {
