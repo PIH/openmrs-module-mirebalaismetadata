@@ -142,7 +142,8 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 	}
 
 	public static final String DEFAULT_DATE_FORMAT = "dd MMM yyyy";
-	public static final String DEFAULT_DATETIME_FORMAT = "dd MMM yyyy hh:mm aa";
+	public static final String DEFAULT_TIME_FORMAT = "h:mm aa";
+	public static final String DEFAULT_DATETIME_FORMAT = DEFAULT_DATE_FORMAT + " " + DEFAULT_TIME_FORMAT;
 	public static final String DEFAULT_LOCALE = "fr";
 
 	private static final String ZL_EMR_ID_NAME = "ZL EMR ID";
@@ -236,6 +237,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 
 		// Html Form Entry
 		properties.put(HtmlFormEntryConstants.GP_DATE_FORMAT, DEFAULT_DATE_FORMAT);
+		properties.put(HtmlFormEntryConstants.GP_TIME_FORMAT, DEFAULT_TIME_FORMAT);
 		properties.put(HtmlFormEntryConstants.GP_SHOW_DATE_FORMAT, "false");
 		properties.put(HtmlFormEntryConstants.GP_UNKNOWN_CONCEPT, Concepts.UNKNOWN);
 		
