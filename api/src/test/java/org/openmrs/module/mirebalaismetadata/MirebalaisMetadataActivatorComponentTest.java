@@ -134,7 +134,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 		DateFormat datetimeFormat = new SimpleDateFormat(adminService.getGlobalProperty(UiFrameworkConstants.GP_FORMATTER_DATETIME_FORMAT));
 		DateFormat dateFormat = new SimpleDateFormat(adminService.getGlobalProperty(UiFrameworkConstants.GP_FORMATTER_DATE_FORMAT));
 		Date sampleDate = new DateTime(2012, 2, 22, 14, 23, 22).toDate();
-		assertEquals("22 Feb 2012 02:23 PM", datetimeFormat.format(sampleDate));
+		assertEquals("22 Feb 2012 2:23 PM", datetimeFormat.format(sampleDate));
 		assertEquals("22 Feb 2012", dateFormat.format(sampleDate));
 	}
 
