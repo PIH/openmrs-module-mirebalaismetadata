@@ -60,11 +60,5 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
-        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
-            <filenameBase>ZL_Registration_Concepts</filenameBase>
-            <groupUuid>7c19d893-08eb-4240-9442-767b99a942bc</groupUuid>
-            <version>1</version>
-            <importMode>MIRROR</importMode>
-        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
     </packages>
 </org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
