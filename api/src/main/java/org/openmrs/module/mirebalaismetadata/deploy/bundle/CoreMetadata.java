@@ -204,6 +204,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		install(encounterType("Admission aux soins hospitaliers", "Indicates that the patient has been admitted for inpatient care, and is not expected to leave the hospital unless discharged.", EncounterTypes.ADMISSION));
 		install(encounterType("Annuler l'admission", "An encounter that notes that a request to admit a patient (via giving them a dispositon of &quot;admit&quot; on another form) is being overridden", EncounterTypes.CANCEL_ADMISSION));
 		install(encounterType("Sortie de soins hospitaliers", "Indicates that a patient&apos;s inpatient care at the hospital is ending, and they are expected to leave soon", EncounterTypes.EXIT_FROM_CARE));
+		install(encounterType("Première consultation", "Consultation with a new patient, which involves capturing a more complete medical and social history", EncounterTypes.CONSULTATION_INITIAL));
 
 		log.info("Installing core Encounter Roles");
 
