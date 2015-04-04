@@ -85,7 +85,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		public static final String ADMISSION = "260566e1-c909-4d61-a96f-c1019291a09d";
 		public static final String CANCEL_ADMISSION = "edbb857b-e736-4296-9438-462b31f97ef9";
 		public static final String EXIT_FROM_CARE = "b6631959-2105-49dd-b154-e1249e0fbcd7";
-
+		public static final String CONSULTATION_INITIAL = "ffa148de-2c88-4828-833e-f3788991543d";
 	}
 
 	public static final class EncounterRoles {
