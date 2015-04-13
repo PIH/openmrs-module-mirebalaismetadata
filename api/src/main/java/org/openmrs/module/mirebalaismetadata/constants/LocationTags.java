@@ -89,7 +89,44 @@ public class LocationTags {
 		public String description() { return "Signifies a Location where appointments can be scheduled"; }
 	};
 
-	public static LocationTagDescriptor RETIRED_OUTPATIENT_TRANSFER_LOCATION = new LocationTagDescriptor() {
+    public static LocationTagDescriptor VITALS_LOCATION = new LocationTagDescriptor() {
+        public String uuid() { return "d9865139-dfb4-11e4-bccc-56847afe9799"; }
+        public String name() { return "Vitals Location"; }
+        public String description() { return "Signifies a Location where the vitals app and note should be available"; }
+    };
+
+    public static LocationTagDescriptor INPATIENTS_APP_LOCATION = new LocationTagDescriptor() {
+        public String uuid() { return "5e824f3a-dfb8-11e4-bccc-56847afe9799"; }
+        public String name() { return "Inpatients App Location"; }
+        public String description() { return "Signifies a Location where the inpatients app should be available"; }
+    };
+
+    public static LocationTagDescriptor CHECKIN_LOCATION = new LocationTagDescriptor() {
+        public String uuid() { return "24ffeea6-dfbb-11e4-bccc-56847afe9799"; }
+        public String name() { return "Check-In Location"; }
+        public String description() { return "Signifies a Location where the check-in app and form should be available"; }
+    };
+
+    public static LocationTagDescriptor REGISTRATION_LOCATION = new LocationTagDescriptor() {
+        public String uuid() { return "0ba7b0d0-e1ef-11e4-b571-0800200c9a66"; }
+        public String name() { return "Registration Location"; }
+        public String description() { return "Signifies a Location where the registration app should be available"; }
+    };
+
+    public static LocationTagDescriptor ORDER_RADIOLOGY_STUDY_LOCATION = new LocationTagDescriptor() {
+        public String uuid() { return "0ba7b0d0-e1ef-11e4-b571-0800200c9a66"; }
+        public String name() { return "Order Radiology Study Location"; }
+        public String description() { return "Signifies a Location where a radiology study can be ordered"; }
+    };
+
+
+   /* public static LocationTagDescriptor ED_REGISTRATION_LOCATION = new LocationTagDescriptor() {
+        public String uuid() { return "fcdb6eb0-e1ef-11e4-b571-0800200c9a66"; }
+        public String name() { return "Emergency Registration Location"; }
+        public String description() { return "Signifies a Location where the combined registration/check-in app should be available"; }
+    };*/
+
+    public static LocationTagDescriptor RETIRED_OUTPATIENT_TRANSFER_LOCATION = new LocationTagDescriptor() {
 		public String uuid() { return "84864264-5fda-4626-b22f-4b690b7279f3"; }
 		public String name() { return "Outpatient Transfer Location"; }
 		public String description() { return ""; }
