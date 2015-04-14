@@ -85,7 +85,9 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		public static final String ADMISSION = "260566e1-c909-4d61-a96f-c1019291a09d";
 		public static final String CANCEL_ADMISSION = "edbb857b-e736-4296-9438-462b31f97ef9";
 		public static final String EXIT_FROM_CARE = "b6631959-2105-49dd-b154-e1249e0fbcd7";
-		public static final String CONSULTATION_INITIAL = "ffa148de-2c88-4828-833e-f3788991543d";
+		public static final String PRIMARY_CARE_HISTORY = "ffa148de-2c88-4828-833e-f3788991543d";
+		public static final String PRIMARY_CARE_EXAM = "0a9facff-fdc4-4aa9-aae0-8d7feaf5b3ef";
+		public static final String CONSULTATION_PLAN = "e0aaa214-1d4b-442a-b527-144adf025299";
 	}
 
 	public static final class EncounterRoles {
@@ -106,30 +108,6 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		public static final String PAYMENT_RECEIPT_NUMBER = "20438dc7-c5b4-4d9c-8480-e888f4795123";
 		public static final String PAYMENT_CONSTRUCT = "7a6330f1-9503-465c-8d63-82e1ad914b47";
 	}
-
-	public static final class ConceptSources {  // TODO: See where these are used and get rid of them
-//		public static final String LOINC = CoreConceptMetadataBundle.ConceptSources.LOINC;
-//        public static final String CIEL = CoreConceptMetadataBundle.ConceptSources.CIEL;
-//		public static final String PIH = CoreConceptMetadataBundle.ConceptSources.PIH;
-//		public static final String SNOMED_CT = CoreConceptMetadataBundle.ConceptSources.SNOMED_CT;
-	}
-
-    public static final class ConceptDatatypes { // TODO get rid of these
-//        public static final String N_A = CoreConceptMetadataBundle.ConceptDatatypes.N_A;
-//        public static final String CODED = CoreConceptMetadataBundle.ConceptDatatypes.CODED;
-//        public static final String TEXT = CoreConceptMetadataBundle.ConceptDatatypes.TEXT;
-    }
-
-    public static final class ConceptClasses { // TODO get rid of these
-//        public static final String MISC = CoreConceptMetadataBundle.ConceptClasses.MISC;
-//        public static final String DIAGNOSIS = CoreConceptMetadataBundle.ConceptClasses.DIAGNOSIS;
-//        public static final String QUESTION = CoreConceptMetadataBundle.ConceptClasses.QUESTION;
-//        public static final String CONV_SET = CoreConceptMetadataBundle.ConceptClasses.CONV_SET;
-    }
-
-    public static final class ConceptMapTypes { // TODO get rid of these
-//        public static final String SAME_AS = CoreConceptMetadataBundle.ConceptMapTypes.SAME_AS;
-    }
 
 	public static final class Forms {
 		public static final String ADMISSION = "43acf930-eb1b-11e2-91e2-0800200c9a66";  // TODO: Install in bundle
@@ -204,7 +182,9 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		install(encounterType("Admission aux soins hospitaliers", "Indicates that the patient has been admitted for inpatient care, and is not expected to leave the hospital unless discharged.", EncounterTypes.ADMISSION));
 		install(encounterType("Annuler l'admission", "An encounter that notes that a request to admit a patient (via giving them a dispositon of &quot;admit&quot; on another form) is being overridden", EncounterTypes.CANCEL_ADMISSION));
 		install(encounterType("Sortie de soins hospitaliers", "Indicates that a patient&apos;s inpatient care at the hospital is ending, and they are expected to leave soon", EncounterTypes.EXIT_FROM_CARE));
-		install(encounterType("Première consultation", "Consultation with a new patient, which involves capturing a more complete medical and social history", EncounterTypes.CONSULTATION_INITIAL));
+		install(encounterType("Antecedents", "Past medical history, for general primary care. Typically only captured at a patient's first visit", EncounterTypes.PRIMARY_CARE_HISTORY));
+		install(encounterType("Examen", "Physical exam and diagnosis, typically captured at every clinical visit", EncounterTypes.PRIMARY_CARE_EXAM));
+		install(encounterType("Conduite a tenir", "Orders placed during a consultation", EncounterTypes.CONSULTATION_PLAN));
 
 		log.info("Installing core Encounter Roles");
 
