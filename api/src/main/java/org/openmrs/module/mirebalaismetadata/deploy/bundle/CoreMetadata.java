@@ -309,6 +309,10 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
         properties.put(RegistrationCoreConstants.GP_FAST_SIMILAR_PATIENT_SEARCH_ALGORITHM, "registrationcore.NamePhoneticsPatientSearchAlgorithm");
         properties.put(RegistrationCoreConstants.GP_PRECISE_SIMILAR_PATIENT_SEARCH_ALGORITHM, "registrationcore.BasicExactPatientSearchAlgorithm");
 
+		// Allergies
+		properties.put("allergy.concept.unknown", CommonConcepts.Concepts.UNKNOWN);
+		properties.put("allergy.concept.otherNonCoded", CommonConcepts.Concepts.OTHER_NON_CODED);
+
         setGlobalProperties(properties);
 	}
 }
