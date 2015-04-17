@@ -77,6 +77,12 @@ public class LocationTags {
 		public String description() { return "A location where an ED note can be written"; }
 	};
 
+    public static LocationTagDescriptor ADMISSION_NOTE_LOCATION = new LocationTagDescriptor() {
+        public String uuid() { return "a0cc8ad0-e53e-11e4-b571-0800200c9a66"; }
+        public String name() { return "Admission Note Location"; }
+        public String description() { return "A location where an Admission note can be written"; }
+    };
+
 	public static LocationTagDescriptor DISPENSING_LOCATION = new LocationTagDescriptor() {
 		public String uuid() { return "c42b7bc3-b34d-4b8f-9796-09208f9dfd72"; }
 		public String name() { return EmrApiConstants.LOCATION_TAG_SUPPORTS_DISPENSING; }
@@ -113,18 +119,17 @@ public class LocationTags {
         public String description() { return "Signifies a Location where the registration app should be available"; }
     };
 
+    public static LocationTagDescriptor ED_REGISTRATION_LOCATION = new LocationTagDescriptor() {
+        public String uuid() { return "a6f68610-e53c-11e4-b571-0800200c9a66"; }
+        public String name() { return "Registration and Check-In Location"; }
+        public String description() { return "Signifies a Location where the combined registration/check-in app should be available"; }
+    };
+
     public static LocationTagDescriptor ORDER_RADIOLOGY_STUDY_LOCATION = new LocationTagDescriptor() {
         public String uuid() { return "0ba7b0d0-e1ef-11e4-b571-0800200c9a66"; }
         public String name() { return "Order Radiology Study Location"; }
         public String description() { return "Signifies a Location where a radiology study can be ordered"; }
     };
-
-
-   /* public static LocationTagDescriptor ED_REGISTRATION_LOCATION = new LocationTagDescriptor() {
-        public String uuid() { return "fcdb6eb0-e1ef-11e4-b571-0800200c9a66"; }
-        public String name() { return "Emergency Registration Location"; }
-        public String description() { return "Signifies a Location where the combined registration/check-in app should be available"; }
-    };*/
 
     public static LocationTagDescriptor RETIRED_OUTPATIENT_TRANSFER_LOCATION = new LocationTagDescriptor() {
 		public String uuid() { return "84864264-5fda-4626-b22f-4b690b7279f3"; }

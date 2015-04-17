@@ -37,12 +37,14 @@ public class LocationBundle extends MirebalaisMetadataBundle {
         install(LocationTags.CONSULT_NOTE_LOCATION);
         install(LocationTags.SURGERY_NOTE_LOCATION);
         install(LocationTags.ED_NOTE_LOCATION);
+        install(LocationTags.ADMISSION_NOTE_LOCATION);
         install(LocationTags.DISPENSING_LOCATION);
         install(LocationTags.APPOINTMENT_LOCATION);
         install(LocationTags.VITALS_LOCATION);
         install(LocationTags.INPATIENTS_APP_LOCATION);
         install(LocationTags.CHECKIN_LOCATION);
         install(LocationTags.REGISTRATION_LOCATION);
+        install(LocationTags.ED_REGISTRATION_LOCATION);
         install(LocationTags.ORDER_RADIOLOGY_STUDY_LOCATION);
 
         log.info("Retiring old LocationTags");
