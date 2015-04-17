@@ -256,7 +256,7 @@ public class Locations {
 
 	public static LocationDescriptor POST_OP_GYN = new LocationDescriptor() {
 		public String uuid() { return "ec9d2302-b525-45ce-bebe-42ea1d38b251"; }
-		public String name() { return "Sal Aprè Operayson | Sante Fanm"; }
+		public String name() { return "Sal Aprè Operasyon | Sante Fanm"; }
 		public String description() { return "Post-op GYN at Mirebalais Hospital (Recovery after surgery related to gynecology)"; }
 		public LocationDescriptor parent() { return Locations.MIREBALAIS_HOSPITAL; }
 		public List<LocationAttributeDescriptor> attributes() { return Collections.singletonList(LocationAttributes.POST_OP_GYN_LOCATION_CODE); }
@@ -296,7 +296,7 @@ public class Locations {
 
 	public static LocationDescriptor SURGICAL_WARD = new LocationDescriptor() {
 		public String uuid() { return "7d6cc39d-a600-496f-a320-fd4985f07f0b"; }
-		public String name() { return "Sal Aprè Operayson"; }
+		public String name() { return "Sal Aprè Operasyon"; }
 		public String description() { return "Surgical Ward at Mirebalais Hospital (Surgery)"; }
 		public LocationDescriptor parent() { return Locations.MIREBALAIS_HOSPITAL; }
 		public List<LocationAttributeDescriptor> attributes() { return Collections.singletonList(LocationAttributes.SURGICAL_WARD_LOCATION_CODE); }
