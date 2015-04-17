@@ -108,7 +108,7 @@ public class LocationTags {
     };
 
     public static LocationTagDescriptor REGISTRATION_LOCATION = new LocationTagDescriptor() {
-        public String uuid() { return "0ba7b0d0-e1ef-11e4-b571-0800200c9a66"; }
+        public String uuid() { return "8fa112e0-e506-11e4-b571-0800200c9a66"; }
         public String name() { return "Registration Location"; }
         public String description() { return "Signifies a Location where the registration app should be available"; }
     };
