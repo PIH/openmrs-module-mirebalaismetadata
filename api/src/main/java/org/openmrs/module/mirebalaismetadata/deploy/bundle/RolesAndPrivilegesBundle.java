@@ -50,10 +50,11 @@ public class RolesAndPrivilegesBundle extends MirebalaisMetadataBundle {
         install(Privileges.TASK_COREAPPS_CREATE_RETRO_VISIT);
         install(Privileges.TASK_COREAPPS_CREATE_VISIT);
         install(Privileges.TASK_COREAPPS_END_VISIT);
+        install(Privileges.TASK_COREAPPS_DELETE_VISIT);
         install(Privileges.TASK_COREAPPS_MERGE_VISITS);
         install(Privileges.TASK_DISPENSING_DISPENSE);
         install(Privileges.TASK_DISPENSING_EDIT);
-        install(Privileges.TASK_EMR_CHECKIN);
+        install(Privileges.TASK_EMR_CHECK_IN);
         install(Privileges.TASK_EMR_DEATH_CERTIFICATE_FORM);
         install(Privileges.TASK_EMR_ENTER_ADMISSION_NOTE);
         install(Privileges.TASK_EMR_ENTER_CONSULT_NOTE);
@@ -62,7 +63,6 @@ public class RolesAndPrivilegesBundle extends MirebalaisMetadataBundle {
         install(Privileges.TASK_EMR_ENTER_VITALS_NOTE);
         install(Privileges.TASK_EMR_PATIENT_ENCOUNTER_DELETE);
         install(Privileges.TASK_EMR_PATIENT_ENCOUNTER_EDIT);
-        install(Privileges.TASK_EMR_PATIENT_VISIT_DELETE);
         install(Privileges.TASK_EMR_PRINT_LABELS);
         install(Privileges.TASK_EMR_PRINT_WRISTBAND);
         install(Privileges.TASK_EMR_RETRO_CLINICAL_NOTE);
@@ -74,6 +74,7 @@ public class RolesAndPrivilegesBundle extends MirebalaisMetadataBundle {
         install(Privileges.TASK_RADIOLOGYAPP_TAB);
 
         log.info("Retiring old privileges");
+
         uninstall(possible(Privilege.class, Privileges.RETIRED_APP_APPOINTMENTSCHEDULING_OLDUI.uuid()), "no longer used");
         uninstall(possible(Privilege.class, Privileges.RETIRED_APP_APPOINTMENTSCHEDULINGUI_SCHEDULE_APPOINTMENT.uuid()), "no longer used");
         uninstall(possible(Privilege.class, Privileges.RETIRED_APP_EMR_ACTIVE_VISITS.uuid()), "no longer used");
@@ -87,21 +88,43 @@ public class RolesAndPrivilegesBundle extends MirebalaisMetadataBundle {
         uninstall(possible(Privilege.class, Privileges.RETIRED_TASK_EMR_PRINT_PAPER_RECORD_LABELS.uuid()), "no longer used");
 
         log.info("Installing roles");
-        install(Roles.PATIENT_MEDICAL_INFORMATION);
-        install(Roles.ARCHIVIST_AIDE);
-        install(Roles.CHECK_IN);
-        install(Roles.CLINICAL);
-        install(Roles.DATA_ARCHIVES);
-        install(Roles.PATIENT_MEDICAL_INFORMATION);
+
+        install(Roles.SYSTEM_ADMINISTRATOR);
+        install(Roles.SCHEDULE_MANAGER);
         install(Roles.PHARMACIST);
         install(Roles.PHARMACY_AIDE);
-        install(Roles.RADIOLOGY);
-        install(Roles.REPORTS);
-        install(Roles.SCHEDULE_ADMINISTRATOR);
-        install(Roles.SCHEDULER);
-        install(Roles.SCHEDULE_MANAGER);
-        install(Roles.SCHEDULE_VIEWER);
-        install(Roles.SYSTEM_ADMINISTRATOR);
+        install(Roles.GENERAL_ADMINISTRATION);
+        install(Roles.CLINICAL_MANAGER);
+        install(Roles.MEQ);
+        install(Roles.ARCHIVIST_CLERK);
+        install(Roles.ARCHIVIST_MANAGER);
+        install(Roles.AUXILIARY_NURSE);
+        install(Roles.NURSE);
+        install(Roles.ADVANCED_PRACTICE_NURSE);
+        install(Roles.RADIOLOGY_TECHNICIAN);
+        install(Roles.PHARMACIST);
+        install(Roles.PHARMACY_AIDE);
+        install(Roles.PHARMACY_MANAGER);
+        install(Roles.MEDICAL_STUDENT);
+        install(Roles.RESIDENT);
+        install(Roles.PHYSICIAN);
+        install(Roles.SURGEON);
+        install(Roles.ANAESTHETIST);
+        install(Roles.PSYCHOLOGIST);
+        install(Roles.PHYSICAL_THERAPIST);
+        install(Roles.SOCIAL_WORKER);
+
+        install(Roles.LEGACY_CLINICAL);
+        install(Roles.LEGACY_DATA_ARCHIVES);
+        install(Roles.LEGACY_RADIOLOGY);
+        install(Roles.LEGACY_REPORTS);
+        install(Roles.LEGACY_ARCHIVIST_AIDE);
+        install(Roles.LEGACY_SCHEDULE_ADMINISTRATOR);
+        install(Roles.LEGACY_SCHEDULER);
+        install(Roles.LEGACY_SCHEDULE_VIEWER);
+        install(Roles.LEGACY_PATIENT_MEDICAL_INFORMATION);
+        install(Roles.LEGACY_CHECK_IN);
+
 
     }
 

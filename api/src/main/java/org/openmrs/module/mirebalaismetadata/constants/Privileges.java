@@ -252,7 +252,7 @@ public class Privileges {
         public String description() { return "Gives permission to a user to edit a patient encounter"; }
     };
 
-    public static PrivilegeDescriptor TASK_EMR_PATIENT_VISIT_DELETE = new PrivilegeDescriptor() {
+    public static PrivilegeDescriptor TASK_COREAPPS_DELETE_VISIT = new PrivilegeDescriptor() {
         public String uuid() { return "6cdc5785-ee5c-48af-a2a2-7a574721fa97"; }
         public String privilege() { return "Task: emr.patient.visit.delete"; }
         public String description() { return "User has ability to delete a visit"; }
@@ -282,7 +282,7 @@ public class Privileges {
         public String description() { return "Ability to retrospectively enter a consult note for provider user."; }
     };
 
-    public static PrivilegeDescriptor TASK_EMR_CHECKIN = new PrivilegeDescriptor() {
+    public static PrivilegeDescriptor TASK_EMR_CHECK_IN = new PrivilegeDescriptor() {
         public String uuid() { return "1a819ef6-4632-4d2e-8227-7bdf9e8e273a"; }
         public String privilege() { return "Task: mirebalais.checkinForm"; }
         public String description() { return "Ability to enter a Check In form from the patient dashboard."; }
