@@ -124,8 +124,8 @@ public class Roles {
 
     public static RoleDescriptor ARCHIVIST_MANAGER = new RoleDescriptor() {
         public String uuid() { return "a5559530-e78a-11e4-b571-0800200c9a66"; }
-        public String role() { return "Application Role: archivistClerk"; }
-        public String description() { return "Application Role: archivistClerk"; }
+        public String role() { return "Application Role: archivistManager"; }
+        public String description() { return "Application Role: archivistManager"; }
         public Set<String> inherited() { return null; }
         public Set<String> privileges() {
             return new HashSet<String>(Arrays.asList(
