@@ -16,15 +16,15 @@ package org.openmrs.module.mirebalaismetadata.deploy.bundle;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.PatientIdentifierType;
 import org.openmrs.module.coreapps.CoreAppsConstants;
 import org.openmrs.module.emr.EmrConstants;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.htmlformentry.HtmlFormEntryConstants;
-import org.openmrs.module.idgen.validator.LuhnMod30IdentifierValidator;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
+import org.openmrs.module.metadatadeploy.bundle.Requires;
 import org.openmrs.module.mirebalaismetadata.constants.LocationTags;
 import org.openmrs.module.mirebalaismetadata.constants.Locations;
+import org.openmrs.module.mirebalaismetadata.constants.PatientIdentifierTypes;
 import org.openmrs.module.namephonetics.NamePhoneticsConstants;
 import org.openmrs.module.paperrecord.PaperRecordConstants;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
@@ -39,26 +39,16 @@ import org.springframework.stereotype.Component;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterRole;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.patientIdentifierType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.personAttributeType;
-import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.visitType;
+import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.*;
 
 /**
  * Core metadata bundle
  */
 @Component
+@Requires( { PatientIdentifierTypeBundle.class, LocationBundle.class } )
 public class CoreMetadata extends MirebalaisMetadataBundle {
 
 	protected Log log = LogFactory.getLog(getClass());
-
-	public static final class PatientIdentifierTypes {
-		public static final String HIVEMR_V1 = "139766e8-15f5-102d-96e4-000c29c2a5d7";
-		public static final String EXTERNAL_DOSSIER_NUMBER = "9dbea4d4-35a9-4793-959e-952f2a9f5347";
-		public static final String DOSSIER_NUMBER = "e66645eb-03a8-4991-b4ce-e87318e37566";
-		public static final String ZL_EMR_ID = "a541af1e-105c-40bf-b345-ba1fd6a59b85";
-	}
 
 	public static final class VisitTypes {
 		public static final String CLINIC_OR_HOSPITAL_VISIT = "f01c54cb-2225-471a-9cd5-d348552c337c";
@@ -125,7 +115,6 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 	public static final String DEFAULT_DATETIME_FORMAT = DEFAULT_DATE_FORMAT + " " + DEFAULT_TIME_FORMAT;
 	public static final String DEFAULT_LOCALE = "fr";
 
-	private static final String ZL_EMR_ID_NAME = "ZL EMR ID";
 	private static final String PROVIDER_IDENTIFIER_NAME = "Provider Identifier";
 	private static final String TELEPHONE_NUMBER_NAME = "Telephone Number";
     private static final String BIRTHPLACE = "Place of birth";
@@ -141,21 +130,6 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 	 */
 	@Override
 	public void install() {
-
-		log.info("Installing Core Identifier Types");
-
-		install(patientIdentifierType("HIVEMR-V1", "Internal EMR ID for this Patient in the Haiti EMR V1 system",
-				null, null, null, PatientIdentifierType.LocationBehavior.NOT_USED, false, PatientIdentifierTypes.HIVEMR_V1));
-
-		install(patientIdentifierType("External Nimewo Dosye", "External Dossier number",
-				null, null, null, PatientIdentifierType.LocationBehavior.NOT_USED, false, PatientIdentifierTypes.EXTERNAL_DOSSIER_NUMBER));
-
-		install(patientIdentifierType("Nimewo Dosye", "Patient&apos;s Dossier number",
-				"\\w{1,3}\\d{6}", "A000001", null, PatientIdentifierType.LocationBehavior.REQUIRED, false, PatientIdentifierTypes.DOSSIER_NUMBER));
-
-		install(patientIdentifierType(ZL_EMR_ID_NAME, "A unique identifier issued to all patients by the ZL EMR.  Blocks of this identifier are issued to each site to prevent duplication, so the identifier is unique across all sites.  The identifier uses six digits and is alphanumeric base 30, omitting the letters B, I, O, Q, S and Z as these can be confused with 8, 1, 0, 0, 5 and 2",
-				null, null, LuhnMod30IdentifierValidator.class, PatientIdentifierType.LocationBehavior.NOT_USED, false, PatientIdentifierTypes.ZL_EMR_ID));
-
 
 		log.info("Installing Core Visit Types");
 
@@ -242,7 +216,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		properties.put(EmrApiConstants.GP_EXIT_FROM_INPATIENT_ENCOUNTER_TYPE, EncounterTypes.EXIT_FROM_CARE);
 		properties.put(EmrApiConstants.GP_TRANSFER_WITHIN_HOSPITAL_ENCOUNTER_TYPE, EncounterTypes.TRANSFER);
 		properties.put(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.DOSSIER_NUMBER + "," + PatientIdentifierTypes.HIVEMR_V1);
-		properties.put(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, ZL_EMR_ID_NAME);
+		properties.put(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.ZL_EMR_ID.name());
 		properties.put(EmrApiConstants.GP_DIAGNOSIS_SET_OF_SETS, Concepts.DIAGNOSIS_SET_OF_SETS);
 		properties.put(EmrApiConstants.GP_UNKNOWN_LOCATION, Locations.UNKNOWN.uuid());
 		properties.put(EmrApiConstants.GP_ADMISSION_FORM, Forms.ADMISSION);
@@ -275,9 +249,9 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		properties.put(PatientRegistrationGlobalProperties.ID_CARD_LABEL_TEXT, "Zanmi Lasante Patient ID Card");
 		properties.put(PatientRegistrationGlobalProperties.BIRTH_YEAR_INTERVAL, "1");
 		properties.put(PatientRegistrationGlobalProperties.MEDICAL_RECORD_LOCATION_TAG, LocationTags.MEDICAL_RECORD_LOCATION.uuid());
-		properties.put(PatientRegistrationGlobalProperties.PRIMARY_IDENTIFIER_TYPE, ZL_EMR_ID_NAME);
-		properties.put(PatientRegistrationGlobalProperties.NUMERO_DOSSIER, PatientIdentifierTypes.DOSSIER_NUMBER);
-		properties.put(PatientRegistrationGlobalProperties.EXTERNAL_NUMERO_DOSSIER, PatientIdentifierTypes.EXTERNAL_DOSSIER_NUMBER);
+		properties.put(PatientRegistrationGlobalProperties.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.ZL_EMR_ID.name());
+		properties.put(PatientRegistrationGlobalProperties.NUMERO_DOSSIER, PatientIdentifierTypes.DOSSIER_NUMBER.uuid());
+		properties.put(PatientRegistrationGlobalProperties.EXTERNAL_NUMERO_DOSSIER, PatientIdentifierTypes.EXTERNAL_DOSSIER_NUMBER.uuid());
 		properties.put(PatientRegistrationGlobalProperties.PROVIDER_IDENTIFIER_PERSON_ATTRIBUTE_TYPE, PROVIDER_IDENTIFIER_NAME);
 		properties.put(PatientRegistrationGlobalProperties.ID_CARD_PERSON_ATTRIBUTE_TYPE, TELEPHONE_NUMBER_NAME);
 		properties.put(PatientRegistrationGlobalProperties.PATIENT_VIEWING_ATTRIBUTE_TYPES, TELEPHONE_NUMBER_NAME);
@@ -298,8 +272,8 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		properties.put(PatientRegistrationGlobalProperties.ICD10_CONCEPT_SOURCE, "ICD-10");
 		
 		// Paper Record
-		properties.put(PaperRecordConstants.GP_PAPER_RECORD_IDENTIFIER_TYPE, PatientIdentifierTypes.DOSSIER_NUMBER);
-		properties.put(PaperRecordConstants.GP_EXTERNAL_DOSSIER_IDENTIFIER_TYPE, PatientIdentifierTypes.EXTERNAL_DOSSIER_NUMBER);
+		properties.put(PaperRecordConstants.GP_PAPER_RECORD_IDENTIFIER_TYPE, PatientIdentifierTypes.DOSSIER_NUMBER.uuid());
+		properties.put(PaperRecordConstants.GP_EXTERNAL_DOSSIER_IDENTIFIER_TYPE, PatientIdentifierTypes.EXTERNAL_DOSSIER_NUMBER.uuid());
 
         // Core Apps
         properties.put(CoreAppsConstants.GP_SEARCH_DELAY_SHORT, "500");

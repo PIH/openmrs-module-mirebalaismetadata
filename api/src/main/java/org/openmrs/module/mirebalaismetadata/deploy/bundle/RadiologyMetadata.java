@@ -18,6 +18,7 @@ import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.openmrs.module.metadatadeploy.bundle.Requires;
 import org.openmrs.module.mirebalaismetadata.constants.LocationAttributeTypes;
+import org.openmrs.module.mirebalaismetadata.constants.PatientIdentifierTypes;
 import org.openmrs.module.pacsintegration.PacsIntegrationConstants;
 import org.openmrs.module.pihcore.deploy.bundle.CoreConceptMetadataBundle;
 import org.openmrs.module.radiologyapp.RadiologyConstants;
@@ -107,7 +108,7 @@ public class RadiologyMetadata extends MirebalaisMetadataBundle {
 		properties.put(RadiologyConstants.GP_LEAD_RADIOLOGY_TECH_CONTACT_INFO, "4868-9765");
 		
 		// PACS Integration
-		properties.put(PacsIntegrationConstants.GP_PATIENT_IDENTIFIER_TYPE_UUID, CoreMetadata.PatientIdentifierTypes.ZL_EMR_ID);
+		properties.put(PacsIntegrationConstants.GP_PATIENT_IDENTIFIER_TYPE_UUID, PatientIdentifierTypes.ZL_EMR_ID.uuid());
 		properties.put(PacsIntegrationConstants.GP_DEFAULT_LOCALE, "en");
 		properties.put(PacsIntegrationConstants.GP_SENDING_FACILITY, "Mirebalais");
 		properties.put(PacsIntegrationConstants.GP_PROCEDURE_CODE_CONCEPT_SOURCE_UUID, CoreConceptMetadataBundle.ConceptSources.LOINC);

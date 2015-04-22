@@ -20,6 +20,7 @@ import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
+import org.openmrs.module.mirebalaismetadata.constants.PatientIdentifierTypes;
 import org.openmrs.module.mirebalaismetadata.deploy.bundle.CoreMetadata;
 import org.openmrs.module.mirebalaismetadata.deploy.bundle.RadiologyMetadata;
 import org.openmrs.module.pacsintegration.PacsIntegrationConstants;
@@ -139,7 +140,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 	}
 
 	private void verifyPacsIntegrationGlobalPropertiesConfigured() throws Exception {
-		assertEquals(CoreMetadata.PatientIdentifierTypes.ZL_EMR_ID, adminService.getGlobalProperty(PacsIntegrationConstants.GP_PATIENT_IDENTIFIER_TYPE_UUID));
+		assertEquals(PatientIdentifierTypes.ZL_EMR_ID.uuid(), adminService.getGlobalProperty(PacsIntegrationConstants.GP_PATIENT_IDENTIFIER_TYPE_UUID));
 		assertEquals("en", adminService.getGlobalProperty(PacsIntegrationConstants.GP_DEFAULT_LOCALE));
 		assertEquals("Mirebalais", adminService.getGlobalProperty(PacsIntegrationConstants.GP_SENDING_FACILITY));
 		assertEquals(CoreConceptMetadataBundle.ConceptSources.LOINC, adminService.getGlobalProperty(PacsIntegrationConstants.GP_PROCEDURE_CODE_CONCEPT_SOURCE_UUID));

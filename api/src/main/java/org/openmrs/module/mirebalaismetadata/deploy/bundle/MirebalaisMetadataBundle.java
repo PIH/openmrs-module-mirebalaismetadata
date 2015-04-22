@@ -94,6 +94,7 @@ public abstract class MirebalaisMetadataBundle extends AbstractMetadataBundle {
 			log.warn("Skipping refresh of MDS package: " + filename);
 			return false;
 		}
+		log.warn("Installing Metadata Sharing package: " + filename);
 		install(packageFile(filename, null, groupUuid));
 		return true;
 	}
