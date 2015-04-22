@@ -215,7 +215,7 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		properties.put(EmrApiConstants.GP_ADMISSION_ENCOUNTER_TYPE, EncounterTypes.ADMISSION);
 		properties.put(EmrApiConstants.GP_EXIT_FROM_INPATIENT_ENCOUNTER_TYPE, EncounterTypes.EXIT_FROM_CARE);
 		properties.put(EmrApiConstants.GP_TRANSFER_WITHIN_HOSPITAL_ENCOUNTER_TYPE, EncounterTypes.TRANSFER);
-		properties.put(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.DOSSIER_NUMBER + "," + PatientIdentifierTypes.HIVEMR_V1);
+		properties.put(EmrApiConstants.GP_EXTRA_PATIENT_IDENTIFIER_TYPES, PatientIdentifierTypes.DOSSIER_NUMBER.uuid() + "," + PatientIdentifierTypes.HIVEMR_V1.uuid());
 		properties.put(EmrApiConstants.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.ZL_EMR_ID.name());
 		properties.put(EmrApiConstants.GP_DIAGNOSIS_SET_OF_SETS, Concepts.DIAGNOSIS_SET_OF_SETS);
 		properties.put(EmrApiConstants.GP_UNKNOWN_LOCATION, Locations.UNKNOWN.uuid());
