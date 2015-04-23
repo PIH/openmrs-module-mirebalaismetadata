@@ -1,5 +1,6 @@
 package org.openmrs.module.mirebalaismetadata.deploy.bundle;
 
+import org.openmrs.PersonAttributeType;
 import org.openmrs.module.metadatadeploy.bundle.CoreConstructors;
 import org.openmrs.module.mirebalaismetadata.constants.PersonAttributeTypes;
 import org.openmrs.module.mirebalaismetadata.descriptor.PersonAttributeTypeDescriptor;
@@ -17,7 +18,13 @@ public class PersonAttributeTypeBundle extends MirebalaisMetadataBundle {
         install(PersonAttributeTypes.UNKNOWN_PATIENT);
         install(PersonAttributeTypes.MOTHERS_FIRST_NAME);
         install(PersonAttributeTypes.BIRTHPLACE);
+
+        log.info("Retiring old person attribute types");
+        // the mother's name attribute was incorrectly added with a leading space in the uuid, we should remove this
+        uninstall(possible(PersonAttributeType.class, " 8d871d18-c2cc-11de-8d13-0010c6dffd0f"), "invalid uuid");
+
     }
+
 
     //***** BUNDLE INSTALLATION METHODS FOR DESCRIPTORS
 
