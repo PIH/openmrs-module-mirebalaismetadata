@@ -25,6 +25,7 @@ import org.openmrs.module.metadatadeploy.bundle.Requires;
 import org.openmrs.module.mirebalaismetadata.constants.LocationTags;
 import org.openmrs.module.mirebalaismetadata.constants.Locations;
 import org.openmrs.module.mirebalaismetadata.constants.PatientIdentifierTypes;
+import org.openmrs.module.mirebalaismetadata.constants.PersonAttributeTypes;
 import org.openmrs.module.namephonetics.NamePhoneticsConstants;
 import org.openmrs.module.paperrecord.PaperRecordConstants;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
@@ -45,21 +46,13 @@ import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.*;
  * Core metadata bundle
  */
 @Component
-@Requires( { PatientIdentifierTypeBundle.class, LocationBundle.class } )
+@Requires( { PatientIdentifierTypeBundle.class, LocationBundle.class, PersonAttributeTypeBundle.class } )
 public class CoreMetadata extends MirebalaisMetadataBundle {
 
 	protected Log log = LogFactory.getLog(getClass());
 
 	public static final class VisitTypes {
 		public static final String CLINIC_OR_HOSPITAL_VISIT = "f01c54cb-2225-471a-9cd5-d348552c337c";
-	}
-
-	public static final class PersonAttributeTypes {
-		public static final String PROVIDER_IDENTIFIER = "6de6c415-97a2-4cca-817a-9501cd9ef382";
-		public static final String TELEPHONE_NUMBER = "14d4f066-15f5-102d-96e4-000c29c2a5d7";
-		public static final String UNKNOWN_PATIENT = "8b56eac7-5c76-4b9c-8c6f-1deab8d3fc47";
-        public static final String BIRTHPLACE = "8d8718c2-c2cc-11de-8d13-0010c6dffd0f";
-        public static final String MOTHERS_NAME = " 8d871d18-c2cc-11de-8d13-0010c6dffd0f";
 	}
 
 	public static final class EncounterTypes {
@@ -115,10 +108,6 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 	public static final String DEFAULT_DATETIME_FORMAT = DEFAULT_DATE_FORMAT + " " + DEFAULT_TIME_FORMAT;
 	public static final String DEFAULT_LOCALE = "fr";
 
-	private static final String PROVIDER_IDENTIFIER_NAME = "Provider Identifier";
-	private static final String TELEPHONE_NUMBER_NAME = "Telephone Number";
-    private static final String BIRTHPLACE = "Place of birth";
-    private static final String MOTHERS_FIRST_NAME = "Mother's First Name";
 	private static final String REGISTRATION_ENCOUNTER_NAME = "Enregistrement de patient";
 	private static final String CHECK_IN_ENCOUNTER_NAME = "Inscription";
 	private static final String PRIMARY_CARE_VISIT_ENCOUNTER_NAME = "Consultation soins de base";
@@ -134,14 +123,6 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		log.info("Installing Core Visit Types");
 
 		install(visitType("Clinic or Hospital Visit", "Patient visits the clinic/hospital (as opposed to a home visit, or telephone contact)", VisitTypes.CLINIC_OR_HOSPITAL_VISIT));
-
-		log.info("Installing core Person Attribute Types");
-
-		install(personAttributeType(PROVIDER_IDENTIFIER_NAME, "", String.class, null, true, 12, PersonAttributeTypes.PROVIDER_IDENTIFIER));
-		install(personAttributeType(TELEPHONE_NUMBER_NAME, "The telephone number for the person", String.class, null, false, 7, PersonAttributeTypes.TELEPHONE_NUMBER));
-		install(personAttributeType("Unknown patient", "Used to flag patients that cannot be identified during the check-in process", String.class, null, false, 13, PersonAttributeTypes.UNKNOWN_PATIENT));
-        install(personAttributeType(MOTHERS_FIRST_NAME, "First name of the patient's mother, used for identification", String.class, null, false, 14, PersonAttributeTypes.MOTHERS_NAME));
-        install(personAttributeType(BIRTHPLACE, "Location of persons birth, used for identification", String.class, null, false, 15, PersonAttributeTypes.BIRTHPLACE));
 
 		log.info("Installing core Encounter Types");
 
@@ -249,9 +230,9 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		properties.put(PatientRegistrationGlobalProperties.PRIMARY_IDENTIFIER_TYPE, PatientIdentifierTypes.ZL_EMR_ID.name());
 		properties.put(PatientRegistrationGlobalProperties.NUMERO_DOSSIER, PatientIdentifierTypes.DOSSIER_NUMBER.uuid());
 		properties.put(PatientRegistrationGlobalProperties.EXTERNAL_NUMERO_DOSSIER, PatientIdentifierTypes.EXTERNAL_DOSSIER_NUMBER.uuid());
-		properties.put(PatientRegistrationGlobalProperties.PROVIDER_IDENTIFIER_PERSON_ATTRIBUTE_TYPE, PROVIDER_IDENTIFIER_NAME);
-		properties.put(PatientRegistrationGlobalProperties.ID_CARD_PERSON_ATTRIBUTE_TYPE, TELEPHONE_NUMBER_NAME);
-		properties.put(PatientRegistrationGlobalProperties.PATIENT_VIEWING_ATTRIBUTE_TYPES, TELEPHONE_NUMBER_NAME);
+		properties.put(PatientRegistrationGlobalProperties.PROVIDER_IDENTIFIER_PERSON_ATTRIBUTE_TYPE, PersonAttributeTypes.PROVIDER_IDENTIFIER.name());
+		properties.put(PatientRegistrationGlobalProperties.ID_CARD_PERSON_ATTRIBUTE_TYPE, PersonAttributeTypes.TELEPHONE_NUMBER.name());
+		properties.put(PatientRegistrationGlobalProperties.PATIENT_VIEWING_ATTRIBUTE_TYPES, PersonAttributeTypes.TELEPHONE_NUMBER.name());
 		properties.put(PatientRegistrationGlobalProperties.PATIENT_REGISTRATION_ENCOUNTER_TYPE, REGISTRATION_ENCOUNTER_NAME);
 		properties.put(PatientRegistrationGlobalProperties.PRIMARY_CARE_RECEPTION_ENCOUNTER_TYPE, CHECK_IN_ENCOUNTER_NAME);
 		properties.put(PatientRegistrationGlobalProperties.PRIMARY_CARE_VISIT_ENCOUNTER_TYPE, PRIMARY_CARE_VISIT_ENCOUNTER_NAME);
