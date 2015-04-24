@@ -46,8 +46,8 @@
     </modules>
 
     <properties>
-        <openMRSVersion>1.9.9-SNAPSHOT</openMRSVersion>
-        <openMRSwebVersion>1.9.9-SNAPSHOT</openMRSwebVersion>
+        <openMRSVersion>1.10.1</openMRSVersion>
+        <openMRSwebVersion>1.10.1</openMRSwebVersion>
         <mirebalaismetadataVersion>1.0-SNAPSHOT</mirebalaismetadataVersion>
         <mirebalaisreportsVersion>1.1-SNAPSHOT</mirebalaisreportsVersion>
         <pihcoreVersion>1.0-SNAPSHOT</pihcoreVersion>
@@ -143,14 +143,24 @@
             <version>${pihcoreVersion}</version>
             <scope>provided</scope>
         </dependency>
-
+   <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>emrapi-api</artifactId>
+            <version>${emrapiVersion}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>emrapi-api-1.10</artifactId>
+            <version>${emrapiVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+<dependency>  <!-- TODO figure out why we still need the 1.9 subproject -->
             <groupId>org.openmrs.module</groupId>
             <artifactId>emrapi-api-1.9</artifactId>
             <version>${emrapiVersion}</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.openmrs.module</groupId>
             <artifactId>addresshierarchy-api</artifactId>
@@ -193,6 +203,12 @@
         <dependency>
             <groupId>org.openmrs.module</groupId>
             <artifactId>htmlformentry-api</artifactId>
+            <version>${htmlformentryVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>htmlformentry-api-1.10</artifactId>
             <version>${htmlformentryVersion}</version>
             <scope>provided</scope>
         </dependency>
@@ -329,12 +345,12 @@
                     <properties>
                         <property>
                             <name>openMRSVersion</name>
-                            <version>[1.9.0,1.10.0-!)</version>
+                            <version>[1.10.0,1.11.0-!)</version>
                             <banSnapshots>true</banSnapshots>
                         </property>
                         <property>
                             <name>openMRSwebVersion</name>
-                            <version>[1.9.0,1.10.0-!)</version>
+                            <version>[1.10.0,1.11.0-!)</version>
                             <banSnapshots>true</banSnapshots>
                         </property>
                         <property>

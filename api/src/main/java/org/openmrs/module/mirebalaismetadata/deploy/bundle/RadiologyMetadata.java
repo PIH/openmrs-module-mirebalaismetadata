@@ -72,7 +72,7 @@ public class RadiologyMetadata extends MirebalaisMetadataBundle {
 		install(encounterType("Commande de radio", "Radiology Order  - the ordering of a radiology exam", EncounterTypes.RADIOLOGY_ORDER));
 		install(encounterType("Examen de radiologie", "Radiology Study - represents performance of a radiology study on a patient by a radiology technician", EncounterTypes.RADIOLOGY_STUDY));
 		install(encounterType("Rapport de radiologie", "Radiology Report - represents a report on a radiology study performed by a radiologist", EncounterTypes.RADIOLOGY_REPORT));
-		install(orderType("Radiology Test Order", "A radiology test order", OrderTypes.RADIOLOGY_TEST));
+		install(orderType("Radiology Test Order", "A radiology test order", OrderTypes.RADIOLOGY_TEST, "org.openmrs.module.radiologyapp.RadiologyOrder"));
 		install(encounterRole("Radiology Technician", "Radiology Technician - person who performs radiology studies", EncounterRoles.RADIOLOGY_TECHNICIAN));
 		install(encounterRole("Principal Results Interpreter", "Principal Results Interpreter - the provider responsible for interpreting the results of a radiology study", EncounterRoles.PRINCIPAL_RESULTS_INTERPRETER));
 
@@ -81,7 +81,7 @@ public class RadiologyMetadata extends MirebalaisMetadataBundle {
 			verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_PROCEDURE, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
 			verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_TYPE, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
 			verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_BODY, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
-			verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_ACCESSION_NUMBER, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
+			verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_ORDER_NUMBER, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
 			verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_IMAGES_AVAILABLE, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
 			verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_CORRECTION, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);
 			verifyConceptPresent(RadiologyConstants.CONCEPT_CODE_RADIOLOGY_REPORT_FINAL, EmrApiConstants.EMR_CONCEPT_SOURCE_NAME);

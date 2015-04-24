@@ -107,11 +107,12 @@ public abstract class MirebalaisMetadataBundle extends AbstractMetadataBundle {
 	 * @return the transient object
 	 */
 	@SuppressWarnings("deprecation")
-	protected static OrderType orderType(String name, String description, String uuid) {
+	protected static OrderType orderType(String name, String description, String uuid, String javaClassName) {
 		OrderType obj = new OrderType();
 		obj.setName(name);
 		obj.setDescription(description);
 		obj.setUuid(uuid);
+        obj.setJavaClassName(javaClassName);
 		return obj;
 	}
 }

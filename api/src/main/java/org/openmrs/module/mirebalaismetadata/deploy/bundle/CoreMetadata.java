@@ -167,7 +167,9 @@ public class CoreMetadata extends MirebalaisMetadataBundle {
 		properties.put(OpenmrsConstants.GP_PASSWORD_REQUIRES_DIGIT, "false");
 		properties.put(OpenmrsConstants.GP_PASSWORD_REQUIRES_NON_DIGIT, "false");
 		properties.put(OpenmrsConstants.GP_PASSWORD_REQUIRES_UPPER_AND_LOWER_CASE, "false");
-        properties.put(OpenmrsConstants.GP_CASE_SENSITIVE_DATABASE_STRING_COMPARISON, "false");
+
+        // removed from 1.10.x
+        //properties.put(OpenmrsConstants.GP_CASE_SENSITIVE_DATABASE_STRING_COMPARISON, "false");
 
 		// Html Form Entry
 		properties.put(HtmlFormEntryConstants.GP_DATE_FORMAT, DEFAULT_DATE_FORMAT);
