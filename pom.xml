@@ -143,24 +143,21 @@
             <version>${pihcoreVersion}</version>
             <scope>provided</scope>
         </dependency>
-   <dependency>
+
+        <dependency>
             <groupId>org.openmrs.module</groupId>
             <artifactId>emrapi-api</artifactId>
             <version>${emrapiVersion}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.openmrs.module</groupId>
             <artifactId>emrapi-api-1.10</artifactId>
             <version>${emrapiVersion}</version>
             <scope>provided</scope>
         </dependency>
-<dependency>  <!-- TODO figure out why we still need the 1.9 subproject -->
-            <groupId>org.openmrs.module</groupId>
-            <artifactId>emrapi-api-1.9</artifactId>
-            <version>${emrapiVersion}</version>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.openmrs.module</groupId>
             <artifactId>addresshierarchy-api</artifactId>
@@ -296,6 +293,15 @@
             <version>${appframeworkVersion}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- TODO figure out why we still need the 1.9 subproject for testing-->
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>emrapi-api-1.9</artifactId>
+            <version>${emrapiVersion}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
