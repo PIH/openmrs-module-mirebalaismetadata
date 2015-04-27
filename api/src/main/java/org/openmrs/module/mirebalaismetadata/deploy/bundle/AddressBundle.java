@@ -63,8 +63,7 @@ public class AddressBundle extends MirebalaisMetadataBundle {
         List<String> lineByLineFormat = new ArrayList<String>();
         lineByLineFormat.add("address2");
         lineByLineFormat.add("address1");
-        lineByLineFormat.add("address3");
-        lineByLineFormat.add("cityVillage");
+        lineByLineFormat.add("address3, cityVillage");
         lineByLineFormat.add("stateProvince, country");
         addressTemplate.setLineByLineFormat(lineByLineFormat);
 
