@@ -20,6 +20,7 @@ import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
+import org.openmrs.module.mirebalaismetadata.constants.OrderTypes;
 import org.openmrs.module.mirebalaismetadata.constants.PatientIdentifierTypes;
 import org.openmrs.module.mirebalaismetadata.deploy.bundle.CoreMetadata;
 import org.openmrs.module.mirebalaismetadata.deploy.bundle.RadiologyMetadata;
@@ -206,7 +207,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 
         // Verify a few pieces of sentinel data that should have been in the packages
         Assert.assertNotNull(Context.getLocationService().getLocationByUuid("a084f714-a536-473b-94e6-ec317b152b43")); // Mirebalais Hospital
-        Assert.assertNotNull(Context.getOrderService().getOrderTypeByUuid(RadiologyMetadata.OrderTypes.RADIOLOGY_TEST));
+        Assert.assertNotNull(Context.getOrderService().getOrderTypeByUuid(OrderTypes.RADIOLOGY_TEST_ORDER.uuid()));
         Assert.assertNotNull((conceptService.getConceptByMapping("TEMPERATURE (C)", "PIH")));
         Assert.assertNotNull(Context.getService((ProviderManagementService.class)).getProviderRoleByUuid("61eed524-4547-4228-a3ac-631fe1628a5e"));
 

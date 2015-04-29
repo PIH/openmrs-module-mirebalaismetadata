@@ -98,21 +98,4 @@ public abstract class MirebalaisMetadataBundle extends AbstractMetadataBundle {
 		install(packageFile(filename, null, groupUuid));
 		return true;
 	}
-
-	/**
-	 * Constructs an order type
-	 * @param name the name
-	 * @param description the description
-	 * @param uuid the UUID
-	 * @return the transient object
-	 */
-	@SuppressWarnings("deprecation")
-	protected static OrderType orderType(String name, String description, String uuid, String javaClassName) {
-		OrderType obj = new OrderType();
-		obj.setName(name);
-		obj.setDescription(description);
-		obj.setUuid(uuid);
-        obj.setJavaClassName(javaClassName);
-		return obj;
-	}
 }

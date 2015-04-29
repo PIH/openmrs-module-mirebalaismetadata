@@ -18,6 +18,7 @@ import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.openmrs.module.metadatadeploy.bundle.Requires;
 import org.openmrs.module.mirebalaismetadata.constants.LocationAttributeTypes;
+import org.openmrs.module.mirebalaismetadata.constants.OrderTypes;
 import org.openmrs.module.mirebalaismetadata.constants.PatientIdentifierTypes;
 import org.openmrs.module.pacsintegration.PacsIntegrationConstants;
 import org.openmrs.module.pihcore.deploy.bundle.CoreConceptMetadataBundle;
@@ -43,10 +44,6 @@ public class RadiologyMetadata extends MirebalaisMetadataBundle {
 		public static final String RADIOLOGY_REPORT = "d5ca53a7-d3b5-44ac-9aa2-1491d2a4b4e9";
 	}
 
-	public static final class OrderTypes {
-		public static final String RADIOLOGY_TEST = "5a3a8d2e-97c3-4797-a6a8-5417e6e699ec";
-	}
-
 	public static final class EncounterRoles {
 		public static final String RADIOLOGY_TECHNICIAN = "8f4d96e2-c97c-4285-9319-e56b9ba6029c";
 		public static final String PRINCIPAL_RESULTS_INTERPRETER = "08f73be2-9452-44b5-801b-bdf7418c2f71";
@@ -69,10 +66,11 @@ public class RadiologyMetadata extends MirebalaisMetadataBundle {
 	 */
 	@Override
 	public void install() {
+
+        // note that the radiology order type itself is installed as part of the OrderTypes bundle
 		install(encounterType("Commande de radio", "Radiology Order  - the ordering of a radiology exam", EncounterTypes.RADIOLOGY_ORDER));
 		install(encounterType("Examen de radiologie", "Radiology Study - represents performance of a radiology study on a patient by a radiology technician", EncounterTypes.RADIOLOGY_STUDY));
 		install(encounterType("Rapport de radiologie", "Radiology Report - represents a report on a radiology study performed by a radiologist", EncounterTypes.RADIOLOGY_REPORT));
-		install(orderType("Radiology Test Order", "A radiology test order", OrderTypes.RADIOLOGY_TEST, "org.openmrs.module.radiologyapp.RadiologyOrder"));
 		install(encounterRole("Radiology Technician", "Radiology Technician - person who performs radiology studies", EncounterRoles.RADIOLOGY_TECHNICIAN));
 		install(encounterRole("Principal Results Interpreter", "Principal Results Interpreter - the provider responsible for interpreting the results of a radiology study", EncounterRoles.PRINCIPAL_RESULTS_INTERPRETER));
 
@@ -96,7 +94,7 @@ public class RadiologyMetadata extends MirebalaisMetadataBundle {
 		properties.put(RadiologyConstants.GP_RADIOLOGY_ORDER_ENCOUNTER_TYPE, EncounterTypes.RADIOLOGY_ORDER);
 		properties.put(RadiologyConstants.GP_RADIOLOGY_STUDY_ENCOUNTER_TYPE, EncounterTypes.RADIOLOGY_STUDY);
 		properties.put(RadiologyConstants.GP_RADIOLOGY_REPORT_ENCOUNTER_TYPE, EncounterTypes.RADIOLOGY_REPORT);
-		properties.put(RadiologyConstants.GP_RADIOLOGY_TEST_ORDER_TYPE, OrderTypes.RADIOLOGY_TEST);
+		properties.put(RadiologyConstants.GP_RADIOLOGY_TEST_ORDER_TYPE, OrderTypes.RADIOLOGY_TEST_ORDER.uuid());
 		properties.put(RadiologyConstants.GP_XRAY_ORDERABLES_CONCEPT, Concepts.XRAY_ORDERABLES);
 		properties.put(RadiologyConstants.GP_CT_SCAN_ORDERABLES_CONCEPT, Concepts.CT_SCAN_ORDERABLES);
 		properties.put(RadiologyConstants.GP_ULTRASOUND_ORDERABLES_CONCEPT, Concepts.ULTRASOUND_ORDERABLES);
