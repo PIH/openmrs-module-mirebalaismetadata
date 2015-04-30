@@ -224,7 +224,7 @@ public class Locations {
 
 	public static LocationDescriptor OUTPATIENT_CLINIC_PHARMACY = new LocationDescriptor() {
 		public String uuid() { return "79892ece-79f1-4674-abb5-a52c1898c762"; }
-		public String name() { return "Klinik Exten Famasi"; }
+		public String name() { return "Klinik Ekstèn Famasi"; }
 		public String description() { return "Outpatient Clinic Pharmacy at Mirebalais Hospital. For adults. Women with general medical conditions are also seen here."; }
 		public LocationDescriptor parent() { return Locations.OUTPATIENT_CLINIC; }
 		public List<LocationAttributeDescriptor> attributes() { return Collections.singletonList(LocationAttributes.OUTPATIENT_CLINIC_PHARMACY_LOCATION_CODE); }
