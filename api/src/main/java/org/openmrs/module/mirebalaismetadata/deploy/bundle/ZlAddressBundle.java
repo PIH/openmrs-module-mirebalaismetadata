@@ -2,6 +2,7 @@ package org.openmrs.module.mirebalaismetadata.deploy.bundle;
 
 import org.openmrs.api.SerializationService;
 import org.openmrs.layout.web.address.AddressTemplate;
+import org.openmrs.module.pihcore.deploy.bundle.PihMetadataBundle;
 import org.openmrs.util.OpenmrsConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class AddressBundle extends MirebalaisMetadataBundle {
+public class ZlAddressBundle extends PihMetadataBundle {
 
     @Autowired
     SerializationService serializationService;

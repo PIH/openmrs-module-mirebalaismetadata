@@ -112,7 +112,12 @@
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
-
+ <dependency>
+            <groupId>org.openmrs.web</groupId>
+            <artifactId>openmrs-web</artifactId>
+            <version>${openMRSVersion}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.openmrs.test</groupId>
             <artifactId>openmrs-test</artifactId>
@@ -213,12 +218,6 @@
             <groupId>org.openmrs.module</groupId>
             <artifactId>reporting-api</artifactId>
             <version>${reportingVersion}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.openmrs.web</groupId>
-            <artifactId>openmrs-web</artifactId>
-            <version>${openMRSVersion}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

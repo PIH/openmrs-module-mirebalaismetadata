@@ -25,13 +25,12 @@ import org.openmrs.module.metadatasharing.ImportConfig;
 import org.openmrs.module.metadatasharing.ImportedItem;
 import org.openmrs.module.metadatasharing.MetadataSharing;
 import org.openmrs.module.metadatasharing.wrapper.PackageImporter;
-import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-public class FindMetadataInPackage extends BaseModuleContextSensitiveTest {
+public class FindMetadataInPackageTest extends BaseMirebalaisMetadataContextSensitiveTest {
 
     public List<String> uuidsToFind = Arrays.asList("3cd6f600-26fe-102b-80cb-0017a47871b2");
 

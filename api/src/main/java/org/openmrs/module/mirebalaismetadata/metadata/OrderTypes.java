@@ -1,6 +1,6 @@
-package org.openmrs.module.mirebalaismetadata.constants;
+package org.openmrs.module.mirebalaismetadata.metadata;
 
-import org.openmrs.module.mirebalaismetadata.descriptor.OrderTypeDescriptor;
+import org.openmrs.module.pihcore.descriptor.OrderTypeDescriptor;import java.lang.String;
 
 public class OrderTypes {
 

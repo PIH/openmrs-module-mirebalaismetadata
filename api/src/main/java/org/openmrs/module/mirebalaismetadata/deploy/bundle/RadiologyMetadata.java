@@ -17,11 +17,12 @@ package org.openmrs.module.mirebalaismetadata.deploy.bundle;
 import org.openmrs.module.emrapi.EmrApiConstants;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import org.openmrs.module.metadatadeploy.bundle.Requires;
-import org.openmrs.module.mirebalaismetadata.constants.LocationAttributeTypes;
-import org.openmrs.module.mirebalaismetadata.constants.OrderTypes;
-import org.openmrs.module.mirebalaismetadata.constants.PatientIdentifierTypes;
+import org.openmrs.module.mirebalaismetadata.metadata.OrderTypes;
 import org.openmrs.module.pacsintegration.PacsIntegrationConstants;
 import org.openmrs.module.pihcore.deploy.bundle.CoreConceptMetadataBundle;
+import org.openmrs.module.pihcore.deploy.bundle.PihMetadataBundle;
+import org.openmrs.module.pihcore.metadata.LocationAttributeTypes;
+import org.openmrs.module.pihcore.metadata.PatientIdentifierTypes;
 import org.openmrs.module.radiologyapp.RadiologyConstants;
 import org.springframework.stereotype.Component;
 
@@ -34,9 +35,9 @@ import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounte
 /**
  * Radiology metadata bundle
  */
-@Requires({ CoreMetadata.class })
+@Requires({ ZlMetadata.class })
 @Component
-public class RadiologyMetadata extends MirebalaisMetadataBundle {
+public class RadiologyMetadata extends PihMetadataBundle {
 
 	public static final class EncounterTypes {
 		public static final String RADIOLOGY_ORDER = "1b3d1e13-f0b1-4b83-86ea-b1b1e2fb4efa";

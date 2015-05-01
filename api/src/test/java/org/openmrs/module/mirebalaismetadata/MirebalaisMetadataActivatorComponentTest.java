@@ -20,15 +20,15 @@ import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
-import org.openmrs.module.mirebalaismetadata.constants.OrderTypes;
-import org.openmrs.module.mirebalaismetadata.constants.PatientIdentifierTypes;
-import org.openmrs.module.mirebalaismetadata.deploy.bundle.CoreMetadata;
 import org.openmrs.module.mirebalaismetadata.deploy.bundle.RadiologyMetadata;
+import org.openmrs.module.mirebalaismetadata.deploy.bundle.ZlMetadata;
+import org.openmrs.module.mirebalaismetadata.metadata.OrderTypes;
 import org.openmrs.module.pacsintegration.PacsIntegrationConstants;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.pihcore.deploy.bundle.CoreConceptMetadataBundle;
+import org.openmrs.module.pihcore.deploy.bundle.EncounterTypeBundle;
+import org.openmrs.module.pihcore.metadata.PatientIdentifierTypes;
 import org.openmrs.module.providermanagement.api.ProviderManagementService;
-import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.openmrs.test.SkipBaseSetup;
 import org.openmrs.ui.framework.UiFrameworkConstants;
 import org.openmrs.util.OpenmrsConstants;
@@ -53,7 +53,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 @SkipBaseSetup          // note that we skip the base setup because we don't want to include the standard test data
-public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextSensitiveTest {
+public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMetadataContextSensitiveTest {
 
     private MirebalaisMetadataActivator activator;
 
@@ -70,13 +70,13 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
     public void beforeEachTest() throws Exception {
 
         EncounterType mockPatientRegistrationEncounter = new EncounterType();
-        mockPatientRegistrationEncounter.setUuid(CoreMetadata.EncounterTypes.PATIENT_REGISTRATION);
+        mockPatientRegistrationEncounter.setUuid(EncounterTypeBundle.EncounterTypes.PATIENT_REGISTRATION);
 
         EncounterType mockCheckInEncounter = new EncounterType();
-        mockCheckInEncounter.setUuid(CoreMetadata.EncounterTypes.CHECK_IN);
+        mockCheckInEncounter.setUuid(EncounterTypeBundle.EncounterTypes.CHECK_IN);
 
         EncounterType mockPrimaryCareVisit = new EncounterType();
-        mockPrimaryCareVisit.setUuid(CoreMetadata.EncounterTypes.PRIMARY_CARE_VISIT);
+        mockPrimaryCareVisit.setUuid(EncounterTypeBundle.EncounterTypes.PRIMARY_CARE_VISIT);
 
         initializeInMemoryDatabase();
         executeDataSet("requiredDataTestDataset.xml");
@@ -125,10 +125,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
 
 	private void verifyGlobalPropertiesConfigured() throws Exception {
 		assertEquals("fr", adminService.getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_LOCALE));
-		assertEquals("false", adminService.getGlobalProperty(OpenmrsConstants.GP_PASSWORD_REQUIRES_UPPER_AND_LOWER_CASE));
-		assertEquals("false", adminService.getGlobalProperty(OpenmrsConstants.GP_PASSWORD_REQUIRES_NON_DIGIT));
-		assertEquals("false", adminService.getGlobalProperty(OpenmrsConstants.GP_PASSWORD_REQUIRES_DIGIT));
-		assertEquals("8", adminService.getGlobalProperty(OpenmrsConstants.GP_PASSWORD_MINIMUM_LENGTH));
 	}
 
 	private void verifyDatetimeFormatting() {
@@ -187,7 +183,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextS
             groupUuids.add(metadataPackage.getGroupUuid());
         }
 		groupUuids.add(RadiologyMetadata.Packages.RADIOLOGY_ORDERABLES);
-		groupUuids.add(CoreMetadata.Packages.HUM_METADATA);
+		groupUuids.add(ZlMetadata.Packages.HUM_METADATA);
 
         for (ImportedPackage importedPackage : metadataSharingService.getAllImportedPackages()) {
             if (!groupUuids.contains(importedPackage.getGroupUuid())) {

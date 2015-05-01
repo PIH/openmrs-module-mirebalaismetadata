@@ -9,13 +9,15 @@ import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Properties;
+
 import static org.hamcrest.Matchers.is;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.location;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.locationAttribute;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.locationAttributeType;
 
 
-public class CustomLocationDeployHandlerTest extends BaseModuleContextSensitiveTest {
+public class CustomLocationDeployHandlerTest extends BaseMirebalaisMetadataContextSensitiveTest {
 
     @Autowired
     private MetadataDeployService deployService;
