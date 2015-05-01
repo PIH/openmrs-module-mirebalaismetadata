@@ -64,10 +64,6 @@ public class ZlMetadata extends PihMetadataBundle {
 	@Override
 	public void install() {
 
-        log.info("Install Metadata Sharing Packages");
-
-        installMetadataSharingPackage("HUM_Metadata-57.zip", Packages.HUM_METADATA);
-
 		log.info("Setting Global Properties");
 
 		Map<String, String> properties = new LinkedHashMap<String, String>();
