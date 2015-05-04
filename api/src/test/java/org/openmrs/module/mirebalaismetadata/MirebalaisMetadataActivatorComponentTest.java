@@ -1,7 +1,6 @@
 package org.openmrs.module.mirebalaismetadata;
 
 import org.apache.commons.io.IOUtils;
-import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,8 +9,6 @@ import org.openmrs.EncounterType;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
-import org.openmrs.layout.web.address.AddressSupport;
-import org.openmrs.layout.web.address.AddressTemplate;
 import org.openmrs.module.addresshierarchy.AddressField;
 import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
@@ -20,29 +17,24 @@ import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
-import org.openmrs.module.mirebalaismetadata.deploy.bundle.RadiologyMetadata;
-import org.openmrs.module.mirebalaismetadata.deploy.bundle.ZlMetadata;
-import org.openmrs.module.mirebalaismetadata.metadata.OrderTypes;
-import org.openmrs.module.pacsintegration.PacsIntegrationConstants;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
-import org.openmrs.module.pihcore.deploy.bundle.CoreConceptMetadataBundle;
-import org.openmrs.module.pihcore.deploy.bundle.EncounterTypeBundle;
-import org.openmrs.module.pihcore.metadata.PatientIdentifierTypes;
+import org.openmrs.module.pihcore.PihCoreActivator;
+import org.openmrs.module.pihcore.config.Config;
+import org.openmrs.module.pihcore.config.ConfigDescriptor;
+import org.openmrs.module.pihcore.deploy.bundle.core.EncounterTypeBundle;
+import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiMetadataBundle;
+import org.openmrs.module.pihcore.deploy.bundle.haiti.mirebalais.MirebalaisRadiologyBundle;
+import org.openmrs.module.pihcore.metadata.core.OrderTypes;
 import org.openmrs.module.providermanagement.api.ProviderManagementService;
 import org.openmrs.test.SkipBaseSetup;
-import org.openmrs.ui.framework.UiFrameworkConstants;
-import org.openmrs.util.OpenmrsConstants;
 import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.validator.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.InputStream;
 import java.lang.reflect.Method;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -51,11 +43,15 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @SkipBaseSetup          // note that we skip the base setup because we don't want to include the standard test data
 public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMetadataContextSensitiveTest {
 
-    private MirebalaisMetadataActivator activator;
+    private MirebalaisMetadataActivator mirebalaisMetadataActivator;
+
+    private PihCoreActivator pihCoreActivator;
 
     @Autowired
     private ConceptService conceptService;
@@ -80,93 +76,40 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
 
         initializeInMemoryDatabase();
         executeDataSet("requiredDataTestDataset.xml");
+
         authenticate();
-        activator = new MirebalaisMetadataActivator(mirebalaisMetadataProperties);
-        activator.willRefreshContext();
-        activator.contextRefreshed();
-        activator.willStart();
-        activator.started();
+
+        // set up metatdata from pih core first
+        pihCoreActivator = new PihCoreActivator();
+        Config config = mock(Config.class);
+        when(config.getCountry()).thenReturn(ConfigDescriptor.Country.HAITI);
+        when(config.getSite()).thenReturn(ConfigDescriptor.Site.MIREBALAIS);
+        pihCoreActivator.setConfig(config);
+        pihCoreActivator.started();
+
+        mirebalaisMetadataActivator = new MirebalaisMetadataActivator(mirebalaisMetadataProperties);
+        mirebalaisMetadataActivator.setConfig(config);
+        mirebalaisMetadataActivator.willRefreshContext();
+        mirebalaisMetadataActivator.contextRefreshed();
+        mirebalaisMetadataActivator.willStart();
+        mirebalaisMetadataActivator.started();
     }
 
     @Test
     public void testThatActivatorDoesAllSetup() throws Exception {
-		verifyAddressTemplateConfigured();
-		verifyGlobalPropertiesConfigured();
-		verifyDatetimeFormatting();
-		verifyPacsIntegrationGlobalPropertiesConfigured();
-        verifyPatientRegistrationConfigured();
         verifyMetadataPackagesConfigured();
         verifyAddressHierarchyLevelsCreated();
         verifyAddressHierarchyLoaded();
         verifyDrugListLoaded();
+        verifyPatientRegistrationConfigured();
         //verifyConceptNamesInAllLanguages(); ignore this test until we have fixed the data
     }
 
-	private void verifyAddressTemplateConfigured() throws Exception {
-		AddressTemplate at = AddressSupport.getInstance().getDefaultLayoutTemplate();
-		assertEquals("mirebalais.address.country", at.getNameMappings().get("country"));
-		assertEquals("mirebalais.address.stateProvince", at.getNameMappings().get("stateProvince"));
-		assertEquals("mirebalais.address.cityVillage", at.getNameMappings().get("cityVillage"));
-		assertEquals("mirebalais.address.neighborhoodCell", at.getNameMappings().get("address3"));
-		assertEquals("mirebalais.address.address1", at.getNameMappings().get("address1"));
-		assertEquals("mirebalais.address.address2", at.getNameMappings().get("address2"));
-		assertEquals("40", at.getSizeMappings().get("country"));
-		assertEquals("40", at.getSizeMappings().get("stateProvince"));
-		assertEquals("40", at.getSizeMappings().get("cityVillage"));
-		assertEquals("60", at.getSizeMappings().get("address3"));
-		assertEquals("60", at.getSizeMappings().get("address1"));
-		assertEquals("60", at.getSizeMappings().get("address2"));
-		assertEquals("Haiti", at.getElementDefaults().get("country"));
-		assertEquals("address2", at.getLineByLineFormat().get(0));
-		assertEquals("address1", at.getLineByLineFormat().get(1));
-		assertEquals("address3, cityVillage", at.getLineByLineFormat().get(2));
-		assertEquals("stateProvince, country", at.getLineByLineFormat().get(3));
-	}
-
-	private void verifyGlobalPropertiesConfigured() throws Exception {
-		assertEquals("fr", adminService.getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_LOCALE));
-	}
-
-	private void verifyDatetimeFormatting() {
-		DateFormat datetimeFormat = new SimpleDateFormat(adminService.getGlobalProperty(UiFrameworkConstants.GP_FORMATTER_DATETIME_FORMAT));
-		DateFormat dateFormat = new SimpleDateFormat(adminService.getGlobalProperty(UiFrameworkConstants.GP_FORMATTER_DATE_FORMAT));
-		Date sampleDate = new DateTime(2012, 2, 22, 14, 23, 22).toDate();
-		assertEquals("22 Feb 2012 2:23 PM", datetimeFormat.format(sampleDate));
-		assertEquals("22 Feb 2012", dateFormat.format(sampleDate));
-	}
-
-	private void verifyPacsIntegrationGlobalPropertiesConfigured() throws Exception {
-		assertEquals(PatientIdentifierTypes.ZL_EMR_ID.uuid(), adminService.getGlobalProperty(PacsIntegrationConstants.GP_PATIENT_IDENTIFIER_TYPE_UUID));
-		assertEquals("en", adminService.getGlobalProperty(PacsIntegrationConstants.GP_DEFAULT_LOCALE));
-		assertEquals("Mirebalais", adminService.getGlobalProperty(PacsIntegrationConstants.GP_SENDING_FACILITY));
-		assertEquals(CoreConceptMetadataBundle.ConceptSources.LOINC, adminService.getGlobalProperty(PacsIntegrationConstants.GP_PROCEDURE_CODE_CONCEPT_SOURCE_UUID));
-	}
-
-    private void verifyPatientRegistrationConfigured() {
-        List<Method> failingMethods = new ArrayList<Method>();
-        for (Method method : PatientRegistrationGlobalProperties.class.getMethods()) {
-            if (method.getName().startsWith("GLOBAL_PROPERTY") && method.getParameterTypes().length == 0) {
-                try {
-                    method.invoke(null);
-                } catch (Exception ex) {
-                    failingMethods.add(method);
-                }
-            }
-        }
-
-        if (failingMethods.size() > 0) {
-            String errorMessage = "Some Patient Registration global properties are not configured correctly. See these methods in the PatientRegistrationGlobalProperties class";
-            for (Method method : failingMethods) {
-                errorMessage += "\n" + method.getName();
-            }
-            Assert.fail(errorMessage);
-        }
-    }
 
     private void verifyMetadataPackagesConfigured() throws Exception {
         MetadataPackagesConfig config;
         {
-            InputStream inputStream = activator.getClass().getClassLoader().getResourceAsStream(MetadataUtil.PACKAGES_FILENAME);
+            InputStream inputStream = mirebalaisMetadataActivator.getClass().getClassLoader().getResourceAsStream(MetadataUtil.PACKAGES_FILENAME);
             String xml = IOUtils.toString(inputStream);
             config = Context.getSerializationService().getDefaultSerializer()
                     .deserialize(xml, MetadataPackagesConfig.class);
@@ -182,8 +125,8 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         for (MetadataPackageConfig metadataPackage : config.getPackages()) {
             groupUuids.add(metadataPackage.getGroupUuid());
         }
-		groupUuids.add(RadiologyMetadata.Packages.RADIOLOGY_ORDERABLES);
-		groupUuids.add(ZlMetadata.Packages.HUM_METADATA);
+		groupUuids.add(MirebalaisRadiologyBundle.Packages.RADIOLOGY_ORDERABLES);
+		groupUuids.add(HaitiMetadataBundle.Packages.HUM_METADATA);
 
         for (ImportedPackage importedPackage : metadataSharingService.getAllImportedPackages()) {
             if (!groupUuids.contains(importedPackage.getGroupUuid())) {
@@ -272,6 +215,27 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         }
         String errorMessage = "Missing preferred concept names: " + OpenmrsUtil.join(missing, ", ");
         assertEquals(errorMessage, 0, missing);
+    }
+
+    private void verifyPatientRegistrationConfigured() {
+        List<Method> failingMethods = new ArrayList<Method>();
+        for (Method method : PatientRegistrationGlobalProperties.class.getMethods()) {
+            if (method.getName().startsWith("GLOBAL_PROPERTY") && method.getParameterTypes().length == 0) {
+                try {
+                    method.invoke(null);
+                } catch (Exception ex) {
+                    failingMethods.add(method);
+                }
+            }
+        }
+
+        if (failingMethods.size() > 0) {
+            String errorMessage = "Some Patient Registration global properties are not configured correctly. See these methods in the PatientRegistrationGlobalProperties class";
+            for (Method method : failingMethods) {
+                errorMessage += "\n" + method.getName();
+            }
+            Assert.fail(errorMessage);
+        }
     }
 
 }

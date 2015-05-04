@@ -40,6 +40,8 @@ import org.openmrs.module.metadatasharing.resolver.ConceptReferenceTerm19Resolve
 import org.openmrs.module.metadatasharing.resolver.Resolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByNameResolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
+import org.openmrs.module.pihcore.config.Config;
+import org.openmrs.module.pihcore.config.ConfigDescriptor;
 import org.springframework.context.MessageSource;
 
 import java.io.IOException;
@@ -73,6 +75,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
     private MessageSource messageSource;
 
     private AdministrationService administrationService;
+
+    private Config config;
 
     public MirebalaisMetadataActivator() {
     }
@@ -116,6 +120,10 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
      */
     public void started() {
 
+        if (config == null) {  // hack to allow injecting a mock config for testing
+            config = Context.getRegisteredComponents(Config.class).get(0); // currently only one of these
+        }
+
         if (mirebalaisMetadataProperties == null) {
             mirebalaisMetadataProperties = Context.getRegisteredComponents(MirebalaisMetadataProperties.class).get(0);
         }
@@ -133,11 +141,12 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
 
         try {
-            retireOldConcepts();
-			installBundles();
-            installMetadataPackages();
-            installDrugList();
-            setupAddressHierarchy();
+            if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
+                retireOldConcepts();
+                installMetadataPackages();
+                installDrugList();
+                setupAddressHierarchy();
+            }
         }
 		catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("mirebalaismetadata");
@@ -159,11 +168,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             conceptService.retireConcept(concept, "replaced with by 155479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         }
     }
-
-	private void installBundles() throws Exception {
-		MetadataManager manager = Context.getRegisteredComponents(MetadataManager.class).get(0);
-		manager.refresh();
-	}
 
     private void installMetadataPackages() throws Exception {
         MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
@@ -319,4 +323,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 			return defaultValue;
 		}
 	}
+
+    // hack to allow us to inject a mock config during testing
+    public void setConfig(Config config) {
+        this.config = config;
+    }
 }

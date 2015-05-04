@@ -112,7 +112,7 @@
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
- <dependency>
+        <dependency>
             <groupId>org.openmrs.web</groupId>
             <artifactId>openmrs-web</artifactId>
             <version>${openMRSVersion}</version>
