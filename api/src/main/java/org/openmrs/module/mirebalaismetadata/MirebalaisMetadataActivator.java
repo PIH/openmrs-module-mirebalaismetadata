@@ -143,7 +143,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         try {
             if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
                 retireOldConcepts();
-                installMetadataPackages();
+                installMetadataPackages(config);
                 installDrugList();
                 setupAddressHierarchy();
             }
@@ -169,8 +169,16 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
     }
 
-    private void installMetadataPackages() throws Exception {
-        MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
+    private void installMetadataPackages(Config config) throws Exception {
+
+        if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
+            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
+        }
+        else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
+            // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles");
+        }
+
         Context.flushSession();
     }
 
