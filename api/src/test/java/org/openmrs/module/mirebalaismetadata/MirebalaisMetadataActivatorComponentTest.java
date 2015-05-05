@@ -15,6 +15,7 @@ import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
 import org.openmrs.module.emrapi.metadata.MetadataPackageConfig;
 import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
+import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
@@ -23,6 +24,7 @@ import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
 import org.openmrs.module.pihcore.deploy.bundle.core.EncounterTypeBundle;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiMetadataBundle;
+import org.openmrs.module.pihcore.deploy.bundle.haiti.mirebalais.MirebalaisBundle;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.mirebalais.MirebalaisRadiologyBundle;
 import org.openmrs.module.pihcore.metadata.core.OrderTypes;
 import org.openmrs.module.providermanagement.api.ProviderManagementService;
@@ -51,13 +53,12 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
 
     private MirebalaisMetadataActivator mirebalaisMetadataActivator;
 
-    private PihCoreActivator pihCoreActivator;
 
     @Autowired
     private ConceptService conceptService;
 
 	@Autowired
-	private AdministrationService adminService;
+	private MetadataDeployService metadataDeployService;
 
     @Autowired
     MirebalaisMetadataProperties mirebalaisMetadataProperties;
@@ -79,13 +80,12 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
 
         authenticate();
 
-        // set up metatdata from pih core first
-        pihCoreActivator = new PihCoreActivator();
+        // set up metadata from pih core first
+        metadataDeployService.installBundle(Context.getRegisteredComponents(MirebalaisBundle.class).get(0));
+
         Config config = mock(Config.class);
         when(config.getCountry()).thenReturn(ConfigDescriptor.Country.HAITI);
         when(config.getSite()).thenReturn(ConfigDescriptor.Site.MIREBALAIS);
-        pihCoreActivator.setConfig(config);
-        pihCoreActivator.started();
 
         mirebalaisMetadataActivator = new MirebalaisMetadataActivator(mirebalaisMetadataProperties);
         mirebalaisMetadataActivator.setConfig(config);
