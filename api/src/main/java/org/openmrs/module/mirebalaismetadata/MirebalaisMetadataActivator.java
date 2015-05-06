@@ -141,9 +141,11 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
 
         try {
+
+            installMetadataPackages(config);
+
             if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
                 retireOldConcepts();
-                installMetadataPackages(config);
                 installDrugList();
                 setupAddressHierarchy();
             }
@@ -172,11 +174,20 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
     private void installMetadataPackages(Config config) throws Exception {
 
         if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
-            MetadataUtil.setupStandardMetadata(getClass().getClassLoader());
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Radiology_Orderables");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Metadata");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Clinical_Concepts");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Dispensing_Concepts");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Medication");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Disposition_Concepts");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Surgery");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Scheduling");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles");
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Liberia_Concepts");
         }
 
         Context.flushSession();
