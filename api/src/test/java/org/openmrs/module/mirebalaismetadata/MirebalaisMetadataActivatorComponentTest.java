@@ -5,8 +5,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openmrs.Concept;
-import org.openmrs.EncounterType;
-import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.addresshierarchy.AddressField;
@@ -19,10 +17,8 @@ import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
-import org.openmrs.module.pihcore.PihCoreActivator;
 import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
-import org.openmrs.module.pihcore.deploy.bundle.core.EncounterTypeBundle;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiMetadataBundle;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.mirebalais.MirebalaisBundle;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.mirebalais.MirebalaisRadiologyBundle;
@@ -42,10 +38,7 @@ import java.util.Locale;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -66,15 +59,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
 
     @Before
     public void beforeEachTest() throws Exception {
-
-        EncounterType mockPatientRegistrationEncounter = new EncounterType();
-        mockPatientRegistrationEncounter.setUuid(EncounterTypeBundle.EncounterTypes.PATIENT_REGISTRATION);
-
-        EncounterType mockCheckInEncounter = new EncounterType();
-        mockCheckInEncounter.setUuid(EncounterTypeBundle.EncounterTypes.CHECK_IN);
-
-        EncounterType mockPrimaryCareVisit = new EncounterType();
-        mockPrimaryCareVisit.setUuid(EncounterTypeBundle.EncounterTypes.PRIMARY_CARE_VISIT);
 
         initializeInMemoryDatabase();
         executeDataSet("requiredDataTestDataset.xml");
