@@ -44,6 +44,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -138,10 +139,18 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         for (MetadataPackageConfig metadataPackage : config.getPackages()) {
             ImportedPackage installedPackage = metadataSharingService.getImportedPackageByGroup(metadataPackage
                     .getGroupUuid());
-            Integer actualVersion = installedPackage == null ? null : installedPackage.getVersion();
-            assertEquals("Failed to install " + metadataPackage.getFilenameBase() + ". Expected version: "
-                    + metadataPackage.getVersion() + " Actual version: " + actualVersion, metadataPackage.getVersion(),
+
+            // hack to ignore Liberia package, which we are not installing in Mirebalais (which is what we are testing here)
+            if (!metadataPackage.getFilenameBase().equals("Liberia_Concepts")) {
+                Integer actualVersion = installedPackage == null ? null : installedPackage.getVersion();
+                        assertEquals("Failed to install " + metadataPackage.getFilenameBase() + ". Expected version: "
+                            + metadataPackage.getVersion() + " Actual version: " + actualVersion, metadataPackage.getVersion(),
                     actualVersion);
+            }
+            else {
+                // liberia package should not be installed in Mirebalais
+                assertNull(installedPackage);
+            }
         }
 
         // Verify a few pieces of sentinel data that should have been in the packages
