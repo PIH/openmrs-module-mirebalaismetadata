@@ -370,8 +370,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 throw new RuntimeException("Address field " + i + " improperly configured: is "
                         + level.getAddressField() + " but should be " + fields[i]);
             }
-            level.setRequired(!level.getAddressField().equals(AddressField.ADDRESS_2));
-            ahService.saveAddressHierarchyLevel(level);
             i++;
         }
     }
