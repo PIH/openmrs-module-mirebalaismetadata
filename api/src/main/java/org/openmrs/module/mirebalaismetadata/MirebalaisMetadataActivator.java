@@ -60,9 +60,13 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     protected Log log = LogFactory.getLog(getClass());
 
-    private final String ADDRESS_HIERARCHY_CSV_FILE = "org/openmrs/module/mirebalaismetadata/addresshierarchy/haiti_address_hierarchy_entries";
+    private final String ADDRESS_HIERARCHY_CSV_FILE_PATH = "org/openmrs/module/mirebalaismetadata/addresshierarchy/";
 
-    private static final Integer ADDRESS_HIERARCHY_VERSION = 5;
+    private final String ADDRESS_HIERARCHY_CSV_FILE_SUFFIX = "_address_hierarchy_entries";
+
+    private static final Integer HAITI_ADDRESS_HIERARCHY_VERSION = 5;
+
+    private static final Integer LIBERIA_ADDRESS_HIERARCHY_VERSION = 1;
 
     protected static final Integer DRUG_LIST_VERSION = 4;
 
@@ -143,11 +147,11 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         try {
 
             installMetadataPackages(config);
+            setupAddressHierarchy(config);
 
             if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
                 retireOldConcepts();
                 installDrugList();
-                setupAddressHierarchy();
             }
         }
 		catch (Exception e) {
@@ -236,84 +240,153 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     }
 
-    private void setupAddressHierarchy() {
+    private void setupAddressHierarchy(Config config) {
+
         AddressHierarchyService ahService = Context.getService(AddressHierarchyService.class);
+
+        if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
+            // first check to see if we need to configure the address hierarchy levels
+            int numberOfLevels = confirmCorrectNumberOfAddressHierarchyLevels(ahService, 6);
+
+            if (numberOfLevels == 0) {
+                setupHaitiAddressHierarchyLevels(ahService);
+            }
+            else {
+                AddressField[] fields = {AddressField.COUNTRY, AddressField.STATE_PROVINCE, AddressField.CITY_VILLAGE,
+                        AddressField.ADDRESS_3, AddressField.ADDRESS_1, AddressField.ADDRESS_2};
+                verifyCorrectAddressHierarchyLevels(ahService,fields);
+            }
+
+            loadAddressHierarchyCSVIfNecessary(ADDRESS_HIERARCHY_CSV_FILE_PATH + "haiti" + ADDRESS_HIERARCHY_CSV_FILE_SUFFIX, HAITI_ADDRESS_HIERARCHY_VERSION);
+       }
+       else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
+            // first check to see if we need to configure the address hierarchy levels
+            int numberOfLevels = confirmCorrectNumberOfAddressHierarchyLevels(ahService, 5);
+
+            if (numberOfLevels == 0) {
+                setupLiberiaAddressHierarchyLevels(ahService);
+            }
+            else {
+                AddressField[] fields = {AddressField.COUNTRY, AddressField.STATE_PROVINCE, AddressField.COUNTY_DISTRICT,
+                        AddressField.CITY_VILLAGE, AddressField.ADDRESS_1};
+                verifyCorrectAddressHierarchyLevels(ahService,fields);
+            }
+
+            loadAddressHierarchyCSVIfNecessary(ADDRESS_HIERARCHY_CSV_FILE_PATH + "liberia" + ADDRESS_HIERARCHY_CSV_FILE_SUFFIX, LIBERIA_ADDRESS_HIERARCHY_VERSION);
+        }
+    }
+
+    private void setupHaitiAddressHierarchyLevels(AddressHierarchyService ahService) {
+
+        AddressHierarchyLevel country = new AddressHierarchyLevel();
+        country.setAddressField(AddressField.COUNTRY);
+        country.setRequired(true);
+        ahService.saveAddressHierarchyLevel(country);
+
+        AddressHierarchyLevel stateProvince = new AddressHierarchyLevel();
+        stateProvince.setAddressField(AddressField.STATE_PROVINCE);
+        stateProvince.setParent(country);
+        stateProvince.setRequired(true);
+        ahService.saveAddressHierarchyLevel(stateProvince);
+
+        AddressHierarchyLevel cityVillage = new AddressHierarchyLevel();
+        cityVillage.setAddressField(AddressField.CITY_VILLAGE);
+        cityVillage.setParent(stateProvince);
+        cityVillage.setRequired(true);
+        ahService.saveAddressHierarchyLevel(cityVillage);
+
+        AddressHierarchyLevel address3 = new AddressHierarchyLevel();
+        address3.setAddressField(AddressField.ADDRESS_3);
+        address3.setParent(cityVillage);
+        address3.setRequired(true);
+        ahService.saveAddressHierarchyLevel(address3);
+
+        AddressHierarchyLevel address1 = new AddressHierarchyLevel();
+        address1.setAddressField(AddressField.ADDRESS_1);
+        address1.setParent(address3);
+        address1.setRequired(true);
+        ahService.saveAddressHierarchyLevel(address1);
+
+        AddressHierarchyLevel address2 = new AddressHierarchyLevel();
+        address2.setAddressField(AddressField.ADDRESS_2);
+        address2.setParent(address1);
+        address2.setRequired(false);
+        ahService.saveAddressHierarchyLevel(address2);
+
+    }
+
+    private void setupLiberiaAddressHierarchyLevels(AddressHierarchyService ahService) {
+
+        AddressHierarchyLevel country = new AddressHierarchyLevel();
+        country.setAddressField(AddressField.COUNTRY);
+        country.setRequired(true);
+        ahService.saveAddressHierarchyLevel(country);
+
+        AddressHierarchyLevel stateProvince = new AddressHierarchyLevel();
+        stateProvince.setAddressField(AddressField.STATE_PROVINCE);
+        stateProvince.setParent(country);
+        stateProvince.setRequired(false);
+        ahService.saveAddressHierarchyLevel(stateProvince);
+
+        AddressHierarchyLevel countyDistrict = new AddressHierarchyLevel();
+        countyDistrict.setAddressField(AddressField.COUNTY_DISTRICT);
+        countyDistrict.setParent(stateProvince);
+        countyDistrict.setRequired(false);
+        ahService.saveAddressHierarchyLevel(countyDistrict);
+
+        AddressHierarchyLevel cityVillage = new AddressHierarchyLevel();
+        cityVillage.setAddressField(AddressField.CITY_VILLAGE);
+        cityVillage.setParent(countyDistrict);
+        cityVillage.setRequired(false);
+        ahService.saveAddressHierarchyLevel(cityVillage);
+
+        AddressHierarchyLevel address1 = new AddressHierarchyLevel();
+        address1.setAddressField(AddressField.ADDRESS_1);
+        address1.setParent(cityVillage);
+        address1.setRequired(false);
+        ahService.saveAddressHierarchyLevel(address1);
+}
+
+    private int confirmCorrectNumberOfAddressHierarchyLevels(AddressHierarchyService ahService, int expected) {
 
         // first check to see if we need to configure the address hierarchy levels
         int numberOfLevels = ahService.getAddressHierarchyLevelsCount();
 
         // if not 0 or 6 levels, we are in a weird state we can't recover from
-        if (numberOfLevels != 0 && numberOfLevels != 6) {
+        if (numberOfLevels != 0 && numberOfLevels != expected) {
             throw new RuntimeException("Unable to configure address hierarchy as it is currently misconfigured with "
-                    + numberOfLevels + "levels");
+                    + numberOfLevels + " levels");
         }
 
-        // add the address hierarchy levels & entries if they don't exist, otherwise verify that they are correct
-        if (numberOfLevels == 0) {
-            AddressHierarchyLevel country = new AddressHierarchyLevel();
-            country.setAddressField(AddressField.COUNTRY);
-            country.setRequired(true);
-            ahService.saveAddressHierarchyLevel(country);
+        return numberOfLevels;
+    }
 
-            AddressHierarchyLevel stateProvince = new AddressHierarchyLevel();
-            stateProvince.setAddressField(AddressField.STATE_PROVINCE);
-            stateProvince.setParent(country);
-            stateProvince.setRequired(true);
-            ahService.saveAddressHierarchyLevel(stateProvince);
+    private void verifyCorrectAddressHierarchyLevels(AddressHierarchyService ahService, AddressField[] fields) {
 
-            AddressHierarchyLevel cityVillage = new AddressHierarchyLevel();
-            cityVillage.setAddressField(AddressField.CITY_VILLAGE);
-            cityVillage.setParent(stateProvince);
-            cityVillage.setRequired(true);
-            ahService.saveAddressHierarchyLevel(cityVillage);
+        int i = 0;
 
-            AddressHierarchyLevel address3 = new AddressHierarchyLevel();
-            address3.setAddressField(AddressField.ADDRESS_3);
-            address3.setParent(cityVillage);
-            address3.setRequired(true);
-            ahService.saveAddressHierarchyLevel(address3);
-
-            AddressHierarchyLevel address1 = new AddressHierarchyLevel();
-            address1.setAddressField(AddressField.ADDRESS_1);
-            address1.setParent(address3);
-            address1.setRequired(true);
-            ahService.saveAddressHierarchyLevel(address1);
-
-            AddressHierarchyLevel address2 = new AddressHierarchyLevel();
-            address2.setAddressField(AddressField.ADDRESS_2);
-            address2.setParent(address1);
-            address2.setRequired(false);
-            ahService.saveAddressHierarchyLevel(address2);
-        }
-        // at least verify that the right levels exist
-        // also set required status of each field (as we'll start using it now)
-        // TODO: perhaps do more validation here?
-        else {
-            AddressField[] fields = {AddressField.COUNTRY, AddressField.STATE_PROVINCE, AddressField.CITY_VILLAGE,
-                    AddressField.ADDRESS_3, AddressField.ADDRESS_1, AddressField.ADDRESS_2};
-            int i = 0;
-
-            for (AddressHierarchyLevel level : ahService.getOrderedAddressHierarchyLevels(true)) {
-                if (level.getAddressField() != fields[i]) {
-                    throw new RuntimeException("Address field " + i + " improperly configured: is "
-                            + level.getAddressField() + " but should be " + fields[i]);
-                }
-                level.setRequired(!level.getAddressField().equals(AddressField.ADDRESS_2));
-                ahService.saveAddressHierarchyLevel(level);
-                i++;
+        for (AddressHierarchyLevel level : ahService.getOrderedAddressHierarchyLevels(true)) {
+            if (level.getAddressField() != fields[i]) {
+                throw new RuntimeException("Address field " + i + " improperly configured: is "
+                        + level.getAddressField() + " but should be " + fields[i]);
             }
+            level.setRequired(!level.getAddressField().equals(AddressField.ADDRESS_2));
+            ahService.saveAddressHierarchyLevel(level);
+            i++;
         }
+    }
 
+    private void loadAddressHierarchyCSVIfNecessary(String csvFileName, Integer addressHierarchyVersion) {
         // load in the csv file if necessary
         int installedAddressHierarchyVersion = getIntegerByGlobalProperty(MirebalaisMetadataProperties.GP_INSTALLED_ADDRESS_HIERARCHY_VERSION, -1);
 
-        if (installedAddressHierarchyVersion < ADDRESS_HIERARCHY_VERSION) {
+        if (installedAddressHierarchyVersion < addressHierarchyVersion) {
             // delete any existing entries
             Context.getService(AddressHierarchyService.class).deleteAllAddressHierarchyEntries();
 
             // import the new file
-            InputStream file = getClass().getClassLoader().getResourceAsStream(ADDRESS_HIERARCHY_CSV_FILE + "_"
-                    + ADDRESS_HIERARCHY_VERSION + ".csv");
+            InputStream file = getClass().getClassLoader().getResourceAsStream(csvFileName + "_"
+                    + addressHierarchyVersion + ".csv");
             AddressHierarchyImportUtil.importAddressHierarchyFile(file, "\\|", "\\^");
 
             // update the installed version
@@ -323,7 +396,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                 installedAddressHierarchyVersionObject = new GlobalProperty();
                 installedAddressHierarchyVersionObject.setProperty(GP_INSTALLED_ADDRESS_HIERARCHY_VERSION);
             }
-            installedAddressHierarchyVersionObject.setPropertyValue(ADDRESS_HIERARCHY_VERSION.toString());
+            installedAddressHierarchyVersionObject.setPropertyValue(addressHierarchyVersion.toString());
             Context.getAdministrationService().saveGlobalProperty(installedAddressHierarchyVersionObject);
         }
     }
