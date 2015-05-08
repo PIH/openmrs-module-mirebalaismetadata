@@ -66,7 +66,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private static final Integer HAITI_ADDRESS_HIERARCHY_VERSION = 5;
 
-    private static final Integer LIBERIA_ADDRESS_HIERARCHY_VERSION = 1;
+    private static final Integer LIBERIA_ADDRESS_HIERARCHY_VERSION = 2;
 
     protected static final Integer DRUG_LIST_VERSION = 4;
 
@@ -352,7 +352,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         // first check to see if we need to configure the address hierarchy levels
         int numberOfLevels = ahService.getAddressHierarchyLevelsCount();
 
-        // if not 0 or 6 levels, we are in a weird state we can't recover from
+        // if not 0 or expected levels, we are in a weird state we can't recover from
         if (numberOfLevels != 0 && numberOfLevels != expected) {
             throw new RuntimeException("Unable to configure address hierarchy as it is currently misconfigured with "
                     + numberOfLevels + " levels");
