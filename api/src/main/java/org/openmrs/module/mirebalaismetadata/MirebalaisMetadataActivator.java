@@ -66,7 +66,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private static final Integer HAITI_ADDRESS_HIERARCHY_VERSION = 5;
 
-    private static final Integer LIBERIA_ADDRESS_HIERARCHY_VERSION = 2;
+    private static final Integer LIBERIA_ADDRESS_HIERARCHY_VERSION = 3;
 
     protected static final Integer DRUG_LIST_VERSION = 4;
 
