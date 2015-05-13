@@ -19,6 +19,7 @@ import org.openmrs.module.metadatasharing.api.MetadataSharingService;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
+import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiAddressBundle;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiMetadataBundle;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.mirebalais.MirebalaisBundle;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.mirebalais.MirebalaisRadiologyBundle;
@@ -38,7 +39,10 @@ import java.util.Locale;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -182,7 +186,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
 
         assertEquals(1, ahService.getAddressHierarchyEntriesAtTopLevel().size());
         assertEquals("Haiti", ahService.getAddressHierarchyEntriesAtTopLevel().get(0).getName());
-        assertEquals(5, mirebalaisMetadataProperties.getInstalledAddressHierarchyVersion());
+        assertEquals("5", Context.getAdministrationService().getGlobalProperty("metadatadeploy.bundle.version." + HaitiAddressBundle.class.getName()));
     }
 
     private void verifyDrugListLoaded() throws Exception {
