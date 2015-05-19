@@ -16,6 +16,7 @@ import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
+import org.openmrs.module.mirebalaismetadata.deploy.bundle.ConceptsFromMetadataSharing;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
@@ -61,6 +62,9 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
     @Autowired
     MirebalaisMetadataProperties mirebalaisMetadataProperties;
 
+    @Autowired
+    private ConceptsFromMetadataSharing conceptsFromMetadataSharing;
+
     @Before
     public void beforeEachTest() throws Exception {
 
@@ -70,6 +74,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         authenticate();
 
         // set up metadata from pih core first
+        metadataDeployService.installBundle(conceptsFromMetadataSharing);
         metadataDeployService.installBundle(Context.getRegisteredComponents(MirebalaisBundle.class).get(0));
 
         Config config = mock(Config.class);
