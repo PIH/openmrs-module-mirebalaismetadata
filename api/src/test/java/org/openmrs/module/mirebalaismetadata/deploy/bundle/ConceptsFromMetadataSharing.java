@@ -45,6 +45,18 @@ public class ConceptsFromMetadataSharing extends VersionedPihConceptBundle {
         install(frequency(OrderEntryConcepts.Concepts.AT_NIGHT));
         install(frequency(OrderEntryConcepts.Concepts.WHEN_REQUIRED));
         install(frequency(OrderEntryConcepts.Concepts.IMMEDIATELY));
+
+        install(withSnomedCode(OrderEntryConcepts.Concepts.TABLET, "385055001"));
+        install(withSnomedCode(OrderEntryConcepts.Concepts.CAPSULE, "428641000"));
+    }
+
+    private Concept withSnomedCode(String uuid, String snomedCode) {
+        Concept concept = baseConcept(uuid);
+        concept.setDatatype(notApplicable);
+        concept.setConceptClass(misc);
+        concept.setUuid(uuid);
+        concept.addConceptMapping(new ConceptMapBuilder(uuid()).type(sameAs).ensureTerm(snomedCt, snomedCode).build());
+        return concept;
     }
 
     private Concept frequency(String uuid) {

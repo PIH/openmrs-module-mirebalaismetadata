@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.openmrs.Concept;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.ModuleClassLoader;
+import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.addresshierarchy.AddressField;
 import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
@@ -14,8 +16,12 @@ import org.openmrs.module.emrapi.metadata.MetadataPackageConfig;
 import org.openmrs.module.emrapi.metadata.MetadataPackagesConfig;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
+import org.openmrs.module.metadatasharing.ImportConfig;
+import org.openmrs.module.metadatasharing.ImportMode;
 import org.openmrs.module.metadatasharing.ImportedPackage;
+import org.openmrs.module.metadatasharing.MetadataSharing;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
+import org.openmrs.module.metadatasharing.wrapper.PackageImporter;
 import org.openmrs.module.mirebalaismetadata.deploy.bundle.ConceptsFromMetadataSharing;
 import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.pihcore.config.Config;
@@ -27,16 +33,20 @@ import org.openmrs.module.pihcore.deploy.bundle.haiti.mirebalais.MirebalaisRadio
 import org.openmrs.module.pihcore.metadata.core.OrderTypes;
 import org.openmrs.module.providermanagement.api.ProviderManagementService;
 import org.openmrs.test.SkipBaseSetup;
+import org.openmrs.util.OpenmrsClassLoader;
 import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.validator.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
@@ -48,6 +58,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SkipBaseSetup          // note that we skip the base setup because we don't want to include the standard test data
+//@StartModule("pihcore")
 public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMetadataContextSensitiveTest {
 
     private MirebalaisMetadataActivator mirebalaisMetadataActivator;
@@ -65,6 +76,11 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
     @Autowired
     private ConceptsFromMetadataSharing conceptsFromMetadataSharing;
 
+    // when we check to make sure there are no unexpected MDS groupIds installed, we also need to allow groupIds from
+    // packages installed manually (which we presume to come from another module).
+    // This collection will be populated in the installMdsPackage... method.
+    private Set<String> groupIdsFromManualPackages = new HashSet<String>();
+
     @Before
     public void beforeEachTest() throws Exception {
 
@@ -74,6 +90,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         authenticate();
 
         // set up metadata from pih core first
+//        installMdsPackageInMirrorMode("HUM_Dispensing_Concepts-24.zip");
         metadataDeployService.installBundle(conceptsFromMetadataSharing);
         metadataDeployService.installBundle(Context.getRegisteredComponents(MirebalaisBundle.class).get(0));
 
@@ -87,6 +104,20 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         mirebalaisMetadataActivator.contextRefreshed();
         mirebalaisMetadataActivator.willStart();
         mirebalaisMetadataActivator.started();
+    }
+
+    private void installMdsPackageInMirrorMode(String filename) throws IOException {
+        PackageImporter metadataImporter = MetadataSharing.getInstance().newPackageImporter();
+        metadataImporter.setImportConfig(ImportConfig.valueOf(ImportMode.MIRROR));
+        System.out.println(ModuleFactory.getModuleClassLoaders().size() + " module classloaders");
+        for (ModuleClassLoader moduleClassLoader : ModuleFactory.getModuleClassLoaders()) {
+            System.out.println(moduleClassLoader.getModule().getModuleId());
+            System.out.println(moduleClassLoader);
+        }
+
+        metadataImporter.loadSerializedPackageStream(OpenmrsClassLoader.getInstance().getResourceAsStream(filename));
+        metadataImporter.importPackage();
+        groupIdsFromManualPackages.add(metadataImporter.getPackage().getGroupUuid());
     }
 
     @Test
@@ -115,6 +146,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         // we are not expecting
 
         List<String> groupUuids = new ArrayList<String>();
+        groupUuids.addAll(groupIdsFromManualPackages);
 
         for (MetadataPackageConfig metadataPackage : config.getPackages()) {
             groupUuids.add(metadataPackage.getGroupUuid());
