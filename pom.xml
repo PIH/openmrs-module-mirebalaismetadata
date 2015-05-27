@@ -368,7 +368,6 @@
                         <property>
                             <name>openMRSwebVersion</name>
                             <version>[1.10.0,1.11.0-!)</version>
-                            <banSnapshots>true</banSnapshots>
                         </property>
                         <property>
                             <name>htmlwidgetsVersion</name>
