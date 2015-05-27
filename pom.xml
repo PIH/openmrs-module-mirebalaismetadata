@@ -46,7 +46,7 @@
     </modules>
 
     <properties>
-        <openMRSVersion>1.10.2</openMRSVersion>
+        <openMRSVersion>1.10.3-SNAPSHOT</openMRSVersion>
         <openMRSwebVersion>1.10.2</openMRSwebVersion>
         <mirebalaismetadataVersion>1.0-SNAPSHOT</mirebalaismetadataVersion>
         <mirebalaisreportsVersion>1.1-SNAPSHOT</mirebalaisreportsVersion>
