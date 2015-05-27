@@ -47,7 +47,7 @@
 
     <properties>
         <openMRSVersion>1.10.2</openMRSVersion>
-        <openMRSwebVersion>1.10.1</openMRSwebVersion>
+        <openMRSwebVersion>1.10.2</openMRSwebVersion>
         <mirebalaismetadataVersion>1.0-SNAPSHOT</mirebalaismetadataVersion>
         <mirebalaisreportsVersion>1.1-SNAPSHOT</mirebalaisreportsVersion>
         <pihcoreVersion>1.0-SNAPSHOT</pihcoreVersion>
@@ -364,7 +364,6 @@
                         <property>
                             <name>openMRSVersion</name>
                             <version>[1.10.0,1.11.0-!)</version>
-                            <banSnapshots>true</banSnapshots>
                         </property>
                         <property>
                             <name>openMRSwebVersion</name>
