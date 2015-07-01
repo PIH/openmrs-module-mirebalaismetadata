@@ -56,7 +56,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Scheduling</filenameBase>
             <groupUuid>daec5657-5f51-4386-9ed9-1609b340eb77</groupUuid>
-            <version>5</version>
+            <version>6</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
