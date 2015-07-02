@@ -188,7 +188,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         // we should now have 26000+ address hierarchy entries
         Assert.assertTrue(ahService.getAddressHierarchyEntryCount() > 26000);
 
-        assertEquals(1, ahService.getAddressHierarchyEntriesAtTopLevel().size());
+        assertEquals(2, ahService.getAddressHierarchyEntriesAtTopLevel().size());
         assertEquals("Haiti", ahService.getAddressHierarchyEntriesAtTopLevel().get(0).getName());
         assertEquals("5", Context.getAdministrationService().getGlobalProperty("metadatadeploy.bundle.version." + HaitiAddressBundle.class.getName()));
     }
