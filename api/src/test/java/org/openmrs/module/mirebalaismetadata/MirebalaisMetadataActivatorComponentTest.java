@@ -91,8 +91,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
     @Test
     public void testThatActivatorDoesAllSetup() throws Exception {
         verifyMetadataPackagesConfigured();
-        verifyAddressHierarchyLevelsCreated();
-        verifyAddressHierarchyLoaded();
         verifyDrugListLoaded();
         verifyPatientRegistrationConfigured();
         //verifyConceptNamesInAllLanguages(); ignore this test until we have fixed the data
@@ -163,34 +161,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         for (Concept concept : conceptService.getAllConcepts()) {
             ValidateUtil.validate(concept);
         }
-    }
-
-    private void verifyAddressHierarchyLevelsCreated() throws Exception {
-        AddressHierarchyService ahService = Context.getService(AddressHierarchyService.class);
-
-        // assert that we now have six address hierarchy levels
-        assertEquals(new Integer(6), ahService.getAddressHierarchyLevelsCount());
-
-        // make sure they are mapped correctly
-        List<AddressHierarchyLevel> levels = ahService.getOrderedAddressHierarchyLevels(true);
-        assertEquals(AddressField.COUNTRY, levels.get(0).getAddressField());
-        assertEquals(AddressField.STATE_PROVINCE, levels.get(1).getAddressField());
-        assertEquals(AddressField.CITY_VILLAGE, levels.get(2).getAddressField());
-        assertEquals(AddressField.ADDRESS_3, levels.get(3).getAddressField());
-        assertEquals(AddressField.ADDRESS_1, levels.get(4).getAddressField());
-        assertEquals(AddressField.ADDRESS_2, levels.get(5).getAddressField());
-
-    }
-
-    private void verifyAddressHierarchyLoaded() throws Exception {
-        AddressHierarchyService ahService = Context.getService(AddressHierarchyService.class);
-
-        // we should now have 26000+ address hierarchy entries
-        Assert.assertTrue(ahService.getAddressHierarchyEntryCount() > 26000);
-
-        assertEquals(2, ahService.getAddressHierarchyEntriesAtTopLevel().size());
-        assertEquals("Haiti", ahService.getAddressHierarchyEntriesAtTopLevel().get(0).getName());
-        assertEquals("5", Context.getAdministrationService().getGlobalProperty("metadatadeploy.bundle.version." + HaitiAddressBundle.class.getName()));
     }
 
     private void verifyDrugListLoaded() throws Exception {
