@@ -175,6 +175,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles");
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Oncology");
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Allergies");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Exam");
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
