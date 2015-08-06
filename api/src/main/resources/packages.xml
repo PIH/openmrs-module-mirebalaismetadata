@@ -94,5 +94,12 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
             <version>2</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>PIH_NCD</filenameBase>
+            <groupUuid>50102310-1d04-4070-a42c-185d7198acad</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
     </packages>
 </org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
