@@ -51,7 +51,7 @@
         <mirebalaismetadataVersion>1.0-SNAPSHOT</mirebalaismetadataVersion>
         <mirebalaisreportsVersion>1.1-SNAPSHOT</mirebalaisreportsVersion>
         <pihcoreVersion>1.0-SNAPSHOT</pihcoreVersion>
-        <emrapiVersion>1.9-SNAPSHOT</emrapiVersion>
+        <emrapiVersion>1.10-SNAPSHOT</emrapiVersion>
         <paperrecordVersion>1.0-SNAPSHOT</paperrecordVersion>
         <emrVersion>2.0-SNAPSHOT</emrVersion>
         <uiframeworkVersion>3.4-SNAPSHOT</uiframeworkVersion>
@@ -363,11 +363,11 @@
                     <properties>
                         <property>
                             <name>openMRSVersion</name>
-                            <version>[1.10.0,1.11.0-!)</version>
+                            <version>[1.9.0,1.10.0-!)</version>
                         </property>
                         <property>
                             <name>openMRSwebVersion</name>
-                            <version>[1.10.0,1.11.0-!)</version>
+                            <version>[1.9.0,1.10.0-!)</version>
                         </property>
                         <property>
                             <name>htmlwidgetsVersion</name>
@@ -383,14 +383,6 @@
                         </property>
                         <property>
                             <name>calculationVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>serializationxstreamVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>idgenVersion</name>
                             <banSnapshots>true</banSnapshots>
                         </property>
                         <property>
@@ -414,9 +406,21 @@
                             <banSnapshots>true</banSnapshots>
                         </property>
                         <property>
-                            <name>webservicesRestVersion</name>
+                            <name>chartsearchVersion</name>
                             <banSnapshots>true</banSnapshots>
                         </property>
+                        <property>
+                            <name>metadatadeployVersion</name>
+                            <banSnapshots>true</banSnapshots>
+                        </property>
+                        <property>
+                            <name>idgenVersion</name>
+                            <banSnapshots>true</banSnapshots>
+                        </property>
+                        <!--      <property>
+                                  <name>webservicesRestVersion</name>
+                                  <banSnapshots>true</banSnapshots>
+                              </property>-->
                     </properties>
                 </configuration>
             </plugin>
