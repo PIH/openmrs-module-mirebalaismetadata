@@ -17,7 +17,6 @@ import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.metadatasharing.ImportedPackage;
 import org.openmrs.module.metadatasharing.api.MetadataSharingService;
 import org.openmrs.module.mirebalaismetadata.deploy.bundle.ConceptsFromMetadataSharing;
-import org.openmrs.module.patientregistration.PatientRegistrationGlobalProperties;
 import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiAddressBundle;
@@ -92,7 +91,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
     public void testThatActivatorDoesAllSetup() throws Exception {
         verifyMetadataPackagesConfigured();
         verifyDrugListLoaded();
-        verifyPatientRegistrationConfigured();
         //verifyConceptNamesInAllLanguages(); ignore this test until we have fixed the data
     }
 
@@ -186,27 +184,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         }
         String errorMessage = "Missing preferred concept names: " + OpenmrsUtil.join(missing, ", ");
         assertEquals(errorMessage, 0, missing);
-    }
-
-    private void verifyPatientRegistrationConfigured() {
-        List<Method> failingMethods = new ArrayList<Method>();
-        for (Method method : PatientRegistrationGlobalProperties.class.getMethods()) {
-            if (method.getName().startsWith("GLOBAL_PROPERTY") && method.getParameterTypes().length == 0) {
-                try {
-                    method.invoke(null);
-                } catch (Exception ex) {
-                    failingMethods.add(method);
-                }
-            }
-        }
-
-        if (failingMethods.size() > 0) {
-            String errorMessage = "Some Patient Registration global properties are not configured correctly. See these methods in the PatientRegistrationGlobalProperties class";
-            for (Method method : failingMethods) {
-                errorMessage += "\n" + method.getName();
-            }
-            Assert.fail(errorMessage);
-        }
     }
 
 }
