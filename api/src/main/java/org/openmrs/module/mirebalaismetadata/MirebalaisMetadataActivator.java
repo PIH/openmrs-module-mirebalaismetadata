@@ -177,6 +177,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Allergies");
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Exam");
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Labs");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_History");
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_NCD");
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
