@@ -77,7 +77,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Exam</filenameBase>
             <groupUuid>c6356354-1ec1-4dae-a1ce-ae2ffe358ae6</groupUuid>
-            <version>3</version>
+            <version>5</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
