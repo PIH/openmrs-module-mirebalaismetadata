@@ -98,7 +98,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_History</filenameBase>
             <groupUuid>ffc81380-6dc2-47e5-951e-98f7f2b173a7</groupUuid>
-            <version>3</version>
+            <version>4</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
