@@ -52,8 +52,8 @@
         <emrapiVersion>1.13-SNAPSHOT</emrapiVersion>
         <paperrecordVersion>1.0</paperrecordVersion>
         <emrVersion>2.0</emrVersion>
-        <uiframeworkVersion>3.5</uiframeworkVersion>
-        <appframeworkVersion>2.4</appframeworkVersion>
+        <uiframeworkVersion>3.6-SNAPSHOT</uiframeworkVersion>
+        <appframeworkVersion>2.5</appframeworkVersion>
         <metadatasharingVersion>1.1.10</metadatasharingVersion>
         <metadatamappingVersion>1.0.1</metadatamappingVersion>
         <metadatadeployVersion>1.7</metadatadeployVersion>
