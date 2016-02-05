@@ -46,8 +46,8 @@
     </modules>
 
     <properties>
-        <openMRSVersion>1.10.3-SNAPSHOT</openMRSVersion>
-        <openMRSwebVersion>1.10.2</openMRSwebVersion>
+        <openMRSVersion>1.10.4-SNAPSHOT</openMRSVersion>
+        <openMRSwebVersion>1.10.4-SNAPSHOT</openMRSwebVersion>
         <pihcoreVersion>1.0-SNAPSHOT</pihcoreVersion>
         <emrapiVersion>1.13-SNAPSHOT</emrapiVersion>
         <paperrecordVersion>1.0</paperrecordVersion>
