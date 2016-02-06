@@ -53,13 +53,13 @@
         <paperrecordVersion>1.0</paperrecordVersion>
         <emrVersion>2.0</emrVersion>
         <uiframeworkVersion>3.6-SNAPSHOT</uiframeworkVersion>
-        <appframeworkVersion>2.5</appframeworkVersion>
+        <appframeworkVersion>2.6</appframeworkVersion>
         <metadatasharingVersion>1.1.10</metadatasharingVersion>
         <metadatamappingVersion>1.0.1</metadatamappingVersion>
         <metadatadeployVersion>1.7</metadatadeployVersion>
         <htmlformentryVersion>2.7</htmlformentryVersion>
         <htmlformentry19extVersion>1.7</htmlformentry19extVersion>
-        <htmlformentryuiVersion>1.4-SNAPSHOT</htmlformentryuiVersion>
+        <htmlformentryuiVersion>1.4</htmlformentryuiVersion>
         <calculationVersion>1.1</calculationVersion>
         <reportingVersion>0.9.9-SNAPSHOT</reportingVersion>
         <reportinguiVersion>1.0</reportinguiVersion>
