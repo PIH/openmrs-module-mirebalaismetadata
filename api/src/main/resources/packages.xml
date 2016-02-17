@@ -126,7 +126,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Mental_Health</filenameBase>
             <groupUuid>e0486227-d69b-4ecc-b2e1-40db04fe3365</groupUuid>
-            <version>1</version>
+            <version>2</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
     </packages>
