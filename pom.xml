@@ -78,8 +78,8 @@
         <appuiVersion>1.4</appuiVersion>
         <dispensingVersion>1.0</dispensingVersion>
         <uicommonsVersion>1.8-SNAPSHOT</uicommonsVersion>
-        <registrationcoreVersion>1.5-SNAPSHOT</registrationcoreVersion>
-        <registrationappVersion>1.5-SNAPSHOT</registrationappVersion>
+        <registrationcoreVersion>1.4</registrationcoreVersion>
+        <registrationappVersion>1.5</registrationappVersion>
         <radiologyappVersion>1.0</radiologyappVersion>
         <coreappsVersion>1.10-SNAPSHOT</coreappsVersion>
         <webservicesRestVersion>2.13</webservicesRestVersion>
@@ -540,6 +540,14 @@
                         </property>
                         <property>
                             <name>htmlformentryuiVersion</name>
+                            <banSnapshots>true</banSnapshots>
+                        </property>
+                        <property>
+                            <name>registrationappVersion</name>
+                            <banSnapshots>true</banSnapshots>
+                        </property>
+                        <property>
+                            <name>registrationcoreVersion</name>
                             <banSnapshots>true</banSnapshots>
                         </property>
                     </properties>
