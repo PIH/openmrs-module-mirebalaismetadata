@@ -32,8 +32,8 @@ import org.openmrs.module.dispensing.importer.ImportNotes;
 import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 import org.openmrs.module.metadatasharing.MetadataSharing;
-import org.openmrs.module.metadatasharing.resolver.ConceptReferenceTerm19Resolver;
 import org.openmrs.module.metadatasharing.resolver.Resolver;
+import org.openmrs.module.metadatasharing.resolver.impl.ConceptReferenceTermResolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByNameResolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
 import org.openmrs.module.pihcore.config.Config;
@@ -93,9 +93,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         // except for in specific ways. (Specifically we don't want to use ConceptByMappingResolver, but in general we
         // want to avoid unexpected behavior.)
         // See https://tickets.openmrs.org/browse/META-323
-        ObjectByUuidResolver byUuidResolver = new ObjectByUuidResolver();
-        ObjectByNameResolver byNameResolver = new ObjectByNameResolver();
-        ConceptReferenceTerm19Resolver referenceTermResolver = new ConceptReferenceTerm19Resolver(byNameResolver, byUuidResolver);
+        ObjectByUuidResolver byUuidResolver = Context.getRegisteredComponent("metadatasharing.ObjectByUuidResolver", ObjectByUuidResolver.class);
+        ObjectByNameResolver byNameResolver =Context.getRegisteredComponent("metadatasharing.ObjectByNameResolver", ObjectByNameResolver.class);
+        ConceptReferenceTermResolver referenceTermResolver =  Context.getRegisteredComponent("metadatasharing.ConceptReferenceTermResolver", ConceptReferenceTermResolver.class);
 
         List<Resolver<?>> supportedResolvers = new ArrayList<Resolver<?>>();
         supportedResolvers.add(byUuidResolver);

@@ -137,13 +137,6 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
-            <artifactId>metadatasharing-api-1.9</artifactId>
-            <version>${metadatasharingVersion}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openmrs.module</groupId>
             <artifactId>metadatasharing-api-common</artifactId>
             <version>${metadatasharingVersion}</version>
             <scope>provided</scope>
