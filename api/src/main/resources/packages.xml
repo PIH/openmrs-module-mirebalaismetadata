@@ -84,7 +84,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Liberia_Concepts</filenameBase>
             <groupUuid>c0dc491e-a26e-4dee-99c4-c4dc5cb2e787</groupUuid>
-            <version>10</version>
+            <version>11</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
