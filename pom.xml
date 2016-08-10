@@ -49,18 +49,18 @@
         <openMRSVersion>1.10.4</openMRSVersion>
         <openMRSwebVersion>1.10.4</openMRSwebVersion>
         <pihcoreVersion>1.0-SNAPSHOT</pihcoreVersion>
-        <emrapiVersion>1.16-SNAPSHOT</emrapiVersion>
+        <emrapiVersion>1.17-SNAPSHOT</emrapiVersion>
         <paperrecordVersion>1.1</paperrecordVersion>
         <emrVersion>2.0</emrVersion>
         <uiframeworkVersion>3.7</uiframeworkVersion>
         <appframeworkVersion>2.9</appframeworkVersion>
-        <metadatasharingVersion>1.2</metadatasharingVersion>
+        <metadatasharingVersion>1.2.1</metadatasharingVersion>
         <metadatamappingVersion>1.0.1</metadatamappingVersion>
         <metadatadeployVersion>1.7</metadatadeployVersion>
         <htmlformentryVersion>3.2</htmlformentryVersion>
         <htmlformentry19extVersion>1.7</htmlformentry19extVersion>
         <htmlformentryuiVersion>1.5</htmlformentryuiVersion>
-        <calculationVersion>1.1</calculationVersion>
+        <calculationVersion>1.2</calculationVersion>
         <reportingVersion>0.10.1</reportingVersion>
         <reportinguiVersion>1.0</reportinguiVersion>
         <reportingrestVersion>1.6-SNAPSHOT</reportingrestVersion>
