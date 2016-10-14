@@ -52,16 +52,16 @@
         <emrapiVersion>1.18</emrapiVersion>
         <paperrecordVersion>1.1</paperrecordVersion>
         <emrVersion>2.0</emrVersion>
-        <uiframeworkVersion>3.8</uiframeworkVersion>
+        <uiframeworkVersion>3.9</uiframeworkVersion>
         <appframeworkVersion>2.9</appframeworkVersion>
         <metadatasharingVersion>1.2.2</metadatasharingVersion>
         <metadatamappingVersion>1.0.1</metadatamappingVersion>
         <metadatadeployVersion>1.7</metadatadeployVersion>
         <htmlformentryVersion>3.3.0</htmlformentryVersion>
         <htmlformentry19extVersion>1.7</htmlformentry19extVersion>
-        <htmlformentryuiVersion>1.6.0</htmlformentryuiVersion>
+        <htmlformentryuiVersion>1.6.1</htmlformentryuiVersion>
         <calculationVersion>1.2</calculationVersion>
-        <reportingVersion>0.10.2</reportingVersion>
+        <reportingVersion>0.10.5</reportingVersion>
         <reportinguiVersion>1.0</reportinguiVersion>
         <reportingrestVersion>1.6-SNAPSHOT</reportingrestVersion>
         <htmlwidgetsVersion>1.6.4</htmlwidgetsVersion>
@@ -78,10 +78,10 @@
         <appuiVersion>1.4</appuiVersion>
         <dispensingVersion>1.0</dispensingVersion>
         <uicommonsVersion>1.8-SNAPSHOT</uicommonsVersion>
-        <registrationcoreVersion>1.5</registrationcoreVersion>
-        <registrationappVersion>1.5</registrationappVersion>
+        <registrationcoreVersion>1.6</registrationcoreVersion>
+        <registrationappVersion>1.6</registrationappVersion>
         <radiologyappVersion>1.0</radiologyappVersion>
-        <coreappsVersion>1.11.1-SNAPSHOT</coreappsVersion>
+        <coreappsVersion>1.11.2-SNAPSHOT</coreappsVersion>
         <webservicesRestVersion>2.13</webservicesRestVersion>
         <appointmentschedulingVersion>1.5</appointmentschedulingVersion>
         <appointmentschedulinguiVersion>1.2</appointmentschedulinguiVersion>
