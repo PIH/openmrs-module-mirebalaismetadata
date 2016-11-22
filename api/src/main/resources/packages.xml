@@ -21,7 +21,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Clinical_Concepts</filenameBase>
             <groupUuid>7003f131-7a15-4292-9513-c9fe52a73235</groupUuid>
-            <version>138</version>
+            <version>139</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -63,7 +63,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Oncology</filenameBase>
             <groupUuid>1a7ca5c9-d5c8-4429-8396-a9d882d73918</groupUuid>
-            <version>29</version>
+            <version>30</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -133,7 +133,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Emergency_Triage</filenameBase>
             <groupUuid>05fa9aa6-017d-410b-90f9-decf407fdf65</groupUuid>
-            <version>21</version>
+            <version>22</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
     </packages>
