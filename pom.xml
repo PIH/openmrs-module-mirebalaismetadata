@@ -49,7 +49,7 @@
         <openMRSVersion>1.10.4</openMRSVersion>
         <openMRSwebVersion>1.10.4</openMRSwebVersion>
         <pihcoreVersion>1.0-SNAPSHOT</pihcoreVersion>
-        <emrapiVersion>1.18</emrapiVersion>
+        <emrapiVersion>1.19</emrapiVersion>
         <paperrecordVersion>1.1</paperrecordVersion>
         <emrVersion>2.0</emrVersion>
         <uiframeworkVersion>3.9</uiframeworkVersion>
@@ -57,7 +57,7 @@
         <metadatasharingVersion>1.2.2</metadatasharingVersion>
         <metadatamappingVersion>1.0.1</metadatamappingVersion>
         <metadatadeployVersion>1.7</metadatadeployVersion>
-        <htmlformentryVersion>3.3.0</htmlformentryVersion>
+        <htmlformentryVersion>3.3.1</htmlformentryVersion>
         <htmlformentry19extVersion>1.7</htmlformentry19extVersion>
         <htmlformentryuiVersion>1.6.1</htmlformentryuiVersion>
         <calculationVersion>1.2</calculationVersion>
@@ -80,7 +80,7 @@
         <uicommonsVersion>1.8-SNAPSHOT</uicommonsVersion>
         <registrationcoreVersion>1.6</registrationcoreVersion>
         <registrationappVersion>1.6</registrationappVersion>
-        <radiologyappVersion>1.1</radiologyappVersion>
+        <radiologyappVersion>1.2</radiologyappVersion>
         <coreappsVersion>1.11.2-SNAPSHOT</coreappsVersion>
         <webservicesRestVersion>2.13</webservicesRestVersion>
         <appointmentschedulingVersion>1.5</appointmentschedulingVersion>
