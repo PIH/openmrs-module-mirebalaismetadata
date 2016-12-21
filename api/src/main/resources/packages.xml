@@ -136,5 +136,12 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
             <version>24</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>HUM_Pathology</filenameBase>
+            <groupUuid>1c57b7fe-ea18-434e-84c5-137d26bbf340</groupUuid>
+            <version>3</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
     </packages>
 </org.openmrs.module.emrapi.metadata.MetadataPackagesConfig>
