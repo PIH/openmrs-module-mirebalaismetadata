@@ -158,7 +158,7 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
-            <artifactId>metadatamapping</artifactId>
+            <artifactId>metadatamapping-api</artifactId>
             <version>${metadatamappingVersion}</version>
             <scope>provided</scope>
         </dependency>
