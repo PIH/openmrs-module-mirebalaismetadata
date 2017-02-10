@@ -158,6 +158,13 @@
 
         <dependency>
             <groupId>org.openmrs.module</groupId>
+            <artifactId>metadatamapping</artifactId>
+            <version>${metadatamappingVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
             <artifactId>pihcore-api</artifactId>
             <version>${pihcoreVersion}</version>
             <scope>provided</scope>
