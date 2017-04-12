@@ -56,12 +56,12 @@
         <appframeworkVersion>2.10.0</appframeworkVersion>
         <metadatasharingVersion>1.2.2</metadatasharingVersion>
         <metadatamappingVersion>1.3.1</metadatamappingVersion>
-        <metadatadeployVersion>1.7</metadatadeployVersion>
+        <metadatadeployVersion>1.8.1</metadatadeployVersion>
         <htmlformentryVersion>3.3.2</htmlformentryVersion>
         <htmlformentry19extVersion>1.7</htmlformentry19extVersion>
         <htmlformentryuiVersion>1.6.2</htmlformentryuiVersion>
         <calculationVersion>1.2</calculationVersion>
-        <reportingVersion>0.11.0</reportingVersion>
+        <reportingVersion>1.12.0</reportingVersion>
         <reportinguiVersion>1.0</reportinguiVersion>
         <reportingrestVersion>1.6-SNAPSHOT</reportingrestVersion>
         <htmlwidgetsVersion>1.6.4</htmlwidgetsVersion>
@@ -69,8 +69,8 @@
         <idgenVersion>4.4.0</idgenVersion>
         <namephoneticsVersion>1.5</namephoneticsVersion>
         <pacsintegrationVersion>1.4</pacsintegrationVersion>
-        <addresshierarchyVersion>2.9</addresshierarchyVersion>
-        <providermanagementVersion>2.5.0</providermanagementVersion>
+        <addresshierarchyVersion>2.10</addresshierarchyVersion>
+        <providermanagementVersion>2.6.0</providermanagementVersion>
         <eventVersion>2.5</eventVersion>
         <logicVersion>0.5.2</logicVersion>
         <importpatientfromwsVersion>1.0</importpatientfromwsVersion>
