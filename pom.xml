@@ -572,6 +572,7 @@
                         <property>
                             <name>registrationcoreVersion</name>
                             <banSnapshots>true</banSnapshots>
+                            <version>[1.6]</version>
                         </property>
                     </properties>
                 </configuration>
