@@ -90,6 +90,7 @@
         <allergyapiVersion>1.4</allergyapiVersion>
         <allergyuiVersion>1.5</allergyuiVersion>
         <chartsearchVersion>1.5</chartsearchVersion>
+        <haiticoreVersion>1.0.0-SNAPSHOT</haiticoreVersion>
         <!-- Need to phase this out. -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -346,6 +347,12 @@
             <groupId>org.openmrs.module</groupId>
             <artifactId>registrationapp-api</artifactId>
             <version>${registrationappVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>haiticore-api</artifactId>
+            <version>${haiticoreVersion}</version>
             <scope>provided</scope>
         </dependency>
 
