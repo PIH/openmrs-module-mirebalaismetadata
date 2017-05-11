@@ -31,6 +31,7 @@ import org.openmrs.module.dispensing.importer.DrugImporter;
 import org.openmrs.module.dispensing.importer.ImportNotes;
 import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
+import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.metadatasharing.MetadataSharing;
 import org.openmrs.module.metadatasharing.resolver.Resolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ConceptReferenceTermResolver;
@@ -38,6 +39,7 @@ import org.openmrs.module.metadatasharing.resolver.impl.ObjectByNameResolver;
 import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
 import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
+import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiMetadataToInstallAfterConceptsBundle;
 import org.springframework.context.MessageSource;
 
 import java.io.IOException;
@@ -118,6 +120,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         if (mirebalaisMetadataProperties == null) {
             mirebalaisMetadataProperties = Context.getRegisteredComponents(MirebalaisMetadataProperties.class).get(0);
         }
+
         if (drugImporter == null) {
             drugImporter = Context.getRegisteredComponents(DrugImporter.class).get(0);
         }
@@ -134,6 +137,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         try {
 
             installMetadataPackages(config);
+            installMetadataBundles(config);
 
             if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
                 retireOldConcepts();
@@ -201,6 +205,20 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
         Context.flushSession();
     }
+
+
+    private void installMetadataBundles(Config config) {
+
+        MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
+
+        // make this more dynamic, less dependent on if-thens
+        if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
+            deployService.installBundle(Context.getRegisteredComponents(HaitiMetadataToInstallAfterConceptsBundle.class).get(0));
+        }
+
+
+    }
+
 
     private void installDrugList() throws IOException {
 
