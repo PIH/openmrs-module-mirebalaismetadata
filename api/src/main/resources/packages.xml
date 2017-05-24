@@ -21,7 +21,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Clinical_Concepts</filenameBase>
             <groupUuid>7003f131-7a15-4292-9513-c9fe52a73235</groupUuid>
-            <version>151</version>
+            <version>152</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -148,6 +148,13 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
             <filenameBase>Haiti_HIV</filenameBase>
             <groupUuid>76355634-faa8-46cc-9bb7-0a22cc956aef</groupUuid>
             <version>14</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Haiti_Zika</filenameBase>
+            <groupUuid>3027d2d3-fc12-44af-aaa7-0209175f7b32</groupUuid>
+            <version>2</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
     </packages>
