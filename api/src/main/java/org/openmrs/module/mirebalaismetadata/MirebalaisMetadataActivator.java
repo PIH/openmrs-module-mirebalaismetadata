@@ -173,6 +173,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Clinical_Concepts");
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Dispensing_Concepts");
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Medication");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Dispensing_Concepts");
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Disposition_Concepts");
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Surgery");
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Scheduling");
