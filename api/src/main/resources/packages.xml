@@ -7,7 +7,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Radiology_Orderables</filenameBase>
             <groupUuid>c827fa67-24ca-40a0-95e4-4c07fecf0576</groupUuid>
-            <version>17</version>
+            <version>18</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -91,7 +91,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Labs</filenameBase>
             <groupUuid>26f995c0-d1a8-4d6d-ad18-978f9c190496</groupUuid>
-            <version>22</version>
+            <version>27</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -154,7 +154,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Haiti_Zika</filenameBase>
             <groupUuid>3027d2d3-fc12-44af-aaa7-0209175f7b32</groupUuid>
-            <version>2</version>
+            <version>3</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
     </packages>
