@@ -98,7 +98,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Labs</filenameBase>
             <groupUuid>26f995c0-d1a8-4d6d-ad18-978f9c190496</groupUuid>
-            <version>27</version>
+            <version>28</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -154,7 +154,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Haiti_HIV</filenameBase>
             <groupUuid>76355634-faa8-46cc-9bb7-0a22cc956aef</groupUuid>
-            <version>23</version>
+            <version>28</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
