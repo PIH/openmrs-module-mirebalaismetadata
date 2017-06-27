@@ -98,7 +98,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Labs</filenameBase>
             <groupUuid>26f995c0-d1a8-4d6d-ad18-978f9c190496</groupUuid>
-            <version>28</version>
+            <version>29</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -140,7 +140,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Emergency_Triage</filenameBase>
             <groupUuid>05fa9aa6-017d-410b-90f9-decf407fdf65</groupUuid>
-            <version>40</version>
+            <version>41</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
