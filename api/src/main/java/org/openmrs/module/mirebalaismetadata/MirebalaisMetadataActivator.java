@@ -167,41 +167,42 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private void installMetadataPackages(Config config) throws Exception {
 
+        // make sure we load these all with one call to "setupSpecificMetadata" because that method makes sure to
+        // sort the loading by dateCreated to avoid issues with inconsistent metadata
         if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Radiology_Orderables");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Metadata");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Clinical_Concepts");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Dispensing_Concepts");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Medication");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Dispensing_Concepts");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Disposition_Concepts");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Surgery");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Scheduling");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Oncology");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Allergies");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Exam");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Labs");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_History");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Pediatric_Feeding");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Pediatric_Supplements");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_NCD");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Mental_Health");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Emergency_Triage");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Pathology");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Haiti_HIV");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Haiti_Zika");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
+                    "HUM_Radiology_Orderables",
+                    "HUM_Metadata",
+                    "HUM_Clinical_Concepts",
+                    "HUM_Dispensing_Concepts",
+                    "HUM_Medication",
+                    "HUM_Dispensing_Concepts",
+                    "HUM_Disposition_Concepts",
+                    "HUM_Surgery",
+                    "HUM_Scheduling",
+                    "HUM_Provider_Roles",
+                    "HUM_Oncology",
+                    "PIH_Allergies",
+                    "PIH_Exam",
+                    "PIH_Labs",
+                    "PIH_History",
+                    "PIH_Pediatric_Feeding",
+                    "PIH_Pediatric_Supplements",
+                    "HUM_NCD",
+                    "PIH_Mental_Health",
+                    "HUM_Emergency_Triage",
+                    "HUM_Pathology",
+                    "Haiti_HIV",
+                    "Haiti_Zika");
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Liberia_Concepts");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles", "Liberia_Concepts");
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
             // TODO make custom MDS package for Sierra Leone
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles");
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "Liberia_Concepts");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles", "Liberia_Concepts");
         }
 
 

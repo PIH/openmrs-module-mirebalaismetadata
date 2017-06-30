@@ -14,6 +14,7 @@
 
 package org.openmrs.module.mirebalaismetadata;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.module.emrapi.utils.MetadataUtil;
 
@@ -22,6 +23,9 @@ import org.openmrs.module.emrapi.utils.MetadataUtil;
  * is bad.
  * This test looks through all MDS packages, and throws an error in this situation.
  */
+
+// we are ignoring this as we are now loading metadata packages in order of date created
+@Ignore
 public class InconsistentMetadataComponentTest extends BaseMirebalaisMetadataContextSensitiveTest {
 
     @Test
