@@ -7,84 +7,84 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Radiology_Orderables</filenameBase>
             <groupUuid>c827fa67-24ca-40a0-95e4-4c07fecf0576</groupUuid>
-            <version>20</version>
+            <version>21</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Metadata</filenameBase>
             <groupUuid>fa25ad0c-66cc-4715-8464-58570f7b5132</groupUuid>
-            <version>65</version>
+            <version>66</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Clinical_Concepts</filenameBase>
             <groupUuid>7003f131-7a15-4292-9513-c9fe52a73235</groupUuid>
-            <version>159</version>
+            <version>160</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Medication</filenameBase>
             <groupUuid>b6bb1a46-652a-4d03-89c3-0d302620275a</groupUuid>
-            <version>35</version>
+            <version>36</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Disposition_Concepts</filenameBase>
             <groupUuid>89e68a39-d199-4679-bbf9-f60f0c9ee381</groupUuid>
-            <version>23</version>
+            <version>24</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Dispensing_Concepts</filenameBase>
             <groupUuid>c14e1736-c133-42b7-b421-cfe8cdefcbcb</groupUuid>
-            <version>31</version>
+            <version>32</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Surgery</filenameBase>
             <groupUuid>a253327a-e222-4569-92af-847278bf0169</groupUuid>
-            <version>68</version>
+            <version>69</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Provider_Roles</filenameBase>
             <groupUuid>ebaf1f5d-5c86-485d-9e5f-9d56d545aff3</groupUuid>
-            <version>8</version>
+            <version>9</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Scheduling</filenameBase>
             <groupUuid>daec5657-5f51-4386-9ed9-1609b340eb77</groupUuid>
-            <version>9</version>
+            <version>10</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Oncology</filenameBase>
             <groupUuid>1a7ca5c9-d5c8-4429-8396-a9d882d73918</groupUuid>
-            <version>39</version>
+            <version>40</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Allergies</filenameBase>
             <groupUuid>436cc037-074f-4253-9aa7-900c32f51ee9</groupUuid>
-            <version>13</version>
+            <version>15</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Exam</filenameBase>
             <groupUuid>c6356354-1ec1-4dae-a1ce-ae2ffe358ae6</groupUuid>
-            <version>18</version>
+            <version>19</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
