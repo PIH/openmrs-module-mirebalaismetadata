@@ -174,7 +174,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "HUM_Radiology_Orderables",
                     "HUM_Metadata",
                     "HUM_Clinical_Concepts",
-                    "HUM_Dispensing_Concepts",
                     "HUM_Medication",
                     "HUM_Dispensing_Concepts",
                     "HUM_Disposition_Concepts",
@@ -197,7 +196,10 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles", "Liberia_Concepts");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
+                    "HUM_Provider_Roles",
+                    "Liberia_Concepts",
+                    "PIH_Mental_Health");
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
