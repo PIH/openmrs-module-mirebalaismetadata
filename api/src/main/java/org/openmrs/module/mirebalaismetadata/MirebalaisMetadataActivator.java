@@ -174,7 +174,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "HUM_Radiology_Orderables",
                     "HUM_Metadata",
                     "HUM_Clinical_Concepts",
-                    "HUM_Dispensing_Concepts",
                     "HUM_Medication",
                     "HUM_Dispensing_Concepts",
                     "HUM_Disposition_Concepts",
