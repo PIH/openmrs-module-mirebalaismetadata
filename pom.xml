@@ -61,13 +61,13 @@
         <htmlformentry19extVersion>1.7</htmlformentry19extVersion>
         <htmlformentryuiVersion>1.6.4</htmlformentryuiVersion>
         <calculationVersion>1.2</calculationVersion>
-        <reportingVersion>1.13.0</reportingVersion>
+        <reportingVersion>1.14.0</reportingVersion>
         <reportinguiVersion>1.0</reportinguiVersion>
         <reportingrestVersion>1.6-SNAPSHOT</reportingrestVersion>
         <htmlwidgetsVersion>1.6.4</htmlwidgetsVersion>
         <serializationxstreamVersion>0.2.13</serializationxstreamVersion>
         <idgenVersion>4.4.1</idgenVersion>
-        <namephoneticsVersion>1.5</namephoneticsVersion>
+        <namephoneticsVersion>1.6.0</namephoneticsVersion>
         <pacsintegrationVersion>1.4</pacsintegrationVersion>
         <addresshierarchyVersion>2.10</addresshierarchyVersion>
         <providermanagementVersion>2.9.0</providermanagementVersion>
@@ -79,9 +79,9 @@
         <dispensingVersion>1.0</dispensingVersion>
         <uicommonsVersion>1.8-SNAPSHOT</uicommonsVersion>
         <registrationcoreVersion>1.7.2-SNAPSHOT</registrationcoreVersion>
-        <registrationappVersion>1.10.0-SNAPSHOT</registrationappVersion>
+        <registrationappVersion>1.10.0</registrationappVersion>
         <radiologyappVersion>1.2</radiologyappVersion>
-        <coreappsVersion>1.16.0</coreappsVersion>
+        <coreappsVersion>1.17.0</coreappsVersion>
         <webservicesRestVersion>2.13</webservicesRestVersion>
         <appointmentschedulingVersion>1.5</appointmentschedulingVersion>
         <appointmentschedulinguiVersion>1.2</appointmentschedulinguiVersion>
