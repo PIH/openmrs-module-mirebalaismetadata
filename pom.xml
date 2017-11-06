@@ -46,7 +46,7 @@
     </modules>
 
     <properties>
-        <openMRSVersion>1.10.4</openMRSVersion>
+        <openMRSVersion>1.10.6</openMRSVersion>
         <openMRSwebVersion>1.10.4</openMRSwebVersion>
         <pihcoreVersion>1.0-SNAPSHOT</pihcoreVersion>
         <emrapiVersion>1.23.0</emrapiVersion>
@@ -61,7 +61,7 @@
         <htmlformentry19extVersion>1.7</htmlformentry19extVersion>
         <htmlformentryuiVersion>1.6.4</htmlformentryuiVersion>
         <calculationVersion>1.2</calculationVersion>
-        <reportingVersion>1.14.0</reportingVersion>
+        <reportingVersion>1.15.0</reportingVersion>
         <reportinguiVersion>1.0</reportinguiVersion>
         <reportingrestVersion>1.6-SNAPSHOT</reportingrestVersion>
         <htmlwidgetsVersion>1.6.4</htmlwidgetsVersion>
@@ -69,7 +69,7 @@
         <idgenVersion>4.4.1</idgenVersion>
         <namephoneticsVersion>1.6.0</namephoneticsVersion>
         <pacsintegrationVersion>1.4</pacsintegrationVersion>
-        <addresshierarchyVersion>2.10</addresshierarchyVersion>
+        <addresshierarchyVersion>2.11.0</addresshierarchyVersion>
         <providermanagementVersion>2.9.0</providermanagementVersion>
         <eventVersion>2.5</eventVersion>
         <logicVersion>0.5.2</logicVersion>
@@ -78,7 +78,7 @@
         <appuiVersion>1.4</appuiVersion>
         <dispensingVersion>1.0</dispensingVersion>
         <uicommonsVersion>1.8-SNAPSHOT</uicommonsVersion>
-        <registrationcoreVersion>1.7.2-SNAPSHOT</registrationcoreVersion>
+        <registrationcoreVersion>1.8.0</registrationcoreVersion>
         <registrationappVersion>1.10.0</registrationappVersion>
         <radiologyappVersion>1.2</radiologyappVersion>
         <coreappsVersion>1.17.0</coreappsVersion>
