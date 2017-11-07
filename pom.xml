@@ -46,7 +46,7 @@
     </modules>
 
     <properties>
-        <openMRSVersion>1.10.4</openMRSVersion>
+        <openMRSVersion>1.10.6</openMRSVersion>
         <openMRSwebVersion>1.10.4</openMRSwebVersion>
         <pihcoreVersion>1.0-SNAPSHOT</pihcoreVersion>
         <emrapiVersion>1.23.0</emrapiVersion>
@@ -61,7 +61,7 @@
         <htmlformentry19extVersion>1.7</htmlformentry19extVersion>
         <htmlformentryuiVersion>1.6.4</htmlformentryuiVersion>
         <calculationVersion>1.2</calculationVersion>
-        <reportingVersion>1.14.0</reportingVersion>
+        <reportingVersion>1.15.0</reportingVersion>
         <reportinguiVersion>1.0</reportinguiVersion>
         <reportingrestVersion>1.6-SNAPSHOT</reportingrestVersion>
         <htmlwidgetsVersion>1.6.4</htmlwidgetsVersion>
@@ -69,7 +69,7 @@
         <idgenVersion>4.4.1</idgenVersion>
         <namephoneticsVersion>1.6.0</namephoneticsVersion>
         <pacsintegrationVersion>1.4</pacsintegrationVersion>
-        <addresshierarchyVersion>2.10</addresshierarchyVersion>
+        <addresshierarchyVersion>2.11.0</addresshierarchyVersion>
         <providermanagementVersion>2.9.0</providermanagementVersion>
         <eventVersion>2.5</eventVersion>
         <logicVersion>0.5.2</logicVersion>
@@ -78,10 +78,10 @@
         <appuiVersion>1.4</appuiVersion>
         <dispensingVersion>1.0</dispensingVersion>
         <uicommonsVersion>1.8-SNAPSHOT</uicommonsVersion>
-        <registrationcoreVersion>1.7.2-SNAPSHOT</registrationcoreVersion>
+        <registrationcoreVersion>1.8.0</registrationcoreVersion>
         <registrationappVersion>1.10.0</registrationappVersion>
         <radiologyappVersion>1.2</radiologyappVersion>
-        <coreappsVersion>1.17.0</coreappsVersion>
+        <coreappsVersion>1.18.0</coreappsVersion>
         <webservicesRestVersion>2.13</webservicesRestVersion>
         <appointmentschedulingVersion>1.5</appointmentschedulingVersion>
         <appointmentschedulinguiVersion>1.2</appointmentschedulinguiVersion>
@@ -401,183 +401,16 @@
                 <version>2.1</version>
                 <configuration>
                     <generateBackupPoms>false</generateBackupPoms>
-                    <allowSnapshots>true</allowSnapshots>
                     <properties>
                         <property>
                             <name>openMRSVersion</name>
-                            <version>[1.9.0,1.10.0-!)</version>
+                            <version>[1.10.0,1.11.0-!)</version>
                             <banSnapshots>true</banSnapshots>
                         </property>
                         <property>
                             <name>openMRSwebVersion</name>
-                            <version>[1.9.0,1.10.0-!)</version>
+                            <version>[1.10.0,1.11.0-!)</version>
                             <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>coreappsVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>emrapiVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>htmlwidgetsVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>metadatasharingVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>metadatamappingVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>calculationVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>namephoneticsVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>addresshierarchyVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>providermanagementVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>eventVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>logicVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>chartsearchVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>metadatadeployVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>idgenVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>allergyapiVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>allergyuiVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>serializationxstreamVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>appointmentschedulingVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>appointmentschedulinguiVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>printerVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>radiologyappVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>pacsintegrationVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>paperrecordVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>importpatientfromwsVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>emrVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>providermanagementVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>appframeworkVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>uiframeworkVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>appuiVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>eventVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>dispensingVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>testutilsVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>webservicesRestVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>reportinguiVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>reportingVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>reportingrestVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>htmlformentry19extVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>htmlformentryVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>htmlformentryuiVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>registrationappVersion</name>
-                            <banSnapshots>true</banSnapshots>
-                        </property>
-                        <property>
-                            <name>registrationcoreVersion</name>
-                            <version>[1.6]</version>
-                            <banSnapshots>true</banSnapshots>
-                            <version>[1.6]</version>
                         </property>
                     </properties>
                 </configuration>
