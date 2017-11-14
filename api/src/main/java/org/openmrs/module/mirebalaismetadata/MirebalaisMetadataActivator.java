@@ -57,7 +57,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     protected Log log = LogFactory.getLog(getClass());
 
-    protected static final Integer DRUG_LIST_VERSION = 8;
+    protected static final Integer DRUG_LIST_VERSION = 9;
 
     private MirebalaisMetadataProperties mirebalaisMetadataProperties;
 
