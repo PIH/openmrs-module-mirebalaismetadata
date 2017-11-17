@@ -192,7 +192,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "HUM_Emergency_Triage",
                     "HUM_Pathology",
                     "Haiti_HIV",
-                    "Haiti_Zika");
+                    "Haiti_Zika",
+                    "PIH_Socio_Economics");
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
