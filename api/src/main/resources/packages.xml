@@ -21,14 +21,14 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Clinical_Concepts</filenameBase>
             <groupUuid>7003f131-7a15-4292-9513-c9fe52a73235</groupUuid>
-            <version>164</version>
+            <version>165</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Medication</filenameBase>
             <groupUuid>b6bb1a46-652a-4d03-89c3-0d302620275a</groupUuid>
-            <version>37</version>
+            <version>38</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -126,7 +126,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_NCD</filenameBase>
             <groupUuid>50102310-1d04-4070-a42c-185d7198acad</groupUuid>
-            <version>25</version>
+            <version>26</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -154,7 +154,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Haiti_HIV</filenameBase>
             <groupUuid>76355634-faa8-46cc-9bb7-0a22cc956aef</groupUuid>
-            <version>36</version>
+            <version>37</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -168,7 +168,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Socio_Economics</filenameBase>
             <groupUuid>0678a82d-5100-44ba-ba1b-893eab01685a</groupUuid>
-            <version>1</version>
+            <version>3</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
     </packages>
