@@ -167,6 +167,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     private void installMetadataPackages(Config config) throws Exception {
 
+        // set up the concept sources first because of TRUNK-5326
+        MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Concept_Sources");
+
         // make sure we load these all with one call to "setupSpecificMetadata" because that method makes sure to
         // sort the loading by dateCreated to avoid issues with inconsistent metadata
         if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
