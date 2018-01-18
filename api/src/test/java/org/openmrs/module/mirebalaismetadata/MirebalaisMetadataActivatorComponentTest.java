@@ -3,7 +3,6 @@ package org.openmrs.module.mirebalaismetadata;
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.Concept;
 import org.openmrs.api.ConceptService;
@@ -84,7 +83,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
     }
 
     @Test
-    @Ignore
     public void testThatActivatorDoesAllSetup() throws Exception {
         verifyMetadataPackagesConfigured();
         verifyDrugListLoaded();
