@@ -42,7 +42,8 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@SkipBaseSetup          // note that we skip the base setup because we don't want to include the standard test data
+@SkipBaseSetup // note that we skip the base setup because we don't want to include the standard test data
+@Ignore
 public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMetadataContextSensitiveTest {
 
     private MirebalaisMetadataActivator mirebalaisMetadataActivator;
