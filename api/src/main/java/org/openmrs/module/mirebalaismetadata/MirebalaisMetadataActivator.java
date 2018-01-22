@@ -40,6 +40,7 @@ import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
 import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiMetadataToInstallAfterConceptsBundle;
+import org.openmrs.module.pihcore.deploy.bundle.liberia.LiberiaMetadataToInstallAfterConceptsBundle;
 import org.springframework.context.MessageSource;
 
 import java.io.IOException;
@@ -198,43 +199,34 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "Haiti_Zika",
                     "PIH_Socio_Economics");
         }
-        // TODO: do we just want to start installing a standard concept set across all of our servers depending on country?
-        // TODO we are installing almost all of the functional on Harper just for demo purposes
+        // TODO changed this so we install all concepts on Liberia servers as well (plus Liberia Concept set which may no longer be necessary)
+        // TODO is this okay?
         else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
-            if (config.getSite().equals(ConfigDescriptor.Site.PLEEBO)) {
-                // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
-                MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles", "Liberia_Concepts");
-            }
-            else if (config.getSite().equals(ConfigDescriptor.Site.HARPER)) {
-                MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
-                      "Liberia_Concepts",
-                        "HUM_Radiology_Orderables",
-                        "HUM_Metadata",
-                        "HUM_Clinical_Concepts",
-                        "HUM_Medication",
-                        "HUM_Dispensing_Concepts",
-                        "HUM_Disposition_Concepts",
-                        "HUM_Surgery",
-                        "HUM_Scheduling",
-                        "HUM_Provider_Roles",
-                        "HUM_Oncology",
-                        "PIH_Allergies",
-                        "PIH_Exam",
-                        "PIH_Labs",
-                        "PIH_History",
-                        "PIH_Pediatric_Feeding",
-                        "PIH_Pediatric_Supplements",
-                        "HUM_NCD",
-                        "PIH_Mental_Health",
-                        "HUM_Emergency_Triage",
-                        "HUM_Pathology",
-                        "Haiti_HIV",
-                        "Haiti_Zika",
-                        "PIH_Socio_Economics"
-                    );
-
-            }
-
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
+                  "Liberia_Concepts",
+                    "HUM_Radiology_Orderables",
+                    "HUM_Metadata",
+                    "HUM_Clinical_Concepts",
+                    "HUM_Medication",
+                    "HUM_Dispensing_Concepts",
+                    "HUM_Disposition_Concepts",
+                    "HUM_Surgery",
+                    "HUM_Scheduling",
+                    "HUM_Provider_Roles",
+                    "HUM_Oncology",
+                    "PIH_Allergies",
+                    "PIH_Exam",
+                    "PIH_Labs",
+                    "PIH_History",
+                    "PIH_Pediatric_Feeding",
+                    "PIH_Pediatric_Supplements",
+                    "HUM_NCD",
+                    "PIH_Mental_Health",
+                    "HUM_Emergency_Triage",
+                    "HUM_Pathology",
+                    "Haiti_HIV",
+                    "Haiti_Zika",
+                    "PIH_Socio_Economics");
 
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
@@ -256,7 +248,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
             deployService.installBundle(Context.getRegisteredComponents(HaitiMetadataToInstallAfterConceptsBundle.class).get(0));
         }
-
+        else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
+            deployService.installBundle(Context.getRegisteredComponents(LiberiaMetadataToInstallAfterConceptsBundle.class).get(0));
+        }
 
     }
 
