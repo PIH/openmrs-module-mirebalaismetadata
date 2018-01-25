@@ -142,8 +142,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
             if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
                 retireOldConcepts();
-                installDrugList();
             }
+
+            installDrugList(config);
         }
 		catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("mirebalaismetadata");
@@ -255,37 +256,39 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
     }
 
 
-    private void installDrugList() throws IOException {
+    private void installDrugList(Config config) throws IOException {
 
-        int installedDrugListVersion = getIntegerByGlobalProperty(MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION, -1);
+        if (config.getCountry().equals(ConfigDescriptor.Country.HAITI) || config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
 
-        if (installedDrugListVersion < DRUG_LIST_VERSION) {
+            int installedDrugListVersion = getIntegerByGlobalProperty(MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION, -1);
 
-            // special-case to retire any demo drugs before installing the first package
-            if (installedDrugListVersion == 0) {
-                retireExistingDemoDrugs();
-            }
+            if (installedDrugListVersion < DRUG_LIST_VERSION) {
 
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("HUM_Drug_List-"
-                    + DRUG_LIST_VERSION + ".csv");
-            InputStreamReader reader = new InputStreamReader(inputStream);
-            ImportNotes notes = drugImporter.importSpreadsheet(reader);
-
-            if (notes.hasErrors()) {
-                System.out.println(notes);
-                throw new RuntimeException("Unable to install drug list");
-            }
-            else {
-
-                // update the installed version
-                GlobalProperty installedDrugListVersionObject = Context.getAdministrationService()
-                        .getGlobalPropertyObject(GP_INSTALLED_DRUG_LIST_VERSION);
-                if (installedDrugListVersionObject == null) {
-                    installedDrugListVersionObject = new GlobalProperty();
-                    installedDrugListVersionObject.setProperty(GP_INSTALLED_DRUG_LIST_VERSION);
+                // special-case to retire any demo drugs before installing the first package
+                if (installedDrugListVersion == 0) {
+                    retireExistingDemoDrugs();
                 }
-                installedDrugListVersionObject.setPropertyValue(DRUG_LIST_VERSION.toString());
-                Context.getAdministrationService().saveGlobalProperty(installedDrugListVersionObject);
+
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("HUM_Drug_List-"
+                        + DRUG_LIST_VERSION + ".csv");
+                InputStreamReader reader = new InputStreamReader(inputStream);
+                ImportNotes notes = drugImporter.importSpreadsheet(reader);
+
+                if (notes.hasErrors()) {
+                    System.out.println(notes);
+                    throw new RuntimeException("Unable to install drug list");
+                } else {
+
+                    // update the installed version
+                    GlobalProperty installedDrugListVersionObject = Context.getAdministrationService()
+                            .getGlobalPropertyObject(GP_INSTALLED_DRUG_LIST_VERSION);
+                    if (installedDrugListVersionObject == null) {
+                        installedDrugListVersionObject = new GlobalProperty();
+                        installedDrugListVersionObject.setProperty(GP_INSTALLED_DRUG_LIST_VERSION);
+                    }
+                    installedDrugListVersionObject.setPropertyValue(DRUG_LIST_VERSION.toString());
+                    Context.getAdministrationService().saveGlobalProperty(installedDrugListVersionObject);
+                }
             }
         }
     }
