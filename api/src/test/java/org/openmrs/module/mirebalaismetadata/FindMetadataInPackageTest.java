@@ -41,7 +41,6 @@ public class FindMetadataInPackageTest extends BaseMirebalaisMetadataContextSens
     public String onlyPackage = "HUM_Death";
 
     @Test
-//    @Ignore
     public void findMetadata() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         MetadataPackagesConfig allConfigs = MetadataUtil.getMetadataPackagesForModule(classLoader);

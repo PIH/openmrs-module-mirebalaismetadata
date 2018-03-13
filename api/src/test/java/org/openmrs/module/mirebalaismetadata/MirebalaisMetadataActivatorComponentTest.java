@@ -3,7 +3,6 @@ package org.openmrs.module.mirebalaismetadata;
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openmrs.Concept;
 import org.openmrs.api.ConceptService;
@@ -43,7 +42,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @SkipBaseSetup // note that we skip the base setup because we don't want to include the standard test data
-@Ignore
 public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMetadataContextSensitiveTest {
 
     private MirebalaisMetadataActivator mirebalaisMetadataActivator;
@@ -85,7 +83,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
     }
 
     @Test
-    @Ignore
     public void testThatActivatorDoesAllSetup() throws Exception {
         verifyMetadataPackagesConfigured();
         verifyDrugListLoaded();
