@@ -65,7 +65,7 @@
         <reportinguiVersion>1.0</reportinguiVersion>
         <reportingrestVersion>1.6-SNAPSHOT</reportingrestVersion>
         <htmlwidgetsVersion>1.6.4</htmlwidgetsVersion>
-        <serializationxstreamVersion>0.2.13</serializationxstreamVersion>
+        <serializationxstreamVersion>0.2.14</serializationxstreamVersion>
         <idgenVersion>4.4.1</idgenVersion>
         <namephoneticsVersion>1.6.0</namephoneticsVersion>
         <pacsintegrationVersion>1.4</pacsintegrationVersion>
@@ -373,7 +373,7 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.17</version>
                     <configuration>
-                        <argLine>-Xmx2048m -Xms1024m -XX:MaxPermSize=512m</argLine>
+                        <argLine>-Xmx4G -Xms2G -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC</argLine>
                         <includes>
                             <include>**/*Test.java</include>
                         </includes>
