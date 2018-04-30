@@ -46,29 +46,29 @@
     </modules>
 
     <properties>
-        <openMRSVersion>2.1.3-SNAPSHOT</openMRSVersion>
+        <openMRSVersion>2.1.3</openMRSVersion>
         <openMRSwebVersion>2.1.3-SNAPSHOT</openMRSwebVersion>
         <pihcoreVersion>1.0-SNAPSHOT</pihcoreVersion>
-        <emrapiVersion>1.24.0</emrapiVersion>
+        <emrapiVersion>1.24.4</emrapiVersion>
         <paperrecordVersion>1.3.0</paperrecordVersion>
-        <emrVersion>2.0</emrVersion>
+        <emrVersion>2.1.0</emrVersion>
         <uiframeworkVersion>3.13.0</uiframeworkVersion>
         <appframeworkVersion>2.11.0</appframeworkVersion>
-        <metadatasharingVersion>1.3.0</metadatasharingVersion>
+        <metadatasharingVersion>1.5.0</metadatasharingVersion>
         <metadatamappingVersion>1.3.4</metadatamappingVersion>
         <metadatadeployVersion>1.10.0</metadatadeployVersion>
-        <htmlformentryVersion>3.6.0</htmlformentryVersion>
+        <htmlformentryVersion>3.7.0</htmlformentryVersion>
         <htmlformentry19extVersion>1.7</htmlformentry19extVersion>
-        <htmlformentryuiVersion>1.6.4</htmlformentryuiVersion>
+        <htmlformentryuiVersion>1.7.0</htmlformentryuiVersion>
         <calculationVersion>1.2</calculationVersion>
-        <reportingVersion>1.15.0</reportingVersion>
+        <reportingVersion>1.16.0</reportingVersion>
         <reportinguiVersion>1.0</reportinguiVersion>
         <reportingrestVersion>1.6-SNAPSHOT</reportingrestVersion>
         <htmlwidgetsVersion>1.6.4</htmlwidgetsVersion>
         <serializationxstreamVersion>0.2.14</serializationxstreamVersion>
         <idgenVersion>4.4.1</idgenVersion>
         <namephoneticsVersion>1.6.0</namephoneticsVersion>
-        <pacsintegrationVersion>1.4</pacsintegrationVersion>
+        <pacsintegrationVersion>1.6.0</pacsintegrationVersion>
         <addresshierarchyVersion>2.11.0</addresshierarchyVersion>
         <providermanagementVersion>2.10.0</providermanagementVersion>
         <eventVersion>2.5</eventVersion>
@@ -79,8 +79,8 @@
         <dispensingVersion>1.0</dispensingVersion>
         <uicommonsVersion>1.8-SNAPSHOT</uicommonsVersion>
         <registrationcoreVersion>1.8.0</registrationcoreVersion>
-        <registrationappVersion>1.10.0</registrationappVersion>
-        <radiologyappVersion>1.2</radiologyappVersion>
+        <registrationappVersion>1.12.0</registrationappVersion>
+        <radiologyappVersion>1.4.0</radiologyappVersion>
         <coreappsVersion>1.19.0</coreappsVersion>
         <webservicesRestVersion>2.13</webservicesRestVersion>
         <appointmentschedulingVersion>1.5</appointmentschedulingVersion>
@@ -90,7 +90,7 @@
         <allergyapiVersion>1.4</allergyapiVersion>
         <allergyuiVersion>1.5</allergyuiVersion>
         <chartsearchVersion>1.5</chartsearchVersion>
-        <haiticoreVersion>1.0.0-SNAPSHOT</haiticoreVersion>
+        <haiticoreVersion>1.0.0</haiticoreVersion>
         <!-- Need to phase this out. -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
