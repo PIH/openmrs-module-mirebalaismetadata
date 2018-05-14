@@ -70,7 +70,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Oncology</filenameBase>
             <groupUuid>1a7ca5c9-d5c8-4429-8396-a9d882d73918</groupUuid>
-            <version>42</version>
+            <version>44</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
