@@ -234,7 +234,11 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
             // TODO make custom MDS package for Sierra Leone
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles", "Liberia_Concepts");
+        } else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
+            // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles");
         }
+
 
 
         Context.flushSession();
