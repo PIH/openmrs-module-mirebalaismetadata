@@ -236,7 +236,30 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles", "Liberia_Concepts");
         } else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
+                    "HUM_Radiology_Orderables",
+                    "HUM_Metadata",
+                    "HUM_Clinical_Concepts",
+                    "HUM_Medication",
+                    "HUM_Dispensing_Concepts",
+                    "HUM_Disposition_Concepts",
+                    "HUM_Surgery",
+                    "HUM_Scheduling",
+                    "HUM_Provider_Roles",
+                    "HUM_Oncology",
+                    "PIH_Allergies",
+                    "PIH_Exam",
+                    "PIH_Labs",
+                    "PIH_History",
+                    "PIH_Pediatric_Feeding",
+                    "PIH_Pediatric_Supplements",
+                    "HUM_NCD",
+                    "PIH_Mental_Health",
+                    "HUM_Emergency_Triage",
+                    "HUM_Pathology",
+                    "Haiti_HIV",
+                    "Haiti_Zika",
+                    "PIH_Socio_Economics");
         }
 
 
