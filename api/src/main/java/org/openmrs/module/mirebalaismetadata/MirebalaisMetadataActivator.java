@@ -198,7 +198,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "HUM_Pathology",
                     "Haiti_HIV",
                     "Haiti_Zika",
-                    "PIH_Socio_Economics");
+                    "PIH_Socio_Economics",
+                    "PIH_Maternal_Child_Health");
         }
         // TODO changed this so we install all concepts on Liberia servers as well (plus Liberia Concept set which may no longer be necessary)
         // TODO is this okay?
@@ -233,7 +234,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
             // TODO make custom MDS package for Sierra Leone
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "HUM_Provider_Roles", "Liberia_Concepts");
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
+                    "HUM_Provider_Roles",
+                    "Liberia_Concepts");
         } else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
@@ -261,8 +264,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "Haiti_Zika",
                     "PIH_Socio_Economics");
         }
-
-
 
         Context.flushSession();
     }
