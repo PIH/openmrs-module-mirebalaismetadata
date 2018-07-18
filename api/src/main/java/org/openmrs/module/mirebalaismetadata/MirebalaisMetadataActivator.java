@@ -263,7 +263,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "HUM_Pathology",
                     "Haiti_HIV",
                     "Haiti_Zika",
-                    "PIH_Socio_Economics");
+                    "PIH_Socio_Economics",
+                    "PIH_Mexico");
         }
 
         Context.flushSession();
