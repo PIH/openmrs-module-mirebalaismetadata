@@ -228,7 +228,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "HUM_Pathology",
                     "Haiti_HIV",
                     "Haiti_Zika",
-                    "PIH_Socio_Economics");
+                    "PIH_Socio_Economics",
+                    "PIH_Maternal_Child_Health");
 
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
