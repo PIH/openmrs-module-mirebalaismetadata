@@ -42,7 +42,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Dispensing_Concepts</filenameBase>
             <groupUuid>c14e1736-c133-42b7-b421-cfe8cdefcbcb</groupUuid>
-            <version>35</version>
+            <version>36</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -183,6 +183,13 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
             <filenameBase>PIH_Maternal_Child_Health</filenameBase>
             <groupUuid>81d75e26-4d2e-47a8-96cf-3bb9a56d737f</groupUuid>
             <version>7</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Oncology</filenameBase>
+            <groupUuid>955ff49d-b94b-4dcf-8ef8-8a6aa76415a7</groupUuid>
+            <version>1</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
     </packages>

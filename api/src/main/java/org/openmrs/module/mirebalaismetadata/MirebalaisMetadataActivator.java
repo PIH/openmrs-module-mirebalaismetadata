@@ -199,7 +199,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "Haiti_HIV",
                     "Haiti_Zika",
                     "PIH_Socio_Economics",
-                    "PIH_Maternal_Child_Health");
+                    "PIH_Maternal_Child_Health",
+                    "Oncology");
         }
         // TODO changed this so we install all concepts on Liberia servers as well (plus Liberia Concept set which may no longer be necessary)
         // TODO is this okay?
