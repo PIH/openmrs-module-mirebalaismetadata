@@ -250,8 +250,8 @@ d4b61b57-8de2-4bf1-b402-847bbf67d2c0,SA57,"Ringer's lactate, intravenous infusio
 441d3e0a-0d9b-4e2e-b4c0-d5a308bec4e7,VV55,"Silver sulphadiazine, 1 % cream, 50gram jar",PIH:938,
 01f14854-8305-4b12-8a52-3e01555fd66e,UP04,"Simvastatin, 20mg, tablet",CIEL:83936,
 0ff47596-5599-4558-a5a7-214a3ae6584e,RG31,"Sodium bicarbonate, 8.4 %, 20 mL ampoule",CIEL:84041,
-69b1ea41-3165-4595-b1a7-07e89229955b,AX66,"Sodium chloride, 0.9 % intravenous infusion, 1000 mL bottle",CIEL:84047,
-30ee6a08-9440-4f7e-a1e7-39219d9e9b25,PB03,"Sodium chloride, 0.9 % intravenous infusion, 500 mL bottle ",CIEL:84047,
+69b1ea41-3165-4595-b1a7-07e89229955b,AX66,"Sodium chloride, 0.9 % intravenous infusion, 1000 mL bottle",CIEL:80804,
+30ee6a08-9440-4f7e-a1e7-39219d9e9b25,PB03,"Sodium chloride, 0.9 % intravenous infusion, 500 mL bottle ",CIEL:80804,
 63a49102-fdcf-42a7-8950-4ea6a1b85635,VD80,"Sodium polystyrene sulphonate, 454 gram, container ",CIEL:84099,
 b2b0d66a-4865-49fa-9af8-6d898f46dc78,NH89,"Sodium valproate, 200 mg, enteric coated tablet",PIH:4060,
 fc899af0-e745-4e60-ab06-3b3375333786,ZH91,"Sodium valproate, 500 mg, enteric coated tablet",PIH:4060,
@@ -347,4 +347,5 @@ c3ecd998-91d4-11e8-9eb6-529269fb1459,ZA75,"PACLitaxel 6 mg/mL, 50mL vial",CIEL:8
 c3ece294-91d4-11e8-9eb6-529269fb1459,NR10,"predniSONE, 20mg tablet",CIEL:82453,
 c3ece4a6-91d4-11e8-9eb6-529269fb1459,QC82,"vinCRIStine sulfate, 1 mg/mL, 1mL vial",CIEL:86266,
 0a0cb95a-9510-11e8-9eb6-529269fb1459,TN92,"dextrose 5%, intravenous infusion, 250mL",CIEL:161250,
+e98c7df0-95a5-11e8-9eb6-529269fb1459,EN40,"bleomycin sulfate, 15mg (15,000IU), powder for injection, vial",CIEL:72263,
 
