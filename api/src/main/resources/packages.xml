@@ -96,6 +96,13 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+            <filenameBase>Mexico_Concepts</filenameBase>
+            <groupUuid>b5ee1651-1f90-4371-95da-7c13f8523f8c</groupUuid>
+            <version>1</version>
+            <importMode>MIRROR</importMode>
+        </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
+
+        <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Labs</filenameBase>
             <groupUuid>26f995c0-d1a8-4d6d-ad18-978f9c190496</groupUuid>
             <version>44</version>
