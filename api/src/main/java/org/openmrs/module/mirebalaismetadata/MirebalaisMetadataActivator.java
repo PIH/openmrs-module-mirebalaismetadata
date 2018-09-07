@@ -41,6 +41,7 @@ import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiMetadataToInstallAfterConceptsBundle;
 import org.openmrs.module.pihcore.deploy.bundle.liberia.LiberiaMetadataToInstallAfterConceptsBundle;
+import org.openmrs.module.pihcore.deploy.bundle.mexico.MexicoMetadataToInstallAfterConceptsBundle;
 import org.springframework.context.MessageSource;
 
 import java.io.IOException;
@@ -272,6 +273,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
             deployService.installBundle(Context.getRegisteredComponents(LiberiaMetadataToInstallAfterConceptsBundle.class).get(0));
+        }
+        else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
+            deployService.installBundle(Context.getRegisteredComponents(MexicoMetadataToInstallAfterConceptsBundle.class).get(0));
         }
 
     }
