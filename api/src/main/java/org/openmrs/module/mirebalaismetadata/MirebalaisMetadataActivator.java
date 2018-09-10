@@ -250,6 +250,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "HUM_Medication",
                     "HUM_Metadata",
                     "HUM_NCD",
+                    "PIH_Maternal_Child_Health",  // NCD dependency
                     "HUM_Provider_Roles",
                     "PIH_Allergies",
                     "PIH_Exam",
