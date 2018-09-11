@@ -249,12 +249,13 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "HUM_Disposition_Concepts",
                     "HUM_Medication",
                     "HUM_Metadata",
-                    "PIH_Maternal_Child_Health",  // programs dependency
+                    "HUM_NCD",  // provides hypertension program
                     "HUM_Provider_Roles",
                     "PIH_Allergies",
                     "PIH_Exam",
                     "PIH_History",
                     "PIH_Labs",
+                    "PIH_Maternal_Child_Health",  // programs dependency
                     "PIH_Pediatric_Feeding",
                     "PIH_Pediatric_Supplements",
                     "PIH_Socio_Economics");
