@@ -41,6 +41,7 @@ import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
 import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiMetadataToInstallAfterConceptsBundle;
 import org.openmrs.module.pihcore.deploy.bundle.liberia.LiberiaMetadataToInstallAfterConceptsBundle;
+import org.openmrs.module.pihcore.deploy.bundle.mexico.MexicoMetadataToInstallAfterConceptsBundle;
 import org.springframework.context.MessageSource;
 
 import java.io.IOException;
@@ -243,16 +244,17 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
                     "Mexico_Concepts",
-                    "HUM_Metadata",
                     "HUM_Clinical_Concepts",
-                    "HUM_Medication",
                     "HUM_Dispensing_Concepts",
                     "HUM_Disposition_Concepts",
+                    "HUM_Medication",
+                    "HUM_Metadata",
+                    "PIH_Maternal_Child_Health",  // programs dependency
                     "HUM_Provider_Roles",
                     "PIH_Allergies",
                     "PIH_Exam",
-                    "PIH_Labs",
                     "PIH_History",
+                    "PIH_Labs",
                     "PIH_Pediatric_Feeding",
                     "PIH_Pediatric_Supplements",
                     "PIH_Socio_Economics");
@@ -272,6 +274,9 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
             deployService.installBundle(Context.getRegisteredComponents(LiberiaMetadataToInstallAfterConceptsBundle.class).get(0));
+        }
+        else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
+            deployService.installBundle(Context.getRegisteredComponents(MexicoMetadataToInstallAfterConceptsBundle.class).get(0));
         }
 
     }
