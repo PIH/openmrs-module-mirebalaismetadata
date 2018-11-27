@@ -175,7 +175,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Socio_Economics</filenameBase>
             <groupUuid>0678a82d-5100-44ba-ba1b-893eab01685a</groupUuid>
-            <version>7</version>
+            <version>9</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
