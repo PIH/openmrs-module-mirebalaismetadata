@@ -56,7 +56,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Provider_Roles</filenameBase>
             <groupUuid>ebaf1f5d-5c86-485d-9e5f-9d56d545aff3</groupUuid>
-            <version>11</version>
+            <version>12</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -133,7 +133,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_NCD</filenameBase>
             <groupUuid>50102310-1d04-4070-a42c-185d7198acad</groupUuid>
-            <version>45</version>
+            <version>46</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -189,7 +189,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Maternal_Child_Health</filenameBase>
             <groupUuid>81d75e26-4d2e-47a8-96cf-3bb9a56d737f</groupUuid>
-            <version>17</version>
+            <version>18</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
