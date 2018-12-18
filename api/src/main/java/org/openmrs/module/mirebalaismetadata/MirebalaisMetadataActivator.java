@@ -235,11 +235,24 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
-            // TODO this package should really be renamed to just Provider Roles, or PIH Provider Roles
-            // TODO make custom MDS package for Sierra Leone
+            // TODO make custom MDS package for Sierra Leone?
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
+                    "HUM_Clinical_Concepts",
+                    "HUM_Dispensing_Concepts",
+                    "HUM_Disposition_Concepts",
+                    "HUM_Medication",
+                    "HUM_Metadata",
+                    "HUM_NCD",  // provides hypertension program
                     "HUM_Provider_Roles",
-                    "Liberia_Concepts");
+                    "PIH_Allergies",
+                    "PIH_Exam",
+                    "PIH_History",
+                    "PIH_Labs",
+                    "PIH_Maternal_Child_Health",  // programs dependency
+                    "PIH_Mental_Health",
+                    "PIH_Pediatric_Feeding",
+                    "PIH_Pediatric_Supplements",
+                    "PIH_Socio_Economics");
         } else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
                     "Mexico_Concepts",
