@@ -235,7 +235,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
-            // TODO make custom MDS package for Sierra Leone?
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
                     "HUM_Clinical_Concepts",
                     "HUM_Dispensing_Concepts",
@@ -252,7 +251,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "PIH_Mental_Health",
                     "PIH_Pediatric_Feeding",
                     "PIH_Pediatric_Supplements",
-                    "PIH_Socio_Economics");
+                    "PIH_Socio_Economics",
+                    "Sierra_Leone_Concepts");
         } else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
                     "Mexico_Concepts",
