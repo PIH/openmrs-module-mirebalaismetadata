@@ -105,7 +105,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Sierra_Leone_Concepts</filenameBase>
             <groupUuid>523eeaf3-ee73-4380-8901-2d9ac4cccbeb</groupUuid>
-            <version>1</version>
+            <version>3</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
