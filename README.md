@@ -2,35 +2,52 @@
 
 Metadata is packaged for deployment across PIH EMR instances using two OpenMRS modules: [Metadata Sharing](https://wiki.openmrs.org/display/docs/Metadata+Sharing+Module) and [Metadata Deploy](https://wiki.openmrs.org/display/docs/Metadata+Deploy+Module). Please read the documentation in the links.
 
-### PIH EMR Concept Management
+### Metadata Server Management
 
-This is described on the OpenMRS wiki:
+This is described on the [OpenMRS wiki](https://wiki.openmrs.org/display/docs/Metadata+Server+Management).
 
-[https://wiki.openmrs.org/display/docs/Metadata+Server+Management](https://wiki.openmrs.org/display/docs/Metadata+Server+Management)
+### PIH EMR Concept Management Process
 
-### Process 
+1. Write down your required question/answer/diagnosis in a row in your requirements sheet.
+1. Try and find a suitable concept in the [PIH Concept dictionary](http://concepts.pih-emr.org/).
+    1. If there is a suitable concept, then add its ID to your requirements sheet
+    1. If there's no suitable concept, then search for a suitable concept in [CIEL on OCL](https://openconceptlab.org/search/?source=CIEL&q=).
+        1. If there is a suitable concept in CIEL, add the CIEL ID to your requirements sheet and ask Ellen to import the concept from CIEL to PIH.
+        1. If there is no suitable concept in CIEL, then ask Ellen what the best next step is. It will be either to
+            1. Propose a new concept for CIEL via an email to Andy (Andrew Kanter), and wait for it to be created and for Ellen to import it from CIEL to PIH. Once this is done, add the CIEL Concept ID to your requirements sheet. This will be the right choice when the concept seems like something that lots of other organizations would want.
+            1. Just create a new concept in the PIH Concept dictionary, then add the PIH ID to your requirements sheet. This will be the right choice for things that are very specific to your implementation.
+1. Once you have the concept in the PIH concept server, make sure it has a reference term mapping. The ones imported from CIEL should certainly have the CIEL code as a mapping -- if it isn't present, definitely ask Ellen about it. Concepts which don't correspond to anything in CIEL should have PIH reference term mappings, for the ID (e.g. "PIH:12345") and for the name (e.g. "PIH:HAS BOO BOO"). The ID one probably isn't important, actually, but it'll probably exist.
+1. Check that a translation of the concept name exists in your implementation’s language. If it doesn't, evaluate whether or not the display name you want for the concept is a direct translation of the English concept name.
+    1. If it is, add the display name as the translation for the concept.
+    1. If it isn't, translate the English concept name as best you (or a bilingual colleague) can. You'll add the display name to the `messages.properties` file later.
+1. Ask Ellen which MDS package the concept likely exists in. Reasonable tools to examine MDS packages do not yet exist.
+1. If the concept is new or is for some other reason is not yet in an MDS package, you or Ellen will have to add it to one.
+    1. Go to Administration > Export Metadata.
+    1. Identify the package you'd like to add to and click on it. If a new package needs to be created, Ellen will take care of it.
+    1. Click on "New Version"
+    1. I don't think we use publication, but feel free to check "2. Publish package" anyway. Click "Next."
+    1. Under "4. Review selected items," click "Choose Individually."
+    1. Find and select the concepts you'd like to include.
+    1. Hit "Save." Click "Export."
+    1. Download this newly created MDS package.
+    1. Open the "openmrs-module-mirebalaismetadata" repository on your computer. If you don't have it, check it out from [GitHub](https://github.com/PIH/openmrs-module-mirebalaismetadata). If you are using the OpenMRS SDK, be sure to watch it with `openmrs-sdk:watch`.
+    1. Drop the new version of the MDS package into `api/src/main/resources`.
+    1. Update the filename in `api/src/main/resources/packages.xml` to reflect the new version number.
+1. Now that you know that the concept is being imported via an MDS package, you can use it in a form (or whatever). Refer to your concept by Reference Term Mapping. If a CIEL Metadata Term Mapping ("CIEL:3456") is available, always prefer that. If it's not obvious from context what the concept is, add a comment with the concept's name. If the concept is not a CIEL concept, use the PIH name mapping ("PIH:TUMMY ACHE"), creating it if necessary.
+1. Add the display name to the correct `messages.properties` file, with the correct key (I haven't done this yet and can't be more helpful than that).
 
-1. Does the concept exist in PIH EMR package?  Confirm by looking at one of the deployments (ci.pih-emr.org)
 
-2. If it does not exist, 
+### Importing Concepts from CIEL to PIH Server
 
-    1. Search CIEL concept dictionary for the concept -  Use [OpenConceptLab (OCL) ](https://www.openconceptlab.org/)to view CIEL dictionary 
+1. Use Metadata Sharing (mds) to add the concept to the PIH EMR package.  
 
-    2. If CIEL has the concept, record the CIEL concept_id/mapping (ie. CIEL:123456) (data dictionary spreadsheet?)
+    1. Create mds package with select CIEL concepts.  
 
-    3. If the concept does not exist in CIEL/OCL, propose new concept to CIEL.
+    1. Download/Export the CIEL mds package.
 
-    4. If concept does not include Spanish translated name, propose Spanish name.
+    1. Import the CIEL mds package into the PIH concepts server.
 
-3. Use Metadata Sharing (mds) to add the concept to the PIH EMR package.  
-
-    5. Create mds package with select CIEL concepts.  
-
-    6. Download/Export the CIEL mds package.
-
-    7. Import the CIEL mds package into the PIH concepts server.
-
-    8. Add the concepts to one of the PIH EMR mds packages.  Zip file updates are pushed to the repo [https://github.com/PIH/openmrs-module-mirebalaismetadata](https://github.com/PIH/openmrs-module-mirebalaismetadata)
+    1. Add the concepts to one of the PIH EMR mds packages.  Zip file updates are pushed to the repo [https://github.com/PIH/openmrs-module-mirebalaismetadata](https://github.com/PIH/openmrs-module-mirebalaismetadata)
 
 ### Metadata Sharing (mds)
 
