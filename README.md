@@ -6,6 +6,15 @@ Metadata is packaged for deployment across PIH EMR instances using two OpenMRS m
 
 This is described on the [OpenMRS wiki](https://wiki.openmrs.org/display/docs/Metadata+Server+Management).
 
+### MDS Package Search Tool
+
+You will at some point want to look up whether a concept exists in some or
+another package.
+To accomplish this you can use the tool in mds-search. `cd` into `mds-search`.
+Then run `./update.sh` to unzip all the MDS packages in this repo into the
+mds-search directory. Then use `./findconcept.sh 123` to find the bundles
+that contain the concept with PIH concept ID `123`.
+
 ### PIH EMR Concept Management Process
 
 1. Write down your required question/answer/diagnosis in a row in your requirements sheet.
@@ -20,7 +29,7 @@ This is described on the [OpenMRS wiki](https://wiki.openmrs.org/display/docs/Me
 1. Check that a translation of the concept name exists in your implementation’s language. If it doesn't, evaluate whether or not the display name you want for the concept is a direct translation of the English concept name.
     1. If it is, add the display name as the translation for the concept.
     1. If it isn't, translate the English concept name as best you (or a bilingual colleague) can. You'll add the display name to the `messages.properties` file later.
-1. Ask Ellen which MDS package the concept likely exists in. Reasonable tools to examine MDS packages do not yet exist.
+1. Use the MDS Package Search Tool (mds-search), documented above, to find out whether the concept you want is already in an MDS package.
 1. If the concept is new or is for some other reason is not yet in an MDS package, you or Ellen will have to add it to one.
     1. Go to Administration > Export Metadata.
     1. Identify the package you'd like to add to and click on it. If a new package needs to be created, Ellen will take care of it.
@@ -33,6 +42,7 @@ This is described on the [OpenMRS wiki](https://wiki.openmrs.org/display/docs/Me
     1. Open the "openmrs-module-mirebalaismetadata" repository on your computer. If you don't have it, check it out from [GitHub](https://github.com/PIH/openmrs-module-mirebalaismetadata). If you are using the OpenMRS SDK, be sure to watch it with `openmrs-sdk:watch`.
     1. Drop the new version of the MDS package into `api/src/main/resources`.
     1. Update the filename in `api/src/main/resources/packages.xml` to reflect the new version number.
+1. To make sure that your site is importing that MDS package, look at `mirebalaismetadata/.../MirebalaisMetadataActivator.java`. It should have a list of MDS packages under your country's name. Make sure your MDS package is named there, adding it if necessary.
 1. Now that you know that the concept is being imported via an MDS package, you can use it in a form (or whatever). Refer to your concept by Reference Term Mapping. If a CIEL Metadata Term Mapping ("CIEL:3456") is available, always prefer that. If it's not obvious from context what the concept is, add a comment with the concept's name. If the concept is not a CIEL concept, use the PIH name mapping ("PIH:TUMMY ACHE"), creating it if necessary.
 1. Add the display name to the correct `messages.properties` file, with the correct key (I haven't done this yet and can't be more helpful than that).
 
