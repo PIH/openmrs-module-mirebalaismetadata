@@ -5,7 +5,7 @@ usage() {
     echo "Looks through the .xml files that ./update.sh puts in this directory."
     echo "If there are no .xml files in this directory, run ./update.sh."
     echo
-    echo "Usage: ./findconcept.sh <concept_id>"
+    echo "Usage: ./find-concept.sh <concept_id>"
 }
 
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
