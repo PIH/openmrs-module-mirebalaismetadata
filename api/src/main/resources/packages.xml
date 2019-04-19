@@ -119,7 +119,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_History</filenameBase>
             <groupUuid>ffc81380-6dc2-47e5-951e-98f7f2b173a7</groupUuid>
-            <version>17</version>
+            <version>18</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -140,7 +140,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_NCD</filenameBase>
             <groupUuid>50102310-1d04-4070-a42c-185d7198acad</groupUuid>
-            <version>54</version>
+            <version>55</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
