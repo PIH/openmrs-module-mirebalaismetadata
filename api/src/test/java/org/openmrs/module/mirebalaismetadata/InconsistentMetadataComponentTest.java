@@ -26,7 +26,7 @@ import org.openmrs.module.emrapi.utils.MetadataUtil;
 
 // we are ignoring this as we are now loading metadata packages in order of date created
 @Ignore
-public class InconsistentMetadataComponentTest extends BaseMirebalaisMetadataContextSensitiveTest {
+public class InconsistentMetadataComponentTest extends BaseModuleContextSensitiveTest {
 
     @Test
     public void testThatThereAreNoMdsPackagesWithInconsistentVersionsOfTheSameItem() throws Exception {

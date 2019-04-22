@@ -44,7 +44,7 @@ import static org.mockito.Mockito.when;
 
 @SkipBaseSetup // note that we skip the base setup because we don't want to include the standard test data
 @Ignore
-public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMetadataContextSensitiveTest {
+public class MirebalaisMetadataActivatorComponentTest extends BaseModuleContextSensitiveTest {
 
     private MirebalaisMetadataActivator mirebalaisMetadataActivator;
 

@@ -17,7 +17,7 @@ import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.location
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.locationAttributeType;
 
 
-public class CustomLocationDeployHandlerTest extends BaseMirebalaisMetadataContextSensitiveTest {
+public class CustomLocationDeployHandlerTest extends BaseModuleContextSensitiveTest {
 
     @Autowired
     private MetadataDeployService deployService;
