@@ -11,7 +11,13 @@ public class MirebalaisMetadataProperties extends ModuleProperties {
 
     public static final String GP_INSTALLED_DRUG_LIST_VERSION = "mirebalaismetadata.installedDrugListVersion";
 
+    public static final String GP_INSTALLED_CES_DRUG_LIST_VERSION = "mirebalaismetadata.installedCesDrugListVersion";
+
     public int getInstalledDrugListVersion() {
         return getIntegerByGlobalProperty(GP_INSTALLED_DRUG_LIST_VERSION);
+    }
+
+    public int getInstalledCesDrugListVersion() {
+        return getIntegerByGlobalProperty(GP_INSTALLED_CES_DRUG_LIST_VERSION);
     }
 }

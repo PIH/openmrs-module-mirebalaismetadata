@@ -50,8 +50,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.openmrs.module.mirebalaismetadata.MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION;
-
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
  */
@@ -60,6 +58,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
     protected Log log = LogFactory.getLog(getClass());
 
     protected static final Integer DRUG_LIST_VERSION = 14;
+
+    protected static final Integer CES_DRUG_LIST_VERSION = 1;
 
     private MirebalaisMetadataProperties mirebalaisMetadataProperties;
 
@@ -299,38 +299,45 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
     private void installDrugList(Config config) throws IOException {
 
         if (config.getCountry().equals(ConfigDescriptor.Country.HAITI) || config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
+            installSpecificDrugList("HUM_Drug_List-", DRUG_LIST_VERSION, MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION);
+        } else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
+            installSpecificDrugList("CES_Drug_List-", CES_DRUG_LIST_VERSION, MirebalaisMetadataProperties.GP_INSTALLED_CES_DRUG_LIST_VERSION);
+        }
+    }
 
-            int installedDrugListVersion = getIntegerByGlobalProperty(MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION, -1);
+    private void installSpecificDrugList(String csvFileNamePrefix, Integer version, String installedDrugListVersionGp) throws IOException {
 
-            if (installedDrugListVersion < DRUG_LIST_VERSION) {
+        int installedDrugListVersion = getIntegerByGlobalProperty(installedDrugListVersionGp, -1);
 
-                // special-case to retire any demo drugs before installing the first package
-                if (installedDrugListVersion == 0) {
-                    retireExistingDemoDrugs();
+        if (installedDrugListVersion < version) {
+
+            // special-case to retire any demo drugs before installing the first package
+            if (installedDrugListVersion == 0) {
+                retireExistingDemoDrugs();
+            }
+
+            String csvFileName = csvFileNamePrefix + version + ".csv";
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(csvFileName);
+            InputStreamReader reader = new InputStreamReader(inputStream);
+            ImportNotes notes = drugImporter.importSpreadsheet(reader);
+
+            if (notes.hasErrors()) {
+                System.out.println(notes);
+                throw new RuntimeException("Unable to install drug list");
+            } else {
+
+                // update the installed version
+                GlobalProperty installedDrugListVersionObject = Context.getAdministrationService()
+                        .getGlobalPropertyObject(installedDrugListVersionGp);
+                if (installedDrugListVersionObject == null) {
+                    installedDrugListVersionObject = new GlobalProperty();
+                    installedDrugListVersionObject.setProperty(installedDrugListVersionGp);
                 }
-
-                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("HUM_Drug_List-"
-                        + DRUG_LIST_VERSION + ".csv");
-                InputStreamReader reader = new InputStreamReader(inputStream);
-                ImportNotes notes = drugImporter.importSpreadsheet(reader);
-
-                if (notes.hasErrors()) {
-                    System.out.println(notes);
-                    throw new RuntimeException("Unable to install drug list");
-                } else {
-
-                    // update the installed version
-                    GlobalProperty installedDrugListVersionObject = Context.getAdministrationService()
-                            .getGlobalPropertyObject(GP_INSTALLED_DRUG_LIST_VERSION);
-                    if (installedDrugListVersionObject == null) {
-                        installedDrugListVersionObject = new GlobalProperty();
-                        installedDrugListVersionObject.setProperty(GP_INSTALLED_DRUG_LIST_VERSION);
-                    }
-                    installedDrugListVersionObject.setPropertyValue(DRUG_LIST_VERSION.toString());
-                    Context.getAdministrationService().saveGlobalProperty(installedDrugListVersionObject);
-                }
+                installedDrugListVersionObject.setPropertyValue(version.toString());
+                Context.getAdministrationService().saveGlobalProperty(installedDrugListVersionObject);
             }
         }
+
     }
 
     private void retireExistingDemoDrugs() {
