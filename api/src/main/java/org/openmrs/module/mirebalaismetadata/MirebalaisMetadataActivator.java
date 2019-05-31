@@ -236,12 +236,15 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
         else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
+		    "Haiti_HIV", 	
                     "HUM_Clinical_Concepts",
                     "HUM_Dispensing_Concepts",
                     "HUM_Disposition_Concepts",
+		    "HUM_Emergency_Triage",
                     "HUM_Medication",
                     "HUM_Metadata",
                     "HUM_NCD",  // provides hypertension program
+		    "HUM_Pathology",
                     "HUM_Provider_Roles",
                     "PIH_Allergies",
                     "PIH_Exam",
