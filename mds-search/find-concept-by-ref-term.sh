@@ -20,5 +20,5 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-grep -l "<code>$1</code>" * | sed 's/metadata.xml~/header.xml~/' | xargs grep "<name>"
+grep -l "<code>$1</code>" * | sed 's/metadata.xml/header.xml/' | xargs grep "<name>"
 
