@@ -59,7 +59,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     protected static final Integer DRUG_LIST_VERSION = 14;
 
-    protected static final Integer CES_DRUG_LIST_VERSION = 1;
+    protected static final Integer CES_DRUG_LIST_VERSION = 2;
 
     private MirebalaisMetadataProperties mirebalaisMetadataProperties;
 

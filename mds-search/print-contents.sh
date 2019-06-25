@@ -21,7 +21,6 @@ fi
 
 mapfile -t ids < <(grep "<conceptId>.*</conceptId>" $1 | grep -Eo '[0-9]*' | sort -g | uniq)
 ids_length=${#ids[@]}
-echo $ids_length
 for (( i = 0; i < $ids_length; i++ )); do
     id=${ids[$i]}
     names[$i]=$(grep -A50 "<conceptId>$id</conceptId>" $1 | grep -A8 "<conceptNameId>" | grep "<name>" | sed "s/<name>\(.*\)<\/name>/\1/")
