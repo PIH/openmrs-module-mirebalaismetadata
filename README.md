@@ -30,14 +30,17 @@ that contain the concept with PIH concept ID `123`.
     1. If it is, add the display name as the translation for the concept.
     1. If it isn't, translate the English concept name as best you (or a bilingual colleague) can. You'll add the display name to the `messages.properties` file later.
 1. Use the MDS Package Search Tool (mds-search), documented above, to find out whether the concept you want is already in an MDS package.
-1. If the concept is new or is for some other reason is not yet in an MDS package, you or Ellen will have to add it to one.
+1. If the concept is new or is for some other reason is not yet in an MDS package, you or someone from MedInfo will have to add it to one.
+    1. Identify the MDS package it should go in. Ask someone if you're not sure.
+    1. Add your concept to a concept set that goes into that package. Ask someone if you're not sure.
     1. Go to Administration > Export Metadata.
-    1. Identify the package you'd like to add to and click on it. If a new package needs to be created, Ellen will take care of it.
     1. Click on "New Version"
     1. I don't think we use publication, but feel free to check "2. Publish package" anyway. Click "Next."
-    1. Under "4. Review selected items," click "Choose Individually."
-    1. Find and select the concepts you'd like to include.
-    1. Hit "Save." Click "Export."
+    1. If you have a new concept set that's not yet in the package, then
+        1. Under "4. Review selected items," click "Choose Individually."
+        1. Find and select the concept set you'd like to include.
+        1. Click "Save."
+    1. Click "Export."
     1. Download this newly created MDS package.
     1. Open the "openmrs-module-mirebalaismetadata" repository on your computer. If you don't have it, check it out from [GitHub](https://github.com/PIH/openmrs-module-mirebalaismetadata). If you are using the OpenMRS SDK, be sure to watch it with `openmrs-sdk:watch`.
     1. Drop the new version of the MDS package into `api/src/main/resources`.
