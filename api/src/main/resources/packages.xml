@@ -84,7 +84,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Exam</filenameBase>
             <groupUuid>c6356354-1ec1-4dae-a1ce-ae2ffe358ae6</groupUuid>
-            <version>26</version>
+            <version>27</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -196,7 +196,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Maternal_Child_Health</filenameBase>
             <groupUuid>81d75e26-4d2e-47a8-96cf-3bb9a56d737f</groupUuid>
-            <version>30</version>
+            <version>32</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
