@@ -31,4 +31,20 @@
 
     </changeSet>
 
+
+    <changeSet id="20190805-void-duplicate-spanish-concept-name" author="ball">
+        <comment>
+            UHM-3957 Void incorrect Lactic Acidosis spanish name (En el pasado)
+        </comment>
+
+        <sql>
+            -- Void Spanish name
+            update concept_name
+            set voided = 1, date_voided = now(),
+                void_reason = 'Bad and duplicate Spanish name',
+                voided_by = 1
+            where uuid = '8e5aece0-bb5f-11e8-8419-aa0059ea79c6';
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
