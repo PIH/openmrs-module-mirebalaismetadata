@@ -47,4 +47,38 @@
         </sql>
     </changeSet>
 
+    <changeSet id="20190909-retire-drugs" author="ball">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from global_property gp
+                 where gp.property_value like '%haiti%'
+                   and gp.property ='layout.address.format';
+            </sqlCheck>
+        </preConditions>
+
+        <comment>
+            UHM-4014 Retire medications from HUM drug list
+        </comment>
+
+        <sql>
+            -- Retire drugs per Laura McMeel
+            update drug
+            set retired = 1, date_retired = now(),
+                retire_reason = 'Retire per Laura McMeel',
+                retired_by = 1
+            where uuid IN ('93b4de46-d986-11e5-b5d2-0a1d41d68578',
+                           'c7ac13a0-ca3e-4765-b08a-e47749964d5a',
+                           'a40da9d4-c981-11e7-abc4-cec278b6b50a',
+                           '4ec74967-47e6-4f6d-882b-8c2efd466a7b',
+                           '93b4e1d4-d986-11e5-b5d2-0a1d41d68578',
+                           '158b8bd0-4472-11e6-beb8-9e71128cae77',
+                           'f75e1e94-b1be-11e3-a5e2-0800200c9a66',
+                           'a35cc637-e2b7-4538-a495-efb77b13a524',
+                           '93b4e044-d986-11e5-b5d2-0a1d41d68578',
+                           '33ab2f74-ef36-4552-8221-8ac1bf8be86f',
+                           'f75e1e90-b1be-11e3-a5e2-0800200c9a66',
+                           '93b4d982-d986-11e5-b5d2-0a1d41d68578');
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
