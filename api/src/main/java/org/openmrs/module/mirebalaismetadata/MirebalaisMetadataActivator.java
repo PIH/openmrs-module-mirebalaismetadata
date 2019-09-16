@@ -61,6 +61,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     protected static final Integer CES_DRUG_LIST_VERSION = 4;
 
+    protected static final Integer SL_DRUG_LIST_VERSION = 1;
+
     private MirebalaisMetadataProperties mirebalaisMetadataProperties;
 
     private DrugImporter drugImporter;
@@ -241,11 +243,11 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "HUM_Clinical_Concepts",
                     "HUM_Dispensing_Concepts",
                     "HUM_Disposition_Concepts",
-		    "HUM_Emergency_Triage",
+		            "HUM_Emergency_Triage",
                     "HUM_Medication",
                     "HUM_Metadata",
                     "HUM_NCD",  // provides hypertension program
-		    "HUM_Pathology",
+		            "HUM_Pathology",
                     "HUM_Provider_Roles",
                     "PIH_Allergies",
                     "PIH_Exam",
@@ -306,6 +308,8 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             installSpecificDrugList("HUM_Drug_List-", DRUG_LIST_VERSION, MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION);
         } else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
             installSpecificDrugList("CES_Drug_List-", CES_DRUG_LIST_VERSION, MirebalaisMetadataProperties.GP_INSTALLED_CES_DRUG_LIST_VERSION);
+        } else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
+            installSpecificDrugList("SL_Drug_List-", SL_DRUG_LIST_VERSION, MirebalaisMetadataProperties.GP_INSTALLED_SL_DRUG_LIST_VERSION);
         }
     }
 
