@@ -152,7 +152,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         }
 		catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("mirebalaismetadata");
-            ModuleFactory.stopModule(mod);
+            ModuleFactory.stopModule(mod, true, true);
             throw new RuntimeException("Failed to start the mirebalaismetadata module", e);
         }
         log.info("Mirebalais Metadata module started");
