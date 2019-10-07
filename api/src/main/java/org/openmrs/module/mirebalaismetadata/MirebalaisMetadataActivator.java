@@ -245,6 +245,7 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "HUM_Dispensing_Concepts",
                     "HUM_Disposition_Concepts",
 		            "HUM_Emergency_Triage",
+                    "HUM_Surgery",
                     "HUM_Medication",
                     "HUM_Metadata",
                     "HUM_NCD",  // provides hypertension program
