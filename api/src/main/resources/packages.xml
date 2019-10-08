@@ -21,7 +21,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Clinical_Concepts</filenameBase>
             <groupUuid>7003f131-7a15-4292-9513-c9fe52a73235</groupUuid>
-            <version>223</version>
+            <version>224</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -42,7 +42,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Dispensing_Concepts</filenameBase>
             <groupUuid>c14e1736-c133-42b7-b421-cfe8cdefcbcb</groupUuid>
-            <version>38</version>
+            <version>39</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -105,7 +105,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Sierra_Leone_Concepts</filenameBase>
             <groupUuid>523eeaf3-ee73-4380-8901-2d9ac4cccbeb</groupUuid>
-            <version>7</version>
+            <version>8</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
