@@ -81,4 +81,24 @@
         </sql>
     </changeSet>
 
+    <changeSet id="20191108-retire-uric-acid-concept" author="ball">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept
+                where uuid = 'd6e20676-e800-4f26-a8b2-96a2127201dd';
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            UHM-4165 Retire Uric acid concept
+        </comment>
+
+        <sql>
+            update concept
+            set retired = 1, date_retired = now(),
+                retire_reason = 'Replaced by CIEL concept',
+                retired_by = 1
+            where uuid = 'd6e20676-e800-4f26-a8b2-96a2127201dd';
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>

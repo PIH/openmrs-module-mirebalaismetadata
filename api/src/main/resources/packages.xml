@@ -91,7 +91,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>Liberia_Concepts</filenameBase>
             <groupUuid>c0dc491e-a26e-4dee-99c4-c4dc5cb2e787</groupUuid>
-            <version>27</version>
+            <version>28</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -112,7 +112,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Labs</filenameBase>
             <groupUuid>26f995c0-d1a8-4d6d-ad18-978f9c190496</groupUuid>
-            <version>93</version>
+            <version>95</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
