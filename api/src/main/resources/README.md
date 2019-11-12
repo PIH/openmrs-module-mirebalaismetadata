@@ -26,7 +26,7 @@ Metadata sharing packages include these:
 * Providers/Roles: HUM_Provider_Roles-x.zip
 * Radiology orders: HUM_Radiology_Orderables-x.zip
 * Appointment scheduling: HUM_Scheduling-x.zip
-* Surgeny: HUM_Surgery-x.zip
+* Surgery: HUM_Surgery-x.zip
 * Liberia only: Liberia_Concepts-x.zip
 * Mexico only:  Mexico_Concepts-x.zip
 * ???: Oncology-x.zip
