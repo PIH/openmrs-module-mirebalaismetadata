@@ -10,10 +10,17 @@ This is described on the [OpenMRS wiki](https://wiki.openmrs.org/display/docs/Me
 
 You will at some point want to look up whether a concept exists in some or
 another package.
+
 To accomplish this you can use the tool in mds-search. `cd` into `mds-search`.
 Then run `./update.sh` to unzip all the MDS packages in this repo into the
-mds-search directory. Then use `./findconcept.sh 123` to find the bundles
-that contain the concept with PIH concept ID `123`.
+mds-search directory. Then use `./find-concept.sh 123` to find the MDS packages
+that contain the concept with PIH concept ID `123`. The other `find-concept-`
+scripts work similarly. Execute any one of them with no arguments to see usage
+info.
+
+The script `find-package-by-name.sh <name>` will show you which of the header.xml and
+metadata.xml files (which only have number suffixes) has `<name>` in the name.
+Try `find-package-by-name.sh ncd`.
 
 ### PIH EMR Concept Management Process
 
