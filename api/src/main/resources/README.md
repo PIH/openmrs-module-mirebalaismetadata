@@ -13,16 +13,16 @@ Modify the MirebalaisMetadataActivator.java with the latest version number of th
 Metadata sharing packages include these:
 
 * HIV (includes all concepts for Haiti including iSantePlus): Haiti_HIV-x.zip
-* Zika: Haiti_Zika-x.zip
+* Zika: Haiti_Zika-x.zip (1 concept: Zika study concept set)
 * Diagnoses, symptoms, etc:  HUM_Clinical_Concepts-x.zip
-* Dispensing: HUM_Dispensing_Concepts-x.zip
-* Disposition:  HUM_Disposition_Concepts-x.zip
-* ED triage:  HUM_Emergency_Triage-x.zip
-* Medications:  HUM_Medication-x.zip
-* Miscellaneous: HUM_Metadata-x.zip
-* NCD: HUM_NCD-x.zip
-* Oncology: HUM_Oncology-x.zip
-* Pathology: HUM_Pathology-x.zip
+* Dispensing: HUM_Dispensing_Concepts-x.zip (7 concepts)
+* Disposition:  HUM_Disposition_Concepts-x.zip (3 concepts)
+* ED triage:  HUM_Emergency_Triage-x.zip (2 concepts including HUM Triage set)
+* Medications:  HUM_Medication-x.zip (3 concepts including PIH medication set, CES medication set)
+* Miscellaneous: HUM_Metadata-x.zip (8 concepts)
+* NCD: HUM_NCD-x.zip (23 concepts including NCD concept set; 1 htmlform = NCD consult )
+* Oncology: HUM_Oncology-x.zip (2 concepts; 3 htmlforms)
+* Pathology: HUM_Pathology-x.zip (1 concept = Pathology concept set)
 * Providers/Roles: HUM_Provider_Roles-x.zip
 * Radiology orders: HUM_Radiology_Orderables-x.zip
 * Appointment scheduling: HUM_Scheduling-x.zip
@@ -32,7 +32,7 @@ Metadata sharing packages include these:
 * ???: Oncology-x.zip
 * Allergies:  PIH_Allergies-x.zip
 * Concept sources: PIH_Concept_Sources-x.zip
-* Physical exam:  PIH_Exam-x.zip
+* Physical exam:  PIH_Exam-x.zip (1 concept: Physical system concept set)
 * Intake history: PIH_History-x.zip
 * Labs: PIH_Labs-x.zip
 * Maternal child health: PIH_Maternal_Child_Health-x.zip

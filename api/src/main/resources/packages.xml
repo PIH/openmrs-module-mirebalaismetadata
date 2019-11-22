@@ -21,7 +21,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_Clinical_Concepts</filenameBase>
             <groupUuid>7003f131-7a15-4292-9513-c9fe52a73235</groupUuid>
-            <version>230</version>
+            <version>231</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -84,7 +84,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Exam</filenameBase>
             <groupUuid>c6356354-1ec1-4dae-a1ce-ae2ffe358ae6</groupUuid>
-            <version>30</version>
+            <version>31</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -140,7 +140,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>HUM_NCD</filenameBase>
             <groupUuid>50102310-1d04-4070-a42c-185d7198acad</groupUuid>
-            <version>71</version>
+            <version>72</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
@@ -182,7 +182,7 @@ Defines packages to be loaded by the Metadata Sharing module on startup of this 
         <org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
             <filenameBase>PIH_Socio_Economics</filenameBase>
             <groupUuid>0678a82d-5100-44ba-ba1b-893eab01685a</groupUuid>
-            <version>12</version>
+            <version>14</version>
             <importMode>MIRROR</importMode>
         </org.openmrs.module.emrapi.metadata.MetadataPackageConfig>
 
