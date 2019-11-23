@@ -12,9 +12,9 @@ Modify the MirebalaisMetadataActivator.java with the latest version number of th
 
 Metadata sharing packages include these:
 
-* HIV (includes all concepts for Haiti including iSantePlus): Haiti_HIV-x.zip
+* HIV (includes all concepts for Haiti including iSantePlus): Haiti_HIV-x.zip (1 concept)
 * Zika: Haiti_Zika-x.zip (1 concept: Zika study concept set)
-* Diagnoses, symptoms, etc:  HUM_Clinical_Concepts-x.zip
+* Diagnoses, symptoms, etc:  HUM_Clinical_Concepts-x.zip (8 concepts)
 * Dispensing: HUM_Dispensing_Concepts-x.zip (7 concepts)
 * Disposition:  HUM_Disposition_Concepts-x.zip (3 concepts)
 * ED triage:  HUM_Emergency_Triage-x.zip (2 concepts including HUM Triage set)
@@ -23,23 +23,23 @@ Metadata sharing packages include these:
 * NCD: HUM_NCD-x.zip (23 concepts including NCD concept set; 1 htmlform = NCD consult )
 * Oncology: HUM_Oncology-x.zip (2 concepts; 3 htmlforms)
 * Pathology: HUM_Pathology-x.zip (1 concept = Pathology concept set)
-* Providers/Roles: HUM_Provider_Roles-x.zip
-* Radiology orders: HUM_Radiology_Orderables-x.zip
+* Providers/Roles: HUM_Provider_Roles-x.zip (?)
+* Radiology orders: HUM_Radiology_Orderables-x.zip (2 concepts including Radiology concept set)
 * Appointment scheduling: HUM_Scheduling-x.zip
 * Surgery: HUM_Surgery-x.zip
 * Liberia only: Liberia_Concepts-x.zip
 * Mexico only:  Mexico_Concepts-x.zip
-* ???: Oncology-x.zip
+* Oncology: Oncology-x.zip
 * Allergies:  PIH_Allergies-x.zip
 * Concept sources: PIH_Concept_Sources-x.zip
-* Physical exam:  PIH_Exam-x.zip (1 concept: Physical system concept set)
+* Physical exam:  PIH_Exam-x.zip (1 concept = Physical system concept set)
 * Intake history: PIH_History-x.zip
 * Labs: PIH_Labs-x.zip
 * Maternal child health: PIH_Maternal_Child_Health-x.zip
 * Mental health: PIH_Mental_Health-x.zip
 * Pediatric feeding: PIH_Pediatric_Feeding-x.zip
 * Pediatric supplements: PIH_Pediatric_Supplements-x.zip
-* Socioeconomics:  PIH_Socio_Economics-x.zip
+* Socioeconomics:  PIH_Socio_Economics-x.zip (5 concepts)
 * Sierra Leone only:  Sierra_Leone_Concepts-x.zip
 
 NOTE: x is the version number and modified in the packages.xml file
