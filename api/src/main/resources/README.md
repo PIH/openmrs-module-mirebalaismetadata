@@ -14,8 +14,8 @@ Metadata sharing packages include these:
 
 * HIV (includes all concepts for Haiti including iSantePlus): Haiti_HIV-x.zip (1 concept)
 * Zika: Haiti_Zika-x.zip (1 concept: Zika study concept set)
-* Diagnoses, symptoms, etc:  HUM_Clinical_Concepts-x.zip (8 concepts)
-* Dispensing: HUM_Dispensing_Concepts-x.zip (7 concepts)
+* Diagnoses, symptoms, etc:  HUM_Clinical_Concepts-x.zip (8 concepts including Clinical concept set)
+* Dispensing: HUM_Dispensing_Concepts-x.zip (3 concepts including Dispensing concept set)
 * Disposition:  HUM_Disposition_Concepts-x.zip (3 concepts)
 * ED triage:  HUM_Emergency_Triage-x.zip (2 concepts including HUM Triage set)
 * Medications:  HUM_Medication-x.zip (3 concepts including PIH medication set, CES medication set)
