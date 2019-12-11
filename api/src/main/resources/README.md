@@ -14,7 +14,7 @@ Metadata sharing packages include these:
 
 * HIV (includes all concepts for Haiti including iSantePlus): Haiti_HIV-x.zip (1 concept)
 * Zika: Haiti_Zika-x.zip (1 concept: Zika study concept set)
-* Diagnoses, symptoms, etc:  HUM_Clinical_Concepts-x.zip (8 concepts including Clinical concept set)
+* Diagnoses, symptoms, etc:  HUM_Clinical_Concepts-x.zip (1 concepts: Clinical concept set)
 * Dispensing: HUM_Dispensing_Concepts-x.zip (3 concepts including Dispensing concept set)
 * Disposition:  HUM_Disposition_Concepts-x.zip (3 concepts)
 * ED triage:  HUM_Emergency_Triage-x.zip (2 concepts including HUM Triage set)
@@ -32,9 +32,9 @@ Metadata sharing packages include these:
 * Oncology: Oncology-x.zip
 * Allergies:  PIH_Allergies-x.zip
 * Concept sources: PIH_Concept_Sources-x.zip
-* Physical exam:  PIH_Exam-x.zip (1 concept = Physical system concept set)
+* Physical exam:  PIH_Exam-x.zip (1 concept: Physical system concept set)
 * Intake history: PIH_History-x.zip
-* Labs: PIH_Labs-x.zip (5 concepts including Laboratory concept set)
+* Labs: PIH_Labs-x.zip (1 concept: Laboratory concept set)
 * Maternal child health: PIH_Maternal_Child_Health-x.zip
 * Mental health: PIH_Mental_Health-x.zip
 * Pediatric feeding: PIH_Pediatric_Feeding-x.zip
