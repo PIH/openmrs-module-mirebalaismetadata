@@ -33,13 +33,13 @@ Metadata sharing packages include these:
 * Allergies:  PIH_Allergies-x.zip
 * Concept sources: PIH_Concept_Sources-x.zip
 * Physical exam:  PIH_Exam-x.zip (1 concept: Physical system concept set)
-* Intake history: PIH_History-x.zip
+* Intake history: PIH_History-x.zip (1 concept: PIH History Form Concept Set)
 * Labs: PIH_Labs-x.zip (1 concept: Laboratory concept set)
 * Maternal child health: PIH_Maternal_Child_Health-x.zip
 * Mental health: PIH_Mental_Health-x.zip
 * Pediatric feeding: PIH_Pediatric_Feeding-x.zip
 * Pediatric supplements: PIH_Pediatric_Supplements-x.zip
-* Socioeconomics:  PIH_Socio_Economics-x.zip (5 concepts)
+* Socioeconomics:  PIH_Socio_Economics-x.zip (1 concept: Socioeconomics concept set)
 * Sierra Leone only:  Sierra_Leone_Concepts-x.zip
 
 NOTE: x is the version number and modified in the packages.xml file
