@@ -20,7 +20,7 @@ Metadata sharing packages include these:
 * ED triage:  HUM_Emergency_Triage-x.zip (2 concepts including HUM Triage set)
 * Medications:  HUM_Medication-x.zip (3 concepts including PIH medication set, CES medication set)
 * Miscellaneous: HUM_Metadata-x.zip (8 concepts)
-* NCD: HUM_NCD-x.zip (7 concepts including NCD concept set; removed NCD consult htmlform )
+* NCD: HUM_NCD-x.zip (1 concept: NCD concept set)
 * Oncology: HUM_Oncology-x.zip (2 concepts; 3 htmlforms)
 * Pathology: HUM_Pathology-x.zip (1 concept = Pathology concept set)
 * Providers/Roles: HUM_Provider_Roles-x.zip (?)
