@@ -263,13 +263,30 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
                     "Sierra_Leone_Concepts");
         } else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
             MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
-                    "Mexico_Concepts",
+            "Mexico_Concepts",
                     "HUM_Clinical_Concepts",
                     "HUM_Dispensing_Concepts",
                     "HUM_Disposition_Concepts",
                     "HUM_Medication",
                     "HUM_Metadata",
                     "HUM_NCD",  // provides program concepts
+                    "HUM_Provider_Roles",
+                    "PIH_Allergies",
+                    "PIH_Exam",
+                    "PIH_History",
+                    "PIH_Labs",
+                    "PIH_Maternal_Child_Health",  // "programs" component dependency
+                    "PIH_Mental_Health",
+                    "PIH_Pediatric_Feeding",
+                    "PIH_Pediatric_Supplements",
+                    "PIH_Socio_Economics");
+        } else if (config.getCountry().equals(ConfigDescriptor.Country.PERU)) {
+            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
+                    "HUM_Clinical_Concepts",
+                    "HUM_Dispensing_Concepts",
+                    "HUM_Disposition_Concepts",
+                    "HUM_Medication",
+                    "HUM_Metadata",
                     "HUM_Provider_Roles",
                     "PIH_Allergies",
                     "PIH_Exam",
