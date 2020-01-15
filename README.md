@@ -22,16 +22,20 @@ The script `find-package-by-name.sh <name>` will show you which of the header.xm
 metadata.xml files (which only have number suffixes) has `<name>` in the name.
 Try `find-package-by-name.sh ncd`.
 
+### PIH Concept Managers
+
+There are two people at PIH who are "Concept Managers" in the sense intended below:
+- Ellen Ball
+- Brandon Istenes
+
 ### PIH EMR Concept Management Process
 
 1. Write down your required question/answer/diagnosis in a row in your requirements sheet.
 1. Try and find a suitable concept in the [PIH Concept dictionary](http://concepts.pih-emr.org/).
     1. If there is a suitable concept, then add its ID to your requirements sheet
-    1. If there's no suitable concept, then search for a suitable concept in [CIEL on OCL](https://openconceptlab.org/search/?source=CIEL&q=).
+    1. If there's no suitable concept, then search for a suitable concept in [CIEL on OCL](https://openconceptlab.org/search/?source=CIEL&q=) (it's "see-el").
         1. If there is a suitable concept in CIEL, add the CIEL ID to your requirements sheet and ask Ellen to import the concept from CIEL to PIH.
-        1. If there is no suitable concept in CIEL, then ask Ellen what the best next step is. It will be either to
-            1. Propose a new concept for CIEL via an email to Andy (Andrew Kanter), and wait for it to be created and for Ellen to import it from CIEL to PIH. Once this is done, add the CIEL Concept ID to your requirements sheet. This will be the right choice when the concept seems like something that lots of other organizations would want.
-            1. Just create a new concept in the PIH Concept dictionary, then add the PIH ID to your requirements sheet. This will be the right choice for things that are very specific to your implementation.
+        1. If there is no suitable concept in CIEL, then ask a Concept Manager for help creating that concept in the PIH concept dictionary. Unless the concept is very specific to your implementation, we will probably also propose that concept for inclusion into CIEL via an email to Andy (Andrew Kanter). If accepted into CIEL, a Concept Manager will update the PIH entry with the link to the CIEL entry.
 1. Once you have the concept in the PIH concept server, make sure it has a reference term mapping. The ones imported from CIEL should certainly have the CIEL code as a mapping -- if it isn't present, definitely ask Ellen about it. Concepts which don't correspond to anything in CIEL should have PIH reference term mappings, for the ID (e.g. "PIH:12345") and for the name (e.g. "PIH:HAS BOO BOO"). The ID one probably isn't important, actually, but it'll probably exist.
 1. Check that a translation of the concept name exists in your implementation’s language. If it doesn't, evaluate whether or not the display name you want for the concept is a direct translation of the English concept name.
     1. If it is, add the display name as the translation for the concept.
