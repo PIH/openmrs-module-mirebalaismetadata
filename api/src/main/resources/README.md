@@ -35,7 +35,7 @@ Metadata sharing packages include these:
 * Physical exam:  PIH_Exam-x.zip (1 concept: Physical system concept set)
 * Intake history: PIH_History-x.zip (1 concept: PIH History Form Concept Set)
 * Labs: PIH_Labs-x.zip (1 concept: Laboratory concept set)
-* Maternal child health: PIH_Maternal_Child_Health-x.zip
+* Maternal child health: (2 concepts:  MCH concept set, some mental health which should be moved) PIH_Maternal_Child_Health-x.zip
 * Mental health: PIH_Mental_Health-x.zip (11 concepts including Mental Health concept sets)
 * Pediatric feeding: PIH_Pediatric_Feeding-x.zip
 * Pediatric supplements: PIH_Pediatric_Supplements-x.zip
