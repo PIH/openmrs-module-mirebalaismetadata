@@ -30,16 +30,16 @@ There are two people at PIH who are "Concept Managers" in the sense intended bel
 
 ### PIH EMR Concept Management Process
 
-1. Write down your required question/answer/diagnosis in a row in your requirements spreadsheet.
-1. Search PIH EMR for existing concepts.  Use any of the staging servers (humci, ci, gladi, kouka, ces, etc.)  There is currently no 1 server with ALL PIH EMR concepts since the staging servers dictionaries vary by site/configuration (ie. haiti, hum, liberia, mexico, sierra leone, etc).
-    1. If there is a suitable concept, then add the PIH or CIEL mapping to your requirements sheet.
-    1. All PIH EMR concepts are generated on the [PIH Concept dictionary](http://concepts.pih-emr.org/).
-    1. Refrain from using ancient concepts from the [PIH Concept dictionary](http://concepts.pih-emr.org/).  If it's in ALL CAPS, it's likely to be pre-historic and not always following best practices.  Preference to use CIEL concepts with up-to-date terminology mappings (SNOMED, ICD10, RxNorm), synonyms, languages (locale), and CIEL uuids.
-    1. If you need to add a new concept to PIH EMR, search for a suitable concept in [CIEL on OCL](https://openconceptlab.org/search/?source=CIEL&q=) (it's "see-el").  
-        1. NOTE:  As of Feb 2020, OCL doesn't have the latest version of the CIEL dictionary.  It was last updated in June 2019.  For the latest CIEL dictionary, check [mdsbuilder](https://mdsbuilder.openmrs.org/openmrs/). 
-        1. To add a new concept to PIH EMR, add the concept to [this spreadsheet](https://docs.google.com/spreadsheets/d/1hAJLuKBVwzJEvo3hDp2tRqeRWKMSlxgphK1rc-Nm3IA/edit#gid=0). 
-        1. If the concept exists in CIEL, add the CIEL mapping and name to [this spreadsheet](https://docs.google.com/spreadsheets/d/1hAJLuKBVwzJEvo3hDp2tRqeRWKMSlxgphK1rc-Nm3IA/edit#gid=0).  Ask Ellen to import the concept from CIEL to PIH.
-        1. If there is no suitable concept in CIEL, add the CIEL mapping and name to [the spreadsheet](https://docs.google.com/spreadsheets/d/1hAJLuKBVwzJEvo3hDp2tRqeRWKMSlxgphK1rc-Nm3IA/edit#gid=0).  Ask a Concept Manager for help creating that concept in the PIH concept dictionary. Unless the concept is very specific to your implementation, we will probably also propose that concept for inclusion into CIEL via an email to Andy (Andrew Kanter). If accepted into CIEL, a Concept Manager will update the PIH entry with the link to the CIEL entry.
+This is a process for defining a new form.
+
+1. Write down your required question/answer/diagnosis in a row in your requirements spreadsheet (LINK TO EXAMPLE).
+1. Go to humci.pih-emr.org/openmrs/admin/concepts and, for each question/answer/diagnosis/etc, search for a concept that might be appropriate.
+    1. If there is a suitable concept in HUM-CI,
+        1. If there is a CIEL mapping, add that to your requirements sheet.
+        1. If there is no CIEL mapping, add the PIH "name" mapping to your requirements sheet.
+    1. If there is no suitable concept in HUM-CI, search for a suitable CIEL concept in [mdsbuilder](https://mdsbuilder.openmrs.org/openmrs/)
+        1. If the concept exists in CIEL, add it to the [CIEL request sheet]. Tag Ellen in a comment to request that she import the concept.
+        1. If there is no suitable concept in CIEL, add it to the [CIEL request sheet](https://docs.google.com/spreadsheets/d/1hAJLuKBVwzJEvo3hDp2tRqeRWKMSlxgphK1rc-Nm3IA/edit#gid=0). Either Andy Kanter will either add it to CIEL and we'll import it to PIH EMR, or he won't and we'll create it ourselves. In the meantime, after running it by a Concept Manager, feel free to add it to the PIH EMR.
 1. Once you have the concept in the PIH concept server, make sure it has PIH or CIEL reference term mappings. The ones imported from CIEL should certainly have the CIEL code as a mapping -- if it isn't present, definitely ask Ellen about it. Concepts which don't correspond to anything in CIEL should have PIH reference term mappings, for the ID (e.g. "PIH:12345") and for the name (e.g. "PIH:HAS BOO BOO"). The ID one probably isn't important, actually, but it'll probably exist.
 1. Check that a translation of the concept name exists in your implementation’s language. If it doesn't, evaluate whether or not the display name you want for the concept is a direct translation of the English concept name.
     1. If it is, add the display name as the translation for the concept.
@@ -64,18 +64,17 @@ There are two people at PIH who are "Concept Managers" in the sense intended bel
 1. Now that you know that the concept is being imported via an MDS package, you can use it in a form (or whatever). Refer to your concept by Reference Term Mapping. If a CIEL Metadata Term Mapping ("CIEL:3456") is available, always prefer that. If it's not obvious from context what the concept is, add a comment with the concept's name. If the concept is not a CIEL concept, use the PIH name mapping ("PIH:TUMMY ACHE"), creating it if necessary.
 1. Add the display name to the correct `messages.properties` file, with the correct key (I haven't done this yet and can't be more helpful than that).
 
-
 ### Importing Concepts from CIEL to PIH Server
 
-1. Use Metadata Sharing (mds) to add the concept to the PIH EMR package.  
+Use Metadata Sharing (mds) to add the concept to the PIH EMR package.
 
-    1. Create mds package with select CIEL concepts from [mdsbuilder](https://mdsbuilder.openmrs.org/openmrs/).  
-
-    1. Download/Export the CIEL mds package.
-
-    1. (carefully) Import the CIEL mds package into the PIH concepts server.  
-
-    1. Add the concepts to one of the PIH EMR mds packages.  Zip file updates are pushed to the repo [https://github.com/PIH/openmrs-module-mirebalaismetadata](https://github.com/PIH/openmrs-module-mirebalaismetadata)
+1. Create mds package with select CIEL concepts from [mdsbuilder](https://mdsbuilder.openmrs.org/openmrs/).
+1. Download/Export the CIEL mds package.
+1. Import the CIEL mds package into the PIH concepts server.
+    1. Use "From peer"
+    1. Uncheck "dates differ"
+    1. Review the matches identified by the importer
+1. Add the concepts to one of the PIH EMR mds packages.  Zip file updates are pushed to the repo [https://github.com/PIH/openmrs-module-mirebalaismetadata](https://github.com/PIH/openmrs-module-mirebalaismetadata)
 
 ### Metadata Sharing (mds)
 
