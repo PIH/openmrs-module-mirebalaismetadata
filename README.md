@@ -30,31 +30,34 @@ There are two people at PIH who are "Concept Managers" in the sense intended bel
 
 ### PIH EMR Concept Management Process
 
-This is a process for defining a new form.
+This is a process for defining a new form. The main idea of the process is
 
-1. Write down your required question/answer/diagnosis in a row in your requirements spreadsheet (LINK TO EXAMPLE).
-1. Go to humci.pih-emr.org/openmrs/admin/concepts and, for each question/answer/diagnosis/etc, search for a concept that might be appropriate.
-    1. If there is a suitable concept in HUM-CI,
+1. Identify suitable concepts in the [HUM-CI Concept Dictionary](https://humci.pih-emr.org/mirebalais/dictionary/index.htm) and the CIEL concepts in [mdsbuilder](https://mdsbuilder.openmrs.org/openmrs/).
+1. Get the concept onto the [Concept Server](https://concepts.pih-emr.org/openmrs/dictionary/index.htm)
+1. Export the concept from the Concept Server and add it to your distribution.
+
+Here's a workflow that breaks that down into concrete steps.
+
+1. Start a requirements spreadsheet based on [this template](https://docs.google.com/spreadsheets/d/1vdY95gN2fuGIMZlHadC4eAa8299RatsenIj06pa8p9E/edit#gid=0) (see, for example, the [CES sheet](https://docs.google.com/spreadsheets/d/1fZEeeEku8YWC-uHEZ0HPsa5NY23m2sWLIIonE7u-sZs/edit#gid=815234747)).
+1. Write down your required question/answer/diagnosis in a row in your requirements spreadsheet.
+1. Go to the [HUM-CI Concept Dictionary](https://humci.pih-emr.org/mirebalais/dictionary/index.htm) and, for each question/answer/diagnosis/etc, search for a concept that might be appropriate.
+    1. If there is a suitable concept in HUM-CI, then it already also exists in the Concept Server.
         1. If there is a CIEL mapping, add that to your requirements sheet.
         1. If there is no CIEL mapping, add the PIH "name" mapping to your requirements sheet.
-    1. If there is no suitable concept in HUM-CI, search for a suitable CIEL concept in [mdsbuilder](https://mdsbuilder.openmrs.org/openmrs/)
-        1. If the concept exists in CIEL, add it to the [CIEL request sheet]. Tag Ellen in a comment to request that she import the concept.
-        1. If there is no suitable concept in CIEL, add it to the [CIEL request sheet](https://docs.google.com/spreadsheets/d/1hAJLuKBVwzJEvo3hDp2tRqeRWKMSlxgphK1rc-Nm3IA/edit#gid=0). Either Andy Kanter will either add it to CIEL and we'll import it to PIH EMR, or he won't and we'll create it ourselves. In the meantime, after running it by a Concept Manager, feel free to add it to the PIH EMR.
-1. Once you have the concept in the PIH concept server, make sure it has PIH or CIEL reference term mappings. The ones imported from CIEL should certainly have the CIEL code as a mapping -- if it isn't present, definitely ask Ellen about it. Concepts which don't correspond to anything in CIEL should have PIH reference term mappings, for the ID (e.g. "PIH:12345") and for the name (e.g. "PIH:HAS BOO BOO"). The ID one probably isn't important, actually, but it'll probably exist.
+    1. If there is no suitable concept in HUM-CI, search for a suitable CIEL concept in [mdsbuilder](https://mdsbuilder.openmrs.org/openmrs/).
+        1. If the concept exists in CIEL, add it to the [CIEL request sheet]. Tag Ellen in a comment to request that she import it to the Concept Server.
+        1. If there is no suitable concept in CIEL, add it to the [CIEL request sheet](https://docs.google.com/spreadsheets/d/1hAJLuKBVwzJEvo3hDp2tRqeRWKMSlxgphK1rc-Nm3IA/edit#gid=0). Either Andy Kanter will either add it to CIEL and we'll import it to the Concept Server, or he won't and we'll create it on the Concept Server. In the meantime, after running it by a Concept Manager, feel free to add it to the Concept Server.
+1. Once you have the concept in the Concept Server, make sure it has PIH or CIEL reference term mappings. The ones imported from CIEL should certainly have the CIEL code as a mapping -- if it isn't present, definitely ask Ellen about it. Concepts which don't correspond to anything in CIEL should at least have a PIH reference term mappings (e.g. "PIH:HAS BOO BOO").
 1. Check that a translation of the concept name exists in your implementation’s language. If it doesn't, evaluate whether or not the display name you want for the concept is a direct translation of the English concept name.
     1. If it is, add the display name as the translation for the concept.
-    1. If it isn't, translate the English concept name as best you (or a bilingual colleague) can. You'll add the display name to the `messages.properties` file later.
+    1. If it isn't, translate the English concept name as best you (or a bilingual colleague) can. Instead of adding the display name to the concept, you'll add it to the `messages.properties` file later. Note that this only works for some kinds of concepts (e.g. those referenced directly in an HTML Form) and not others (e.g. diagnoses in the diagnosis list), so you might have to just settle with using the translation of the concept as the display name.
 1. Use the MDS Package Search Tool (mds-search), documented above, to find out whether the concept you want is already in an MDS package.
 1. If the concept is new or is for some other reason is not yet in an MDS package, you or someone from MedInfo will have to add it to one.
-    1. Identify the MDS package it should go in. Ask someone if you're not sure.
-    1. Add your concept to a concept set that goes into that package. Ask someone if you're not sure.
+    1. Identify the MDS package it should go in. Ask a Concept Manager if you're not sure.
+    1. Each package should correspond to a single concept set, which contains a tree of concept sets and concepts that go into that package. Add your concept to one of the concept sets that goes into that package.
     1. Go to Administration > Export Metadata.
-    1. Click on "New Version"
-    1. I don't think we use publication, but feel free to check "2. Publish package" anyway. Click "Next."
-    1. If you have a new concept set that's not yet in the package, then
-        1. Under "4. Review selected items," click "Choose Individually."
-        1. Find and select the concept set you'd like to include.
-        1. Click "Save."
+    1. Click on "New Version" next to the package that the concept set you chose is part of.
+    1. Check "2. Publish package." Click "Next."
     1. Click "Export."
     1. Download this newly created MDS package.
     1. Open the "openmrs-module-mirebalaismetadata" repository on your computer. If you don't have it, check it out from [GitHub](https://github.com/PIH/openmrs-module-mirebalaismetadata). If you are using the OpenMRS SDK, be sure to watch it with `openmrs-sdk:watch`.
@@ -62,7 +65,7 @@ This is a process for defining a new form.
     1. Update the filename in `api/src/main/resources/packages.xml` to reflect the new version number.
 1. To make sure that your site is importing that MDS package, look at `mirebalaismetadata/.../MirebalaisMetadataActivator.java`. It should have a list of MDS packages under your country's name. Make sure your MDS package is named there, adding it if necessary.
 1. Now that you know that the concept is being imported via an MDS package, you can use it in a form (or whatever). Refer to your concept by Reference Term Mapping. If a CIEL Metadata Term Mapping ("CIEL:3456") is available, always prefer that. If it's not obvious from context what the concept is, add a comment with the concept's name. If the concept is not a CIEL concept, use the PIH name mapping ("PIH:TUMMY ACHE"), creating it if necessary.
-1. Add the display name to the correct `messages.properties` file, with the correct key (I haven't done this yet and can't be more helpful than that).
+1. Add the display name to the correct `messages.properties` file, with the correct key. They key to use will depend on the context in which the concept is being used. For HTML Form Entry, the key will be something you code into the form.
 
 ### Importing Concepts from CIEL to PIH Server
 
