@@ -30,13 +30,8 @@ import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.dispensing.importer.DrugImporter;
 import org.openmrs.module.dispensing.importer.ImportNotes;
 import org.openmrs.module.emrapi.EmrApiProperties;
-import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
 import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
-import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiMetadataToInstallAfterConceptsBundle;
-import org.openmrs.module.pihcore.deploy.bundle.liberia.LiberiaMetadataToInstallAfterConceptsBundle;
-import org.openmrs.module.pihcore.deploy.bundle.mexico.MexicoMetadataToInstallAfterConceptsBundle;
-import org.openmrs.module.pihcore.deploy.bundle.sierraLeone.SierraLeoneMetadataToInstallAfterConceptsBundle;
 import org.springframework.context.MessageSource;
 
 import java.io.IOException;
@@ -119,9 +114,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
         try {
 
-
-            installMetadataBundles(config);
-
             if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
                 retireOldConcepts();
             }
@@ -148,27 +140,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             conceptService.retireConcept(concept, "replaced with by 155479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         }
     }
-
-    private void installMetadataBundles(Config config) {
-
-        MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
-
-        // make this more dynamic, less dependent on if-thens
-        if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
-            deployService.installBundle(Context.getRegisteredComponents(HaitiMetadataToInstallAfterConceptsBundle.class).get(0));
-        }
-        else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
-            deployService.installBundle(Context.getRegisteredComponents(LiberiaMetadataToInstallAfterConceptsBundle.class).get(0));
-        }
-        else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
-            deployService.installBundle(Context.getRegisteredComponents(MexicoMetadataToInstallAfterConceptsBundle.class).get(0));
-        }
-        else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
-            deployService.installBundle(Context.getRegisteredComponents(SierraLeoneMetadataToInstallAfterConceptsBundle.class).get(0));
-        }
-
-    }
-
 
     private void installDrugList(Config config) throws IOException {
 
