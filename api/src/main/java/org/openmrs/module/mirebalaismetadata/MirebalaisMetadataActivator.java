@@ -30,26 +30,13 @@ import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.dispensing.importer.DrugImporter;
 import org.openmrs.module.dispensing.importer.ImportNotes;
 import org.openmrs.module.emrapi.EmrApiProperties;
-import org.openmrs.module.emrapi.utils.MetadataUtil;
-import org.openmrs.module.metadatadeploy.api.MetadataDeployService;
-import org.openmrs.module.metadatasharing.MetadataSharing;
-import org.openmrs.module.metadatasharing.resolver.Resolver;
-import org.openmrs.module.metadatasharing.resolver.impl.ConceptReferenceTermResolver;
-import org.openmrs.module.metadatasharing.resolver.impl.ObjectByNameResolver;
-import org.openmrs.module.metadatasharing.resolver.impl.ObjectByUuidResolver;
 import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
-import org.openmrs.module.pihcore.deploy.bundle.haiti.HaitiMetadataToInstallAfterConceptsBundle;
-import org.openmrs.module.pihcore.deploy.bundle.liberia.LiberiaMetadataToInstallAfterConceptsBundle;
-import org.openmrs.module.pihcore.deploy.bundle.mexico.MexicoMetadataToInstallAfterConceptsBundle;
-import org.openmrs.module.pihcore.deploy.bundle.sierraLeone.SierraLeoneMetadataToInstallAfterConceptsBundle;
 import org.springframework.context.MessageSource;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -96,20 +83,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             mirebalaisMetadataProperties = Context.getRegisteredComponents(MirebalaisMetadataProperties.class).get(0);
         }
 
-        // Since we do all MDS import programmatically, in mirror or parent-child mode, we don't want items being matched
-        // except for in specific ways. (Specifically we don't want to use ConceptByMappingResolver, but in general we
-        // want to avoid unexpected behavior.)
-        // See https://tickets.openmrs.org/browse/META-323
-        ObjectByUuidResolver byUuidResolver = Context.getRegisteredComponent("metadatasharing.ObjectByUuidResolver", ObjectByUuidResolver.class);
-        ObjectByNameResolver byNameResolver =Context.getRegisteredComponent("metadatasharing.ObjectByNameResolver", ObjectByNameResolver.class);
-        ConceptReferenceTermResolver referenceTermResolver =  Context.getRegisteredComponent("metadatasharing.ConceptReferenceTermResolver", ConceptReferenceTermResolver.class);
-
-        List<Resolver<?>> supportedResolvers = new ArrayList<Resolver<?>>();
-        supportedResolvers.add(byUuidResolver);
-        supportedResolvers.add(byNameResolver);
-        supportedResolvers.add(referenceTermResolver);
-        MetadataSharing.getInstance().getResolverEngine().setResolvers(supportedResolvers);
-
         log.info("Mirebalais Metadata module refreshed");
     }
 
@@ -141,9 +114,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
         try {
 
-            installMetadataPackages(config);
-            installMetadataBundles(config);
-
             if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
                 retireOldConcepts();
             }
@@ -170,142 +140,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             conceptService.retireConcept(concept, "replaced with by 155479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         }
     }
-
-    private void installMetadataPackages(Config config) throws Exception {
-
-        // set up the concept sources first because of TRUNK-5326
-        MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(), "PIH_Concept_Sources");
-
-        // make sure we load these all with one call to "setupSpecificMetadata" because that method makes sure to
-        // sort the loading by dateCreated to avoid issues with inconsistent metadata
-        if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
-                    "HUM_Radiology_Orderables",
-                    "HUM_Metadata",
-                    "HUM_Clinical_Concepts",
-                    "HUM_Medication",
-                    "HUM_Dispensing_Concepts",
-                    "HUM_Disposition_Concepts",
-                    "HUM_Surgery",
-                    "HUM_Scheduling",
-                    "HUM_Provider_Roles",
-                    "HUM_Oncology",
-                    "PIH_Allergies",
-                    "PIH_Exam",
-                    "PIH_Labs",
-                    "PIH_History",
-                    "PIH_Pediatric_Feeding",
-                    "PIH_Pediatric_Supplements",
-                    "HUM_NCD",
-                    "PIH_Mental_Health",
-                    "HUM_Emergency_Triage",
-                    "HUM_Pathology",
-                    "Haiti_HIV",
-                    "Haiti_Zika",
-                    "PIH_Socio_Economics",
-                    "PIH_Maternal_Child_Health",
-                    "Oncology");
-        }
-        // TODO changed this so we install all concepts on Liberia servers as well (plus Liberia Concept set which may no longer be necessary)
-        // TODO is this okay?
-        else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
-                  "Liberia_Concepts",
-                    "HUM_Radiology_Orderables",
-                    "HUM_Metadata",
-                    "HUM_Clinical_Concepts",
-                    "HUM_Medication",
-                    "HUM_Dispensing_Concepts",
-                    "HUM_Disposition_Concepts",
-                    "HUM_Surgery",
-                    "HUM_Scheduling",
-                    "HUM_Provider_Roles",
-                    "HUM_Oncology",
-                    "PIH_Allergies",
-                    "PIH_Exam",
-                    "PIH_Labs",
-                    "PIH_History",
-                    "PIH_Pediatric_Feeding",
-                    "PIH_Pediatric_Supplements",
-                    "HUM_NCD",
-                    "PIH_Mental_Health",
-                    "HUM_Emergency_Triage",
-                    "HUM_Pathology",
-                    "Haiti_HIV",
-                    "Haiti_Zika",
-                    "PIH_Socio_Economics",
-                    "PIH_Maternal_Child_Health");
-
-        }
-        else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
-		    "Haiti_HIV",
-                    "HUM_Radiology_Orderables",
-                    "HUM_Clinical_Concepts",
-                    "HUM_Dispensing_Concepts",
-                    "HUM_Disposition_Concepts",
-		            "HUM_Emergency_Triage",
-                    "HUM_Surgery",
-                    "HUM_Medication",
-                    "HUM_Metadata",
-                    "HUM_NCD",  // provides hypertension program
-		            "HUM_Pathology",
-                    "HUM_Provider_Roles",
-                    "PIH_Allergies",
-                    "PIH_Exam",
-                    "PIH_History",
-                    "PIH_Labs",
-                    "PIH_Maternal_Child_Health",  // programs dependency
-                    "PIH_Mental_Health",
-                    "PIH_Pediatric_Feeding",
-                    "PIH_Pediatric_Supplements",
-                    "PIH_Socio_Economics",
-                    "Sierra_Leone_Concepts");
-        } else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
-            MetadataUtil.setupSpecificMetadata(getClass().getClassLoader(),
-                    "Mexico_Concepts",
-                    "HUM_Clinical_Concepts",
-                    "HUM_Dispensing_Concepts",
-                    "HUM_Disposition_Concepts",
-                    "HUM_Medication",
-                    "HUM_Metadata",
-                    "HUM_NCD",  // provides program concepts
-                    "HUM_Provider_Roles",
-                    "PIH_Allergies",
-                    "PIH_Exam",
-                    "PIH_History",
-                    "PIH_Labs",
-                    "PIH_Maternal_Child_Health",  // "programs" component dependency
-                    "PIH_Mental_Health",
-                    "PIH_Pediatric_Feeding",
-                    "PIH_Pediatric_Supplements",
-                    "PIH_Socio_Economics");
-        }
-
-        Context.flushSession();
-    }
-
-
-    private void installMetadataBundles(Config config) {
-
-        MetadataDeployService deployService = Context.getService(MetadataDeployService.class);
-
-        // make this more dynamic, less dependent on if-thens
-        if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
-            deployService.installBundle(Context.getRegisteredComponents(HaitiMetadataToInstallAfterConceptsBundle.class).get(0));
-        }
-        else if (config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
-            deployService.installBundle(Context.getRegisteredComponents(LiberiaMetadataToInstallAfterConceptsBundle.class).get(0));
-        }
-        else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
-            deployService.installBundle(Context.getRegisteredComponents(MexicoMetadataToInstallAfterConceptsBundle.class).get(0));
-        }
-        else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
-            deployService.installBundle(Context.getRegisteredComponents(SierraLeoneMetadataToInstallAfterConceptsBundle.class).get(0));
-        }
-
-    }
-
 
     private void installDrugList(Config config) throws IOException {
 
