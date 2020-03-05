@@ -14,29 +14,18 @@
 package org.openmrs.module.mirebalaismetadata;
 
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Concept;
-import org.openmrs.Drug;
-import org.openmrs.GlobalProperty;
-import org.openmrs.api.AdministrationService;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.BaseModuleActivator;
 import org.openmrs.module.Module;
 import org.openmrs.module.ModuleActivator;
 import org.openmrs.module.ModuleFactory;
-import org.openmrs.module.dispensing.importer.DrugImporter;
-import org.openmrs.module.dispensing.importer.ImportNotes;
 import org.openmrs.module.emrapi.EmrApiProperties;
 import org.openmrs.module.pihcore.config.Config;
 import org.openmrs.module.pihcore.config.ConfigDescriptor;
-import org.springframework.context.MessageSource;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
@@ -45,44 +34,14 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
 
     protected Log log = LogFactory.getLog(getClass());
 
-    protected static final Integer DRUG_LIST_VERSION = 20;
-
-    protected static final Integer CES_DRUG_LIST_VERSION = 5;
-
-    protected static final Integer SL_DRUG_LIST_VERSION = 3;
-
-    private MirebalaisMetadataProperties mirebalaisMetadataProperties;
-
-    private DrugImporter drugImporter;
-
     private ConceptService conceptService;
 
-    private MessageSource messageSource;
-
-    private AdministrationService administrationService;
-
     private Config config;
-
-    public MirebalaisMetadataActivator() {
-    }
-
-    /**
-     * For unit tests
-     *
-     * @param mirebalaisMetadataProperties
-     */
-    public MirebalaisMetadataActivator(MirebalaisMetadataProperties mirebalaisMetadataProperties) {
-        this.mirebalaisMetadataProperties = mirebalaisMetadataProperties;
-    }
 
     /**
      * @see ModuleActivator#contextRefreshed()
      */
     public void contextRefreshed() {
-        if (mirebalaisMetadataProperties == null) {
-            mirebalaisMetadataProperties = Context.getRegisteredComponents(MirebalaisMetadataProperties.class).get(0);
-        }
-
         log.info("Mirebalais Metadata module refreshed");
     }
 
@@ -94,31 +53,13 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
         if (config == null) {  // hack to allow injecting a mock config for testing
             config = Context.getRegisteredComponents(Config.class).get(0); // currently only one of these
         }
-
-        if (mirebalaisMetadataProperties == null) {
-            mirebalaisMetadataProperties = Context.getRegisteredComponents(MirebalaisMetadataProperties.class).get(0);
-        }
-
-        if (drugImporter == null) {
-            drugImporter = Context.getRegisteredComponents(DrugImporter.class).get(0);
-        }
         if (conceptService == null) {
             conceptService = Context.getConceptService();
         }
-        if (messageSource == null) {
-            messageSource = Context.getMessageSourceService().getActiveMessageSource();
-        }
-        if (administrationService == null) {
-            administrationService = Context.getAdministrationService();
-        }
-
         try {
-
             if (config.getCountry().equals(ConfigDescriptor.Country.HAITI)) {
                 retireOldConcepts();
             }
-
-            installDrugList(config);
         }
 		catch (Exception e) {
             Module mod = ModuleFactory.getModuleById("mirebalaismetadata");
@@ -140,75 +81,6 @@ public class MirebalaisMetadataActivator extends BaseModuleActivator {
             conceptService.retireConcept(concept, "replaced with by 155479AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         }
     }
-
-    private void installDrugList(Config config) throws IOException {
-
-        if (config.getCountry().equals(ConfigDescriptor.Country.HAITI) || config.getCountry().equals(ConfigDescriptor.Country.LIBERIA)) {
-            installSpecificDrugList("HUM_Drug_List-", DRUG_LIST_VERSION, MirebalaisMetadataProperties.GP_INSTALLED_DRUG_LIST_VERSION);
-        } else if (config.getCountry().equals(ConfigDescriptor.Country.MEXICO)) {
-            installSpecificDrugList("CES_Drug_List-", CES_DRUG_LIST_VERSION, MirebalaisMetadataProperties.GP_INSTALLED_CES_DRUG_LIST_VERSION);
-        } else if (config.getCountry().equals(ConfigDescriptor.Country.SIERRA_LEONE)) {
-            installSpecificDrugList("SL_Drug_List-", SL_DRUG_LIST_VERSION, MirebalaisMetadataProperties.GP_INSTALLED_SL_DRUG_LIST_VERSION);
-        }
-    }
-
-    private void installSpecificDrugList(String csvFileNamePrefix, Integer version, String installedDrugListVersionGp) throws IOException {
-
-        int installedDrugListVersion = getIntegerByGlobalProperty(installedDrugListVersionGp, -1);
-
-        if (installedDrugListVersion < version) {
-
-            // special-case to retire any demo drugs before installing the first package
-            if (installedDrugListVersion == 0) {
-                retireExistingDemoDrugs();
-            }
-
-            String csvFileName = csvFileNamePrefix + version + ".csv";
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(csvFileName);
-            InputStreamReader reader = new InputStreamReader(inputStream);
-            ImportNotes notes = drugImporter.importSpreadsheet(reader);
-
-            if (notes.hasErrors()) {
-                System.out.println(notes);
-                throw new RuntimeException("Unable to install drug list");
-            } else {
-
-                // update the installed version
-                GlobalProperty installedDrugListVersionObject = Context.getAdministrationService()
-                        .getGlobalPropertyObject(installedDrugListVersionGp);
-                if (installedDrugListVersionObject == null) {
-                    installedDrugListVersionObject = new GlobalProperty();
-                    installedDrugListVersionObject.setProperty(installedDrugListVersionGp);
-                }
-                installedDrugListVersionObject.setPropertyValue(version.toString());
-                Context.getAdministrationService().saveGlobalProperty(installedDrugListVersionObject);
-            }
-        }
-
-    }
-
-    private void retireExistingDemoDrugs() {
-
-        for (Drug drug : conceptService.getAllDrugs(true)) {
-            conceptService.retireDrug(drug, "sample drug");
-        }
-
-    }
-
-	protected Integer getIntegerByGlobalProperty(String globalPropertyName, Integer defaultValue) {
-		String value = administrationService.getGlobalProperty(globalPropertyName);
-		if (StringUtils.isNotEmpty(value)) {
-			try {
-				return Integer.valueOf(value);
-			}
-			catch (Exception e) {
-				throw new IllegalStateException("Global property " + globalPropertyName + " value of " + value + " is not parsable as an Integer");
-			}
-		}
-		else {
-			return defaultValue;
-		}
-	}
 
     // hack to allow us to inject a mock config during testing
     public void setConfig(Config config) {
