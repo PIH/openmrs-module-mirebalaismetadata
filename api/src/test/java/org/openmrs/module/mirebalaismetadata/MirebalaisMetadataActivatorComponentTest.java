@@ -23,22 +23,17 @@ import org.openmrs.module.pihcore.deploy.bundle.haiti.mirebalais.MirebalaisRadio
 import org.openmrs.module.pihcore.metadata.core.OrderTypes;
 import org.openmrs.module.providermanagement.api.ProviderManagementService;
 import org.openmrs.test.SkipBaseSetup;
-import org.openmrs.util.OpenmrsUtil;
 import org.openmrs.validator.ValidateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -53,9 +48,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
 
 	@Autowired
 	private MetadataDeployService metadataDeployService;
-
-    @Autowired
-    MirebalaisMetadataProperties mirebalaisMetadataProperties;
 
     @Autowired
     private ConceptsFromMetadataSharing conceptsFromMetadataSharing;
@@ -76,7 +68,7 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
         when(config.getCountry()).thenReturn(ConfigDescriptor.Country.HAITI);
         when(config.getSite()).thenReturn(ConfigDescriptor.Site.MIREBALAIS);
 
-        mirebalaisMetadataActivator = new MirebalaisMetadataActivator(mirebalaisMetadataProperties);
+        mirebalaisMetadataActivator = new MirebalaisMetadataActivator();
         mirebalaisMetadataActivator.setConfig(config);
         mirebalaisMetadataActivator.willRefreshContext();
         mirebalaisMetadataActivator.contextRefreshed();
@@ -88,8 +80,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
     @Ignore
     public void testThatActivatorDoesAllSetup() throws Exception {
         verifyMetadataPackagesConfigured();
-        verifyDrugListLoaded();
-        //verifyConceptNamesInAllLanguages(); ignore this test until we have fixed the data
     }
 
 
@@ -158,32 +148,6 @@ public class MirebalaisMetadataActivatorComponentTest extends BaseMirebalaisMeta
             ValidateUtil.validate(concept);
         }
     }
-
-    private void verifyDrugListLoaded() throws Exception {
-
-        assertEquals((int) MirebalaisMetadataActivator.DRUG_LIST_VERSION, mirebalaisMetadataProperties.getInstalledDrugListVersion());
-
-        // just test that a few drugs are present
-        assertNotNull(conceptService.getDrug("Benzylbenzoate, 25% application, 1000 mL bottle"));
-        assertNotNull(conceptService.getDrug("Ranitidine hydrochloride 75 mg/5 mL oral suspension, 300 mL bottle"));
-        assertNotNull(conceptService.getDrug("Ipratropium bromide, 250 microgram/mL solution for nebuisation, 2mL ampoule"));
-    }
-
-    private void verifyConceptNamesInAllLanguages() {
-        // every concept should have a preferred name in English, French, and Creole.
-        List<Locale> locales = Arrays.asList(Locale.ENGLISH, Locale.FRENCH, new Locale("ht"));
-        List<String> missing = new ArrayList<String>();
-        for (Concept concept : conceptService.getAllConcepts()) {
-            for (Locale locale : locales) {
-                if (concept.getPreferredName(locale) == null) {
-                    missing.add(locale + " for " + concept.getName().getName());
-                }
-            }
-        }
-        String errorMessage = "Missing preferred concept names: " + OpenmrsUtil.join(missing, ", ");
-        assertEquals(errorMessage, 0, missing);
-    }
-
 }
 
 
