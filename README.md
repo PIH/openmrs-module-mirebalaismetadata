@@ -1,3 +1,9 @@
+# Deprecation Notice
+
+This is no longer used as of March 2020. Please see
+[openmrs-config-pihemr](https://github.com/PIH/openmrs-config-pihemr/)
+for up-to-date information about PIH EMR configuration.
+
 ## Managing Metadata for a PIH EMR instance of OpenMRS
 
 Metadata is packaged for deployment across PIH EMR instances using two OpenMRS modules: [Metadata Sharing](https://wiki.openmrs.org/display/docs/Metadata+Sharing+Module) and [Metadata Deploy](https://wiki.openmrs.org/display/docs/Metadata+Deploy+Module). Please read the documentation in the links.
